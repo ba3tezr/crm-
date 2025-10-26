@@ -523,6 +523,14 @@
             {% endif %}
             {% endif %}
 
+            <!-- My Tasks - Available for all users -->
+            <li>
+                <a href="{% url 'permits:my_tasks' %}" class="{% if 'my-tasks' in request.path or 'tasks' in request.path %}active{% endif %}">
+                    <i class="fas fa-clipboard-check text-info"></i>
+                    <span class="menu-text">{% trans "مهامي" %}</span>
+                </a>
+            </li>
+
             <!-- Modules based on user permissions -->
             {% if 'permits' in user_modules %}
             <li>

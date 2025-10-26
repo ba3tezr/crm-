@@ -170,10 +170,12 @@
                         {% trans "المرفقات" %}
                         <span class="badge bg-light text-dark">{{ permit.attachments.count }}</span>
                     </h5>
+                    {% if permit.status != 'rejected' %}
                     <button type="button" class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#uploadModal">
                         <i class="fas fa-upload"></i>
                         {% trans "رفع ملف" %}
                     </button>
+                    {% endif %}
                 </div>
                 <div class="card-body">
                     {% if permit.attachments.exists %}

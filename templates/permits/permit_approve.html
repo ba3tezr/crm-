@@ -111,11 +111,59 @@
                 <div class="card-body">
                     <form method="post">
                         {% csrf_token %}
-                        
-                        <div class="mb-4">
+
+                        <div class="mb-3">
                             <label class="form-label fw-bold">{% trans "التعليقات" %}:</label>
-                            <textarea name="comments" class="form-control" rows="4" placeholder="{% trans 'أضف تعليقاتك هنا (اختياري)' %}"></textarea>
+                            <textarea name="comments" class="form-control" rows="3" placeholder="{% trans 'أضف تعليقاتك هنا (اختياري)' %}"></textarea>
                             <small class="text-muted">{% trans "سيتم إرسال التعليقات إلى المستأجر" %}</small>
+                        </div>
+
+                        <!-- Task Assignment Section -->
+                        <div class="card bg-light mb-3">
+                            <div class="card-body">
+                                <h6 class="card-title mb-3">
+                                    <i class="fas fa-tasks text-primary"></i>
+                                    {% trans "إسناد مهمة (اختياري)" %}
+                                </h6>
+
+                                <div class="mb-3">
+                                    <label class="form-label">{% trans "إسناد إلى" %}:</label>
+                                    <select name="assign_to" class="form-select" id="assignToSelect">
+                                        <option value="">{% trans "لا يوجد - عدم إسناد مهمة" %}</option>
+                                        {% for user in staff_users %}
+                                        <option value="{{ user.id }}">{{ user.get_full_name|default:user.username }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div id="taskDetailsSection" style="display: none;">
+                                    <div class="mb-3">
+                                        <label class="form-label">{% trans "عنوان المهمة" %}:</label>
+                                        <input type="text" name="task_title" class="form-control" placeholder="{% trans 'مثال: متابعة تنفيذ التصريح' %}">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">{% trans "وصف المهمة" %}:</label>
+                                        <textarea name="task_description" class="form-control" rows="2" placeholder="{% trans 'تفاصيل المهمة المطلوبة' %}"></textarea>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">{% trans "الأولوية" %}:</label>
+                                            <select name="task_priority" class="form-select">
+                                                <option value="low">{% trans "منخفضة" %}</option>
+                                                <option value="medium" selected>{% trans "متوسطة" %}</option>
+                                                <option value="high">{% trans "عالية" %}</option>
+                                                <option value="urgent">{% trans "عاجلة" %}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">{% trans "تاريخ الاستحقاق" %}:</label>
+                                            <input type="datetime-local" name="task_due_date" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="d-grid gap-2">
@@ -133,6 +181,17 @@
                             </a>
                         </div>
                     </form>
+
+                    <script>
+                        document.getElementById('assignToSelect').addEventListener('change', function() {
+                            const taskDetailsSection = document.getElementById('taskDetailsSection');
+                            if (this.value) {
+                                taskDetailsSection.style.display = 'block';
+                            } else {
+                                taskDetailsSection.style.display = 'none';
+                            }
+                        });
+                    </script>
                 </div>
             </div>
 

@@ -213,7 +213,7 @@ class PermitAttachment(models.Model):
     )
 
     class Meta:
-        verbose_name = _('مرفق التصريح')
+        verbose_name = _('مرفق تصريح')
         verbose_name_plural = _('مرفقات التصاريح')
         db_table = 'permits_attachment'
         ordering = ['-created_at']
@@ -493,4 +493,105 @@ class PendingApproval(models.Model):
                     self.admin_notified = True
 
             self.save()
+
+
+class Task(models.Model):
+    """
+    المهام - Tasks
+    مهام مسندة للمستخدمين مرتبطة بالتصاريح
+    """
+    STATUS_CHOICES = [
+        ('pending', _('معلقة')),
+        ('in_progress', _('قيد التنفيذ')),
+        ('completed', _('مكتملة')),
+        ('cancelled', _('ملغاة')),
+    ]
+
+    PRIORITY_CHOICES = [
+        ('low', _('منخفضة')),
+        ('medium', _('متوسطة')),
+        ('high', _('عالية')),
+        ('urgent', _('عاجلة')),
+    ]
+
+    permit = models.ForeignKey(
+        Permit,
+        on_delete=models.CASCADE,
+        related_name='tasks',
+        verbose_name=_('التصريح')
+    )
+
+    title = models.CharField(
+        max_length=200,
+        verbose_name=_('عنوان المهمة')
+    )
+
+    description = models.TextField(
+        blank=True,
+        verbose_name=_('الوصف')
+    )
+
+    assigned_to = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='assigned_tasks',
+        verbose_name=_('مسند إلى')
+    )
+
+    assigned_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='created_tasks',
+        verbose_name=_('أسند بواسطة')
+    )
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='pending',
+        verbose_name=_('الحالة')
+    )
+
+    priority = models.CharField(
+        max_length=20,
+        choices=PRIORITY_CHOICES,
+        default='medium',
+        verbose_name=_('الأولوية')
+    )
+
+    due_date = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name=_('تاريخ الاستحقاق')
+    )
+
+    completed_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name=_('تاريخ الإكمال')
+    )
+
+    notes = models.TextField(
+        blank=True,
+        verbose_name=_('ملاحظات')
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_('تاريخ الإنشاء')
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name=_('تاريخ التحديث')
+    )
+
+    class Meta:
+        verbose_name = _('مهمة')
+        verbose_name_plural = _('المهام')
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.title} - {self.assigned_to.get_full_name()}"
 

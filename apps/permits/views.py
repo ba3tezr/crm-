@@ -12,7 +12,7 @@ from django.utils.translation import gettext as _
 from django.utils import timezone
 from datetime import timedelta
 
-from .models import Permit, PermitAttachment, PermitApproval, PendingApproval, ApprovalWorkflow
+from .models import Permit, PermitAttachment, PermitApproval, PendingApproval, ApprovalWorkflow, Task
 from .forms import PermitForm, PermitAttachmentForm, PermitApprovalForm
 from .resources import PermitResource
 from apps.core.models import Notification
@@ -286,6 +286,13 @@ def permit_approve(request, pk):
         action = request.POST.get('action')  # 'approved' or 'rejected'
         comments = request.POST.get('comments', '')
 
+        # Save comments to permit notes field
+        if comments:
+            if permit.notes:
+                permit.notes += f"\n\n--- {_('ملاحظات الموافقة')} ({timezone.now().strftime('%Y-%m-%d %H:%M')}) ---\n{comments}"
+            else:
+                permit.notes = f"--- {_('ملاحظات الموافقة')} ({timezone.now().strftime('%Y-%m-%d %H:%M')}) ---\n{comments}"
+
         # Create approval record
         approval = PermitApproval.objects.create(
             permit=permit,
@@ -299,6 +306,49 @@ def permit_approve(request, pk):
             permit.status = 'approved'
             permit.save()
             messages.success(request, _('تمت الموافقة على التصريح بنجاح'))
+
+            # Create task if assigned
+            assign_to_id = request.POST.get('assign_to')
+            if assign_to_id:
+                from django.contrib.auth import get_user_model
+                User = get_user_model()
+                try:
+                    assigned_user = User.objects.get(id=assign_to_id)
+                    task_title = request.POST.get('task_title', f"{_('متابعة التصريح')} {permit.permit_number}")
+                    task_description = request.POST.get('task_description', '')
+                    task_priority = request.POST.get('task_priority', 'medium')
+                    task_due_date = request.POST.get('task_due_date', None)
+
+                    # Parse due date
+                    if task_due_date:
+                        from datetime import datetime
+                        task_due_date = datetime.fromisoformat(task_due_date)
+
+                    # Create task
+                    from apps.permits.models import Task
+                    task = Task.objects.create(
+                        permit=permit,
+                        title=task_title,
+                        description=task_description,
+                        assigned_to=assigned_user,
+                        assigned_by=request.user,
+                        priority=task_priority,
+                        due_date=task_due_date,
+                        status='pending'
+                    )
+
+                    # Notify assigned user
+                    Notification.create_notification(
+                        user=assigned_user,
+                        title=_('تم إسناد مهمة جديدة لك'),
+                        message=_('تم إسناد مهمة: %(title)s') % {'title': task_title},
+                        notification_type='info',
+                        link=f'/permits/tasks/{task.pk}/'
+                    )
+
+                    messages.success(request, _('تم إسناد المهمة بنجاح'))
+                except User.DoesNotExist:
+                    pass
 
             # Notify tenant
             Notification.create_notification(
@@ -333,9 +383,15 @@ def permit_approve(request, pk):
 
         return redirect('permits:permit_detail', pk=pk)
 
+    # Get staff users for task assignment
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+    staff_users = User.objects.filter(is_staff=True, is_active=True).order_by('first_name', 'username')
+
     context = {
         'permit': permit,
         'pending_approval': pending_approval,
+        'staff_users': staff_users,
     }
 
     return render(request, 'permits/permit_approve.html', context)
@@ -365,3 +421,74 @@ def my_pending_approvals(request):
     }
 
     return render(request, 'permits/my_pending_approvals.html', context)
+
+
+# ==================== Task Views ====================
+
+@login_required
+def my_tasks(request):
+    """قائمة المهام المسندة للمستخدم الحالي"""
+    tasks = Task.objects.filter(
+        assigned_to=request.user
+    ).select_related('permit', 'assigned_by').order_by('-created_at')
+
+    # Filter by status
+    status_filter = request.GET.get('status', '')
+    if status_filter:
+        tasks = tasks.filter(status=status_filter)
+
+    # Filter by priority
+    priority_filter = request.GET.get('priority', '')
+    if priority_filter:
+        tasks = tasks.filter(priority=priority_filter)
+
+    context = {
+        'tasks': tasks,
+        'status_filter': status_filter,
+        'priority_filter': priority_filter,
+    }
+
+    return render(request, 'permits/my_tasks.html', context)
+
+
+@login_required
+def task_detail(request, pk):
+    """تفاصيل المهمة"""
+    task = get_object_or_404(Task, pk=pk, assigned_to=request.user)
+
+    if request.method == 'POST':
+        action = request.POST.get('action')
+
+        if action == 'start':
+            task.status = 'in_progress'
+            task.save()
+            messages.success(request, _('تم بدء العمل على المهمة'))
+        elif action == 'complete':
+            task.status = 'completed'
+            task.completed_at = timezone.now()
+            task.notes = request.POST.get('notes', task.notes)
+            task.save()
+            messages.success(request, _('تم إكمال المهمة بنجاح'))
+
+            # Notify the person who assigned the task
+            if task.assigned_by:
+                Notification.create_notification(
+                    user=task.assigned_by,
+                    title=_('تم إكمال المهمة'),
+                    message=_('تم إكمال المهمة: %(title)s') % {'title': task.title},
+                    notification_type='success',
+                    link=f'/permits/tasks/{task.pk}/'
+                )
+        elif action == 'cancel':
+            task.status = 'cancelled'
+            task.notes = request.POST.get('notes', task.notes)
+            task.save()
+            messages.warning(request, _('تم إلغاء المهمة'))
+
+        return redirect('permits:task_detail', pk=pk)
+
+    context = {
+        'task': task,
+    }
+
+    return render(request, 'permits/task_detail.html', context)

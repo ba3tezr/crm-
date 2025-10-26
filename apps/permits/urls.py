@@ -32,5 +32,9 @@ urlpatterns = [
     # Approvals
     path('<int:pk>/approve/', views.permit_approve, name='permit_approve'),
     path('my-approvals/', views.my_pending_approvals, name='my_pending_approvals'),
+
+    # Tasks
+    path('my-tasks/', views.my_tasks, name='my_tasks'),
+    path('tasks/<int:pk>/', views.task_detail, name='task_detail'),
 ]
 

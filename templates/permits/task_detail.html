@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "تفاصيل المهمة" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="mb-1">
+                        <i class="fas fa-clipboard-check text-primary"></i>
+                        {% trans "تفاصيل المهمة" %}
+                    </h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="{% url 'permits:my_tasks' %}">{% trans "مهامي" %}</a></li>
+                            <li class="breadcrumb-item active">{{ task.title }}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Task Details -->
+        <div class="col-md-8">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-info-circle"></i>
+                        {% trans "معلومات المهمة" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <strong>{% trans "عنوان المهمة" %}:</strong>
+                            <p class="text-primary font-weight-bold" style="font-size: 1.1rem;">{{ task.title }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong>{% trans "الحالة" %}:</strong>
+                            <p>
+                                <span class="badge 
+                                    {% if task.status == 'completed' %}badge-success
+                                    {% elif task.status == 'in_progress' %}badge-info
+                                    {% elif task.status == 'pending' %}badge-warning
+                                    {% else %}badge-secondary
+                                    {% endif %}" style="font-size: 0.95rem; padding: 6px 12px;">
+                                    {% if task.status == 'completed' %}
+                                        <i class="fas fa-check-circle"></i>
+                                    {% elif task.status == 'in_progress' %}
+                                        <i class="fas fa-spinner"></i>
+                                    {% elif task.status == 'pending' %}
+                                        <i class="fas fa-clock"></i>
+                                    {% else %}
+                                        <i class="fas fa-ban"></i>
+                                    {% endif %}
+                                    {{ task.get_status_display }}
+                                </span>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>{% trans "الأولوية" %}:</strong>
+                            <p>
+                                <span class="badge 
+                                    {% if task.priority == 'urgent' %}badge-danger
+                                    {% elif task.priority == 'high' %}badge-warning
+                                    {% elif task.priority == 'medium' %}badge-info
+                                    {% else %}badge-secondary
+                                    {% endif %}" style="font-size: 0.95rem; padding: 6px 12px;">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    {{ task.get_priority_display }}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    {% if task.description %}
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <strong>{% trans "الوصف" %}:</strong>
+                            <p>{{ task.description }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong>{% trans "التصريح المرتبط" %}:</strong>
+                            <p>
+                                <a href="{% url 'permits:permit_detail' task.permit.pk %}" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-file-alt"></i>
+                                    {{ task.permit.permit_number }}
+                                </a>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>{% trans "أسند بواسطة" %}:</strong>
+                            <p>{{ task.assigned_by.get_full_name|default:task.assigned_by.username }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong>{% trans "تاريخ الإنشاء" %}:</strong>
+                            <p>{{ task.created_at|date:"Y-m-d H:i" }}</p>
+                        </div>
+                        {% if task.due_date %}
+                        <div class="col-md-6">
+                            <strong>{% trans "تاريخ الاستحقاق" %}:</strong>
+                            <p>{{ task.due_date|date:"Y-m-d H:i" }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    {% if task.completed_at %}
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong>{% trans "تاريخ الإكمال" %}:</strong>
+                            <p>{{ task.completed_at|date:"Y-m-d H:i" }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if task.notes %}
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <strong>{% trans "ملاحظات" %}:</strong>
+                            <div class="alert alert-info">{{ task.notes }}</div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-primary">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-cogs"></i>
+                        {% trans "الإجراءات" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if task.status == 'pending' %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-grid gap-2">
+                            <button type="submit" name="action" value="start" class="btn btn-info btn-lg">
+                                <i class="fas fa-play-circle"></i>
+                                {% trans "بدء العمل" %}
+                            </button>
+                        </div>
+                    </form>
+                    {% elif task.status == 'in_progress' %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label">{% trans "ملاحظات الإكمال" %}:</label>
+                            <textarea name="notes" class="form-control" rows="3" placeholder="{% trans 'أضف ملاحظاتك (اختياري)' %}">{{ task.notes }}</textarea>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" name="action" value="complete" class="btn btn-success btn-lg">
+                                <i class="fas fa-check-circle"></i>
+                                {% trans "إكمال المهمة" %}
+                            </button>
+                            <button type="submit" name="action" value="cancel" class="btn btn-danger">
+                                <i class="fas fa-times-circle"></i>
+                                {% trans "إلغاء المهمة" %}
+                            </button>
+                        </div>
+                    </form>
+                    {% elif task.status == 'completed' %}
+                    <div class="alert alert-success text-center">
+                        <i class="fas fa-check-circle fa-3x mb-2"></i>
+                        <h5>{% trans "تم إكمال المهمة" %}</h5>
+                        <p class="mb-0">{{ task.completed_at|date:"Y-m-d H:i" }}</p>
+                    </div>
+                    {% elif task.status == 'cancelled' %}
+                    <div class="alert alert-secondary text-center">
+                        <i class="fas fa-ban fa-3x mb-2"></i>
+                        <h5>{% trans "تم إلغاء المهمة" %}</h5>
+                    </div>
+                    {% endif %}
+
+                    <hr>
+                    <a href="{% url 'permits:my_tasks' %}" class="btn btn-secondary w-100">
+                        <i class="fas fa-arrow-left"></i>
+                        {% trans "رجوع إلى المهام" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
