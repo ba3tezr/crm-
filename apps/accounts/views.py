@@ -42,6 +42,10 @@ def tenant_dashboard(request):
         'total_tickets': Ticket.objects.filter(created_by=request.user).count(),
         'open_tickets': Ticket.objects.filter(created_by=request.user, status='open').count(),
         'total_invoices': Invoice.objects.filter(tenant=request.user).count(),
+        'paid_invoices': Invoice.objects.filter(
+            tenant=request.user,
+            status='paid'
+        ).count(),
         'unpaid_invoices': Invoice.objects.filter(
             tenant=request.user
         ).exclude(

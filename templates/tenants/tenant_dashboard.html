@@ -103,8 +103,9 @@
                                 {% trans "الفواتير" %}
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ stats.total_invoices }}</div>
-                            <div class="text-xs text-muted">
-                                {% trans "غير مدفوعة" %}: {{ stats.unpaid_invoices }}
+                            <div class="text-xs">
+                                <span class="text-success">{% trans "مدفوعة" %}: {{ stats.paid_invoices }}</span> |
+                                <span class="text-danger">{% trans "غير مدفوعة" %}: {{ stats.unpaid_invoices }}</span>
                             </div>
                         </div>
                         <div class="col-auto">

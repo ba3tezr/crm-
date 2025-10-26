@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-26 14:00+0300\n"
+"POT-Creation-Date: 2025-10-26 14:02+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,8 +42,8 @@ msgstr "معلومات القسم"
 #: templates/marketing/event_list.html:152
 #: templates/permits/permit_confirm_delete.html:39
 #: templates/permits/permit_list.html:55 templates/permits/permit_list.html:97
-#: templates/tenants/tenant_dashboard.html:207
-#: templates/tenants/tenant_dashboard.html:258
+#: templates/tenants/tenant_dashboard.html:208
+#: templates/tenants/tenant_dashboard.html:259
 #: templates/tenants/tenant_invoices.html:85
 #: templates/tenants/tenant_invoices.html:133
 #: templates/tenants/tenant_profile.html:63
@@ -540,9 +540,9 @@ msgstr "اسم القسم"
 msgid "صلاحيات الأقسام"
 msgstr "الأقسام"
 
-#: apps/accounts/views.py:28 apps/accounts/views.py:74
-#: apps/accounts/views.py:92 apps/accounts/views.py:122
-#: apps/accounts/views.py:158 apps/accounts/views.py:184
+#: apps/accounts/views.py:28 apps/accounts/views.py:78
+#: apps/accounts/views.py:96 apps/accounts/views.py:126
+#: apps/accounts/views.py:162 apps/accounts/views.py:188
 #: apps/core/decorators.py:23
 msgid "ليس لديك صلاحية الوصول لهذه الصفحة"
 msgstr "You don't have permission to access this page"
@@ -1258,6 +1258,7 @@ msgstr "Pending"
 
 #: apps/finance/models.py:163 templates/finance/invoice_list.html:48
 #: templates/finance/invoice_list.html:77
+#: templates/tenants/tenant_dashboard.html:107
 #: templates/tenants/tenant_invoice_detail.html:112
 #: templates/tenants/tenant_invoices.html:90
 msgid "مدفوعة"
@@ -1286,7 +1287,7 @@ msgstr "Cancelled"
 #: templates/finance/invoice_list.html:116
 #: templates/finance/invoice_print.html:362
 #: templates/finance/payment_list.html:106
-#: templates/tenants/tenant_dashboard.html:256
+#: templates/tenants/tenant_dashboard.html:257
 #: templates/tenants/tenant_invoice_detail.html:83
 #: templates/tenants/tenant_invoices.html:127
 msgid "رقم الفاتورة"
@@ -1364,7 +1365,7 @@ msgstr "Paid Amount"
 #: templates/finance/invoice_list.html:11
 #: templates/finance/invoice_list.html:16
 #: templates/tenants/tenant_dashboard.html:103
-#: templates/tenants/tenant_dashboard.html:179
+#: templates/tenants/tenant_dashboard.html:180
 #: templates/tenants/tenant_invoice_detail.html:54
 #: templates/tenants/tenant_invoices.html:21
 #: templates/tenants/tenant_profile.html:200
@@ -1427,7 +1428,7 @@ msgstr "Payment Number"
 #: apps/finance/models.py:428 templates/finance/invoice_detail.html:135
 #: templates/finance/invoice_print.html:472
 #: templates/finance/payment_list.html:109
-#: templates/tenants/tenant_dashboard.html:257
+#: templates/tenants/tenant_dashboard.html:258
 #: templates/tenants/tenant_invoice_detail.html:219
 msgid "المبلغ"
 msgstr "المبلغ"
@@ -1612,7 +1613,7 @@ msgstr "Leave Requests"
 #: apps/hr/models.py:66 templates/dashboard/dashboard.html:154
 #: templates/finance/invoice_print.html:469
 #: templates/marketing/tenant_events_list.html:48
-#: templates/tenants/tenant_dashboard.html:208
+#: templates/tenants/tenant_dashboard.html:209
 #: templates/tenants/tenant_invoice_detail.html:216
 #: templates/tenants/tenant_invoices.html:128
 msgid "التاريخ"
@@ -1940,7 +1941,7 @@ msgstr "Receive"
 #: templates/permits/permit_confirm_delete.html:27
 #: templates/permits/permit_detail.html:65
 #: templates/permits/permit_list.html:90
-#: templates/tenants/tenant_dashboard.html:205
+#: templates/tenants/tenant_dashboard.html:206
 msgid "رقم التصريح"
 msgstr "Permit Number"
 
@@ -2397,6 +2398,7 @@ msgstr "Are you sure you want to delete this case? This action cannot be undone!
 "delete this case? This action cannot be undone!Are you sure you want to "
 "delete this case? This action cannot be undone!Are you sure you want to "
 "delete this case? This action cannot be undone!Are you sure you want to "
+"delete this case? This action cannot be undone!Are you sure you want to "
 "delete this case? This action cannot be undone!"
 
 #: templates/complaints/case_confirm_delete.html:30
@@ -2408,7 +2410,7 @@ msgstr "Are you sure you want to delete this case? This action cannot be undone!
 #: templates/marketing/event_detail.html:70
 #: templates/marketing/event_list.html:147
 #: templates/permits/my_pending_approvals.html:46
-#: templates/tenants/tenant_dashboard.html:206
+#: templates/tenants/tenant_dashboard.html:207
 msgid "النوع"
 msgstr "Type"
 
@@ -2450,7 +2452,7 @@ msgid "بيانات القضية"
 msgstr "Case Information"
 
 #: templates/complaints/case_list.html:4
-#: templates/tenants/tenant_dashboard.html:125
+#: templates/tenants/tenant_dashboard.html:126
 msgid "الشكاوى والقضايا"
 msgstr "Complaints and Cases"
 
@@ -2459,7 +2461,7 @@ msgid "إدارة الشكاوى والقضايا"
 msgstr "Complaints and Cases Management"
 
 #: templates/complaints/case_list.html:25
-#: templates/tenants/tenant_dashboard.html:165
+#: templates/tenants/tenant_dashboard.html:166
 msgid "شكوى جديدة"
 msgstr "New Complaint"
 
@@ -2593,8 +2595,8 @@ msgstr "Welcome"
 #: templates/dashboard/dashboard.html:44 templates/dashboard/dashboard.html:72
 #: templates/dashboard/dashboard.html:100
 #: templates/dashboard/dashboard.html:128
-#: templates/tenants/tenant_dashboard.html:232
-#: templates/tenants/tenant_dashboard.html:279
+#: templates/tenants/tenant_dashboard.html:233
+#: templates/tenants/tenant_dashboard.html:280
 msgid "عرض الكل"
 msgstr "View All"
 
@@ -2602,7 +2604,7 @@ msgstr "View All"
 #: templates/marketing/event_detail.html:19
 #: templates/marketing/event_form.html:20
 #: templates/marketing/tenant_events_list.html:5
-#: templates/tenants/tenant_dashboard.html:171
+#: templates/tenants/tenant_dashboard.html:172
 msgid "الفعاليات"
 msgstr "Events"
 
@@ -2641,18 +2643,18 @@ msgstr "2 days ago"
 #: templates/dashboard/dashboard.html:189
 #: templates/maintenance/ticket_detail.html:200
 #: templates/permits/permit_detail.html:249
-#: templates/tenants/tenant_dashboard.html:145
+#: templates/tenants/tenant_dashboard.html:146
 msgid "إجراءات سريعة"
 msgstr "Quick Actions"
 
 #: templates/dashboard/dashboard.html:196 templates/permits/permit_list.html:25
-#: templates/tenants/tenant_dashboard.html:153
+#: templates/tenants/tenant_dashboard.html:154
 #: templates/tenants/tenant_profile.html:204
 msgid "تصريح جديد"
 msgstr "New Permit"
 
 #: templates/dashboard/dashboard.html:200
-#: templates/tenants/tenant_dashboard.html:159
+#: templates/tenants/tenant_dashboard.html:160
 #: templates/tenants/tenant_profile.html:208
 msgid "طلب صيانة"
 msgstr "Request Maintenance"
@@ -2801,7 +2803,7 @@ msgid "إجراءات"
 msgstr "Actions"
 
 #: templates/finance/invoice_list.html:178
-#: templates/tenants/tenant_dashboard.html:282
+#: templates/tenants/tenant_dashboard.html:283
 #: templates/tenants/tenant_invoices.html:178
 msgid "لا توجد فواتير"
 msgstr "No invoices found"
@@ -3035,6 +3037,7 @@ msgstr "Are you sure you want to delete this ticket? This action cannot be undon
 "Are you sure you want to delete this ticket? This action cannot be undone!"
 "Are you sure you want to delete this ticket? This action cannot be undone!"
 "Are you sure you want to delete this ticket? This action cannot be undone!"
+"Are you sure you want to delete this ticket? This action cannot be undone!"
 
 #: templates/maintenance/ticket_confirm_delete.html:24
 msgid "تفاصيل الطلب"
@@ -3126,6 +3129,7 @@ msgid "هل أنت متأكد من حذف هذه الفعالية؟ هذا ال�
 msgstr "Are you sure you want to delete this event? This action cannot be undone!"
 "Are you sure you want to delete this event? This action cannot be undone!Are "
 "you sure you want to delete this event? This action cannot be undone!Are you "
+"sure you want to delete this event? This action cannot be undone!Are you "
 "sure you want to delete this event? This action cannot be undone!Are you "
 "sure you want to delete this event? This action cannot be undone!Are you "
 "sure you want to delete this event? This action cannot be undone!Are you "
@@ -3410,7 +3414,7 @@ msgid "صادر"
 msgstr "Outgoing"
 
 #: templates/permits/permit_list.html:161
-#: templates/tenants/tenant_dashboard.html:235
+#: templates/tenants/tenant_dashboard.html:236
 msgid "لا توجد تصاريح"
 msgstr "No permits found"
 
@@ -3427,19 +3431,19 @@ msgstr "Welcome"
 msgid "تذاكر الصيانة"
 msgstr "Maintenance Tickets"
 
-#: templates/tenants/tenant_dashboard.html:107
+#: templates/tenants/tenant_dashboard.html:108
 msgid "غير مدفوعة"
 msgstr "Unpaid"
 
-#: templates/tenants/tenant_dashboard.html:196
+#: templates/tenants/tenant_dashboard.html:197
 msgid "آخر التصاريح"
 msgstr "Recent Permits"
 
-#: templates/tenants/tenant_dashboard.html:247
+#: templates/tenants/tenant_dashboard.html:248
 msgid "آخر الفواتير"
 msgstr "Recent Invoices"
 
-#: templates/tenants/tenant_dashboard.html:259
+#: templates/tenants/tenant_dashboard.html:260
 msgid "الاستحقاق"
 msgstr "Due"
 
