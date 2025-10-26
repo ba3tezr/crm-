@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "فواتيري" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="mb-1">
+                        <i class="fas fa-file-invoice-dollar text-primary"></i>
+                        {% trans "فواتيري" %}
+                    </h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="{% url 'accounts:tenant_dashboard' %}">{% trans "لوحة التحكم" %}</a></li>
+                            <li class="breadcrumb-item active">{% trans "الفواتير" %}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-primary">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted mb-1">{% trans "إجمالي الفواتير" %}</h6>
+                            <h3 class="mb-0 text-primary">{{ total_amount|floatformat:2 }} {{ CURRENCY_SYMBOL }}</h3>
+                        </div>
+                        <div>
+                            <i class="fas fa-file-invoice fa-3x text-primary opacity-25"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-success">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted mb-1">{% trans "المبلغ المدفوع" %}</h6>
+                            <h3 class="mb-0 text-success">{{ paid_amount|floatformat:2 }} {{ CURRENCY_SYMBOL }}</h3>
+                        </div>
+                        <div>
+                            <i class="fas fa-check-circle fa-3x text-success opacity-25"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-danger">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted mb-1">{% trans "المبلغ المستحق" %}</h6>
+                            <h3 class="mb-0 text-danger">{{ balance_due|floatformat:2 }} {{ CURRENCY_SYMBOL }}</h3>
+                        </div>
+                        <div>
+                            <i class="fas fa-exclamation-circle fa-3x text-danger opacity-25"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form method="get" class="row g-3">
+                        <div class="col-md-4">
+                            <label for="status" class="form-label">{% trans "الحالة" %}</label>
+                            <select name="status" id="status" class="form-select">
+                                <option value="">{% trans "الكل" %}</option>
+                                <option value="draft" {% if request.GET.status == 'draft' %}selected{% endif %}>{% trans "مسودة" %}</option>
+                                <option value="sent" {% if request.GET.status == 'sent' %}selected{% endif %}>{% trans "مرسلة" %}</option>
+                                <option value="paid" {% if request.GET.status == 'paid' %}selected{% endif %}>{% trans "مدفوعة" %}</option>
+                                <option value="overdue" {% if request.GET.status == 'overdue' %}selected{% endif %}>{% trans "متأخرة" %}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end">
+                            <button type="submit" class="btn btn-primary me-2">
+                                <i class="fas fa-filter"></i>
+                                {% trans "تصفية" %}
+                            </button>
+                            <a href="{% url 'accounts:tenant_invoices' %}" class="btn btn-secondary">
+                                <i class="fas fa-redo"></i>
+                                {% trans "إعادة تعيين" %}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Invoices List -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-list"></i>
+                        {% trans "قائمة الفواتير" %}
+                        <span class="badge bg-light text-dark">{{ invoices.count }}</span>
+                    </h5>
+                </div>
+                <div class="card-body p-0">
+                    {% if invoices %}
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>{% trans "رقم الفاتورة" %}</th>
+                                    <th>{% trans "التاريخ" %}</th>
+                                    <th>{% trans "تاريخ الاستحقاق" %}</th>
+                                    <th>{% trans "المبلغ الإجمالي" %}</th>
+                                    <th>{% trans "المبلغ المدفوع" %}</th>
+                                    <th>{% trans "المتبقي" %}</th>
+                                    <th>{% trans "الحالة" %}</th>
+                                    <th>{% trans "الإجراءات" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for invoice in invoices %}
+                                <tr>
+                                    <td>
+                                        <strong class="text-primary">{{ invoice.invoice_number }}</strong>
+                                    </td>
+                                    <td>{{ invoice.invoice_date|date:"Y-m-d" }}</td>
+                                    <td>{{ invoice.due_date|date:"Y-m-d" }}</td>
+                                    <td>{{ invoice.total_amount|floatformat:2 }} {{ CURRENCY_SYMBOL }}</td>
+                                    <td>{{ invoice.paid_amount|floatformat:2 }} {{ CURRENCY_SYMBOL }}</td>
+                                    <td>
+                                        {% with balance=invoice.balance_due %}
+                                        <strong class="{% if balance > 0 %}text-danger{% else %}text-success{% endif %}">
+                                            {{ balance|floatformat:2 }} {{ CURRENCY_SYMBOL }}
+                                        </strong>
+                                        {% endwith %}
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-{% if invoice.status == 'paid' %}success{% elif invoice.status == 'overdue' %}danger{% elif invoice.status == 'sent' %}warning{% else %}secondary{% endif %}">
+                                            {{ invoice.get_status_display }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'accounts:tenant_invoice_detail' invoice.pk %}" class="btn btn-sm btn-info" title="{% trans 'عرض التفاصيل' %}">
+                                            <i class="fas fa-eye"></i>
+                                            {% trans "عرض" %}
+                                        </a>
+                                        {% if invoice.status == 'paid' %}
+                                        <a href="{% url 'accounts:tenant_invoice_detail' invoice.pk %}" class="btn btn-sm btn-success" title="{% trans 'طباعة' %}" onclick="window.open(this.href); window.print(); return false;">
+                                            <i class="fas fa-print"></i>
+                                        </a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-5">
+                        <i class="fas fa-inbox fa-4x text-muted mb-3"></i>
+                        <h5 class="text-muted">{% trans "لا توجد فواتير" %}</h5>
+                        <p class="text-muted">{% trans "لم يتم إصدار أي فواتير لك حتى الآن" %}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

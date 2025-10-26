@@ -1,0 +1,249 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "طلبات الصيانة" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">
+                <i class="fas fa-tools text-warning"></i>
+                {% trans "إدارة طلبات الصيانة" %}
+            </h2>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="{% url 'core:dashboard' %}">{% trans "الرئيسية" %}</a></li>
+                    <li class="breadcrumb-item active">{% trans "الصيانة" %}</li>
+                </ol>
+            </nav>
+        </div>
+        <div>
+            <a href="{% url 'maintenance:ticket_create' %}" class="btn btn-warning text-white">
+                <i class="fas fa-plus"></i>
+                {% trans "طلب صيانة جديد" %}
+            </a>
+            <button class="btn btn-success" onclick="exportToExcel()">
+                <i class="fas fa-file-excel"></i>
+                {% trans "تصدير Excel" %}
+            </button>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-danger bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-exclamation-circle fa-2x text-danger"></i>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-0">{% trans "عاجل" %}</h6>
+                            <h3 class="mb-0">{{ urgent_count|default:0 }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-warning bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-clock fa-2x text-warning"></i>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-0">{% trans "قيد التنفيذ" %}</h6>
+                            <h3 class="mb-0">{{ in_progress_count|default:0 }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-success bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-check-circle fa-2x text-success"></i>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-0">{% trans "مكتمل" %}</h6>
+                            <h3 class="mb-0">{{ completed_count|default:0 }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-info bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-list fa-2x text-info"></i>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-0">{% trans "الإجمالي" %}</h6>
+                            <h3 class="mb-0">{{ total_count|default:0 }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label">{% trans "الفئة" %}</label>
+                    <select name="category" class="form-select">
+                        <option value="">{% trans "الكل" %}</option>
+                        <option value="electrical">{% trans "كهرباء" %}</option>
+                        <option value="plumbing">{% trans "سباكة" %}</option>
+                        <option value="hvac">{% trans "تكييف" %}</option>
+                        <option value="carpentry">{% trans "نجارة" %}</option>
+                        <option value="painting">{% trans "دهان" %}</option>
+                        <option value="cleaning">{% trans "نظافة" %}</option>
+                        <option value="other">{% trans "أخرى" %}</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">{% trans "الأولوية" %}</label>
+                    <select name="priority" class="form-select">
+                        <option value="">{% trans "الكل" %}</option>
+                        <option value="low">{% trans "منخفضة" %}</option>
+                        <option value="medium">{% trans "متوسطة" %}</option>
+                        <option value="high">{% trans "عالية" %}</option>
+                        <option value="urgent">{% trans "عاجل" %}</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">{% trans "الحالة" %}</label>
+                    <select name="status" class="form-select">
+                        <option value="">{% trans "الكل" %}</option>
+                        <option value="open">{% trans "مفتوح" %}</option>
+                        <option value="in_progress">{% trans "قيد التنفيذ" %}</option>
+                        <option value="on_hold">{% trans "معلق" %}</option>
+                        <option value="resolved">{% trans "تم الحل" %}</option>
+                        <option value="closed">{% trans "مغلق" %}</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">&nbsp;</label>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-search"></i>
+                        {% trans "بحث" %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tickets Table -->
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>{% trans "رقم الطلب" %}</th>
+                            <th>{% trans "العنوان" %}</th>
+                            <th>{% trans "الفئة" %}</th>
+                            <th>{% trans "الأولوية" %}</th>
+                            <th>{% trans "مقدم الطلب" %}</th>
+                            <th>{% trans "المسؤول" %}</th>
+                            <th>{% trans "الحالة" %}</th>
+                            <th>{% trans "تاريخ الإنشاء" %}</th>
+                            <th>{% trans "الإجراءات" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ticket in tickets %}
+                        <tr>
+                            <td>
+                                <strong class="text-primary">{{ ticket.ticket_number }}</strong>
+                            </td>
+                            <td>{{ ticket.title }}</td>
+                            <td>
+                                <span class="badge bg-secondary">
+                                    {{ ticket.get_category_display }}
+                                </span>
+                            </td>
+                            <td>
+                                {% if ticket.priority == 'urgent' %}
+                                    <span class="badge bg-danger">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        {% trans "عاجل" %}
+                                    </span>
+                                {% elif ticket.priority == 'high' %}
+                                    <span class="badge bg-warning">{% trans "عالية" %}</span>
+                                {% elif ticket.priority == 'medium' %}
+                                    <span class="badge bg-info">{% trans "متوسطة" %}</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">{% trans "منخفضة" %}</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ ticket.requester.get_full_name }}</td>
+                            <td>
+                                {% if ticket.assigned_to %}
+                                    {{ ticket.assigned_to.get_full_name }}
+                                {% else %}
+                                    <span class="text-muted">{% trans "غير محدد" %}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if ticket.status == 'open' %}
+                                    <span class="badge bg-primary">{% trans "مفتوح" %}</span>
+                                {% elif ticket.status == 'in_progress' %}
+                                    <span class="badge bg-warning">{% trans "قيد التنفيذ" %}</span>
+                                {% elif ticket.status == 'on_hold' %}
+                                    <span class="badge bg-secondary">{% trans "معلق" %}</span>
+                                {% elif ticket.status == 'resolved' %}
+                                    <span class="badge bg-success">{% trans "تم الحل" %}</span>
+                                {% else %}
+                                    <span class="badge bg-dark">{% trans "مغلق" %}</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ ticket.created_at|date:"Y-m-d H:i" }}</td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="{% url 'maintenance:ticket_detail' ticket.pk %}" 
+                                       class="btn btn-outline-primary" 
+                                       title="{% trans 'عرض' %}">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{% url 'maintenance:ticket_update' ticket.pk %}" 
+                                       class="btn btn-outline-warning" 
+                                       title="{% trans 'تعديل' %}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="9" class="text-center text-muted py-5">
+                                <i class="fas fa-inbox fa-3x mb-3 d-block"></i>
+                                {% trans "لا توجد طلبات صيانة" %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function exportToExcel() {
+    window.location.href = '{% url "maintenance:ticket_export" %}';
+}
+</script>
+{% endblock %}
+

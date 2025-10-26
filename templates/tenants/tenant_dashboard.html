@@ -1,0 +1,282 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load currency_filters %}
+
+{% block title %}{% trans "لوحة تحكم المستأجر" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">
+                <i class="fas fa-building text-primary"></i>
+                {% trans "لوحة تحكم المستأجر" %}
+            </h2>
+            <p class="text-muted mb-0">
+                {% trans "مرحباً" %}, {{ request.user.get_full_name }}
+            </p>
+        </div>
+    </div>
+
+    <!-- Tenant Info Card -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-primary">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="text-muted mb-1">{% trans "رقم المستأجر" %}</h6>
+                            <p class="mb-0 fw-bold">{{ tenant_profile.tenant_id }}</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="text-muted mb-1">{% trans "اسم الشركة" %}</h6>
+                            <p class="mb-0 fw-bold">{{ tenant_profile.company_name }}</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="text-muted mb-1">{% trans "رقم الوحدة" %}</h6>
+                            <p class="mb-0 fw-bold">{{ tenant_profile.unit_number }}</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="text-muted mb-1">{% trans "رقم العقد" %}</h6>
+                            <p class="mb-0 fw-bold">{{ tenant_profile.contract_number }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <!-- Permits -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                {% trans "التصاريح" %}
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ stats.total_permits }}</div>
+                            <div class="text-xs text-muted">
+                                {% trans "قيد الانتظار" %}: {{ stats.pending_permits }}
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-file-alt fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tickets -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                {% trans "تذاكر الصيانة" %}
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ stats.total_tickets }}</div>
+                            <div class="text-xs text-muted">
+                                {% trans "مفتوحة" %}: {{ stats.open_tickets }}
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-tools fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Invoices -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                {% trans "الفواتير" %}
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ stats.total_invoices }}</div>
+                            <div class="text-xs text-muted">
+                                {% trans "غير مدفوعة" %}: {{ stats.unpaid_invoices }}
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cases -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                {% trans "الشكاوى والقضايا" %}
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ stats.total_cases }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-bolt"></i>
+                        {% trans "إجراءات سريعة" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <a href="{% url 'permits:permit_create' %}" class="btn btn-primary btn-block">
+                                <i class="fas fa-plus"></i>
+                                {% trans "تصريح جديد" %}
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <a href="{% url 'maintenance:ticket_create' %}" class="btn btn-warning btn-block">
+                                <i class="fas fa-tools"></i>
+                                {% trans "طلب صيانة" %}
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <a href="{% url 'complaints:case_create' %}" class="btn btn-info btn-block">
+                                <i class="fas fa-comment"></i>
+                                {% trans "شكوى جديدة" %}
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <a href="{% url 'accounts:tenant_invoices' %}" class="btn btn-success btn-block">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                                {% trans "الفواتير" %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="row">
+        <!-- Recent Permits -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-file-alt text-primary"></i>
+                        {% trans "آخر التصاريح" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if permits %}
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>{% trans "رقم التصريح" %}</th>
+                                        <th>{% trans "النوع" %}</th>
+                                        <th>{% trans "الحالة" %}</th>
+                                        <th>{% trans "التاريخ" %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for permit in permits %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'permits:permit_detail' permit.pk %}">
+                                                {{ permit.permit_number }}
+                                            </a>
+                                        </td>
+                                        <td>{{ permit.get_permit_type_display }}</td>
+                                        <td>
+                                            <span class="badge badge-{{ permit.status }}">
+                                                {{ permit.get_status_display }}
+                                            </span>
+                                        </td>
+                                        <td>{{ permit.created_at|date:"M d, Y" }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <a href="{% url 'accounts:tenant_permits' %}" class="btn btn-sm btn-primary">
+                            {% trans "عرض الكل" %}
+                        </a>
+                    {% else %}
+                        <p class="text-muted">{% trans "لا توجد تصاريح" %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Invoices -->
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-file-invoice-dollar text-success"></i>
+                        {% trans "آخر الفواتير" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if invoices %}
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>{% trans "رقم الفاتورة" %}</th>
+                                        <th>{% trans "المبلغ" %}</th>
+                                        <th>{% trans "الحالة" %}</th>
+                                        <th>{% trans "الاستحقاق" %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for invoice in invoices %}
+                                    <tr>
+                                        <td>{{ invoice.invoice_number }}</td>
+                                        <td>{{ invoice.total_amount|currency }}</td>
+                                        <td>
+                                            <span class="badge badge-{{ invoice.status }}">
+                                                {{ invoice.get_status_display }}
+                                            </span>
+                                        </td>
+                                        <td>{{ invoice.due_date|date:"M d, Y" }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <a href="{% url 'accounts:tenant_invoices' %}" class="btn btn-sm btn-success">
+                            {% trans "عرض الكل" %}
+                        </a>
+                    {% else %}
+                        <p class="text-muted">{% trans "لا توجد فواتير" %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

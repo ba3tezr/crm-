@@ -1,0 +1,2010 @@
+{
+  "file_info": {
+    "file_name": "CRM (1).xlsx",
+    "total_sheets": 6,
+    "sheet_names": [
+      "Accounts",
+      "Permit",
+      "Maintenance",
+      "Complain",
+      "Marketing",
+      "HR"
+    ],
+    "analysis_date": "2025-10-25 16:25:26"
+  },
+  "sheets": {
+    "Accounts": {
+      "name": "Accounts",
+      "dimensions": {
+        "rows": 11,
+        "columns": 12,
+        "total_cells": 132
+      },
+      "columns": [
+        {
+          "name": "Unnamed: 0",
+          "index": 1,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 11,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 1",
+          "index": 2,
+          "data_type": "object",
+          "non_null_count": 10,
+          "null_count": 1,
+          "null_percentage": 9.090909090909092,
+          "unique_count": 10,
+          "unique_percentage": 90.9090909090909,
+          "sample_values": [
+            "Account",
+            "Operations",
+            "Technincal",
+            "Marketing",
+            "Finance"
+          ],
+          "all_unique_values": [
+            "Account",
+            "Operations",
+            "Technincal",
+            "Marketing",
+            "Finance",
+            "HR",
+            "Customer Services ",
+            "Maintenance",
+            "Security",
+            "Tenant"
+          ]
+        },
+        {
+          "name": "Unnamed: 2",
+          "index": 3,
+          "data_type": "object",
+          "non_null_count": 10,
+          "null_count": 1,
+          "null_percentage": 9.090909090909092,
+          "unique_count": 9,
+          "unique_percentage": 81.81818181818183,
+          "sample_values": [
+            "Users",
+            "8",
+            "6",
+            "3",
+            "1"
+          ],
+          "all_unique_values": [
+            "Users",
+            "8",
+            "6",
+            "3",
+            "1",
+            "2",
+            "7",
+            "4",
+            "80"
+          ]
+        },
+        {
+          "name": "Unnamed: 3",
+          "index": 4,
+          "data_type": "object",
+          "non_null_count": 10,
+          "null_count": 1,
+          "null_percentage": 9.090909090909092,
+          "unique_count": 3,
+          "unique_percentage": 27.27272727272727,
+          "sample_values": [
+            "Data",
+            "Name",
+            "Name",
+            "Name",
+            "Name"
+          ],
+          "all_unique_values": [
+            "Data",
+            "Name",
+            "Name "
+          ]
+        },
+        {
+          "name": "Unnamed: 4",
+          "index": 5,
+          "data_type": "object",
+          "non_null_count": 9,
+          "null_count": 2,
+          "null_percentage": 18.181818181818183,
+          "unique_count": 1,
+          "unique_percentage": 9.090909090909092,
+          "sample_values": [
+            "E-mail",
+            "E-mail",
+            "E-mail",
+            "E-mail",
+            "E-mail"
+          ],
+          "all_unique_values": [
+            "E-mail"
+          ]
+        },
+        {
+          "name": "Unnamed: 5",
+          "index": 6,
+          "data_type": "object",
+          "non_null_count": 9,
+          "null_count": 2,
+          "null_percentage": 18.181818181818183,
+          "unique_count": 2,
+          "unique_percentage": 18.181818181818183,
+          "sample_values": [
+            "Employee Code",
+            "Employee Code",
+            "Employee Code",
+            "Employee Code",
+            "Employee Code"
+          ],
+          "all_unique_values": [
+            "Employee Code",
+            "Mobile"
+          ]
+        },
+        {
+          "name": "Unnamed: 6",
+          "index": 7,
+          "data_type": "object",
+          "non_null_count": 9,
+          "null_count": 2,
+          "null_percentage": 18.181818181818183,
+          "unique_count": 3,
+          "unique_percentage": 27.27272727272727,
+          "sample_values": [
+            "Direct Line Manager",
+            "Direct Line Manager",
+            "Direct Line Manager",
+            "Direct Line Manager",
+            "Direct Line Manager"
+          ],
+          "all_unique_values": [
+            "Direct Line Manager",
+            "Title",
+            "Unit Code"
+          ]
+        },
+        {
+          "name": "Unnamed: 7",
+          "index": 8,
+          "data_type": "object",
+          "non_null_count": 8,
+          "null_count": 3,
+          "null_percentage": 27.27272727272727,
+          "unique_count": 2,
+          "unique_percentage": 18.181818181818183,
+          "sample_values": [
+            "Department Manager",
+            "Department Manager",
+            "Department Manager",
+            "Department Manager",
+            "Department Manager"
+          ],
+          "all_unique_values": [
+            "Department Manager",
+            "Unit Serial No."
+          ]
+        },
+        {
+          "name": "Unnamed: 8",
+          "index": 9,
+          "data_type": "object",
+          "non_null_count": 1,
+          "null_count": 10,
+          "null_percentage": 90.9090909090909,
+          "unique_count": 1,
+          "unique_percentage": 9.090909090909092,
+          "sample_values": [
+            "Brand"
+          ],
+          "all_unique_values": [
+            "Brand"
+          ]
+        },
+        {
+          "name": "Unnamed: 9",
+          "index": 10,
+          "data_type": "object",
+          "non_null_count": 1,
+          "null_count": 10,
+          "null_percentage": 90.9090909090909,
+          "unique_count": 1,
+          "unique_percentage": 9.090909090909092,
+          "sample_values": [
+            "Company "
+          ],
+          "all_unique_values": [
+            "Company "
+          ]
+        },
+        {
+          "name": "Unnamed: 10",
+          "index": 11,
+          "data_type": "object",
+          "non_null_count": 1,
+          "null_count": 10,
+          "null_percentage": 90.9090909090909,
+          "unique_count": 1,
+          "unique_percentage": 9.090909090909092,
+          "sample_values": [
+            "Categoery "
+          ],
+          "all_unique_values": [
+            "Categoery "
+          ]
+        },
+        {
+          "name": "Unnamed: 11",
+          "index": 12,
+          "data_type": "object",
+          "non_null_count": 1,
+          "null_count": 10,
+          "null_percentage": 90.9090909090909,
+          "unique_count": 1,
+          "unique_percentage": 9.090909090909092,
+          "sample_values": [
+            "Unit area (Indoor/ Outdoor)"
+          ],
+          "all_unique_values": [
+            "Unit area (Indoor/ Outdoor)"
+          ]
+        }
+      ],
+      "data_types": {},
+      "sample_data": {},
+      "statistics": {},
+      "null_values": {},
+      "unique_values": {}
+    },
+    "Permit": {
+      "name": "Permit",
+      "dimensions": {
+        "rows": 48,
+        "columns": 26,
+        "total_cells": 1248
+      },
+      "columns": [
+        {
+          "name": "Unnamed: 0",
+          "index": 1,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 48,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 1",
+          "index": 2,
+          "data_type": "object",
+          "non_null_count": 4,
+          "null_count": 44,
+          "null_percentage": 91.66666666666666,
+          "unique_count": 2,
+          "unique_percentage": 4.166666666666666,
+          "sample_values": [
+            "Send",
+            "Receive",
+            "Send",
+            "Receive"
+          ],
+          "all_unique_values": [
+            "Send",
+            "Receive"
+          ]
+        },
+        {
+          "name": "Unnamed: 2",
+          "index": 3,
+          "data_type": "object",
+          "non_null_count": 14,
+          "null_count": 34,
+          "null_percentage": 70.83333333333334,
+          "unique_count": 7,
+          "unique_percentage": 14.583333333333334,
+          "sample_values": [
+            "Permit:",
+            "Memo",
+            "Penalties",
+            "Announcement",
+            "Invoices"
+          ],
+          "all_unique_values": [
+            "Permit:",
+            "Memo",
+            "Penalties",
+            "Announcement",
+            "Invoices",
+            "Permit Cycle",
+            "Tenant"
+          ]
+        },
+        {
+          "name": "Unnamed: 3",
+          "index": 4,
+          "data_type": "object",
+          "non_null_count": 11,
+          "null_count": 37,
+          "null_percentage": 77.08333333333334,
+          "unique_count": 10,
+          "unique_percentage": 20.833333333333336,
+          "sample_values": [
+            "Type (Drop Menu)",
+            "Goods",
+            "Maintenance",
+            "MKG",
+            "Attach"
+          ],
+          "all_unique_values": [
+            "Type (Drop Menu)",
+            "Goods",
+            "Maintenance",
+            "MKG",
+            "Attach",
+            "Drop Down Menu",
+            "Redirect",
+            "Approve",
+            "Not Approve",
+            "Permit"
+          ]
+        },
+        {
+          "name": "Unnamed: 4",
+          "index": 5,
+          "data_type": "object",
+          "non_null_count": 4,
+          "null_count": 44,
+          "null_percentage": 91.66666666666666,
+          "unique_count": 3,
+          "unique_percentage": 6.25,
+          "sample_values": [
+            "Attach",
+            "Attach",
+            "Type",
+            "MKG"
+          ],
+          "all_unique_values": [
+            "Attach",
+            "Type",
+            "MKG"
+          ]
+        },
+        {
+          "name": "Unnamed: 5",
+          "index": 6,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 48,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 6",
+          "index": 7,
+          "data_type": "object",
+          "non_null_count": 2,
+          "null_count": 46,
+          "null_percentage": 95.83333333333334,
+          "unique_count": 2,
+          "unique_percentage": 4.166666666666666,
+          "sample_values": [
+            "OPS",
+            "MKG"
+          ],
+          "all_unique_values": [
+            "OPS",
+            "MKG"
+          ]
+        },
+        {
+          "name": "Unnamed: 7",
+          "index": 8,
+          "data_type": "object",
+          "non_null_count": 6,
+          "null_count": 42,
+          "null_percentage": 87.5,
+          "unique_count": 4,
+          "unique_percentage": 8.333333333333332,
+          "sample_values": [
+            "Tenant Interface",
+            "Send",
+            "Receive",
+            "CM Interface",
+            "Send"
+          ],
+          "all_unique_values": [
+            "Tenant Interface",
+            "Send",
+            "Receive",
+            "CM Interface"
+          ]
+        },
+        {
+          "name": "Unnamed: 8",
+          "index": 9,
+          "data_type": "object",
+          "non_null_count": 17,
+          "null_count": 31,
+          "null_percentage": 64.58333333333334,
+          "unique_count": 10,
+          "unique_percentage": 20.833333333333336,
+          "sample_values": [
+            "Permits:",
+            "Memo",
+            "Penalties",
+            "Announcement",
+            "Invoices"
+          ],
+          "all_unique_values": [
+            "Permits:",
+            "Memo",
+            "Penalties",
+            "Announcement",
+            "Invoices",
+            "Permit:",
+            "Redirect",
+            "Approved",
+            "Remarks",
+            "Rejected"
+          ]
+        },
+        {
+          "name": "Unnamed: 9",
+          "index": 10,
+          "data_type": "object",
+          "non_null_count": 10,
+          "null_count": 38,
+          "null_percentage": 79.16666666666666,
+          "unique_count": 8,
+          "unique_percentage": 16.666666666666664,
+          "sample_values": [
+            "Drop Down Menu",
+            "Goods",
+            "Maintenance",
+            "MKG",
+            "One Way Communication"
+          ],
+          "all_unique_values": [
+            "Drop Down Menu",
+            "Goods",
+            "Maintenance",
+            "MKG",
+            "One Way Communication",
+            "Redirect",
+            "Approve",
+            "Not Approve"
+          ]
+        },
+        {
+          "name": "Unnamed: 10",
+          "index": 11,
+          "data_type": "object",
+          "non_null_count": 6,
+          "null_count": 42,
+          "null_percentage": 87.5,
+          "unique_count": 3,
+          "unique_percentage": 6.25,
+          "sample_values": [
+            "Two Way Communication",
+            "Two Way Communication",
+            "Tenant",
+            "Tenant",
+            "OPS"
+          ],
+          "all_unique_values": [
+            "Two Way Communication",
+            "Tenant",
+            "OPS"
+          ]
+        },
+        {
+          "name": "Unnamed: 11",
+          "index": 12,
+          "data_type": "object",
+          "non_null_count": 4,
+          "null_count": 44,
+          "null_percentage": 91.66666666666666,
+          "unique_count": 3,
+          "unique_percentage": 6.25,
+          "sample_values": [
+            "Maintenance",
+            "MKG",
+            "OPS",
+            "Maintenance"
+          ],
+          "all_unique_values": [
+            "Maintenance",
+            "MKG",
+            "OPS"
+          ]
+        },
+        {
+          "name": "Unnamed: 12",
+          "index": 13,
+          "data_type": "object",
+          "non_null_count": 3,
+          "null_count": 45,
+          "null_percentage": 93.75,
+          "unique_count": 3,
+          "unique_percentage": 6.25,
+          "sample_values": [
+            "Redirect",
+            "Approved",
+            "Remarks"
+          ],
+          "all_unique_values": [
+            "Redirect",
+            "Approved",
+            "Remarks"
+          ]
+        },
+        {
+          "name": "Unnamed: 13",
+          "index": 14,
+          "data_type": "object",
+          "non_null_count": 2,
+          "null_count": 46,
+          "null_percentage": 95.83333333333334,
+          "unique_count": 2,
+          "unique_percentage": 4.166666666666666,
+          "sample_values": [
+            "Approved",
+            "Remarks"
+          ],
+          "all_unique_values": [
+            "Approved",
+            "Remarks"
+          ]
+        },
+        {
+          "name": "Unnamed: 14",
+          "index": 15,
+          "data_type": "object",
+          "non_null_count": 2,
+          "null_count": 46,
+          "null_percentage": 95.83333333333334,
+          "unique_count": 1,
+          "unique_percentage": 2.083333333333333,
+          "sample_values": [
+            "Tenant",
+            "Tenant"
+          ],
+          "all_unique_values": [
+            "Tenant"
+          ]
+        },
+        {
+          "name": "Unnamed: 15",
+          "index": 16,
+          "data_type": "object",
+          "non_null_count": 4,
+          "null_count": 44,
+          "null_percentage": 91.66666666666666,
+          "unique_count": 4,
+          "unique_percentage": 8.333333333333332,
+          "sample_values": [
+            "OPS",
+            "Tenant",
+            "Maintenance",
+            "MKG"
+          ],
+          "all_unique_values": [
+            "OPS",
+            "Tenant",
+            "Maintenance",
+            "MKG"
+          ]
+        },
+        {
+          "name": "Unnamed: 16",
+          "index": 17,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 48,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 17",
+          "index": 18,
+          "data_type": "object",
+          "non_null_count": 7,
+          "null_count": 41,
+          "null_percentage": 85.41666666666666,
+          "unique_count": 3,
+          "unique_percentage": 6.25,
+          "sample_values": [
+            "Rejected",
+            "Remarks",
+            "Approved",
+            "Approved",
+            "Remarks"
+          ],
+          "all_unique_values": [
+            "Rejected",
+            "Remarks",
+            "Approved"
+          ]
+        },
+        {
+          "name": "Unnamed: 18",
+          "index": 19,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 48,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 19",
+          "index": 20,
+          "data_type": "object",
+          "non_null_count": 6,
+          "null_count": 42,
+          "null_percentage": 87.5,
+          "unique_count": 2,
+          "unique_percentage": 4.166666666666666,
+          "sample_values": [
+            "Tenant",
+            "Tenant",
+            "OPS",
+            "Tenant",
+            "OPS"
+          ],
+          "all_unique_values": [
+            "Tenant",
+            "OPS"
+          ]
+        },
+        {
+          "name": "Unnamed: 20",
+          "index": 21,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 48,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 21",
+          "index": 22,
+          "data_type": "object",
+          "non_null_count": 5,
+          "null_count": 43,
+          "null_percentage": 89.58333333333334,
+          "unique_count": 3,
+          "unique_percentage": 6.25,
+          "sample_values": [
+            "Security",
+            "Approved",
+            "Remarks",
+            "Approved",
+            "Remarks"
+          ],
+          "all_unique_values": [
+            "Security",
+            "Approved",
+            "Remarks"
+          ]
+        },
+        {
+          "name": "Unnamed: 22",
+          "index": 23,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 48,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 23",
+          "index": 24,
+          "data_type": "object",
+          "non_null_count": 4,
+          "null_count": 44,
+          "null_percentage": 91.66666666666666,
+          "unique_count": 1,
+          "unique_percentage": 2.083333333333333,
+          "sample_values": [
+            "Tenant",
+            "Tenant",
+            "Tenant",
+            "Tenant"
+          ],
+          "all_unique_values": [
+            "Tenant"
+          ]
+        },
+        {
+          "name": "Unnamed: 24",
+          "index": 25,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 48,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 25",
+          "index": 26,
+          "data_type": "object",
+          "non_null_count": 2,
+          "null_count": 46,
+          "null_percentage": 95.83333333333334,
+          "unique_count": 1,
+          "unique_percentage": 2.083333333333333,
+          "sample_values": [
+            "Security",
+            "Security"
+          ],
+          "all_unique_values": [
+            "Security"
+          ]
+        }
+      ],
+      "data_types": {},
+      "sample_data": {},
+      "statistics": {},
+      "null_values": {},
+      "unique_values": {}
+    },
+    "Maintenance": {
+      "name": "Maintenance",
+      "dimensions": {
+        "rows": 47,
+        "columns": 13,
+        "total_cells": 611
+      },
+      "columns": [
+        {
+          "name": "Unnamed: 0",
+          "index": 1,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 47,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 1",
+          "index": 2,
+          "data_type": "object",
+          "non_null_count": 3,
+          "null_count": 44,
+          "null_percentage": 93.61702127659575,
+          "unique_count": 3,
+          "unique_percentage": 6.382978723404255,
+          "sample_values": [
+            "Technical Interface",
+            "Send",
+            "Receive"
+          ],
+          "all_unique_values": [
+            "Technical Interface",
+            "Send",
+            "Receive"
+          ]
+        },
+        {
+          "name": "Unnamed: 2",
+          "index": 3,
+          "data_type": "object",
+          "non_null_count": 6,
+          "null_count": 41,
+          "null_percentage": 87.2340425531915,
+          "unique_count": 4,
+          "unique_percentage": 8.51063829787234,
+          "sample_values": [
+            "Ticket:",
+            "Ticket Log",
+            "Ticket:",
+            "Ticket Log",
+            "Ticket Cycle"
+          ],
+          "all_unique_values": [
+            "Ticket:",
+            "Ticket Log",
+            "Ticket Cycle",
+            "Technical"
+          ]
+        },
+        {
+          "name": "Unnamed: 3",
+          "index": 4,
+          "data_type": "object",
+          "non_null_count": 19,
+          "null_count": 28,
+          "null_percentage": 59.57446808510638,
+          "unique_count": 10,
+          "unique_percentage": 21.27659574468085,
+          "sample_values": [
+            "Drop Down Menu",
+            "Mechanical",
+            "Electrical",
+            "Plumbing",
+            "Civil"
+          ],
+          "all_unique_values": [
+            "Drop Down Menu",
+            "Mechanical",
+            "Electrical",
+            "Plumbing",
+            "Civil",
+            "Data",
+            "Track Tickets",
+            "Feedback",
+            "Status",
+            "Ticket"
+          ]
+        },
+        {
+          "name": "Unnamed: 4",
+          "index": 5,
+          "data_type": "object",
+          "non_null_count": 10,
+          "null_count": 37,
+          "null_percentage": 78.72340425531915,
+          "unique_count": 5,
+          "unique_percentage": 10.638297872340425,
+          "sample_values": [
+            "Attach",
+            "Drop Down Menu",
+            "Received",
+            "Pending",
+            "Closed"
+          ],
+          "all_unique_values": [
+            "Attach",
+            "Drop Down Menu",
+            "Received",
+            "Pending",
+            "Closed"
+          ]
+        },
+        {
+          "name": "Unnamed: 5",
+          "index": 6,
+          "data_type": "object",
+          "non_null_count": 3,
+          "null_count": 44,
+          "null_percentage": 93.61702127659575,
+          "unique_count": 3,
+          "unique_percentage": 6.382978723404255,
+          "sample_values": [
+            "Mechanical",
+            "Electrical",
+            "Plumbing"
+          ],
+          "all_unique_values": [
+            "Mechanical",
+            "Electrical",
+            "Plumbing"
+          ]
+        },
+        {
+          "name": "Unnamed: 6",
+          "index": 7,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 47,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 7",
+          "index": 8,
+          "data_type": "object",
+          "non_null_count": 6,
+          "null_count": 41,
+          "null_percentage": 87.2340425531915,
+          "unique_count": 6,
+          "unique_percentage": 12.76595744680851,
+          "sample_values": [
+            "Technical Interface",
+            "Maintenance Interface",
+            "Maintenance Manager",
+            "Mechanical Department",
+            "Electrical Department"
+          ],
+          "all_unique_values": [
+            "Technical Interface",
+            "Maintenance Interface",
+            "Maintenance Manager",
+            "Mechanical Department",
+            "Electrical Department",
+            "Plumbing Department"
+          ]
+        },
+        {
+          "name": "Unnamed: 8",
+          "index": 9,
+          "data_type": "object",
+          "non_null_count": 7,
+          "null_count": 40,
+          "null_percentage": 85.1063829787234,
+          "unique_count": 7,
+          "unique_percentage": 14.893617021276595,
+          "sample_values": [
+            "Mechanical",
+            "Data",
+            "Description :",
+            "Ticket",
+            "Description"
+          ],
+          "all_unique_values": [
+            "Mechanical",
+            "Data",
+            "Description :",
+            "Ticket",
+            "Description",
+            "Date",
+            "Location"
+          ]
+        },
+        {
+          "name": "Unnamed: 9",
+          "index": 10,
+          "data_type": "object",
+          "non_null_count": 3,
+          "null_count": 44,
+          "null_percentage": 93.61702127659575,
+          "unique_count": 3,
+          "unique_percentage": 6.382978723404255,
+          "sample_values": [
+            "Priority",
+            "Data",
+            "Received"
+          ],
+          "all_unique_values": [
+            "Priority",
+            "Data",
+            "Received"
+          ]
+        },
+        {
+          "name": "Unnamed: 10",
+          "index": 11,
+          "data_type": "object",
+          "non_null_count": 5,
+          "null_count": 42,
+          "null_percentage": 89.36170212765957,
+          "unique_count": 5,
+          "unique_percentage": 10.638297872340425,
+          "sample_values": [
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "Return for Info"
+          ],
+          "all_unique_values": [
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "Return for Info"
+          ]
+        },
+        {
+          "name": "Unnamed: 11",
+          "index": 12,
+          "data_type": "object",
+          "non_null_count": 2,
+          "null_count": 45,
+          "null_percentage": 95.74468085106383,
+          "unique_count": 2,
+          "unique_percentage": 4.25531914893617,
+          "sample_values": [
+            "Date",
+            "Location"
+          ],
+          "all_unique_values": [
+            "Date",
+            "Location"
+          ]
+        },
+        {
+          "name": "Unnamed: 12",
+          "index": 13,
+          "data_type": "object",
+          "non_null_count": 2,
+          "null_count": 45,
+          "null_percentage": 95.74468085106383,
+          "unique_count": 2,
+          "unique_percentage": 4.25531914893617,
+          "sample_values": [
+            "Two way Communication",
+            "Feedback"
+          ],
+          "all_unique_values": [
+            "Two way Communication",
+            "Feedback"
+          ]
+        }
+      ],
+      "data_types": {},
+      "sample_data": {},
+      "statistics": {},
+      "null_values": {},
+      "unique_values": {}
+    },
+    "Complain": {
+      "name": "Complain",
+      "dimensions": {
+        "rows": 26,
+        "columns": 13,
+        "total_cells": 338
+      },
+      "columns": [
+        {
+          "name": "Unnamed: 0",
+          "index": 1,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 26,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 1",
+          "index": 2,
+          "data_type": "object",
+          "non_null_count": 1,
+          "null_count": 25,
+          "null_percentage": 96.15384615384616,
+          "unique_count": 1,
+          "unique_percentage": 3.8461538461538463,
+          "sample_values": [
+            "Send"
+          ],
+          "all_unique_values": [
+            "Send"
+          ]
+        },
+        {
+          "name": "Unnamed: 2",
+          "index": 3,
+          "data_type": "object",
+          "non_null_count": 4,
+          "null_count": 22,
+          "null_percentage": 84.61538461538461,
+          "unique_count": 4,
+          "unique_percentage": 15.384615384615385,
+          "sample_values": [
+            "Case",
+            "Cases Log",
+            "Complain Cycle",
+            "Customer Service"
+          ],
+          "all_unique_values": [
+            "Case",
+            "Cases Log",
+            "Complain Cycle",
+            "Customer Service"
+          ]
+        },
+        {
+          "name": "Unnamed: 3",
+          "index": 4,
+          "data_type": "object",
+          "non_null_count": 6,
+          "null_count": 20,
+          "null_percentage": 76.92307692307693,
+          "unique_count": 6,
+          "unique_percentage": 23.076923076923077,
+          "sample_values": [
+            "Drop  Down Menu",
+            "Complement",
+            "Complain",
+            "Suggestion",
+            "Pending"
+          ],
+          "all_unique_values": [
+            "Drop  Down Menu",
+            "Complement",
+            "Complain",
+            "Suggestion",
+            "Pending",
+            "Closed"
+          ]
+        },
+        {
+          "name": "Unnamed: 4",
+          "index": 5,
+          "data_type": "object",
+          "non_null_count": 4,
+          "null_count": 22,
+          "null_percentage": 84.61538461538461,
+          "unique_count": 4,
+          "unique_percentage": 15.384615384615385,
+          "sample_values": [
+            "Attach",
+            "Complement",
+            "Complain",
+            "Suggestion"
+          ],
+          "all_unique_values": [
+            "Attach",
+            "Complement",
+            "Complain",
+            "Suggestion"
+          ]
+        },
+        {
+          "name": "Unnamed: 5",
+          "index": 6,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 26,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 6",
+          "index": 7,
+          "data_type": "object",
+          "non_null_count": 4,
+          "null_count": 22,
+          "null_percentage": 84.61538461538461,
+          "unique_count": 4,
+          "unique_percentage": 15.384615384615385,
+          "sample_values": [
+            "Drop Down Menu",
+            "MKG",
+            "Operations",
+            "Technical"
+          ],
+          "all_unique_values": [
+            "Drop Down Menu",
+            "MKG",
+            "Operations",
+            "Technical"
+          ]
+        },
+        {
+          "name": "Unnamed: 7",
+          "index": 8,
+          "data_type": "object",
+          "non_null_count": 1,
+          "null_count": 25,
+          "null_percentage": 96.15384615384616,
+          "unique_count": 1,
+          "unique_percentage": 3.8461538461538463,
+          "sample_values": [
+            "Customer Service Interface"
+          ],
+          "all_unique_values": [
+            "Customer Service Interface"
+          ]
+        },
+        {
+          "name": "Unnamed: 8",
+          "index": 9,
+          "data_type": "object",
+          "non_null_count": 10,
+          "null_count": 16,
+          "null_percentage": 61.53846153846154,
+          "unique_count": 10,
+          "unique_percentage": 38.46153846153847,
+          "sample_values": [
+            "Case Description:",
+            "Date",
+            "Time",
+            "Location",
+            "Name"
+          ],
+          "all_unique_values": [
+            "Case Description:",
+            "Date",
+            "Time",
+            "Location",
+            "Name",
+            "Mobile",
+            "Case Log",
+            "MKG",
+            "Operations",
+            "Technical"
+          ]
+        },
+        {
+          "name": "Unnamed: 9",
+          "index": 10,
+          "data_type": "object",
+          "non_null_count": 1,
+          "null_count": 25,
+          "null_percentage": 96.15384615384616,
+          "unique_count": 1,
+          "unique_percentage": 3.8461538461538463,
+          "sample_values": [
+            "two way Communication"
+          ],
+          "all_unique_values": [
+            "two way Communication"
+          ]
+        },
+        {
+          "name": "Unnamed: 10",
+          "index": 11,
+          "data_type": "object",
+          "non_null_count": 1,
+          "null_count": 25,
+          "null_percentage": 96.15384615384616,
+          "unique_count": 1,
+          "unique_percentage": 3.8461538461538463,
+          "sample_values": [
+            "Operationis"
+          ],
+          "all_unique_values": [
+            "Operationis"
+          ]
+        },
+        {
+          "name": "Unnamed: 11",
+          "index": 12,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 26,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 12",
+          "index": 13,
+          "data_type": "object",
+          "non_null_count": 1,
+          "null_count": 25,
+          "null_percentage": 96.15384615384616,
+          "unique_count": 1,
+          "unique_percentage": 3.8461538461538463,
+          "sample_values": [
+            "Attach"
+          ],
+          "all_unique_values": [
+            "Attach"
+          ]
+        }
+      ],
+      "data_types": {},
+      "sample_data": {},
+      "statistics": {},
+      "null_values": {},
+      "unique_values": {}
+    },
+    "Marketing": {
+      "name": "Marketing",
+      "dimensions": {
+        "rows": 27,
+        "columns": 14,
+        "total_cells": 378
+      },
+      "columns": [
+        {
+          "name": "Unnamed: 0",
+          "index": 1,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 27,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 1",
+          "index": 2,
+          "data_type": "object",
+          "non_null_count": 1,
+          "null_count": 26,
+          "null_percentage": 96.29629629629629,
+          "unique_count": 1,
+          "unique_percentage": 3.7037037037037033,
+          "sample_values": [
+            "Send"
+          ],
+          "all_unique_values": [
+            "Send"
+          ]
+        },
+        {
+          "name": "Unnamed: 2",
+          "index": 3,
+          "data_type": "object",
+          "non_null_count": 4,
+          "null_count": 23,
+          "null_percentage": 85.18518518518519,
+          "unique_count": 4,
+          "unique_percentage": 14.814814814814813,
+          "sample_values": [
+            "Permit",
+            "Permits Log",
+            "Marketing Permit Cycle",
+            "Marketing"
+          ],
+          "all_unique_values": [
+            "Permit",
+            "Permits Log",
+            "Marketing Permit Cycle",
+            "Marketing"
+          ]
+        },
+        {
+          "name": "Unnamed: 3",
+          "index": 4,
+          "data_type": "object",
+          "non_null_count": 4,
+          "null_count": 23,
+          "null_percentage": 85.18518518518519,
+          "unique_count": 4,
+          "unique_percentage": 14.814814814814813,
+          "sample_values": [
+            "Drop Down Menu",
+            "Event",
+            "Activation",
+            "Tenant Related Event"
+          ],
+          "all_unique_values": [
+            "Drop Down Menu",
+            "Event",
+            "Activation",
+            "Tenant Related Event"
+          ]
+        },
+        {
+          "name": "Unnamed: 4",
+          "index": 5,
+          "data_type": "object",
+          "non_null_count": 4,
+          "null_count": 23,
+          "null_percentage": 85.18518518518519,
+          "unique_count": 4,
+          "unique_percentage": 14.814814814814813,
+          "sample_values": [
+            "Attach",
+            "Event",
+            "Activation",
+            "Tenant Related Event"
+          ],
+          "all_unique_values": [
+            "Attach",
+            "Event",
+            "Activation",
+            "Tenant Related Event"
+          ]
+        },
+        {
+          "name": "Unnamed: 5",
+          "index": 6,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 27,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 6",
+          "index": 7,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 27,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 7",
+          "index": 8,
+          "data_type": "object",
+          "non_null_count": 2,
+          "null_count": 25,
+          "null_percentage": 92.5925925925926,
+          "unique_count": 2,
+          "unique_percentage": 7.4074074074074066,
+          "sample_values": [
+            "Marketing Interface",
+            "Operations"
+          ],
+          "all_unique_values": [
+            "Marketing Interface",
+            "Operations"
+          ]
+        },
+        {
+          "name": "Unnamed: 8",
+          "index": 9,
+          "data_type": "object",
+          "non_null_count": 7,
+          "null_count": 20,
+          "null_percentage": 74.07407407407408,
+          "unique_count": 7,
+          "unique_percentage": 25.925925925925924,
+          "sample_values": [
+            "Permit Description:",
+            "Date",
+            "Time",
+            "Location",
+            "Marketing Needs"
+          ],
+          "all_unique_values": [
+            "Permit Description:",
+            "Date",
+            "Time",
+            "Location",
+            "Marketing Needs",
+            "Suppliers Contacts",
+            "Permits Log"
+          ]
+        },
+        {
+          "name": "Unnamed: 9",
+          "index": 10,
+          "data_type": "object",
+          "non_null_count": 4,
+          "null_count": 23,
+          "null_percentage": 85.18518518518519,
+          "unique_count": 4,
+          "unique_percentage": 14.814814814814813,
+          "sample_values": [
+            "two way Communication",
+            "Approved",
+            "Remarks",
+            "Rejected"
+          ],
+          "all_unique_values": [
+            "two way Communication",
+            "Approved",
+            "Remarks",
+            "Rejected"
+          ]
+        },
+        {
+          "name": "Unnamed: 10",
+          "index": 11,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 27,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 11",
+          "index": 12,
+          "data_type": "object",
+          "non_null_count": 1,
+          "null_count": 26,
+          "null_percentage": 96.29629629629629,
+          "unique_count": 1,
+          "unique_percentage": 3.7037037037037033,
+          "sample_values": [
+            "Security"
+          ],
+          "all_unique_values": [
+            "Security"
+          ]
+        },
+        {
+          "name": "Unnamed: 12",
+          "index": 13,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 27,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 13",
+          "index": 14,
+          "data_type": "object",
+          "non_null_count": 1,
+          "null_count": 26,
+          "null_percentage": 96.29629629629629,
+          "unique_count": 1,
+          "unique_percentage": 3.7037037037037033,
+          "sample_values": [
+            "Attach"
+          ],
+          "all_unique_values": [
+            "Attach"
+          ]
+        }
+      ],
+      "data_types": {},
+      "sample_data": {},
+      "statistics": {},
+      "null_values": {},
+      "unique_values": {}
+    },
+    "HR": {
+      "name": "HR",
+      "dimensions": {
+        "rows": 27,
+        "columns": 16,
+        "total_cells": 432
+      },
+      "columns": [
+        {
+          "name": "Unnamed: 0",
+          "index": 1,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 27,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 1",
+          "index": 2,
+          "data_type": "object",
+          "non_null_count": 1,
+          "null_count": 26,
+          "null_percentage": 96.29629629629629,
+          "unique_count": 1,
+          "unique_percentage": 3.7037037037037033,
+          "sample_values": [
+            "Send"
+          ],
+          "all_unique_values": [
+            "Send"
+          ]
+        },
+        {
+          "name": "Unnamed: 2",
+          "index": 3,
+          "data_type": "object",
+          "non_null_count": 4,
+          "null_count": 23,
+          "null_percentage": 85.18518518518519,
+          "unique_count": 4,
+          "unique_percentage": 14.814814814814813,
+          "sample_values": [
+            "Request",
+            "Requests Log",
+            "Request Cycle",
+            "Employee "
+          ],
+          "all_unique_values": [
+            "Request",
+            "Requests Log",
+            "Request Cycle",
+            "Employee "
+          ]
+        },
+        {
+          "name": "Unnamed: 3",
+          "index": 4,
+          "data_type": "object",
+          "non_null_count": 5,
+          "null_count": 22,
+          "null_percentage": 81.48148148148148,
+          "unique_count": 3,
+          "unique_percentage": 11.11111111111111,
+          "sample_values": [
+            "Drop Down Menu",
+            "Sick Leave",
+            "Annual leave",
+            "Sick Leave",
+            "Annual leave"
+          ],
+          "all_unique_values": [
+            "Drop Down Menu",
+            "Sick Leave",
+            "Annual leave"
+          ]
+        },
+        {
+          "name": "Unnamed: 4",
+          "index": 5,
+          "data_type": "object",
+          "non_null_count": 3,
+          "null_count": 24,
+          "null_percentage": 88.88888888888889,
+          "unique_count": 3,
+          "unique_percentage": 11.11111111111111,
+          "sample_values": [
+            "Attach",
+            "Sick Leave",
+            "Annual leave"
+          ],
+          "all_unique_values": [
+            "Attach",
+            "Sick Leave",
+            "Annual leave"
+          ]
+        },
+        {
+          "name": "Unnamed: 5",
+          "index": 6,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 27,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 6",
+          "index": 7,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 27,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 7",
+          "index": 8,
+          "data_type": "object",
+          "non_null_count": 2,
+          "null_count": 25,
+          "null_percentage": 92.5925925925926,
+          "unique_count": 2,
+          "unique_percentage": 7.4074074074074066,
+          "sample_values": [
+            "Employee Interface",
+            "First Line Manager"
+          ],
+          "all_unique_values": [
+            "Employee Interface",
+            "First Line Manager"
+          ]
+        },
+        {
+          "name": "Unnamed: 8",
+          "index": 9,
+          "data_type": "object",
+          "non_null_count": 6,
+          "null_count": 21,
+          "null_percentage": 77.77777777777779,
+          "unique_count": 6,
+          "unique_percentage": 22.22222222222222,
+          "sample_values": [
+            "Request Description:",
+            "Date",
+            "Leave Date (From - To):\nCalendar",
+            "Reaseon",
+            "Credit (Days)"
+          ],
+          "all_unique_values": [
+            "Request Description:",
+            "Date",
+            "Leave Date (From - To):\nCalendar",
+            "Reaseon",
+            "Credit (Days)",
+            "Requests Log"
+          ]
+        },
+        {
+          "name": "Unnamed: 9",
+          "index": 10,
+          "data_type": "object",
+          "non_null_count": 4,
+          "null_count": 23,
+          "null_percentage": 85.18518518518519,
+          "unique_count": 4,
+          "unique_percentage": 14.814814814814813,
+          "sample_values": [
+            "two way Communication",
+            "Approved",
+            "Remarks",
+            "Rejected"
+          ],
+          "all_unique_values": [
+            "two way Communication",
+            "Approved",
+            "Remarks",
+            "Rejected"
+          ]
+        },
+        {
+          "name": "Unnamed: 10",
+          "index": 11,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 27,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 11",
+          "index": 12,
+          "data_type": "object",
+          "non_null_count": 1,
+          "null_count": 26,
+          "null_percentage": 96.29629629629629,
+          "unique_count": 1,
+          "unique_percentage": 3.7037037037037033,
+          "sample_values": [
+            "Second Line Manager"
+          ],
+          "all_unique_values": [
+            "Second Line Manager"
+          ]
+        },
+        {
+          "name": "Unnamed: 12",
+          "index": 13,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 27,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 13",
+          "index": 14,
+          "data_type": "object",
+          "non_null_count": 4,
+          "null_count": 23,
+          "null_percentage": 85.18518518518519,
+          "unique_count": 4,
+          "unique_percentage": 14.814814814814813,
+          "sample_values": [
+            "Attach",
+            "Approved",
+            "Remarks",
+            "Rejected"
+          ],
+          "all_unique_values": [
+            "Attach",
+            "Approved",
+            "Remarks",
+            "Rejected"
+          ]
+        },
+        {
+          "name": "Unnamed: 14",
+          "index": 15,
+          "data_type": "float64",
+          "non_null_count": 0,
+          "null_count": 27,
+          "null_percentage": 100.0,
+          "unique_count": 0,
+          "unique_percentage": 0.0,
+          "sample_values": [],
+          "statistics": {
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        {
+          "name": "Unnamed: 15",
+          "index": 16,
+          "data_type": "object",
+          "non_null_count": 1,
+          "null_count": 26,
+          "null_percentage": 96.29629629629629,
+          "unique_count": 1,
+          "unique_percentage": 3.7037037037037033,
+          "sample_values": [
+            "HR"
+          ],
+          "all_unique_values": [
+            "HR"
+          ]
+        }
+      ],
+      "data_types": {},
+      "sample_data": {},
+      "statistics": {},
+      "null_values": {},
+      "unique_values": {}
+    }
+  },
+  "data_structure": {},
+  "relationships": [],
+  "business_logic": {},
+  "statistics": {}
+}

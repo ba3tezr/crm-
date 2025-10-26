@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "تأكيد الحذف" %} - {{ event.event_number }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        {% trans "تأكيد حذف الفعالية" %}
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {% trans "هل أنت متأكد من حذف هذه الفعالية؟ هذا الإجراء لا يمكن التراجع عنه!" %}
+                    </div>
+
+                    <div class="mb-4">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th width="40%">{% trans "رقم الفعالية" %}:</th>
+                                <td><strong class="text-danger">{{ event.event_number }}</strong></td>
+                            </tr>
+                            <tr>
+                                <th>{% trans "العنوان" %}:</th>
+                                <td>{{ event.title }}</td>
+                            </tr>
+                            <tr>
+                                <th>{% trans "النوع" %}:</th>
+                                <td>{{ event.get_event_type_display }}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'marketing:event_detail' event.pk %}" class="btn btn-secondary">
+                                <i class="fas fa-times"></i>
+                                {% trans "إلغاء" %}
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash"></i>
+                                {% trans "تأكيد الحذف" %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

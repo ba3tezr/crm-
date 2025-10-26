@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ title }} - {% trans "إدارة الإجازات" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="mb-1">
+                        <i class="fas fa-calendar-check text-info"></i>
+                        {{ title }}
+                    </h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="{% url 'core:dashboard' %}">{% trans "الرئيسية" %}</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'hr:leave_request_list' %}">{% trans "الإجازات" %}</a></li>
+                            <li class="breadcrumb-item active">{{ title }}</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div>
+                    <a href="{% url 'hr:leave_request_list' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        {% trans "رجوع" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <div class="card shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-edit"></i>
+                        {% trans "بيانات طلب الإجازة" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% crispy form %}
+                </div>
+            </div>
+
+            <div class="card mt-3 border-info">
+                <div class="card-body">
+                    <h6 class="text-info">
+                        <i class="fas fa-info-circle"></i>
+                        {% trans "ملاحظات" %}
+                    </h6>
+                    <ul class="mb-0 small">
+                        <li>{% trans "سيتم احتساب عدد الأيام تلقائياً بناءً على التواريخ" %}</li>
+                        <li>{% trans "تأكد من اختيار نوع الإجازة المناسب" %}</li>
+                        <li>{% trans "اكتب سبباً واضحاً للإجازة" %}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const requestNumberField = document.querySelector('input[name="request_number"]');
+        if (requestNumberField && !requestNumberField.value) {
+            requestNumberField.value = 'LR-' + new Date().getTime();
+        }
+    });
+</script>
+{% endblock %}
+

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ title }} - {% trans "إدارة الصيانة" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="mb-1">
+                        <i class="fas fa-tools text-warning"></i>
+                        {{ title }}
+                    </h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="{% url 'core:dashboard' %}">{% trans "الرئيسية" %}</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'maintenance:ticket_list' %}">{% trans "الصيانة" %}</a></li>
+                            <li class="breadcrumb-item active">{{ title }}</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div>
+                    <a href="{% url 'maintenance:ticket_list' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        {% trans "رجوع" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form -->
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">
+                        <i class="fas fa-edit"></i>
+                        {% trans "بيانات طلب الصيانة" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% crispy form %}
+                </div>
+            </div>
+
+            <!-- Help Text -->
+            <div class="card mt-3 border-info">
+                <div class="card-body">
+                    <h6 class="text-info">
+                        <i class="fas fa-info-circle"></i>
+                        {% trans "ملاحظات" %}
+                    </h6>
+                    <ul class="mb-0 small">
+                        <li>{% trans "حدد الفئة والأولوية بدقة لضمان سرعة الاستجابة" %}</li>
+                        <li>{% trans "أضف وصفاً تفصيلياً للمشكلة" %}</li>
+                        <li>{% trans "يمكنك إضافة المرفقات بعد حفظ الطلب" %}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ticketNumberField = document.querySelector('input[name="ticket_number"]');
+        if (ticketNumberField && !ticketNumberField.value) {
+            const timestamp = new Date().getTime();
+            ticketNumberField.value = 'TKT-' + timestamp;
+        }
+    });
+</script>
+{% endblock %}
+

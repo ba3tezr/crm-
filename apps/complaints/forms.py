@@ -1,0 +1,145 @@
+from django import forms
+from django.utils.translation import gettext_lazy as _
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, Row, Column, Div, Field
+from crispy_forms.bootstrap import FormActions
+
+from .models import Case, CaseAttachment, CaseComment
+
+
+class CaseForm(forms.ModelForm):
+    """
+    نموذج إنشاء/تعديل القضية - Case Form
+    """
+    
+    class Meta:
+        model = Case
+        fields = [
+            'case_number',
+            'case_type',
+            'title',
+            'description',
+            'priority',
+            'status',
+            'assigned_to',
+            'department',
+            'resolution_notes',
+        ]
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 4, 'class': 'form-control'}),
+            'resolution_notes': forms.Textarea(attrs={'rows': 3, 'class': 'form-control'}),
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.form_class = 'form-horizontal'
+        
+        # Make case_number readonly if editing
+        if self.instance.pk:
+            self.fields['case_number'].widget.attrs['readonly'] = True
+        
+        self.helper.layout = Layout(
+            Div(
+                Div(
+                    Row(
+                        Column('case_number', css_class='form-group col-md-6 mb-3'),
+                        Column('case_type', css_class='form-group col-md-6 mb-3'),
+                    ),
+                    Row(
+                        Column('priority', css_class='form-group col-md-6 mb-3'),
+                        Column('status', css_class='form-group col-md-6 mb-3'),
+                    ),
+                    css_class='card-body'
+                ),
+                css_class='card mb-3'
+            ),
+            
+            Div(
+                Div(
+                    'title',
+                    'description',
+                    css_class='card-body'
+                ),
+                css_class='card mb-3'
+            ),
+            
+            Div(
+                Div(
+                    Row(
+                        Column('assigned_to', css_class='form-group col-md-6 mb-3'),
+                        Column('department', css_class='form-group col-md-6 mb-3'),
+                    ),
+                    css_class='card-body'
+                ),
+                css_class='card mb-3'
+            ),
+            
+            Div(
+                Div(
+                    'resolution_notes',
+                    css_class='card-body'
+                ),
+                css_class='card mb-3'
+            ),
+            
+            FormActions(
+                Submit('submit', _('حفظ'), css_class='btn btn-primary'),
+                css_class='text-end'
+            )
+        )
+
+
+class CaseAttachmentForm(forms.ModelForm):
+    """
+    نموذج رفع مرفق القضية - Case Attachment Form
+    """
+    
+    class Meta:
+        model = CaseAttachment
+        fields = ['file', 'file_name']
+        widgets = {
+            'file_name': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.form_enctype = 'multipart/form-data'
+        
+        self.helper.layout = Layout(
+            'file',
+            'file_name',
+            FormActions(
+                Submit('submit', _('رفع الملف'), css_class='btn btn-primary'),
+            )
+        )
+
+
+class CaseCommentForm(forms.ModelForm):
+    """
+    نموذج إضافة تعليق على القضية - Case Comment Form
+    """
+    
+    class Meta:
+        model = CaseComment
+        fields = ['comment', 'is_internal']
+        widgets = {
+            'comment': forms.Textarea(attrs={'rows': 3, 'class': 'form-control', 'placeholder': _('أضف تعليقك هنا...')}),
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        
+        self.helper.layout = Layout(
+            'comment',
+            'is_internal',
+            FormActions(
+                Submit('submit', _('إضافة تعليق'), css_class='btn btn-primary'),
+            )
+        )
+

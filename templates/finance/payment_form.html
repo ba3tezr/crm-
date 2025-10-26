@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static i18n crispy_forms_tags %}
+
+{% block title %}{% trans "تسجيل دفعة" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2><i class="fas fa-money-bill-wave text-success"></i> {% trans "تسجيل دفعة" %}</h2>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'core:dashboard' %}">{% trans "الرئيسية" %}</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'finance:payment_list' %}">{% trans "الدفعات" %}</a></li>
+                    <li class="breadcrumb-item active">{% trans "جديد" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">{% trans "دفعة جديدة" %}</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save"></i> {% trans "حفظ" %}
+                            </button>
+                            <a href="{% url 'finance:payment_list' %}" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> {% trans "إلغاء" %}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Help Text -->
+            <div class="alert alert-info mt-3">
+                <h6><i class="fas fa-info-circle"></i> {% trans "ملاحظات" %}:</h6>
+                <ul class="mb-0">
+                    <li>{% trans "جميع المبالغ بالدولار الأمريكي (USD)" %}</li>
+                    <li>{% trans "تأكد من إدخال رقم المرجع للدفعات البنكية" %}</li>
+                    <li>{% trans "سيتم تحديث حالة الفاتورة تلقائياً" %}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

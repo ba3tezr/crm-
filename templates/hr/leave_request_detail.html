@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{{ leave_request.request_number }} - {% trans "تفاصيل طلب الإجازة" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="mb-1">
+                        <i class="fas fa-calendar-check text-info"></i>
+                        {% trans "تفاصيل طلب الإجازة" %}
+                    </h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="{% url 'core:dashboard' %}">{% trans "الرئيسية" %}</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'hr:leave_request_list' %}">{% trans "الإجازات" %}</a></li>
+                            <li class="breadcrumb-item active">{{ leave_request.request_number }}</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div>
+                    {% if leave_request.status == 'pending' and user.is_staff %}
+                    <a href="{% url 'hr:leave_request_approve' leave_request.pk %}" class="btn btn-success">
+                        <i class="fas fa-check"></i>
+                        {% trans "موافقة" %}
+                    </a>
+                    {% endif %}
+                    <a href="{% url 'hr:leave_request_list' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        {% trans "رجوع" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12">
+            <span class="badge bg-{% if leave_request.status == 'approved' %}success{% elif leave_request.status == 'rejected' %}danger{% elif leave_request.status == 'pending' %}warning{% else %}secondary{% endif %} fs-6">
+                {{ leave_request.get_status_display }}
+            </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow-sm mb-3">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-info-circle"></i>
+                        {% trans "المعلومات الأساسية" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <tr>
+                            <th width="30%">{% trans "رقم الطلب" %}:</th>
+                            <td><strong class="text-info">{{ leave_request.request_number }}</strong></td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "الموظف" %}:</th>
+                            <td>{{ leave_request.employee.get_full_name|default:leave_request.employee.username }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "نوع الإجازة" %}:</th>
+                            <td>{{ leave_request.get_leave_type_display }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "تاريخ البداية" %}:</th>
+                            <td>{{ leave_request.start_date|date:"Y-m-d" }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "تاريخ النهاية" %}:</th>
+                            <td>{{ leave_request.end_date|date:"Y-m-d" }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "عدد الأيام" %}:</th>
+                            <td><strong>{{ leave_request.days_count }}</strong> {% trans "يوم" %}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "السبب" %}:</th>
+                            <td>{{ leave_request.reason|linebreaks }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            {% if leave_request.status == 'approved' %}
+            <div class="card shadow-sm mb-3 border-success">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-check-circle"></i>
+                        {% trans "معلومات الموافقة" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="mb-2">
+                        <strong>{% trans "وافق عليه" %}:</strong><br>
+                        {{ leave_request.approved_by.get_full_name|default:leave_request.approved_by.username }}
+                    </p>
+                    <p class="mb-0">
+                        <strong>{% trans "تاريخ الموافقة" %}:</strong><br>
+                        {{ leave_request.approval_date|date:"Y-m-d H:i" }}
+                    </p>
+                </div>
+            </div>
+            {% elif leave_request.status == 'rejected' %}
+            <div class="card shadow-sm mb-3 border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-times-circle"></i>
+                        {% trans "سبب الرفض" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {{ leave_request.rejection_reason|linebreaks }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm mb-3">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-cog"></i>
+                        {% trans "معلومات النظام" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="mb-2">
+                        <strong>{% trans "تاريخ الإنشاء" %}:</strong><br>
+                        {{ leave_request.created_at|date:"Y-m-d H:i" }}
+                    </p>
+                    <p class="mb-0">
+                        <strong>{% trans "آخر تحديث" %}:</strong><br>
+                        {{ leave_request.updated_at|date:"Y-m-d H:i" }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

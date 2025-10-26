@@ -1,0 +1,256 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "الفعاليات والأنشطة" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">
+                <i class="fas fa-calendar-alt text-success"></i>
+                {% trans "إدارة الفعاليات والأنشطة" %}
+            </h2>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="{% url 'core:dashboard' %}">{% trans "الرئيسية" %}</a></li>
+                    <li class="breadcrumb-item active">{% trans "التسويق" %}</li>
+                </ol>
+            </nav>
+        </div>
+        <div>
+            <a href="{% url 'marketing:event_create' %}" class="btn btn-success">
+                <i class="fas fa-plus"></i>
+                {% trans "فعالية جديدة" %}
+            </a>
+            <button class="btn btn-info" onclick="exportToExcel()">
+                <i class="fas fa-file-excel"></i>
+                {% trans "تصدير Excel" %}
+            </button>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-success bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-check-circle fa-2x text-success"></i>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-0">{% trans "نشط" %}</h6>
+                            <h3 class="mb-0">{{ active_count|default:0 }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-warning bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-clock fa-2x text-warning"></i>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-0">{% trans "قادم" %}</h6>
+                            <h3 class="mb-0">{{ upcoming_count|default:0 }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-primary bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-flag-checkered fa-2x text-primary"></i>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-0">{% trans "مكتمل" %}</h6>
+                            <h3 class="mb-0">{{ completed_count|default:0 }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-info bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-list fa-2x text-info"></i>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-0">{% trans "الإجمالي" %}</h6>
+                            <h3 class="mb-0">{{ total_count|default:0 }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label">{% trans "نوع الفعالية" %}</label>
+                    <select name="event_type" class="form-select">
+                        <option value="">{% trans "الكل" %}</option>
+                        <option value="conference">{% trans "مؤتمر" %}</option>
+                        <option value="workshop">{% trans "ورشة عمل" %}</option>
+                        <option value="seminar">{% trans "ندوة" %}</option>
+                        <option value="exhibition">{% trans "معرض" %}</option>
+                        <option value="other">{% trans "أخرى" %}</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">{% trans "الحالة" %}</label>
+                    <select name="status" class="form-select">
+                        <option value="">{% trans "الكل" %}</option>
+                        <option value="draft">{% trans "مسودة" %}</option>
+                        <option value="active">{% trans "نشط" %}</option>
+                        <option value="completed">{% trans "مكتمل" %}</option>
+                        <option value="cancelled">{% trans "ملغي" %}</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">{% trans "من تاريخ" %}</label>
+                    <input type="date" name="start_date" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">&nbsp;</label>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-search"></i>
+                        {% trans "بحث" %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Events Table -->
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>{% trans "رقم الفعالية" %}</th>
+                            <th>{% trans "العنوان" %}</th>
+                            <th>{% trans "النوع" %}</th>
+                            <th>{% trans "تاريخ البدء" %}</th>
+                            <th>{% trans "تاريخ الانتهاء" %}</th>
+                            <th>{% trans "الموقع" %}</th>
+                            <th>{% trans "المنظم" %}</th>
+                            <th>{% trans "الحالة" %}</th>
+                            <th>{% trans "الإجراءات" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for event in events %}
+                        <tr>
+                            <td>
+                                <strong class="text-primary">{{ event.event_number }}</strong>
+                            </td>
+                            <td>
+                                <div>
+                                    <strong>{{ event.title }}</strong>
+                                    {% if event.description %}
+                                        <br>
+                                        <small class="text-muted">{{ event.description|truncatewords:10 }}</small>
+                                    {% endif %}
+                                </div>
+                            </td>
+                            <td>
+                                {% if event.event_type == 'conference' %}
+                                    <span class="badge bg-primary">
+                                        <i class="fas fa-users"></i>
+                                        {% trans "مؤتمر" %}
+                                    </span>
+                                {% elif event.event_type == 'workshop' %}
+                                    <span class="badge bg-info">
+                                        <i class="fas fa-chalkboard-teacher"></i>
+                                        {% trans "ورشة عمل" %}
+                                    </span>
+                                {% elif event.event_type == 'seminar' %}
+                                    <span class="badge bg-success">
+                                        <i class="fas fa-microphone"></i>
+                                        {% trans "ندوة" %}
+                                    </span>
+                                {% elif event.event_type == 'exhibition' %}
+                                    <span class="badge bg-warning">
+                                        <i class="fas fa-store"></i>
+                                        {% trans "معرض" %}
+                                    </span>
+                                {% else %}
+                                    <span class="badge bg-secondary">{% trans "أخرى" %}</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ event.start_date|date:"Y-m-d" }}</td>
+                            <td>{{ event.end_date|date:"Y-m-d" }}</td>
+                            <td>
+                                <i class="fas fa-map-marker-alt text-danger"></i>
+                                {{ event.location }}
+                            </td>
+                            <td>{{ event.organizer.get_full_name }}</td>
+                            <td>
+                                {% if event.status == 'draft' %}
+                                    <span class="badge bg-secondary">{% trans "مسودة" %}</span>
+                                {% elif event.status == 'active' %}
+                                    <span class="badge bg-success">{% trans "نشط" %}</span>
+                                {% elif event.status == 'completed' %}
+                                    <span class="badge bg-primary">{% trans "مكتمل" %}</span>
+                                {% else %}
+                                    <span class="badge bg-danger">{% trans "ملغي" %}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="{% url 'marketing:event_detail' event.pk %}" 
+                                       class="btn btn-outline-primary" 
+                                       title="{% trans 'عرض' %}">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{% url 'marketing:event_update' event.pk %}" 
+                                       class="btn btn-outline-warning" 
+                                       title="{% trans 'تعديل' %}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{% url 'marketing:event_delete' event.pk %}" 
+                                       class="btn btn-outline-danger" 
+                                       title="{% trans 'حذف' %}"
+                                       onclick="return confirm('{% trans "هل أنت متأكد من الحذف؟" %}')">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="9" class="text-center text-muted py-5">
+                                <i class="fas fa-inbox fa-3x mb-3 d-block"></i>
+                                {% trans "لا توجد فعاليات" %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function exportToExcel() {
+    window.location.href = '{% url "marketing:event_export" %}';
+}
+</script>
+{% endblock %}
+

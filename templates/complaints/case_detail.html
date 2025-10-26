@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{{ case.case_number }} - {% trans "تفاصيل القضية" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="mb-1">
+                        <i class="fas fa-comment-dots text-danger"></i>
+                        {% trans "تفاصيل القضية" %}
+                    </h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="{% url 'core:dashboard' %}">{% trans "الرئيسية" %}</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'complaints:case_list' %}">{% trans "الشكاوى" %}</a></li>
+                            <li class="breadcrumb-item active">{{ case.case_number }}</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div>
+                    <a href="{% url 'complaints:case_update' case.pk %}" class="btn btn-warning">
+                        <i class="fas fa-edit"></i>
+                        {% trans "تعديل" %}
+                    </a>
+                    <a href="{% url 'complaints:case_delete' case.pk %}" class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                        {% trans "حذف" %}
+                    </a>
+                    <a href="{% url 'complaints:case_list' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        {% trans "رجوع" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12">
+            <span class="badge bg-{% if case.case_type == 'complaint' %}danger{% elif case.case_type == 'complement' %}success{% else %}info{% endif %} fs-6 me-2">
+                {{ case.get_case_type_display }}
+            </span>
+            <span class="badge bg-{% if case.status == 'closed' %}success{% elif case.status == 'in_review' %}info{% else %}warning{% endif %} fs-6 me-2">
+                {{ case.get_status_display }}
+            </span>
+            <span class="badge bg-{% if case.priority == 'high' %}danger{% elif case.priority == 'medium' %}warning{% else %}secondary{% endif %} fs-6">
+                {{ case.get_priority_display }}
+            </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow-sm mb-3">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-info-circle"></i>
+                        {% trans "المعلومات الأساسية" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <tr>
+                            <th width="30%">{% trans "رقم الحالة" %}:</th>
+                            <td><strong class="text-danger">{{ case.case_number }}</strong></td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "العنوان" %}:</th>
+                            <td>{{ case.title }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "الوصف" %}:</th>
+                            <td>{{ case.description|linebreaks }}</td>
+                        </tr>
+                        {% if case.department %}
+                        <tr>
+                            <th>{% trans "القسم المعني" %}:</th>
+                            <td>{{ case.department }}</td>
+                        </tr>
+                        {% endif %}
+                        {% if case.assigned_to %}
+                        <tr>
+                            <th>{% trans "مسند إلى" %}:</th>
+                            <td>{{ case.assigned_to.get_full_name|default:case.assigned_to.username }}</td>
+                        </tr>
+                        {% endif %}
+                    </table>
+                </div>
+            </div>
+
+            {% if case.resolution_notes %}
+            <div class="card shadow-sm mb-3">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-check-circle"></i>
+                        {% trans "ملاحظات الحل" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {{ case.resolution_notes|linebreaks }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm mb-3">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-cog"></i>
+                        {% trans "معلومات النظام" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="mb-2">
+                        <strong>{% trans "أنشئ بواسطة" %}:</strong><br>
+                        {{ case.created_by.get_full_name|default:case.created_by.username }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>{% trans "تاريخ الإنشاء" %}:</strong><br>
+                        {{ case.created_at|date:"Y-m-d H:i" }}
+                    </p>
+                    <p class="mb-0">
+                        <strong>{% trans "آخر تحديث" %}:</strong><br>
+                        {{ case.updated_at|date:"Y-m-d H:i" }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

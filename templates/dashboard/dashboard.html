@@ -1,0 +1,266 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "لوحة التحكم" %} - {{ settings.site_name_ar }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid fade-in">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="mb-0">
+                <i class="fas fa-tachometer-alt text-primary"></i>
+                {% trans "لوحة التحكم" %}
+            </h2>
+            <p class="text-muted">{% trans "مرحباً بك" %}, {{ user.get_full_name|default:user.username }}</p>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row g-3 mb-4">
+        <!-- Permits Card -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="bg-primary bg-opacity-10 rounded-3 p-3">
+                                <i class="fas fa-file-alt fa-2x text-primary"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-1">{% trans "التصاريح" %}</h6>
+                            <h3 class="mb-0">{{ permits_count|default:0 }}</h3>
+                            <small class="text-success">
+                                <i class="fas fa-arrow-up"></i> 
+                                {% trans "قيد الانتظار" %}: {{ permits_pending|default:0 }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    <a href="{% url 'permits:permit_list' %}" class="btn btn-sm btn-outline-primary w-100">
+                        {% trans "عرض الكل" %} <i class="fas fa-arrow-{% if LANGUAGE_CODE == 'ar' %}left{% else %}right{% endif %}"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Maintenance Card -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="bg-warning bg-opacity-10 rounded-3 p-3">
+                                <i class="fas fa-tools fa-2x text-warning"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-1">{% trans "الصيانة" %}</h6>
+                            <h3 class="mb-0">{{ tickets_count|default:0 }}</h3>
+                            <small class="text-danger">
+                                <i class="fas fa-exclamation-circle"></i> 
+                                {% trans "عاجلة" %}: {{ tickets_urgent|default:0 }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    <a href="{% url 'maintenance:ticket_list' %}" class="btn btn-sm btn-outline-warning w-100">
+                        {% trans "عرض الكل" %} <i class="fas fa-arrow-{% if LANGUAGE_CODE == 'ar' %}left{% else %}right{% endif %}"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Complaints Card -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="bg-danger bg-opacity-10 rounded-3 p-3">
+                                <i class="fas fa-comments fa-2x text-danger"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-1">{% trans "الشكاوى" %}</h6>
+                            <h3 class="mb-0">{{ cases_count|default:0 }}</h3>
+                            <small class="text-info">
+                                <i class="fas fa-clock"></i> 
+                                {% trans "قيد المراجعة" %}: {{ cases_review|default:0 }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    <a href="{% url 'complaints:case_list' %}" class="btn btn-sm btn-outline-danger w-100">
+                        {% trans "عرض الكل" %} <i class="fas fa-arrow-{% if LANGUAGE_CODE == 'ar' %}left{% else %}right{% endif %}"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Events Card -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="bg-success bg-opacity-10 rounded-3 p-3">
+                                <i class="fas fa-bullhorn fa-2x text-success"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-1">{% trans "الفعاليات" %}</h6>
+                            <h3 class="mb-0">{{ events_count|default:0 }}</h3>
+                            <small class="text-success">
+                                <i class="fas fa-calendar-check"></i> 
+                                {% trans "نشطة" %}: {{ events_active|default:0 }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    <a href="{% url 'marketing:event_list' %}" class="btn btn-sm btn-outline-success w-100">
+                        {% trans "عرض الكل" %} <i class="fas fa-arrow-{% if LANGUAGE_CODE == 'ar' %}left{% else %}right{% endif %}"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row g-3 mb-4">
+        <!-- Recent Activity -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white border-0">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-line text-primary"></i>
+                        {% trans "النشاط الأخير" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{% trans "النوع" %}</th>
+                                    <th>{% trans "العنوان" %}</th>
+                                    <th>{% trans "الحالة" %}</th>
+                                    <th>{% trans "التاريخ" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="badge bg-primary">{% trans "تصريح" %}</span></td>
+                                    <td>{% trans "تصريح بضائع" %}</td>
+                                    <td><span class="badge bg-warning">{% trans "قيد الانتظار" %}</span></td>
+                                    <td>{% trans "اليوم" %}</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge bg-warning">{% trans "صيانة" %}</span></td>
+                                    <td>{% trans "إصلاح كهرباء" %}</td>
+                                    <td><span class="badge bg-info">{% trans "قيد التنفيذ" %}</span></td>
+                                    <td>{% trans "أمس" %}</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge bg-danger">{% trans "شكوى" %}</span></td>
+                                    <td>{% trans "شكوى نظافة" %}</td>
+                                    <td><span class="badge bg-success">{% trans "محلولة" %}</span></td>
+                                    <td>{% trans "منذ يومين" %}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white border-0">
+                    <h5 class="mb-0">
+                        <i class="fas fa-bolt text-warning"></i>
+                        {% trans "إجراءات سريعة" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'permits:permit_create' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-plus-circle"></i>
+                            {% trans "تصريح جديد" %}
+                        </a>
+                        <a href="{% url 'maintenance:ticket_create' %}" class="btn btn-outline-warning">
+                            <i class="fas fa-wrench"></i>
+                            {% trans "طلب صيانة" %}
+                        </a>
+                        <a href="{% url 'complaints:case_create' %}" class="btn btn-outline-danger">
+                            <i class="fas fa-comment-alt"></i>
+                            {% trans "تقديم شكوى" %}
+                        </a>
+                        <a href="{% url 'marketing:event_create' %}" class="btn btn-outline-success">
+                            <i class="fas fa-calendar-plus"></i>
+                            {% trans "فعالية جديدة" %}
+                        </a>
+                        <a href="{% url 'hr:leave_request_create' %}" class="btn btn-outline-info">
+                            <i class="fas fa-calendar-alt"></i>
+                            {% trans "طلب إجازة" %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications -->
+    <div class="row g-3">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h5 class="mb-0">
+                        <i class="fas fa-bell text-info"></i>
+                        {% trans "الإشعارات" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item border-0">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-info-circle fa-2x text-info"></i>
+                                </div>
+                                <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                                    <h6 class="mb-1">{% trans "تحديث النظام" %}</h6>
+                                    <p class="mb-0 text-muted small">{% trans "تم تحديث النظام بنجاح إلى الإصدار 1.0" %}</p>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <small class="text-muted">{% trans "منذ ساعة" %}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card {
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+    }
+</style>
+{% endblock %}
+

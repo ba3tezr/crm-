@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% load static i18n currency_filters %}
+
+{% block title %}{% trans "الفواتير" %} - {% trans "المالية" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2><i class="fas fa-file-invoice-dollar text-primary"></i> {% trans "الفواتير" %}</h2>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'core:dashboard' %}">{% trans "الرئيسية" %}</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'finance:invoice_list' %}">{% trans "المالية" %}</a></li>
+                    <li class="breadcrumb-item active">{% trans "الفواتير" %}</li>
+                </ol>
+            </nav>
+        </div>
+        <div>
+            <a href="{% url 'finance:invoice_create' %}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> {% trans "فاتورة جديدة" %}
+            </a>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h6 class="card-title">{% trans "إجمالي الفواتير" %}</h6>
+                    <h3>{{ stats.total_invoices }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <h6 class="card-title">{% trans "قيد الانتظار" %}</h6>
+                    <h3>{{ stats.pending_invoices }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h6 class="card-title">{% trans "مدفوعة" %}</h6>
+                    <h3>{{ stats.paid_invoices }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-danger text-white">
+                <div class="card-body">
+                    <h6 class="card-title">{% trans "متأخرة" %}</h6>
+                    <h3>{{ stats.overdue_invoices }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label">{% trans "البحث" %}</label>
+                    <input type="text" name="search" class="form-control" placeholder="{% trans 'رقم الفاتورة، المستأجر...' %}" value="{{ request.GET.search }}">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">{% trans "الحالة" %}</label>
+                    <select name="status" class="form-select">
+                        <option value="">{% trans "الكل" %}</option>
+                        <option value="draft" {% if request.GET.status == 'draft' %}selected{% endif %}>{% trans "مسودة" %}</option>
+                        <option value="pending" {% if request.GET.status == 'pending' %}selected{% endif %}>{% trans "قيد الانتظار" %}</option>
+                        <option value="paid" {% if request.GET.status == 'paid' %}selected{% endif %}>{% trans "مدفوعة" %}</option>
+                        <option value="partially_paid" {% if request.GET.status == 'partially_paid' %}selected{% endif %}>{% trans "مدفوعة جزئياً" %}</option>
+                        <option value="overdue" {% if request.GET.status == 'overdue' %}selected{% endif %}>{% trans "متأخرة" %}</option>
+                        <option value="cancelled" {% if request.GET.status == 'cancelled' %}selected{% endif %}>{% trans "ملغاة" %}</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">{% trans "نوع الفاتورة" %}</label>
+                    <select name="invoice_type" class="form-select">
+                        <option value="">{% trans "الكل" %}</option>
+                        <option value="sales" {% if request.GET.invoice_type == 'sales' %}selected{% endif %}>{% trans "مبيعات" %}</option>
+                        <option value="purchase" {% if request.GET.invoice_type == 'purchase' %}selected{% endif %}>{% trans "مشتريات" %}</option>
+                        <option value="service" {% if request.GET.invoice_type == 'service' %}selected{% endif %}>{% trans "خدمة" %}</option>
+                        <option value="rental" {% if request.GET.invoice_type == 'rental' %}selected{% endif %}>{% trans "إيجار" %}</option>
+                        <option value="penalty" {% if request.GET.invoice_type == 'penalty' %}selected{% endif %}>{% trans "غرامة" %}</option>
+                    </select>
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary me-2">
+                        <i class="fas fa-search"></i> {% trans "بحث" %}
+                    </button>
+                    <a href="{% url 'finance:invoice_list' %}" class="btn btn-secondary">
+                        <i class="fas fa-redo"></i> {% trans "إعادة تعيين" %}
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Invoices Table -->
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">{% trans "قائمة الفواتير" %}</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>{% trans "رقم الفاتورة" %}</th>
+                            <th>{% trans "المستأجر" %}</th>
+                            <th>{% trans "النوع" %}</th>
+                            <th>{% trans "تاريخ الإصدار" %}</th>
+                            <th>{% trans "تاريخ الاستحقاق" %}</th>
+                            <th>{% trans "المبلغ الإجمالي" %}</th>
+                            <th>{% trans "المبلغ المدفوع" %}</th>
+                            <th>{% trans "المبلغ المتبقي" %}</th>
+                            <th>{% trans "الحالة" %}</th>
+                            <th>{% trans "إجراءات" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for invoice in invoices %}
+                        <tr>
+                            <td><strong>{{ invoice.invoice_number }}</strong></td>
+                            <td>
+                                {% if invoice.tenant.tenant_profile %}
+                                    {{ invoice.tenant.tenant_profile.company_name }}
+                                {% else %}
+                                    {{ invoice.tenant.get_full_name|default:invoice.tenant.username }}
+                                {% endif %}
+                            </td>
+                            <td>{{ invoice.get_invoice_type_display }}</td>
+                            <td dir="ltr">{{ invoice.issue_date|date:"M d, Y" }}</td>
+                            <td dir="ltr">{{ invoice.due_date|date:"M d, Y" }}</td>
+                            <td dir="ltr"><strong>{{ invoice.total_amount|currency }}</strong></td>
+                            <td dir="ltr">{{ invoice.paid_amount|currency }}</td>
+                            <td dir="ltr">{{ invoice.balance_due|currency }}</td>
+                            <td>
+                                {% if invoice.status == 'paid' %}
+                                    <span class="badge bg-success">{{ invoice.get_status_display }}</span>
+                                {% elif invoice.status == 'overdue' %}
+                                    <span class="badge bg-danger">{{ invoice.get_status_display }}</span>
+                                {% elif invoice.status == 'pending' %}
+                                    <span class="badge bg-warning">{{ invoice.get_status_display }}</span>
+                                {% elif invoice.status == 'partially_paid' %}
+                                    <span class="badge bg-info">{{ invoice.get_status_display }}</span>
+                                {% elif invoice.status == 'cancelled' %}
+                                    <span class="badge bg-secondary">{{ invoice.get_status_display }}</span>
+                                {% else %}
+                                    <span class="badge bg-light text-dark">{{ invoice.get_status_display }}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="{% url 'finance:invoice_detail' invoice.pk %}" class="btn btn-info" title="{% trans 'عرض' %}">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{% url 'finance:invoice_edit' invoice.pk %}" class="btn btn-warning" title="{% trans 'تعديل' %}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{% url 'finance:invoice_delete' invoice.pk %}" class="btn btn-danger" title="{% trans 'حذف' %}">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="10" class="text-center text-muted py-4">
+                                <i class="fas fa-inbox fa-3x mb-3"></i>
+                                <p>{% trans "لا توجد فواتير" %}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5>{% trans "الملخص المالي" %}</h5>
+                    <table class="table table-sm">
+                        <tr>
+                            <td>{% trans "إجمالي المبالغ" %}:</td>
+                            <td class="text-end" dir="ltr"><strong>{{ stats.total_amount|currency }}</strong></td>
+                        </tr>
+                        <tr>
+                            <td>{% trans "المبالغ المدفوعة" %}:</td>
+                            <td class="text-end" dir="ltr"><strong class="text-success">{{ stats.paid_amount|currency }}</strong></td>
+                        </tr>
+                        <tr>
+                            <td>{% trans "المبالغ المتبقية" %}:</td>
+                            <td class="text-end" dir="ltr"><strong class="text-danger">{{ stats.total_amount|floatformat:2|default:"0.00" }} USD</strong></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

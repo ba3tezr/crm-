@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "الشكاوى والقضايا" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">
+                <i class="fas fa-gavel text-danger"></i>
+                {% trans "إدارة الشكاوى والقضايا" %}
+            </h2>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="{% url 'core:dashboard' %}">{% trans "الرئيسية" %}</a></li>
+                    <li class="breadcrumb-item active">{% trans "الشكاوى" %}</li>
+                </ol>
+            </nav>
+        </div>
+        <div>
+            <a href="{% url 'complaints:case_create' %}" class="btn btn-danger">
+                <i class="fas fa-plus"></i>
+                {% trans "شكوى جديدة" %}
+            </a>
+            <button class="btn btn-success" onclick="exportToExcel()">
+                <i class="fas fa-file-excel"></i>
+                {% trans "تصدير Excel" %}
+            </button>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm bg-warning bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-hourglass-half fa-2x text-warning"></i>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-0">{% trans "قيد المراجعة" %}</h6>
+                            <h3 class="mb-0">{{ in_review_count|default:0 }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm bg-success bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-check-circle fa-2x text-success"></i>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-0">{% trans "تم الحل" %}</h6>
+                            <h3 class="mb-0">{{ resolved_count|default:0 }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm bg-info bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-list fa-2x text-info"></i>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-0">{% trans "الإجمالي" %}</h6>
+                            <h3 class="mb-0">{{ total_count|default:0 }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label">{% trans "نوع القضية" %}</label>
+                    <select name="case_type" class="form-select">
+                        <option value="">{% trans "الكل" %}</option>
+                        <option value="complaint">{% trans "شكوى" %}</option>
+                        <option value="dispute">{% trans "نزاع" %}</option>
+                        <option value="inquiry">{% trans "استفسار" %}</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">{% trans "الأولوية" %}</label>
+                    <select name="priority" class="form-select">
+                        <option value="">{% trans "الكل" %}</option>
+                        <option value="low">{% trans "منخفضة" %}</option>
+                        <option value="medium">{% trans "متوسطة" %}</option>
+                        <option value="high">{% trans "عالية" %}</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">{% trans "الحالة" %}</label>
+                    <select name="status" class="form-select">
+                        <option value="">{% trans "الكل" %}</option>
+                        <option value="open">{% trans "مفتوح" %}</option>
+                        <option value="in_review">{% trans "قيد المراجعة" %}</option>
+                        <option value="resolved">{% trans "تم الحل" %}</option>
+                        <option value="closed">{% trans "مغلق" %}</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">&nbsp;</label>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-search"></i>
+                        {% trans "بحث" %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cases Table -->
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>{% trans "رقم القضية" %}</th>
+                            <th>{% trans "العنوان" %}</th>
+                            <th>{% trans "النوع" %}</th>
+                            <th>{% trans "الأولوية" %}</th>
+                            <th>{% trans "مقدم الشكوى" %}</th>
+                            <th>{% trans "المسؤول" %}</th>
+                            <th>{% trans "الحالة" %}</th>
+                            <th>{% trans "تاريخ الإنشاء" %}</th>
+                            <th>{% trans "الإجراءات" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for case in cases %}
+                        <tr>
+                            <td>
+                                <strong class="text-primary">{{ case.case_number }}</strong>
+                            </td>
+                            <td>{{ case.title }}</td>
+                            <td>
+                                {% if case.case_type == 'complaint' %}
+                                    <span class="badge bg-danger">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        {% trans "شكوى" %}
+                                    </span>
+                                {% elif case.case_type == 'dispute' %}
+                                    <span class="badge bg-warning">
+                                        <i class="fas fa-balance-scale"></i>
+                                        {% trans "نزاع" %}
+                                    </span>
+                                {% else %}
+                                    <span class="badge bg-info">
+                                        <i class="fas fa-question-circle"></i>
+                                        {% trans "استفسار" %}
+                                    </span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if case.priority == 'high' %}
+                                    <span class="badge bg-danger">{% trans "عالية" %}</span>
+                                {% elif case.priority == 'medium' %}
+                                    <span class="badge bg-warning">{% trans "متوسطة" %}</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">{% trans "منخفضة" %}</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ case.complainant.get_full_name }}</td>
+                            <td>
+                                {% if case.assigned_to %}
+                                    {{ case.assigned_to.get_full_name }}
+                                {% else %}
+                                    <span class="text-muted">{% trans "غير محدد" %}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if case.status == 'open' %}
+                                    <span class="badge bg-primary">{% trans "مفتوح" %}</span>
+                                {% elif case.status == 'in_review' %}
+                                    <span class="badge bg-warning">{% trans "قيد المراجعة" %}</span>
+                                {% elif case.status == 'resolved' %}
+                                    <span class="badge bg-success">{% trans "تم الحل" %}</span>
+                                {% else %}
+                                    <span class="badge bg-dark">{% trans "مغلق" %}</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ case.created_at|date:"Y-m-d H:i" }}</td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="{% url 'complaints:case_detail' case.pk %}" 
+                                       class="btn btn-outline-primary" 
+                                       title="{% trans 'عرض' %}">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{% url 'complaints:case_update' case.pk %}" 
+                                       class="btn btn-outline-warning" 
+                                       title="{% trans 'تعديل' %}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="9" class="text-center text-muted py-5">
+                                <i class="fas fa-inbox fa-3x mb-3 d-block"></i>
+                                {% trans "لا توجد شكاوى" %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function exportToExcel() {
+    window.location.href = '{% url "complaints:case_export" %}';
+}
+</script>
+{% endblock %}
+

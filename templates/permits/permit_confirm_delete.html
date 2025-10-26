@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "تأكيد الحذف" %} - {{ permit.permit_number }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        {% trans "تأكيد حذف التصريح" %}
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {% trans "هل أنت متأكد من حذف هذا التصريح؟ هذا الإجراء لا يمكن التراجع عنه!" %}
+                    </div>
+
+                    <div class="mb-4">
+                        <h5>{% trans "تفاصيل التصريح" %}:</h5>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th width="40%">{% trans "رقم التصريح" %}:</th>
+                                <td><strong class="text-danger">{{ permit.permit_number }}</strong></td>
+                            </tr>
+                            <tr>
+                                <th>{% trans "نوع التصريح" %}:</th>
+                                <td>{{ permit.get_permit_type_display }}</td>
+                            </tr>
+                            <tr>
+                                <th>{% trans "العنوان" %}:</th>
+                                <td>{{ permit.title }}</td>
+                            </tr>
+                            <tr>
+                                <th>{% trans "الحالة" %}:</th>
+                                <td>
+                                    <span class="badge bg-{% if permit.status == 'approved' %}success{% elif permit.status == 'rejected' %}danger{% else %}warning{% endif %}">
+                                        {{ permit.get_status_display }}
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{% trans "تاريخ الإنشاء" %}:</th>
+                                <td>{{ permit.created_at|date:"Y-m-d H:i" }}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'permits:permit_detail' permit.pk %}" class="btn btn-secondary">
+                                <i class="fas fa-times"></i>
+                                {% trans "إلغاء" %}
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash"></i>
+                                {% trans "تأكيد الحذف" %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

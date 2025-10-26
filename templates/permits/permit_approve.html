@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "الموافقة على التصريح" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="mb-1">
+                        <i class="fas fa-check-circle text-success"></i>
+                        {% trans "الموافقة على التصريح" %}
+                    </h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="{% url 'permits:my_pending_approvals' %}">{% trans "الموافقات المعلقة" %}</a></li>
+                            <li class="breadcrumb-item active">{{ permit.permit_number }}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Permit Details -->
+        <div class="col-md-7">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-file-alt"></i>
+                        {% trans "تفاصيل التصريح" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <tr>
+                            <th width="30%">{% trans "رقم التصريح" %}:</th>
+                            <td><strong class="text-primary">{{ permit.permit_number }}</strong></td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "نوع التصريح" %}:</th>
+                            <td>{{ permit.get_permit_type_display }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "الاتجاه" %}:</th>
+                            <td>{{ permit.get_direction_display }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "المستأجر" %}:</th>
+                            <td>{{ permit.tenant.get_full_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "الوصف" %}:</th>
+                            <td>{{ permit.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans "تاريخ الإنشاء" %}:</th>
+                            <td>{{ permit.created_at|date:"Y-m-d H:i" }}</td>
+                        </tr>
+                        {% if pending_approval %}
+                        <tr>
+                            <th>{% trans "الموعد النهائي" %}:</th>
+                            <td>
+                                <span class="{% if pending_approval.is_overdue %}text-danger fw-bold{% endif %}">
+                                    {{ pending_approval.deadline|date:"Y-m-d H:i" }}
+                                </span>
+                                {% if pending_approval.is_overdue %}
+                                <span class="badge bg-danger">{% trans "متأخر" %}</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endif %}
+                    </table>
+
+                    <!-- Attachments -->
+                    {% if permit.attachments.exists %}
+                    <hr>
+                    <h6 class="mb-3">
+                        <i class="fas fa-paperclip"></i>
+                        {% trans "المرفقات" %}
+                        <span class="badge bg-secondary">{{ permit.attachments.count }}</span>
+                    </h6>
+                    <div class="list-group">
+                        {% for attachment in permit.attachments.all %}
+                        <a href="{{ attachment.file.url }}" target="_blank" class="list-group-item list-group-item-action">
+                            <i class="fas fa-file"></i>
+                            {{ attachment.file_name }}
+                            <small class="text-muted">({{ attachment.created_at|date:"Y-m-d" }})</small>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Approval Form -->
+        <div class="col-md-5">
+            <div class="card shadow-sm border-success">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-clipboard-check"></i>
+                        {% trans "قرار الموافقة" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">{% trans "التعليقات" %}:</label>
+                            <textarea name="comments" class="form-control" rows="4" placeholder="{% trans 'أضف تعليقاتك هنا (اختياري)' %}"></textarea>
+                            <small class="text-muted">{% trans "سيتم إرسال التعليقات إلى المستأجر" %}</small>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" name="action" value="approved" class="btn btn-success btn-lg">
+                                <i class="fas fa-check-circle"></i>
+                                {% trans "الموافقة على التصريح" %}
+                            </button>
+                            <button type="submit" name="action" value="rejected" class="btn btn-danger btn-lg">
+                                <i class="fas fa-times-circle"></i>
+                                {% trans "رفض التصريح" %}
+                            </button>
+                            <a href="{% url 'permits:my_pending_approvals' %}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i>
+                                {% trans "رجوع" %}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Warning if overdue -->
+            {% if pending_approval.is_overdue %}
+            <div class="alert alert-danger mt-3">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>{% trans "تحذير" %}:</strong>
+                {% trans "هذا الطلب تجاوز المهلة الزمنية المحددة" %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "الموافقات المعلقة" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="mb-1">
+                        <i class="fas fa-tasks text-warning"></i>
+                        {% trans "الموافقات المعلقة" %}
+                    </h2>
+                    <p class="text-muted mb-0">{% trans "الطلبات التي تحتاج موافقتك" %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pending Approvals List -->
+    <div class="row">
+        <div class="col-12">
+            {% if pending_approvals %}
+            {% for approval in pending_approvals %}
+            <div class="card shadow-sm mb-3 {% if approval.is_overdue %}border-danger{% endif %}">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h5 class="mb-2">
+                                <a href="{% url 'permits:permit_detail' approval.permit.pk %}" class="text-decoration-none">
+                                    <i class="fas fa-file-alt text-primary"></i>
+                                    {{ approval.permit.permit_number }}
+                                </a>
+                                {% if approval.is_overdue %}
+                                <span class="badge bg-danger">{% trans "متأخر" %}</span>
+                                {% endif %}
+                                {% if approval.redirected %}
+                                <span class="badge bg-warning">{% trans "محول" %}</span>
+                                {% endif %}
+                            </h5>
+                            <p class="mb-1">
+                                <strong>{% trans "النوع" %}:</strong> {{ approval.permit.get_permit_type_display }}
+                                <span class="mx-2">|</span>
+                                <strong>{% trans "المستأجر" %}:</strong> {{ approval.permit.tenant.get_full_name }}
+                            </p>
+                            <p class="mb-1">
+                                <strong>{% trans "الوصف" %}:</strong> {{ approval.permit.description|truncatewords:20 }}
+                            </p>
+                            <p class="mb-0">
+                                <i class="fas fa-clock text-muted"></i>
+                                <strong>{% trans "الموعد النهائي" %}:</strong>
+                                <span class="{% if approval.is_overdue %}text-danger fw-bold{% else %}text-muted{% endif %}">
+                                    {{ approval.deadline|date:"Y-m-d H:i" }}
+                                </span>
+                                {% if approval.is_overdue %}
+                                <span class="text-danger">
+                                    ({% trans "تجاوز المهلة" %})
+                                </span>
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <a href="{% url 'permits:permit_approve' approval.permit.pk %}" class="btn btn-success btn-lg">
+                                <i class="fas fa-check-circle"></i>
+                                {% trans "مراجعة والموافقة" %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="card shadow-sm">
+                <div class="card-body text-center py-5">
+                    <i class="fas fa-check-double fa-4x text-success mb-3"></i>
+                    <h5 class="text-muted">{% trans "لا توجد موافقات معلقة" %}</h5>
+                    <p class="text-muted">{% trans "جميع الطلبات تمت معالجتها" %}</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+

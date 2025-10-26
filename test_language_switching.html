@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Language Switching Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            background: #f5f5f5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Language Switching Test - اختبار تبديل اللغة</h1>
+    
+    <div class="test-section">
+        <h2>Current Settings:</h2>
+        <p><strong>URL:</strong> http://localhost:8000/dashboard/</p>
+        <p><strong>Expected Behavior:</strong> Language switcher should change the page language</p>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test Steps:</h2>
+        <ol>
+            <li>Open http://localhost:8000/dashboard/ in your browser</li>
+            <li>Look for the globe icon (🌐) in the top right corner</li>
+            <li>Click on it to open the language dropdown</li>
+            <li>Select "English" or "العربية"</li>
+            <li>The page should reload with the selected language</li>
+        </ol>
+    </div>
+    
+    <div class="test-section">
+        <h2>Manual Test URLs:</h2>
+        <p>Test these URLs directly:</p>
+        <ul>
+            <li><a href="http://localhost:8000/ar/dashboard/" target="_blank">Arabic Dashboard (ar)</a></li>
+            <li><a href="http://localhost:8000/en/dashboard/" target="_blank">English Dashboard (en)</a></li>
+            <li><a href="http://localhost:8000/dashboard/" target="_blank">Default Dashboard</a></li>
+        </ul>
+    </div>
+    
+    <div class="test-section">
+        <h2>Expected Translations:</h2>
+        <table border="1" cellpadding="10" style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Arabic (العربية)</th>
+                    <th>English</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>لوحة التحكم</td>
+                    <td>Dashboard</td>
+                </tr>
+                <tr>
+                    <td>التصاريح</td>
+                    <td>Permits</td>
+                </tr>
+                <tr>
+                    <td>الصيانة</td>
+                    <td>Maintenance</td>
+                </tr>
+                <tr>
+                    <td>الشكاوى</td>
+                    <td>Complaints</td>
+                </tr>
+                <tr>
+                    <td>التسويق</td>
+                    <td>Marketing</td>
+                </tr>
+                <tr>
+                    <td>الموارد البشرية</td>
+                    <td>HR</td>
+                </tr>
+                <tr>
+                    <td>إنشاء</td>
+                    <td>Create</td>
+                </tr>
+                <tr>
+                    <td>تعديل</td>
+                    <td>Edit</td>
+                </tr>
+                <tr>
+                    <td>حذف</td>
+                    <td>Delete</td>
+                </tr>
+                <tr>
+                    <td>بحث</td>
+                    <td>Search</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="test-section">
+        <h2>Troubleshooting:</h2>
+        <p>If language switching doesn't work:</p>
+        <ol>
+            <li>Clear browser cache and cookies</li>
+            <li>Check browser console for errors (F12)</li>
+            <li>Verify server is running: <code>python manage.py runserver</code></li>
+            <li>Check that locale files are compiled: <code>python manage.py compilemessages</code></li>
+            <li>Restart the Django server</li>
+        </ol>
+    </div>
+    
+    <div class="test-section">
+        <h2>Quick Actions:</h2>
+        <button onclick="window.location.href='http://localhost:8000/dashboard/'">Open Dashboard</button>
+        <button onclick="window.location.href='http://localhost:8000/ar/dashboard/'">Open Arabic Dashboard</button>
+        <button onclick="window.location.href='http://localhost:8000/en/dashboard/'">Open English Dashboard</button>
+    </div>
+</body>
+</html>
+

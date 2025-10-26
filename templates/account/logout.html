@@ -1,0 +1,218 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "تسجيل الخروج" %} - {{ settings.site_name_ar }}</title>
+    
+    <!-- Bootstrap 5.3 RTL/LTR -->
+    {% if LANGUAGE_CODE == 'ar' %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    {% else %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% endif %}
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: {% if LANGUAGE_CODE == 'ar' %}'Cairo', 'Segoe UI', Tahoma, sans-serif{% else %}'Segoe UI', Tahoma, Geneva, Verdana, sans-serif{% endif %};
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .logout-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Background */
+        .logout-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .logout-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Logout Card */
+        .logout-card {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            animation: slideUp 0.5s ease;
+            text-align: center;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .logout-icon {
+            font-size: 80px;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .logout-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .logout-message {
+            font-size: 16px;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+        
+        .btn-login {
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            {% if LANGUAGE_CODE == 'ar' %}left{% else %}right{% endif %}: 20px;
+            z-index: 3;
+        }
+        
+        .language-switcher .btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: all 0.3s;
+        }
+        
+        .language-switcher .btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Responsive */
+        @media (max-width: 576px) {
+            .logout-card {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+            
+            .logout-title {
+                font-size: 24px;
+            }
+            
+            .logout-message {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-container">
+        <!-- Background -->
+        <div class="logout-background"></div>
+        
+        <!-- Language Switcher -->
+        <div class="language-switcher">
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <i class="fas fa-globe"></i>
+                    {% get_current_language as CURRENT_LANG %}
+                    {% if CURRENT_LANG == 'ar' %}العربية{% else %}English{% endif %}
+                </button>
+                <ul class="dropdown-menu">
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                    <li>
+                        <form action="{% url 'set_language' %}" method="post" style="display: inline; width: 100%;">
+                            {% csrf_token %}
+                            <input name="next" type="hidden" value="{{ request.get_full_path }}" />
+                            <input name="language" type="hidden" value="{{ language.code }}" />
+                            <button type="submit" class="dropdown-item" style="border: none; background: none; width: 100%; text-align: {% if CURRENT_LANG == 'ar' %}right{% else %}left{% endif %};">
+                                {{ language.name_local }}
+                            </button>
+                        </form>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Logout Card -->
+        <div class="logout-card">
+            <!-- Icon -->
+            <div class="logout-icon">
+                <i class="fas fa-sign-out-alt"></i>
+            </div>
+            
+            <h2 class="logout-title">
+                {% trans "تم تسجيل الخروج بنجاح" %}
+            </h2>
+            
+            <p class="logout-message">
+                {% trans "شكراً لاستخدامك النظام. نتمنى رؤيتك قريباً!" %}
+            </p>
+            
+            <!-- Login Button -->
+            <a href="{% url 'account_login' %}" class="btn btn-primary btn-login">
+                <i class="fas fa-sign-in-alt"></i>
+                {% trans "تسجيل الدخول مرة أخرى" %}
+            </a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

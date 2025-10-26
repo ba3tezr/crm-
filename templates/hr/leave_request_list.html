@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "طلبات الإجازات" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">
+                <i class="fas fa-calendar-check text-info"></i>
+                {% trans "إدارة طلبات الإجازات" %}
+            </h2>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="{% url 'core:dashboard' %}">{% trans "الرئيسية" %}</a></li>
+                    <li class="breadcrumb-item active">{% trans "الموارد البشرية" %}</li>
+                </ol>
+            </nav>
+        </div>
+        <div>
+            <a href="{% url 'hr:leave_request_create' %}" class="btn btn-info">
+                <i class="fas fa-plus"></i>
+                {% trans "طلب إجازة جديد" %}
+            </a>
+            <button class="btn btn-success" onclick="exportToExcel()">
+                <i class="fas fa-file-excel"></i>
+                {% trans "تصدير Excel" %}
+            </button>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-warning bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-hourglass-half fa-2x text-warning"></i>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-0">{% trans "قيد الانتظار" %}</h6>
+                            <h3 class="mb-0">{{ pending_count|default:0 }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-success bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-check-circle fa-2x text-success"></i>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-0">{% trans "موافق عليها" %}</h6>
+                            <h3 class="mb-0">{{ approved_count|default:0 }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-danger bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-times-circle fa-2x text-danger"></i>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-0">{% trans "مرفوضة" %}</h6>
+                            <h3 class="mb-0">{{ rejected_count|default:0 }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-info bg-opacity-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-list fa-2x text-info"></i>
+                        </div>
+                        <div class="flex-grow-1 {% if LANGUAGE_CODE == 'ar' %}me-3{% else %}ms-3{% endif %}">
+                            <h6 class="text-muted mb-0">{% trans "الإجمالي" %}</h6>
+                            <h3 class="mb-0">{{ total_count|default:0 }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label">{% trans "نوع الإجازة" %}</label>
+                    <select name="leave_type" class="form-select">
+                        <option value="">{% trans "الكل" %}</option>
+                        <option value="annual">{% trans "سنوية" %}</option>
+                        <option value="sick">{% trans "مرضية" %}</option>
+                        <option value="emergency">{% trans "طارئة" %}</option>
+                        <option value="unpaid">{% trans "بدون راتب" %}</option>
+                        <option value="other">{% trans "أخرى" %}</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">{% trans "الحالة" %}</label>
+                    <select name="status" class="form-select">
+                        <option value="">{% trans "الكل" %}</option>
+                        <option value="pending">{% trans "قيد الانتظار" %}</option>
+                        <option value="approved">{% trans "موافق عليها" %}</option>
+                        <option value="rejected">{% trans "مرفوضة" %}</option>
+                        <option value="cancelled">{% trans "ملغاة" %}</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">{% trans "من تاريخ" %}</label>
+                    <input type="date" name="start_date" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">&nbsp;</label>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-search"></i>
+                        {% trans "بحث" %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Leave Requests Table -->
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>{% trans "رقم الطلب" %}</th>
+                            <th>{% trans "الموظف" %}</th>
+                            <th>{% trans "القسم" %}</th>
+                            <th>{% trans "نوع الإجازة" %}</th>
+                            <th>{% trans "تاريخ البدء" %}</th>
+                            <th>{% trans "تاريخ الانتهاء" %}</th>
+                            <th>{% trans "عدد الأيام" %}</th>
+                            <th>{% trans "الحالة" %}</th>
+                            <th>{% trans "الإجراءات" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for leave in leave_requests %}
+                        <tr>
+                            <td>
+                                <strong class="text-primary">{{ leave.request_number }}</strong>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar-sm bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center {% if LANGUAGE_CODE == 'ar' %}ms-2{% else %}me-2{% endif %}">
+                                        <i class="fas fa-user text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <strong>{{ leave.employee.get_full_name }}</strong>
+                                        <br>
+                                        <small class="text-muted">{{ leave.employee.email }}</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{ leave.employee.department.name_ar }}</td>
+                            <td>
+                                {% if leave.leave_type == 'annual' %}
+                                    <span class="badge bg-primary">
+                                        <i class="fas fa-calendar"></i>
+                                        {% trans "سنوية" %}
+                                    </span>
+                                {% elif leave.leave_type == 'sick' %}
+                                    <span class="badge bg-danger">
+                                        <i class="fas fa-heartbeat"></i>
+                                        {% trans "مرضية" %}
+                                    </span>
+                                {% elif leave.leave_type == 'emergency' %}
+                                    <span class="badge bg-warning">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        {% trans "طارئة" %}
+                                    </span>
+                                {% elif leave.leave_type == 'unpaid' %}
+                                    <span class="badge bg-secondary">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                        {% trans "بدون راتب" %}
+                                    </span>
+                                {% else %}
+                                    <span class="badge bg-info">{% trans "أخرى" %}</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ leave.start_date|date:"Y-m-d" }}</td>
+                            <td>{{ leave.end_date|date:"Y-m-d" }}</td>
+                            <td>
+                                <span class="badge bg-light text-dark">
+                                    {{ leave.days_count }} {% trans "يوم" %}
+                                </span>
+                            </td>
+                            <td>
+                                {% if leave.status == 'pending' %}
+                                    <span class="badge bg-warning">{% trans "قيد الانتظار" %}</span>
+                                {% elif leave.status == 'approved' %}
+                                    <span class="badge bg-success">{% trans "موافق عليها" %}</span>
+                                {% elif leave.status == 'rejected' %}
+                                    <span class="badge bg-danger">{% trans "مرفوضة" %}</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">{% trans "ملغاة" %}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="{% url 'hr:leave_request_detail' leave.pk %}" 
+                                       class="btn btn-outline-primary" 
+                                       title="{% trans 'عرض' %}">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    {% if leave.status == 'pending' %}
+                                    <a href="{% url 'hr:leave_request_approve' leave.pk %}" 
+                                       class="btn btn-outline-success" 
+                                       title="{% trans 'موافقة' %}"
+                                       onclick="return confirm('{% trans "هل أنت متأكد من الموافقة؟" %}')">
+                                        <i class="fas fa-check"></i>
+                                    </a>
+                                    <a href="{% url 'hr:leave_request_reject' leave.pk %}" 
+                                       class="btn btn-outline-danger" 
+                                       title="{% trans 'رفض' %}"
+                                       onclick="return confirm('{% trans "هل أنت متأكد من الرفض؟" %}')">
+                                        <i class="fas fa-times"></i>
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="9" class="text-center text-muted py-5">
+                                <i class="fas fa-inbox fa-3x mb-3 d-block"></i>
+                                {% trans "لا توجد طلبات إجازات" %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function exportToExcel() {
+    window.location.href = '{% url "hr:leave_request_export" %}';
+}
+</script>
+{% endblock %}
+

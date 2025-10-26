@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "تأكيد الحذف" %} - {{ ticket.ticket_number }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        {% trans "تأكيد حذف طلب الصيانة" %}
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {% trans "هل أنت متأكد من حذف هذا الطلب؟ هذا الإجراء لا يمكن التراجع عنه!" %}
+                    </div>
+
+                    <div class="mb-4">
+                        <h5>{% trans "تفاصيل الطلب" %}:</h5>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th width="40%">{% trans "رقم التذكرة" %}:</th>
+                                <td><strong class="text-danger">{{ ticket.ticket_number }}</strong></td>
+                            </tr>
+                            <tr>
+                                <th>{% trans "العنوان" %}:</th>
+                                <td>{{ ticket.title }}</td>
+                            </tr>
+                            <tr>
+                                <th>{% trans "الفئة" %}:</th>
+                                <td>{{ ticket.get_category_display }}</td>
+                            </tr>
+                            <tr>
+                                <th>{% trans "الحالة" %}:</th>
+                                <td>
+                                    <span class="badge bg-{% if ticket.status == 'closed' %}success{% elif ticket.status == 'in_progress' %}info{% else %}warning{% endif %}">
+                                        {{ ticket.get_status_display }}
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'maintenance:ticket_detail' ticket.pk %}" class="btn btn-secondary">
+                                <i class="fas fa-times"></i>
+                                {% trans "إلغاء" %}
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash"></i>
+                                {% trans "تأكيد الحذف" %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

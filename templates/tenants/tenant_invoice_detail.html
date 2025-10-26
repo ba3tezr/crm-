@@ -1,0 +1,256 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "تفاصيل الفاتورة" %} {{ invoice.invoice_number }} - {{ block.super }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    @media print {
+        .no-print {
+            display: none !important;
+        }
+        .print-only {
+            display: block !important;
+        }
+        body {
+            background: white !important;
+        }
+        .card {
+            border: 1px solid #dee2e6 !important;
+            box-shadow: none !important;
+        }
+    }
+    .print-only {
+        display: none;
+    }
+    .invoice-header {
+        border-bottom: 3px solid #0d6efd;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+    }
+    .invoice-footer {
+        border-top: 2px solid #dee2e6;
+        padding-top: 20px;
+        margin-top: 30px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Header (No Print) -->
+    <div class="row mb-4 no-print">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="mb-1">
+                        <i class="fas fa-file-invoice text-primary"></i>
+                        {% trans "تفاصيل الفاتورة" %}
+                    </h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="{% url 'accounts:tenant_dashboard' %}">{% trans "لوحة التحكم" %}</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'accounts:tenant_invoices' %}">{% trans "الفواتير" %}</a></li>
+                            <li class="breadcrumb-item active">{{ invoice.invoice_number }}</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div>
+                    <button onclick="window.print()" class="btn btn-primary">
+                        <i class="fas fa-print"></i>
+                        {% trans "طباعة الفاتورة" %}
+                    </button>
+                    <a href="{% url 'accounts:tenant_invoices' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-right"></i>
+                        {% trans "رجوع" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Invoice Card -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body p-5">
+                    <!-- Invoice Header -->
+                    <div class="invoice-header">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1 class="text-primary mb-3">{% trans "فاتورة" %}</h1>
+                                <p class="mb-1"><strong>{% trans "رقم الفاتورة" %}:</strong> {{ invoice.invoice_number }}</p>
+                                <p class="mb-1"><strong>{% trans "تاريخ الإصدار" %}:</strong> {{ invoice.issue_date|date:"Y-m-d" }}</p>
+                                <p class="mb-1"><strong>{% trans "تاريخ الاستحقاق" %}:</strong> {{ invoice.due_date|date:"Y-m-d" }}</p>
+                            </div>
+                            <div class="col-md-6 text-end">
+                                <h3 class="text-muted mb-3">{% trans "اسم الشركة" %}</h3>
+                                <p class="mb-1">{% trans "العنوان" %}</p>
+                                <p class="mb-1">{% trans "الهاتف" %}: +966 XX XXX XXXX</p>
+                                <p class="mb-1">{% trans "البريد الإلكتروني" %}: info@company.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customer Info -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h5 class="text-primary mb-3">{% trans "معلومات العميل" %}</h5>
+                            <p class="mb-1"><strong>{% trans "الاسم" %}:</strong> {{ invoice.tenant.get_full_name }}</p>
+                            <p class="mb-1"><strong>{% trans "اسم المستخدم" %}:</strong> {{ invoice.tenant.username }}</p>
+                            <p class="mb-1"><strong>{% trans "البريد الإلكتروني" %}:</strong> {{ invoice.tenant.email }}</p>
+                            {% if invoice.tenant.tenant_profile %}
+                            <p class="mb-1"><strong>{% trans "الشركة" %}:</strong> {{ invoice.tenant.tenant_profile.company_name }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <h5 class="mb-3">{% trans "حالة الفاتورة" %}</h5>
+                            {% if invoice.status == 'paid' %}
+                                <span class="badge bg-success fs-5 px-4 py-2">
+                                    <i class="fas fa-check-circle"></i>
+                                    {% trans "مدفوعة" %}
+                                </span>
+                            {% elif invoice.status == 'pending' %}
+                                <span class="badge bg-warning fs-5 px-4 py-2">
+                                    <i class="fas fa-clock"></i>
+                                    {% trans "قيد الانتظار" %}
+                                </span>
+                            {% elif invoice.status == 'overdue' %}
+                                <span class="badge bg-danger fs-5 px-4 py-2">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    {% trans "متأخرة" %}
+                                </span>
+                            {% elif invoice.status == 'cancelled' %}
+                                <span class="badge bg-secondary fs-5 px-4 py-2">
+                                    <i class="fas fa-times-circle"></i>
+                                    {% trans "ملغاة" %}
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Invoice Items -->
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>#</th>
+                                    <th>{% trans "الوصف" %}</th>
+                                    <th class="text-center">{% trans "الكمية" %}</th>
+                                    <th class="text-end">{% trans "سعر الوحدة" %}</th>
+                                    <th class="text-end">{% trans "الإجمالي" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in items %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ item.description }}</td>
+                                    <td class="text-center">{{ item.quantity }}</td>
+                                    <td class="text-end">{{ item.unit_price|floatformat:2 }} {{ CURRENCY_SYMBOL }}</td>
+                                    <td class="text-end">{{ item.total_price|floatformat:2 }} {{ CURRENCY_SYMBOL }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted">{% trans "لا توجد بنود" %}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Totals -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            {% if invoice.notes %}
+                            <div class="mb-3">
+                                <h6 class="text-primary">{% trans "ملاحظات" %}:</h6>
+                                <p class="text-muted">{{ invoice.notes }}</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table table-sm">
+                                <tr>
+                                    <th class="text-end">{% trans "المجموع الفرعي" %}:</th>
+                                    <td class="text-end">{{ invoice.subtotal|floatformat:2 }} {{ CURRENCY_SYMBOL }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-end">{% trans "الضريبة" %} ({{ invoice.tax_rate }}%):</th>
+                                    <td class="text-end">{{ invoice.tax_amount|floatformat:2 }} {{ CURRENCY_SYMBOL }}</td>
+                                </tr>
+                                {% if invoice.discount_amount > 0 %}
+                                <tr>
+                                    <th class="text-end">{% trans "الخصم" %}:</th>
+                                    <td class="text-end text-success">-{{ invoice.discount_amount|floatformat:2 }} {{ CURRENCY_SYMBOL }}</td>
+                                </tr>
+                                {% endif %}
+                                <tr class="table-primary">
+                                    <th class="text-end fs-5">{% trans "الإجمالي" %}:</th>
+                                    <td class="text-end fs-5"><strong>{{ invoice.total_amount|floatformat:2 }} {{ CURRENCY_SYMBOL }}</strong></td>
+                                </tr>
+                                {% if invoice.paid_amount > 0 %}
+                                <tr class="table-success">
+                                    <th class="text-end">{% trans "المدفوع" %}:</th>
+                                    <td class="text-end">{{ invoice.paid_amount|floatformat:2 }} {{ CURRENCY_SYMBOL }}</td>
+                                </tr>
+                                <tr class="table-warning">
+                                    <th class="text-end">{% trans "المتبقي" %}:</th>
+                                    <td class="text-end">{{ invoice.balance_due|floatformat:2 }} {{ CURRENCY_SYMBOL }}</td>
+                                </tr>
+                                {% endif %}
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Payment History (if any) -->
+                    {% if payments %}
+                    <div class="invoice-footer">
+                        <h5 class="text-primary mb-3">{% trans "سجل الدفعات" %}</h5>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>{% trans "رقم الدفعة" %}</th>
+                                        <th>{% trans "التاريخ" %}</th>
+                                        <th>{% trans "طريقة الدفع" %}</th>
+                                        <th>{% trans "رقم المرجع" %}</th>
+                                        <th class="text-end">{% trans "المبلغ" %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for payment in payments %}
+                                    <tr>
+                                        <td>{{ payment.payment_number }}</td>
+                                        <td>{{ payment.payment_date|date:"Y-m-d" }}</td>
+                                        <td>{{ payment.get_payment_method_display }}</td>
+                                        <td>{{ payment.reference_number|default:"-" }}</td>
+                                        <td class="text-end">{{ payment.amount|floatformat:2 }} {{ CURRENCY_SYMBOL }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Footer -->
+                    <div class="invoice-footer text-center">
+                        <p class="text-muted mb-0">{% trans "شكراً لتعاملكم معنا" %}</p>
+                        <p class="text-muted small">{% trans "هذه فاتورة إلكترونية ولا تحتاج إلى توقيع" %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Auto-print functionality (optional)
+    // window.onload = function() { window.print(); }
+</script>
+{% endblock %}
+

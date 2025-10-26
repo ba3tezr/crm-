@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "التصاريح" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">
+                <i class="fas fa-file-alt text-primary"></i>
+                {% trans "إدارة التصاريح" %}
+            </h2>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="{% url 'core:dashboard' %}">{% trans "الرئيسية" %}</a></li>
+                    <li class="breadcrumb-item active">{% trans "التصاريح" %}</li>
+                </ol>
+            </nav>
+        </div>
+        <div>
+            <a href="{% url 'permits:permit_create' %}" class="btn btn-primary">
+                <i class="fas fa-plus"></i>
+                {% trans "تصريح جديد" %}
+            </a>
+            <button class="btn btn-success" onclick="exportToExcel()">
+                <i class="fas fa-file-excel"></i>
+                {% trans "تصدير Excel" %}
+            </button>
+            <button class="btn btn-info" onclick="importFromExcel()">
+                <i class="fas fa-file-upload"></i>
+                {% trans "استيراد Excel" %}
+            </button>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label">{% trans "نوع التصريح" %}</label>
+                    <select name="permit_type" class="form-select">
+                        <option value="">{% trans "الكل" %}</option>
+                        <option value="entry">{% trans "دخول" %}</option>
+                        <option value="exit">{% trans "خروج" %}</option>
+                        <option value="work">{% trans "عمل" %}</option>
+                        <option value="visit">{% trans "زيارة" %}</option>
+                        <option value="temporary">{% trans "مؤقت" %}</option>
+                        <option value="permanent">{% trans "دائم" %}</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">{% trans "الحالة" %}</label>
+                    <select name="status" class="form-select">
+                        <option value="">{% trans "الكل" %}</option>
+                        <option value="pending">{% trans "قيد الانتظار" %}</option>
+                        <option value="approved">{% trans "موافق عليه" %}</option>
+                        <option value="rejected">{% trans "مرفوض" %}</option>
+                        <option value="expired">{% trans "منتهي الصلاحية" %}</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">{% trans "الاتجاه" %}</label>
+                    <select name="direction" class="form-select">
+                        <option value="">{% trans "الكل" %}</option>
+                        <option value="incoming">{% trans "وارد" %}</option>
+                        <option value="outgoing">{% trans "صادر" %}</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">&nbsp;</label>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-search"></i>
+                        {% trans "بحث" %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Permits Table -->
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>{% trans "رقم التصريح" %}</th>
+                            <th>{% trans "نوع التصريح" %}</th>
+                            <th>{% trans "الاتجاه" %}</th>
+                            <th>{% trans "مقدم الطلب" %}</th>
+                            <th>{% trans "القسم" %}</th>
+                            <th>{% trans "تاريخ البدء" %}</th>
+                            <th>{% trans "تاريخ الانتهاء" %}</th>
+                            <th>{% trans "الحالة" %}</th>
+                            <th>{% trans "الإجراءات" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for permit in permits %}
+                        <tr>
+                            <td>
+                                <strong class="text-primary">{{ permit.permit_number }}</strong>
+                            </td>
+                            <td>
+                                <span class="badge bg-info">
+                                    {{ permit.get_permit_type_display }}
+                                </span>
+                            </td>
+                            <td>
+                                {% if permit.direction == 'incoming' %}
+                                    <i class="fas fa-arrow-down text-success"></i>
+                                    {% trans "وارد" %}
+                                {% else %}
+                                    <i class="fas fa-arrow-up text-warning"></i>
+                                    {% trans "صادر" %}
+                                {% endif %}
+                            </td>
+                            <td>{{ permit.applicant.get_full_name }}</td>
+                            <td>{{ permit.department.name_ar }}</td>
+                            <td>{{ permit.start_date|date:"Y-m-d" }}</td>
+                            <td>{{ permit.end_date|date:"Y-m-d" }}</td>
+                            <td>
+                                {% if permit.status == 'pending' %}
+                                    <span class="badge bg-warning">{% trans "قيد الانتظار" %}</span>
+                                {% elif permit.status == 'approved' %}
+                                    <span class="badge bg-success">{% trans "موافق عليه" %}</span>
+                                {% elif permit.status == 'rejected' %}
+                                    <span class="badge bg-danger">{% trans "مرفوض" %}</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">{% trans "منتهي الصلاحية" %}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="{% url 'permits:permit_detail' permit.pk %}" 
+                                       class="btn btn-outline-primary" 
+                                       title="{% trans 'عرض' %}">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{% url 'permits:permit_update' permit.pk %}" 
+                                       class="btn btn-outline-warning" 
+                                       title="{% trans 'تعديل' %}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{% url 'permits:permit_delete' permit.pk %}" 
+                                       class="btn btn-outline-danger" 
+                                       title="{% trans 'حذف' %}"
+                                       onclick="return confirm('{% trans "هل أنت متأكد من الحذف؟" %}')">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="9" class="text-center text-muted py-5">
+                                <i class="fas fa-inbox fa-3x mb-3 d-block"></i>
+                                {% trans "لا توجد تصاريح" %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            {% if is_paginated %}
+            <nav aria-label="Page navigation" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1">{% trans "الأولى" %}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans "السابقة" %}</a>
+                    </li>
+                    {% endif %}
+
+                    <li class="page-item active">
+                        <span class="page-link">
+                            {% trans "صفحة" %} {{ page_obj.number }} {% trans "من" %} {{ page_obj.paginator.num_pages }}
+                        </span>
+                    </li>
+
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans "التالية" %}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{% trans "الأخيرة" %}</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+function exportToExcel() {
+    window.location.href = '{% url "permits:permit_export" %}';
+}
+
+function importFromExcel() {
+    // سيتم تنفيذها لاحقاً
+    alert('{% trans "سيتم تنفيذ هذه الميزة قريباً" %}');
+}
+</script>
+{% endblock %}
+

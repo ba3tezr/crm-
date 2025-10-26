@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "حذف فاتورة" %} - {{ invoice.invoice_number }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        {% trans "تأكيد الحذف" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <h6>{% trans "هل أنت متأكد من حذف هذه الفاتورة؟" %}</h6>
+                        <p class="mb-0">{% trans "هذا الإجراء لا يمكن التراجع عنه!" %}</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <p><strong>{% trans "رقم الفاتورة" %}:</strong> {{ invoice.invoice_number }}</p>
+                        <p><strong>{% trans "المستأجر" %}:</strong>
+                            {% if invoice.tenant.tenant_profile %}
+                                {{ invoice.tenant.tenant_profile.company_name }}
+                            {% else %}
+                                {{ invoice.tenant.get_full_name|default:invoice.tenant.username }}
+                            {% endif %}
+                        </p>
+                        <p><strong>{% trans "المبلغ الإجمالي" %}:</strong> <span dir="ltr">{{ invoice.total_amount }} USD</span></p>
+                        <p><strong>{% trans "الحالة" %}:</strong> {{ invoice.get_status_display }}</p>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash"></i> {% trans "نعم، احذف" %}
+                            </button>
+                            <a href="{% url 'finance:invoice_detail' invoice.pk %}" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> {% trans "إلغاء" %}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
