@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-26 14:08+0300\n"
+"POT-Creation-Date: 2025-10-26 14:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -573,7 +573,6 @@ msgstr "إضافة تعليق"
 #: apps/complaints/models.py:13 apps/core/models.py:188
 #: templates/complaints/case_list.html:91
 #: templates/complaints/case_list.html:155
-#: templates/dashboard/dashboard.html:171
 msgid "شكوى"
 msgstr "شكوى"
 
@@ -598,7 +597,6 @@ msgid "قيد المراجعة"
 msgstr "قيد المراجعة"
 
 #: apps/complaints/models.py:21 apps/maintenance/models.py:23
-#: templates/dashboard/dashboard.html:173
 msgid "محلولة"
 msgstr "محلولة"
 
@@ -924,7 +922,7 @@ msgstr "تحذير"
 msgid "خطأ"
 msgstr "مخطط"
 
-#: apps/core/models.py:184 templates/dashboard/dashboard.html:159
+#: apps/core/models.py:184
 msgid "تصريح"
 msgstr "تصريح"
 
@@ -940,7 +938,6 @@ msgid "دفعة"
 msgstr "دفعة"
 
 #: apps/core/models.py:187 apps/permits/models.py:14
-#: templates/dashboard/dashboard.html:165
 msgid "صيانة"
 msgstr "صيانة"
 
@@ -979,7 +976,7 @@ msgstr "الإشعارات"
 #: apps/core/models.py:236 templates/base.html:271
 #: templates/core/notification_list.html:5
 #: templates/core/notification_list.html:15
-#: templates/dashboard/dashboard.html:227
+#: templates/dashboard/dashboard.html:216
 msgid "الإشعارات"
 msgstr "الإشعارات"
 
@@ -1245,8 +1242,7 @@ msgid "مسودة"
 msgstr "مسودة"
 
 #: apps/finance/models.py:162 apps/hr/models.py:22 apps/permits/models.py:27
-#: templates/dashboard/dashboard.html:37 templates/dashboard/dashboard.html:161
-#: templates/finance/invoice_list.html:40
+#: templates/dashboard/dashboard.html:37 templates/finance/invoice_list.html:40
 #: templates/finance/invoice_list.html:76
 #: templates/hr/leave_request_list.html:44
 #: templates/hr/leave_request_list.html:117
@@ -1604,7 +1600,7 @@ msgstr "تاريخ الموافقة"
 msgid "سبب الرفض"
 msgstr "سبب الرفض"
 
-#: apps/hr/models.py:52 templates/dashboard/dashboard.html:212
+#: apps/hr/models.py:52 templates/dashboard/dashboard.html:201
 msgid "طلب إجازة"
 msgstr "طلب إجازة"
 
@@ -1711,8 +1707,7 @@ msgstr "سيتم تنفيذ هذه الميزة قريباً"
 msgid "عاجلة"
 msgstr "عاجلة"
 
-#: apps/maintenance/models.py:21 templates/dashboard/dashboard.html:167
-#: templates/maintenance/ticket_list.html:59
+#: apps/maintenance/models.py:21 templates/maintenance/ticket_list.html:59
 #: templates/maintenance/ticket_list.html:130
 #: templates/maintenance/ticket_list.html:203
 msgid "قيد التنفيذ"
@@ -2599,67 +2594,49 @@ msgstr "نشطة"
 msgid "النشاط الأخير"
 msgstr "النشاط الأخير"
 
-#: templates/dashboard/dashboard.html:160
-msgid "تصريح بضائع"
-msgstr "تصريح بضائع"
-
 #: templates/dashboard/dashboard.html:162
-msgid "اليوم"
-msgstr "اليوم"
+#, fuzzy
+#| msgid "لا توجد طلبات صيانة"
+msgid "لا توجد أنشطة حديثة"
+msgstr "لا توجد طلبات صيانة"
 
-#: templates/dashboard/dashboard.html:166
-msgid "إصلاح كهرباء"
-msgstr "إصلاح كهرباء"
-
-#: templates/dashboard/dashboard.html:168
-msgid "أمس"
-msgstr "أمس"
-
-#: templates/dashboard/dashboard.html:172
-msgid "شكوى نظافة"
-msgstr "شكوى نظافة"
-
-#: templates/dashboard/dashboard.html:174
-msgid "منذ يومين"
-msgstr "منذ يومين"
-
-#: templates/dashboard/dashboard.html:189
+#: templates/dashboard/dashboard.html:178
 #: templates/maintenance/ticket_detail.html:200
 #: templates/permits/permit_detail.html:249
 #: templates/tenants/tenant_dashboard.html:146
 msgid "إجراءات سريعة"
 msgstr "إجراءات سريعة"
 
-#: templates/dashboard/dashboard.html:196 templates/permits/permit_list.html:25
+#: templates/dashboard/dashboard.html:185 templates/permits/permit_list.html:25
 #: templates/tenants/tenant_dashboard.html:154
 #: templates/tenants/tenant_profile.html:204
 msgid "تصريح جديد"
 msgstr "تصريح جديد"
 
-#: templates/dashboard/dashboard.html:200
+#: templates/dashboard/dashboard.html:189
 #: templates/tenants/tenant_dashboard.html:160
 #: templates/tenants/tenant_profile.html:208
 msgid "طلب صيانة"
 msgstr "طلب صيانة"
 
-#: templates/dashboard/dashboard.html:204
+#: templates/dashboard/dashboard.html:193
 msgid "تقديم شكوى"
 msgstr "تقديم شكوى"
 
-#: templates/dashboard/dashboard.html:208
+#: templates/dashboard/dashboard.html:197
 #: templates/marketing/event_list.html:25
 msgid "فعالية جديدة"
 msgstr "فعالية جديدة"
 
-#: templates/dashboard/dashboard.html:238
+#: templates/dashboard/dashboard.html:227
 msgid "تحديث النظام"
 msgstr "تحديث النظام"
 
-#: templates/dashboard/dashboard.html:239
+#: templates/dashboard/dashboard.html:228
 msgid "تم تحديث النظام بنجاح إلى الإصدار 1.0"
 msgstr "تم تحديث النظام بنجاح إلى الإصدار 1.0"
 
-#: templates/dashboard/dashboard.html:242
+#: templates/dashboard/dashboard.html:231
 msgid "منذ ساعة"
 msgstr "منذ ساعة"
 
@@ -3447,6 +3424,24 @@ msgstr "روابط سريعة"
 #: templates/tenants/tenant_profile.html:219
 msgid "معلومات الحساب"
 msgstr "معلومات الحساب"
+
+#~ msgid "تصريح بضائع"
+#~ msgstr "تصريح بضائع"
+
+#~ msgid "اليوم"
+#~ msgstr "اليوم"
+
+#~ msgid "إصلاح كهرباء"
+#~ msgstr "إصلاح كهرباء"
+
+#~ msgid "أمس"
+#~ msgstr "أمس"
+
+#~ msgid "شكوى نظافة"
+#~ msgstr "شكوى نظافة"
+
+#~ msgid "منذ يومين"
+#~ msgstr "منذ يومين"
 
 #~ msgid "الاستحقاق"
 #~ msgstr "الاستحقاق"

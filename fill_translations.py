@@ -735,6 +735,7 @@ translations = {
     "اختر الصلاحيات المطلوبة": "Select required permissions",
     "طباعة الفواتير المحددة": "Print selected invoices",
     "يرجى اختيار فاتورة واحدة فقط للطباعة": "Please select only one invoice to print",
+    "لا توجد أنشطة حديثة": "No recent activities",
 
     # Invoice Details - تفاصيل الفاتورة
     "تفاصيل الفاتورة": "Invoice Details",

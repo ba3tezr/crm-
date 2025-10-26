@@ -155,23 +155,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <!-- Recent activities will be displayed here dynamically -->
                                 <tr>
-                                    <td><span class="badge bg-primary">{% trans "تصريح" %}</span></td>
-                                    <td>{% trans "تصريح بضائع" %}</td>
-                                    <td><span class="badge bg-warning">{% trans "قيد الانتظار" %}</span></td>
-                                    <td>{% trans "اليوم" %}</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="badge bg-warning">{% trans "صيانة" %}</span></td>
-                                    <td>{% trans "إصلاح كهرباء" %}</td>
-                                    <td><span class="badge bg-info">{% trans "قيد التنفيذ" %}</span></td>
-                                    <td>{% trans "أمس" %}</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="badge bg-danger">{% trans "شكوى" %}</span></td>
-                                    <td>{% trans "شكوى نظافة" %}</td>
-                                    <td><span class="badge bg-success">{% trans "محلولة" %}</span></td>
-                                    <td>{% trans "منذ يومين" %}</td>
+                                    <td colspan="4" class="text-center text-muted py-4">
+                                        <i class="fas fa-inbox fa-2x mb-2 d-block"></i>
+                                        {% trans "لا توجد أنشطة حديثة" %}
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
