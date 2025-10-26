@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-26 14:49+0300\n"
+"POT-Creation-Date: 2025-10-26 14:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -615,25 +615,31 @@ msgstr "تم إنشاء طلب الصيانة بنجاح"
 msgid "تم إنشاء الشكوى بنجاح"
 msgstr "تم إنشاء القضية بنجاح"
 
-#: apps/complaints/forms.py:100 apps/finance/forms.py:47
+#: apps/complaints/forms.py:70
+#, fuzzy
+#| msgid "إدارة الشكاوى"
+msgid "إرسال الشكوى"
+msgstr "إدارة الشكاوى"
+
+#: apps/complaints/forms.py:121 apps/finance/forms.py:47
 #: apps/finance/forms.py:108 apps/hr/forms.py:82 apps/hr/forms.py:201
-#: apps/maintenance/forms.py:112 apps/marketing/forms.py:97
+#: apps/maintenance/forms.py:138 apps/marketing/forms.py:97
 #: apps/marketing/forms.py:192 apps/permits/forms.py:188
 #: templates/finance/invoice_form.html:105
 #: templates/finance/payment_form.html:35
 msgid "حفظ"
 msgstr "حفظ"
 
-#: apps/complaints/forms.py:128 apps/maintenance/forms.py:137
+#: apps/complaints/forms.py:149 apps/maintenance/forms.py:163
 #: apps/permits/forms.py:230 templates/permits/permit_detail.html:310
 msgid "رفع الملف"
 msgstr "رفع الملف"
 
-#: apps/complaints/forms.py:142 apps/maintenance/forms.py:151
+#: apps/complaints/forms.py:163 apps/maintenance/forms.py:177
 msgid "أضف تعليقك هنا..."
 msgstr "أضف تعليقك هنا..."
 
-#: apps/complaints/forms.py:154 apps/maintenance/forms.py:163
+#: apps/complaints/forms.py:175 apps/maintenance/forms.py:189
 msgid "إضافة تعليق"
 msgstr "إضافة تعليق"
 
@@ -1782,6 +1788,12 @@ msgstr "تم رفض طلب الإجازة"
 #: apps/hr/views.py:240 templates/permits/permit_list.html:210
 msgid "سيتم تنفيذ هذه الميزة قريباً"
 msgstr "سيتم تنفيذ هذه الميزة قريباً"
+
+#: apps/maintenance/forms.py:84
+#, fuzzy
+#| msgid "حالة الفاتورة"
+msgid "إرسال التذكرة"
+msgstr "بند الفاتورة"
 
 #: apps/maintenance/models.py:16 templates/dashboard/dashboard.html:65
 msgid "عاجلة"

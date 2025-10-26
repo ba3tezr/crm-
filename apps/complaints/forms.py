@@ -51,56 +51,77 @@ class CaseForm(forms.ModelForm):
         # Make case_number readonly if editing (for staff only)
         if not is_tenant and self.instance.pk:
             self.fields['case_number'].widget.attrs['readonly'] = True
-        
-        self.helper.layout = Layout(
-            Div(
-                Div(
-                    Row(
-                        Column('case_number', css_class='form-group col-md-6 mb-3'),
-                        Column('case_type', css_class='form-group col-md-6 mb-3'),
-                    ),
-                    Row(
-                        Column('priority', css_class='form-group col-md-6 mb-3'),
-                        Column('status', css_class='form-group col-md-6 mb-3'),
-                    ),
-                    css_class='card-body'
+
+        # Different layouts for tenant vs staff
+        if is_tenant:
+            # Simplified layout for tenants
+            self.helper.layout = Layout(
+                Row(
+                    Column('title', css_class='form-group col-md-12 mb-3'),
                 ),
-                css_class='card mb-3'
-            ),
-            
-            Div(
-                Div(
-                    'title',
-                    'description',
-                    css_class='card-body'
+                Row(
+                    Column('case_type', css_class='form-group col-md-6 mb-3'),
+                    Column('priority', css_class='form-group col-md-6 mb-3'),
                 ),
-                css_class='card mb-3'
-            ),
-            
-            Div(
-                Div(
-                    Row(
-                        Column('assigned_to', css_class='form-group col-md-6 mb-3'),
-                        Column('department', css_class='form-group col-md-6 mb-3'),
-                    ),
-                    css_class='card-body'
+                Row(
+                    Column('description', css_class='form-group col-md-12 mb-3'),
                 ),
-                css_class='card mb-3'
-            ),
-            
-            Div(
-                Div(
-                    'resolution_notes',
-                    css_class='card-body'
-                ),
-                css_class='card mb-3'
-            ),
-            
-            FormActions(
-                Submit('submit', _('حفظ'), css_class='btn btn-primary'),
-                css_class='text-end'
+                FormActions(
+                    Submit('submit', _('إرسال الشكوى'), css_class='btn btn-primary btn-lg'),
+                    css_class='text-end mt-3'
+                )
             )
-        )
+        else:
+            # Full layout for staff
+            self.helper.layout = Layout(
+                Div(
+                    Div(
+                        Row(
+                            Column('case_number', css_class='form-group col-md-6 mb-3'),
+                            Column('case_type', css_class='form-group col-md-6 mb-3'),
+                        ),
+                        Row(
+                            Column('priority', css_class='form-group col-md-6 mb-3'),
+                            Column('status', css_class='form-group col-md-6 mb-3'),
+                        ),
+                        css_class='card-body'
+                    ),
+                    css_class='card mb-3'
+                ),
+
+                Div(
+                    Div(
+                        'title',
+                        'description',
+                        css_class='card-body'
+                    ),
+                    css_class='card mb-3'
+                ),
+
+                Div(
+                    Div(
+                        Row(
+                            Column('assigned_to', css_class='form-group col-md-6 mb-3'),
+                            Column('department', css_class='form-group col-md-6 mb-3'),
+                        ),
+                        css_class='card-body'
+                    ),
+                    css_class='card mb-3'
+                ),
+
+                Div(
+                    Div(
+                        'resolution_notes',
+                        css_class='card-body'
+                    ),
+                    css_class='card mb-3'
+                ),
+
+                FormActions(
+                    Submit('submit', _('حفظ'), css_class='btn btn-primary'),
+                    css_class='text-end'
+                )
+            )
 
 
 class CaseAttachmentForm(forms.ModelForm):
