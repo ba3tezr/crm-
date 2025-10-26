@@ -46,10 +46,10 @@
                             <strong>{% trans "الحالة" %}:</strong>
                             <p>
                                 <span class="badge
-                                    {% if permit.status == 'approved' %}badge-success
-                                    {% elif permit.status == 'rejected' %}badge-danger
-                                    {% elif permit.status == 'pending' %}badge-warning
-                                    {% else %}badge-secondary
+                                    {% if permit.status == 'approved' %}bg-success text-white
+                                    {% elif permit.status == 'rejected' %}bg-danger text-white
+                                    {% elif permit.status == 'pending' %}bg-warning text-dark
+                                    {% else %}bg-secondary text-white
                                     {% endif %}" style="font-size: 0.95rem; padding: 6px 12px;">
                                     {% if permit.status == 'approved' %}
                                         <i class="fas fa-check-circle"></i>
@@ -68,7 +68,7 @@
                         <div class="col-md-6">
                             <strong>{% trans "نوع التصريح" %}:</strong>
                             <p>
-                                <span class="badge badge-primary" style="font-size: 0.95rem; padding: 6px 12px;">
+                                <span class="badge bg-primary text-white" style="font-size: 0.95rem; padding: 6px 12px;">
                                     <i class="fas fa-tag"></i>
                                     {{ permit.get_permit_type_display }}
                                 </span>
@@ -77,7 +77,7 @@
                         <div class="col-md-6">
                             <strong>{% trans "الاتجاه" %}:</strong>
                             <p>
-                                <span class="badge badge-info" style="font-size: 0.95rem; padding: 6px 12px;">
+                                <span class="badge bg-info text-dark" style="font-size: 0.95rem; padding: 6px 12px;">
                                     <i class="fas fa-arrow-right"></i>
                                     {{ permit.get_direction_display }}
                                 </span>
@@ -195,10 +195,10 @@
                 <div class="card-body text-center">
                     <div class="mb-3">
                         <span class="badge badge-lg 
-                            {% if permit.status == 'approved' %}badge-success
-                            {% elif permit.status == 'rejected' %}badge-danger
-                            {% elif permit.status == 'pending' %}badge-warning
-                            {% else %}badge-secondary
+                            {% if permit.status == 'approved' %}bg-success text-white
+                            {% elif permit.status == 'rejected' %}bg-danger text-white
+                            {% elif permit.status == 'pending' %}bg-warning text-dark
+                            {% else %}bg-secondary text-white
                             {% endif %}" style="font-size: 1.2rem; padding: 10px 20px;">
                             {{ permit.get_status_display }}
                         </span>

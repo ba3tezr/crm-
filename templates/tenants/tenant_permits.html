@@ -52,10 +52,10 @@
                             <td>{{ permit.title|truncatewords:5 }}</td>
                             <td>
                                 <span class="badge
-                                    {% if permit.status == 'approved' %}badge-success
-                                    {% elif permit.status == 'rejected' %}badge-danger
-                                    {% elif permit.status == 'pending' %}badge-warning
-                                    {% else %}badge-secondary
+                                    {% if permit.status == 'approved' %}bg-success text-white
+                                    {% elif permit.status == 'rejected' %}bg-danger text-white
+                                    {% elif permit.status == 'pending' %}bg-warning text-dark
+                                    {% else %}bg-secondary text-white
                                     {% endif %}">
                                     {% if permit.status == 'approved' %}
                                         <i class="fas fa-check-circle"></i>

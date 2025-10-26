@@ -47,10 +47,10 @@
                         <div class="col-md-6">
                             <strong>{% trans "الحالة" %}:</strong>
                             <p>
-                                <span class="badge 
+                                <span class="badge
                                     {% if task.status == 'completed' %}badge-success
-                                    {% elif task.status == 'in_progress' %}badge-info
-                                    {% elif task.status == 'pending' %}badge-warning
+                                    {% elif task.status == 'in_progress' %}bg-info text-dark
+                                    {% elif task.status == 'pending' %}bg-warning text-dark
                                     {% else %}badge-secondary
                                     {% endif %}" style="font-size: 0.95rem; padding: 6px 12px;">
                                     {% if task.status == 'completed' %}
@@ -69,10 +69,10 @@
                         <div class="col-md-6">
                             <strong>{% trans "الأولوية" %}:</strong>
                             <p>
-                                <span class="badge 
+                                <span class="badge
                                     {% if task.priority == 'urgent' %}badge-danger
-                                    {% elif task.priority == 'high' %}badge-warning
-                                    {% elif task.priority == 'medium' %}badge-info
+                                    {% elif task.priority == 'high' %}bg-warning text-dark
+                                    {% elif task.priority == 'medium' %}bg-info text-dark
                                     {% else %}badge-secondary
                                     {% endif %}" style="font-size: 0.95rem; padding: 6px 12px;">
                                     <i class="fas fa-exclamation-circle"></i>
@@ -95,7 +95,7 @@
                         <div class="col-md-6">
                             <strong>{% trans "التصريح المرتبط" %}:</strong>
                             <p>
-                                <a href="{% url 'permits:permit_detail' task.permit.pk %}" class="btn btn-sm btn-outline-primary">
+                                <a href="{% url 'permits:permit_detail' task.permit.pk %}" class="badge bg-primary text-white" style="font-size: 0.95rem; padding: 6px 12px; text-decoration: none;">
                                     <i class="fas fa-file-alt"></i>
                                     {{ task.permit.permit_number }}
                                 </a>
@@ -103,7 +103,12 @@
                         </div>
                         <div class="col-md-6">
                             <strong>{% trans "أسند بواسطة" %}:</strong>
-                            <p>{{ task.assigned_by.get_full_name|default:task.assigned_by.username }}</p>
+                            <p>
+                                <span class="badge bg-dark" style="font-size: 0.95rem; padding: 6px 12px;">
+                                    <i class="fas fa-user"></i>
+                                    {{ task.assigned_by.get_full_name|default:task.assigned_by.username }}
+                                </span>
+                            </p>
                         </div>
                     </div>
 

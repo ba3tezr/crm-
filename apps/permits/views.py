@@ -380,6 +380,16 @@ def permit_approve(request, pk):
             pending_approval.completed = True
             pending_approval.completed_at = timezone.now()
             pending_approval.save()
+        else:
+            # If superuser approved without specific pending approval, mark all pending approvals for this permit as completed
+            if request.user.is_superuser:
+                PendingApproval.objects.filter(
+                    permit=permit,
+                    completed=False
+                ).update(
+                    completed=True,
+                    completed_at=timezone.now()
+                )
 
         return redirect('permits:permit_detail', pk=pk)
 

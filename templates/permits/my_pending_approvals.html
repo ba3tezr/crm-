@@ -44,19 +44,19 @@
                             </h5>
                             <p class="mb-1">
                                 <strong>{% trans "النوع" %}:</strong>
-                                <span class="badge badge-primary">
+                                <span class="badge bg-primary text-white">
                                     <i class="fas fa-tag"></i>
                                     {{ approval.permit.get_permit_type_display }}
                                 </span>
                                 <span class="mx-2">|</span>
                                 <strong>{% trans "الاتجاه" %}:</strong>
-                                <span class="badge badge-info">
+                                <span class="badge bg-info text-dark">
                                     <i class="fas fa-arrow-right"></i>
                                     {{ approval.permit.get_direction_display }}
                                 </span>
                                 <span class="mx-2">|</span>
                                 <strong>{% trans "الحالة" %}:</strong>
-                                <span class="badge badge-warning">
+                                <span class="badge bg-warning text-dark">
                                     <i class="fas fa-clock"></i>
                                     {{ approval.permit.get_status_display }}
                                 </span>
@@ -71,7 +71,7 @@
                                 {% if user.is_superuser %}
                                 <span class="mx-2">|</span>
                                 <strong>{% trans "مسند إلى" %}:</strong>
-                                <span class="badge badge-secondary">
+                                <span class="badge bg-secondary text-white">
                                     <i class="fas fa-user"></i>
                                     {{ approval.assigned_to.get_full_name|default:approval.assigned_to.username }}
                                 </span>

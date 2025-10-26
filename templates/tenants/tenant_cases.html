@@ -52,20 +52,20 @@
                             <td>{{ case.title|truncatewords:5 }}</td>
                             <td>
                                 <span class="badge 
-                                    {% if case.priority == 'urgent' %}badge-danger
-                                    {% elif case.priority == 'high' %}badge-warning
-                                    {% elif case.priority == 'medium' %}badge-info
-                                    {% else %}badge-secondary
+                                    {% if case.priority == 'urgent' %}bg-danger text-white
+                                    {% elif case.priority == 'high' %}bg-warning text-dark
+                                    {% elif case.priority == 'medium' %}bg-info text-dark
+                                    {% else %}bg-secondary text-white
                                     {% endif %}">
                                     {{ case.get_priority_display }}
                                 </span>
                             </td>
                             <td>
                                 <span class="badge 
-                                    {% if case.status == 'resolved' %}badge-success
-                                    {% elif case.status == 'in_progress' %}badge-info
-                                    {% elif case.status == 'open' %}badge-warning
-                                    {% else %}badge-secondary
+                                    {% if case.status == 'resolved' %}bg-success text-white
+                                    {% elif case.status == 'in_progress' %}bg-info text-dark
+                                    {% elif case.status == 'open' %}bg-warning text-dark
+                                    {% else %}bg-secondary text-white
                                     {% endif %}">
                                     {{ case.get_status_display }}
                                 </span>

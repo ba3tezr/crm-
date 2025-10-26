@@ -72,17 +72,18 @@
                             </h5>
                             <p class="mb-1">
                                 <strong>{% trans "التصريح" %}:</strong>
-                                <a href="{% url 'permits:permit_detail' task.permit.pk %}">
+                                <a href="{% url 'permits:permit_detail' task.permit.pk %}" class="badge bg-primary text-white" style="font-size: 0.9rem; padding: 5px 10px; text-decoration: none;">
+                                    <i class="fas fa-file-alt"></i>
                                     {{ task.permit.permit_number }}
                                 </a>
                                 <span class="mx-2">|</span>
                                 <strong>{% trans "الحالة" %}:</strong>
-                                <span class="badge 
-                                    {% if task.status == 'completed' %}badge-success
-                                    {% elif task.status == 'in_progress' %}badge-info
-                                    {% elif task.status == 'pending' %}badge-warning
-                                    {% else %}badge-secondary
-                                    {% endif %}" style="font-size: 0.9rem; padding: 4px 10px;">
+                                <span class="badge
+                                    {% if task.status == 'completed' %}bg-success
+                                    {% elif task.status == 'in_progress' %}bg-info
+                                    {% elif task.status == 'pending' %}bg-warning text-dark
+                                    {% else %}bg-secondary
+                                    {% endif %}" style="font-size: 0.9rem; padding: 5px 10px;">
                                     {% if task.status == 'completed' %}
                                         <i class="fas fa-check-circle"></i>
                                     {% elif task.status == 'in_progress' %}
@@ -96,12 +97,12 @@
                                 </span>
                                 <span class="mx-2">|</span>
                                 <strong>{% trans "الأولوية" %}:</strong>
-                                <span class="badge 
-                                    {% if task.priority == 'urgent' %}badge-danger
-                                    {% elif task.priority == 'high' %}badge-warning
-                                    {% elif task.priority == 'medium' %}badge-info
-                                    {% else %}badge-secondary
-                                    {% endif %}" style="font-size: 0.9rem; padding: 4px 10px;">
+                                <span class="badge
+                                    {% if task.priority == 'urgent' %}bg-danger
+                                    {% elif task.priority == 'high' %}bg-warning text-dark
+                                    {% elif task.priority == 'medium' %}bg-info
+                                    {% else %}bg-secondary
+                                    {% endif %}" style="font-size: 0.9rem; padding: 5px 10px;">
                                     <i class="fas fa-exclamation-circle"></i>
                                     {{ task.get_priority_display }}
                                 </span>

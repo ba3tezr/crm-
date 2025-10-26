@@ -52,20 +52,20 @@
                             <td>{{ ticket.get_category_display }}</td>
                             <td>
                                 <span class="badge 
-                                    {% if ticket.priority == 'urgent' %}badge-danger
-                                    {% elif ticket.priority == 'high' %}badge-warning
-                                    {% elif ticket.priority == 'medium' %}badge-info
-                                    {% else %}badge-secondary
+                                    {% if ticket.priority == 'urgent' %}bg-danger text-white
+                                    {% elif ticket.priority == 'high' %}bg-warning text-dark
+                                    {% elif ticket.priority == 'medium' %}bg-info text-dark
+                                    {% else %}bg-secondary text-white
                                     {% endif %}">
                                     {{ ticket.get_priority_display }}
                                 </span>
                             </td>
                             <td>
                                 <span class="badge 
-                                    {% if ticket.status == 'closed' %}badge-success
-                                    {% elif ticket.status == 'in_progress' %}badge-info
-                                    {% elif ticket.status == 'open' %}badge-warning
-                                    {% else %}badge-secondary
+                                    {% if ticket.status == 'closed' %}bg-success text-white
+                                    {% elif ticket.status == 'in_progress' %}bg-info text-dark
+                                    {% elif ticket.status == 'open' %}bg-warning text-dark
+                                    {% else %}bg-secondary text-white
                                     {% endif %}">
                                     {{ ticket.get_status_display }}
                                 </span>

@@ -37,10 +37,10 @@
                             <strong>{% trans "الحالة" %}:</strong>
                             <p>
                                 <span class="badge
-                                    {% if ticket.status == 'closed' %}badge-success
-                                    {% elif ticket.status == 'in_progress' %}badge-info
-                                    {% elif ticket.status == 'open' %}badge-warning
-                                    {% else %}badge-secondary
+                                    {% if ticket.status == 'closed' %}bg-success text-white
+                                    {% elif ticket.status == 'in_progress' %}bg-info text-dark
+                                    {% elif ticket.status == 'open' %}bg-warning text-dark
+                                    {% else %}bg-secondary text-white
                                     {% endif %}" style="font-size: 0.95rem; padding: 6px 12px;">
                                     {% if ticket.status == 'closed' %}
                                         <i class="fas fa-check-circle"></i>
@@ -59,7 +59,7 @@
                         <div class="col-md-6">
                             <strong>{% trans "الفئة" %}:</strong>
                             <p>
-                                <span class="badge badge-primary" style="font-size: 0.95rem; padding: 6px 12px;">
+                                <span class="badge bg-primary text-white" style="font-size: 0.95rem; padding: 6px 12px;">
                                     <i class="fas fa-tag"></i>
                                     {{ ticket.get_category_display }}
                                 </span>
@@ -69,10 +69,10 @@
                             <strong>{% trans "الأولوية" %}:</strong>
                             <p>
                                 <span class="badge
-                                    {% if ticket.priority == 'urgent' %}badge-danger
-                                    {% elif ticket.priority == 'high' %}badge-warning
-                                    {% elif ticket.priority == 'medium' %}badge-info
-                                    {% else %}badge-secondary
+                                    {% if ticket.priority == 'urgent' %}bg-danger text-white
+                                    {% elif ticket.priority == 'high' %}bg-warning text-dark
+                                    {% elif ticket.priority == 'medium' %}bg-info text-dark
+                                    {% else %}bg-secondary text-white
                                     {% endif %}" style="font-size: 0.95rem; padding: 6px 12px;">
                                     <i class="fas fa-exclamation-circle"></i>
                                     {{ ticket.get_priority_display }}
@@ -119,10 +119,10 @@
                 <div class="card-body text-center">
                     <div class="mb-3">
                         <span class="badge badge-lg 
-                            {% if ticket.status == 'closed' %}badge-success
-                            {% elif ticket.status == 'in_progress' %}badge-info
-                            {% elif ticket.status == 'open' %}badge-warning
-                            {% else %}badge-secondary
+                            {% if ticket.status == 'closed' %}bg-success text-white
+                            {% elif ticket.status == 'in_progress' %}bg-info text-dark
+                            {% elif ticket.status == 'open' %}bg-warning text-dark
+                            {% else %}bg-secondary text-white
                             {% endif %}" style="font-size: 1.2rem; padding: 10px 20px;">
                             {{ ticket.get_status_display }}
                         </span>
