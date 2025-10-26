@@ -256,8 +256,11 @@ def tenant_permit_create(request):
                     deadline=deadline,
                     completed=False
                 )
+                messages.success(request, _('تم إنشاء التصريح بنجاح وإرساله للموافقة'))
+            else:
+                # No workflow found - notify admin
+                messages.warning(request, _('تم إنشاء التصريح بنجاح ولكن لم يتم العثور على سير عمل للموافقة. يرجى التواصل مع الإدارة.'))
 
-            messages.success(request, _('تم إنشاء التصريح بنجاح وإرساله للموافقة'))
             return redirect('accounts:tenant_permits')
     else:
         form = PermitForm(is_tenant=True)

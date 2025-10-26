@@ -173,6 +173,7 @@ translations = {
     "ليس لديك صلاحية": "You don't have permission",
     "تم إنشاء التصريح بنجاح": "Permit created successfully",
     "تم إنشاء التصريح بنجاح وإرساله للموافقة": "Permit created successfully and sent for approval",
+    "تم إنشاء التصريح بنجاح ولكن لم يتم العثور على سير عمل للموافقة. يرجى التواصل مع الإدارة.": "Permit created successfully but no approval workflow found. Please contact administration.",
     "تم تحديث التصريح بنجاح": "Permit updated successfully",
     "ليس لديك صلاحية لتعديل هذا التصريح": "You don't have permission to edit this permit",
     "تم إنشاء طلب الإجازة بنجاح": "Leave request created successfully",

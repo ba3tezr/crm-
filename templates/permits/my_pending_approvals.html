@@ -43,9 +43,42 @@
                                 {% endif %}
                             </h5>
                             <p class="mb-1">
-                                <strong>{% trans "النوع" %}:</strong> {{ approval.permit.get_permit_type_display }}
+                                <strong>{% trans "النوع" %}:</strong>
+                                <span class="badge badge-primary">
+                                    <i class="fas fa-tag"></i>
+                                    {{ approval.permit.get_permit_type_display }}
+                                </span>
                                 <span class="mx-2">|</span>
-                                <strong>{% trans "المستأجر" %}:</strong> {{ approval.permit.tenant.get_full_name }}
+                                <strong>{% trans "الاتجاه" %}:</strong>
+                                <span class="badge badge-info">
+                                    <i class="fas fa-arrow-right"></i>
+                                    {{ approval.permit.get_direction_display }}
+                                </span>
+                                <span class="mx-2">|</span>
+                                <strong>{% trans "الحالة" %}:</strong>
+                                <span class="badge badge-warning">
+                                    <i class="fas fa-clock"></i>
+                                    {{ approval.permit.get_status_display }}
+                                </span>
+                            </p>
+                            <p class="mb-1">
+                                <strong>{% trans "المستأجر" %}:</strong>
+                                {% if approval.permit.tenant %}
+                                    {{ approval.permit.tenant.get_full_name|default:approval.permit.tenant.username }}
+                                {% else %}
+                                    <span class="text-muted">{% trans "غير محدد" %}</span>
+                                {% endif %}
+                                {% if user.is_superuser %}
+                                <span class="mx-2">|</span>
+                                <strong>{% trans "مسند إلى" %}:</strong>
+                                <span class="badge badge-secondary">
+                                    <i class="fas fa-user"></i>
+                                    {{ approval.assigned_to.get_full_name|default:approval.assigned_to.username }}
+                                </span>
+                                {% endif %}
+                            </p>
+                            <p class="mb-1">
+                                <strong>{% trans "العنوان" %}:</strong> {{ approval.permit.title }}
                             </p>
                             <p class="mb-1">
                                 <strong>{% trans "الوصف" %}:</strong> {{ approval.permit.description|truncatewords:20 }}

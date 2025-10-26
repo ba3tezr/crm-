@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-26 15:09+0300\n"
+"POT-Creation-Date: 2025-10-26 15:16+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,6 +41,7 @@ msgstr "معلومات القسم"
 #: templates/maintenance/ticket_list.html:160
 #: templates/marketing/event_list.html:114
 #: templates/marketing/event_list.html:152
+#: templates/permits/my_pending_approvals.html:58
 #: templates/permits/permit_confirm_delete.html:39
 #: templates/permits/permit_list.html:55 templates/permits/permit_list.html:97
 #: templates/tenants/tenant_case_detail.html:37
@@ -292,7 +293,7 @@ msgstr "الاسم بالإنجليزية"
 #: templates/finance/invoice_print.html:404
 #: templates/maintenance/ticket_detail.html:80
 #: templates/marketing/event_detail.html:74
-#: templates/permits/my_pending_approvals.html:51
+#: templates/permits/my_pending_approvals.html:76
 #: templates/permits/permit_approve.html:58
 #: templates/permits/permit_detail.html:81
 #: templates/permits/permit_detail.html:302
@@ -396,6 +397,7 @@ msgstr "صورة الملف الشخصي"
 #: templates/marketing/event_confirm_delete.html:30
 #: templates/marketing/event_detail.html:66
 #: templates/marketing/event_list.html:146
+#: templates/permits/my_pending_approvals.html:73
 #: templates/permits/permit_confirm_delete.html:35
 #: templates/permits/permit_detail.html:77
 #: templates/permits/permit_list.html:94
@@ -581,37 +583,43 @@ msgstr "الأقسام"
 #: apps/accounts/views.py:33 apps/accounts/views.py:83
 #: apps/accounts/views.py:101 apps/accounts/views.py:131
 #: apps/accounts/views.py:167 apps/accounts/views.py:193
-#: apps/accounts/views.py:220 apps/accounts/views.py:282
-#: apps/accounts/views.py:306 apps/accounts/views.py:339
-#: apps/accounts/views.py:370 apps/accounts/views.py:402
-#: apps/accounts/views.py:425 apps/accounts/views.py:456
-#: apps/accounts/views.py:488 apps/core/decorators.py:23
+#: apps/accounts/views.py:220 apps/accounts/views.py:285
+#: apps/accounts/views.py:309 apps/accounts/views.py:342
+#: apps/accounts/views.py:373 apps/accounts/views.py:405
+#: apps/accounts/views.py:428 apps/accounts/views.py:459
+#: apps/accounts/views.py:491 apps/core/decorators.py:23
 msgid "ليس لديك صلاحية الوصول لهذه الصفحة"
 msgstr "ليس لديك صلاحية الوصول لهذه الصفحة"
 
-#: apps/accounts/views.py:260
+#: apps/accounts/views.py:259
 #, fuzzy
 #| msgid "تم إنشاء التصريح بنجاح"
 msgid "تم إنشاء التصريح بنجاح وإرساله للموافقة"
 msgstr "تم إنشاء التصريح بنجاح"
 
-#: apps/accounts/views.py:314
+#: apps/accounts/views.py:262
+msgid ""
+"تم إنشاء التصريح بنجاح ولكن لم يتم العثور على سير عمل للموافقة. يرجى التواصل "
+"مع الإدارة."
+msgstr ""
+
+#: apps/accounts/views.py:317
 #, fuzzy
 #| msgid "تم حذف التصريح بنجاح"
 msgid "لا يمكن حذف التصريح بعد بدء المراجعة"
 msgstr "تم حذف التصريح بنجاح"
 
-#: apps/accounts/views.py:319 apps/permits/views.py:172
+#: apps/accounts/views.py:322 apps/permits/views.py:172
 msgid "تم حذف التصريح بنجاح"
 msgstr "تم حذف التصريح بنجاح"
 
-#: apps/accounts/views.py:380
+#: apps/accounts/views.py:383
 #, fuzzy
 #| msgid "تم إنشاء طلب الصيانة بنجاح"
 msgid "تم إنشاء تذكرة الصيانة بنجاح"
 msgstr "تم إنشاء طلب الصيانة بنجاح"
 
-#: apps/accounts/views.py:466
+#: apps/accounts/views.py:469
 #, fuzzy
 #| msgid "تم إنشاء القضية بنجاح"
 msgid "تم إنشاء الشكوى بنجاح"
@@ -1386,7 +1394,7 @@ msgstr "نوع الفاتورة"
 #: templates/finance/invoice_detail.html:62
 #: templates/finance/invoice_list.html:117
 #: templates/finance/payment_list.html:107
-#: templates/permits/my_pending_approvals.html:48
+#: templates/permits/my_pending_approvals.html:65
 #: templates/permits/permit_approve.html:54
 #: templates/permits/permit_list.html:93
 msgid "المستأجر"
@@ -2065,7 +2073,8 @@ msgstr "رقم التصريح"
 msgid "نوع التصريح"
 msgstr "نوع التصريح"
 
-#: apps/permits/models.py:49 templates/permits/permit_approve.html:50
+#: apps/permits/models.py:49 templates/permits/my_pending_approvals.html:52
+#: templates/permits/permit_approve.html:50
 #: templates/permits/permit_detail.html:73
 #: templates/permits/permit_list.html:65 templates/permits/permit_list.html:92
 #: templates/tenants/tenant_permit_detail.html:78
@@ -2170,7 +2179,7 @@ msgstr "تاريخ الموافقة"
 msgid "سير العمل"
 msgstr "رمز العملة"
 
-#: apps/permits/models.py:385 templates/permits/my_pending_approvals.html:55
+#: apps/permits/models.py:385 templates/permits/my_pending_approvals.html:80
 #: templates/permits/permit_approve.html:67
 msgid "الموعد النهائي"
 msgstr "الموارد البشرية"
@@ -2292,6 +2301,7 @@ msgstr "تم رفض التصريح %(number)s. السبب: %(reason)s"
 
 #: apps/permits/views.py:322 templates/complaints/case_list.html:183
 #: templates/maintenance/ticket_list.html:195
+#: templates/permits/my_pending_approvals.html:69
 #: templates/permits/permit_detail.html:234
 #: templates/permits/permit_list.html:125
 msgid "غير محدد"
@@ -3323,19 +3333,19 @@ msgstr "طلبات الإجازات"
 msgid "محول"
 msgstr "محول إلى"
 
-#: templates/permits/my_pending_approvals.html:61
+#: templates/permits/my_pending_approvals.html:86
 msgid "تجاوز المهلة"
 msgstr "رمز العملة"
 
-#: templates/permits/my_pending_approvals.html:69
+#: templates/permits/my_pending_approvals.html:94
 msgid "مراجعة والموافقة"
 msgstr "تاريخ الموافقة"
 
-#: templates/permits/my_pending_approvals.html:80
+#: templates/permits/my_pending_approvals.html:105
 msgid "لا توجد موافقات معلقة"
 msgstr "لا توجد دفعات"
 
-#: templates/permits/my_pending_approvals.html:81
+#: templates/permits/my_pending_approvals.html:106
 msgid "جميع الطلبات تمت معالجتها"
 msgstr "جميع الطلبات تمت معالجتها"
 

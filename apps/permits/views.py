@@ -344,10 +344,17 @@ def permit_approve(request, pk):
 @login_required
 def my_pending_approvals(request):
     """قائمة الموافقات المعلقة للمستخدم الحالي"""
-    pending_approvals = PendingApproval.objects.filter(
-        assigned_to=request.user,
-        completed=False
-    ).select_related('permit', 'workflow').order_by('deadline')
+    # If superuser, show all pending approvals
+    # Otherwise, show only approvals assigned to current user
+    if request.user.is_superuser:
+        pending_approvals = PendingApproval.objects.filter(
+            completed=False
+        ).select_related('permit', 'workflow', 'assigned_to').order_by('deadline')
+    else:
+        pending_approvals = PendingApproval.objects.filter(
+            assigned_to=request.user,
+            completed=False
+        ).select_related('permit', 'workflow').order_by('deadline')
 
     # Check deadlines
     for approval in pending_approvals:
