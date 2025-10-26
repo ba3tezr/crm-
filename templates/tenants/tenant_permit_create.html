@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "تصريح جديد" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+            <i class="fas fa-file-alt text-primary"></i>
+            {% trans "تصريح جديد" %}
+        </h1>
+        <a href="{% url 'accounts:tenant_permits' %}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i>
+            {% trans "رجوع" %}
+        </a>
+    </div>
+
+    <!-- Create Form -->
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        {% trans "معلومات التصريح" %}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        {% if form.errors %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>{% trans "خطأ!" %}</strong>
+                            {% trans "يرجى تصحيح الأخطاء التالية:" %}
+                            <ul class="mb-0 mt-2">
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <li>{{ field.label }}: {{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                                {% for error in form.non_field_errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        {% endif %}
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.permit_type.id_for_label }}" class="form-label">
+                                    {{ form.permit_type.label }} <span class="text-danger">*</span>
+                                </label>
+                                {{ form.permit_type }}
+                                {% if form.permit_type.help_text %}
+                                <small class="form-text text-muted">{{ form.permit_type.help_text }}</small>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.location.id_for_label }}" class="form-label">
+                                    {{ form.location.label }} <span class="text-danger">*</span>
+                                </label>
+                                {{ form.location }}
+                                {% if form.location.help_text %}
+                                <small class="form-text text-muted">{{ form.location.help_text }}</small>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.start_date.id_for_label }}" class="form-label">
+                                    {{ form.start_date.label }} <span class="text-danger">*</span>
+                                </label>
+                                {{ form.start_date }}
+                                {% if form.start_date.help_text %}
+                                <small class="form-text text-muted">{{ form.start_date.help_text }}</small>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.end_date.id_for_label }}" class="form-label">
+                                    {{ form.end_date.label }} <span class="text-danger">*</span>
+                                </label>
+                                {{ form.end_date }}
+                                {% if form.end_date.help_text %}
+                                <small class="form-text text-muted">{{ form.end_date.help_text }}</small>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.description.id_for_label }}" class="form-label">
+                                {{ form.description.label }} <span class="text-danger">*</span>
+                            </label>
+                            {{ form.description }}
+                            {% if form.description.help_text %}
+                            <small class="form-text text-muted">{{ form.description.help_text }}</small>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.notes.id_for_label }}" class="form-label">
+                                {{ form.notes.label }}
+                            </label>
+                            {{ form.notes }}
+                            {% if form.notes.help_text %}
+                            <small class="form-text text-muted">{{ form.notes.help_text }}</small>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.attachment.id_for_label }}" class="form-label">
+                                {{ form.attachment.label }}
+                            </label>
+                            {{ form.attachment }}
+                            {% if form.attachment.help_text %}
+                            <small class="form-text text-muted">{{ form.attachment.help_text }}</small>
+                            {% endif %}
+                        </div>
+
+                        <hr>
+
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'accounts:tenant_permits' %}" class="btn btn-secondary">
+                                <i class="fas fa-times"></i>
+                                {% trans "إلغاء" %}
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i>
+                                {% trans "إنشاء التصريح" %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Card -->
+        <div class="col-lg-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-info">
+                        <i class="fas fa-info-circle"></i>
+                        {% trans "معلومات" %}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <h6 class="font-weight-bold">{% trans "أنواع التصاريح" %}:</h6>
+                    <ul class="small">
+                        <li>{% trans "تصريح بضائع" %}</li>
+                        <li>{% trans "تصريح عمال" %}</li>
+                        <li>{% trans "تصريح مركبة" %}</li>
+                        <li>{% trans "تصريح فعالية" %}</li>
+                        <li>{% trans "تصريح صيانة" %}</li>
+                    </ul>
+
+                    <hr>
+
+                    <h6 class="font-weight-bold">{% trans "ملاحظات" %}:</h6>
+                    <ul class="small text-muted">
+                        <li>{% trans "سيتم مراجعة التصريح من قبل الإدارة" %}</li>
+                        <li>{% trans "ستتلقى إشعاراً عند الموافقة أو الرفض" %}</li>
+                        <li>{% trans "يمكنك إرفاق ملفات داعمة" %}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 
 from .models import TenantProfile
 from apps.permits.models import Permit
+from apps.permits.forms import PermitForm
 from apps.maintenance.models import Ticket
 from apps.complaints.models import Case
 from apps.finance.models import Invoice
@@ -201,3 +202,35 @@ def tenant_invoice_print(request, pk):
     }
 
     return render(request, 'finance/invoice_print.html', context)
+
+
+@login_required
+def tenant_permit_create(request):
+    """
+    إنشاء تصريح جديد للمستأجر - Create Permit for Tenant
+    """
+    # Check if user is a tenant
+    try:
+        tenant_profile = request.user.tenant_profile
+    except:
+        messages.error(request, _('ليس لديك صلاحية الوصول لهذه الصفحة'))
+        return redirect('core:dashboard')
+
+    if request.method == 'POST':
+        form = PermitForm(request.POST, request.FILES)
+        if form.is_valid():
+            permit = form.save(commit=False)
+            permit.tenant = request.user
+            permit.status = 'pending'  # Always pending for tenant-created permits
+            permit.save()
+            messages.success(request, _('تم إنشاء التصريح بنجاح'))
+            return redirect('accounts:tenant_permits')
+    else:
+        form = PermitForm()
+
+    context = {
+        'form': form,
+        'tenant_profile': tenant_profile,
+    }
+
+    return render(request, 'tenants/tenant_permit_create.html', context)

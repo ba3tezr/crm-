@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-26 14:23+0300\n"
+"POT-Creation-Date: 2025-10-26 14:28+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -470,6 +470,7 @@ msgstr "هاتف جهة الاتصال للطوارئ"
 #: templates/permits/permit_detail.html:156
 #: templates/permits/permit_form.html:56
 #: templates/tenants/tenant_invoice_detail.html:168
+#: templates/tenants/tenant_permit_create.html:166
 #: templates/tenants/tenant_profile.html:168
 msgid "ملاحظات"
 msgstr "ملاحظات"
@@ -541,12 +542,16 @@ msgstr "اسم القسم"
 msgid "صلاحيات الأقسام"
 msgstr "الأقسام"
 
-#: apps/accounts/views.py:28 apps/accounts/views.py:78
-#: apps/accounts/views.py:96 apps/accounts/views.py:126
-#: apps/accounts/views.py:162 apps/accounts/views.py:188
-#: apps/core/decorators.py:23
+#: apps/accounts/views.py:29 apps/accounts/views.py:79
+#: apps/accounts/views.py:97 apps/accounts/views.py:127
+#: apps/accounts/views.py:163 apps/accounts/views.py:189
+#: apps/accounts/views.py:216 apps/core/decorators.py:23
 msgid "ليس لديك صلاحية الوصول لهذه الصفحة"
 msgstr "ليس لديك صلاحية الوصول لهذه الصفحة"
+
+#: apps/accounts/views.py:226 apps/permits/views.py:111
+msgid "تم إنشاء التصريح بنجاح"
+msgstr "تم إنشاء التصريح بنجاح"
 
 #: apps/complaints/forms.py:88 apps/finance/forms.py:47
 #: apps/finance/forms.py:108 apps/hr/forms.py:82 apps/hr/forms.py:201
@@ -906,7 +911,7 @@ msgstr "Date format - Always Gregorian calendar in English"
 msgid "إعدادات النظام"
 msgstr "إعدادات النظام"
 
-#: apps/core/models.py:180
+#: apps/core/models.py:180 templates/tenants/tenant_permit_create.html:151
 msgid "معلومات"
 msgstr "معلومات القسم"
 
@@ -1075,6 +1080,7 @@ msgstr "نوع الفاتورة"
 #: templates/marketing/event_confirm_delete.html:45
 #: templates/permits/permit_confirm_delete.html:58
 #: templates/permits/permit_detail.html:306
+#: templates/tenants/tenant_permit_create.html:133
 msgid "إلغاء"
 msgstr "إلغاء"
 
@@ -2106,10 +2112,6 @@ msgstr ""
 msgid "ليس لديك صلاحية الوصول لهذا التصريح"
 msgstr "ليس لديك صلاحية الوصول لهذه الصفحة"
 
-#: apps/permits/views.py:111
-msgid "تم إنشاء التصريح بنجاح"
-msgstr "تم إنشاء التصريح بنجاح"
-
 #: apps/permits/views.py:118
 msgid "إنشاء تصريح جديد"
 msgstr "إنشاء تصريح جديد"
@@ -2410,6 +2412,7 @@ msgstr "تفاصيل القضية"
 #: templates/permits/permit_detail.html:36
 #: templates/permits/permit_form.html:29
 #: templates/tenants/tenant_invoice_detail.html:66
+#: templates/tenants/tenant_permit_create.html:17
 msgid "رجوع"
 msgstr "رجوع"
 
@@ -2609,6 +2612,8 @@ msgstr "إجراءات سريعة"
 
 #: templates/dashboard/dashboard.html:185 templates/permits/permit_list.html:25
 #: templates/tenants/tenant_dashboard.html:154
+#: templates/tenants/tenant_permit_create.html:5
+#: templates/tenants/tenant_permit_create.html:13
 #: templates/tenants/tenant_profile.html:204
 msgid "تصريح جديد"
 msgstr "تصريح جديد"
@@ -3401,6 +3406,78 @@ msgstr "تاريخ التفعيل"
 msgid "لم يتم إصدار أي فواتير لك حتى الآن"
 msgstr "لم يتم إصدار أي فواتير لك حتى الآن"
 
+#: templates/tenants/tenant_permit_create.html:27
+#, fuzzy
+#| msgid "معلومات التحديث"
+msgid "معلومات التصريح"
+msgstr "معلومات التحديث"
+
+#: templates/tenants/tenant_permit_create.html:36
+msgid "خطأ!"
+msgstr "خطأ!"
+
+#: templates/tenants/tenant_permit_create.html:37
+msgid "يرجى تصحيح الأخطاء التالية:"
+msgstr "يرجى تصحيح الأخطاء التالية:"
+
+#: templates/tenants/tenant_permit_create.html:137
+#, fuzzy
+#| msgid "بيانات التصريح"
+msgid "إنشاء التصريح"
+msgstr "بيانات التصريح"
+
+#: templates/tenants/tenant_permit_create.html:155
+#, fuzzy
+#| msgid "نوع التصريح"
+msgid "أنواع التصاريح"
+msgstr "نوع التصريح"
+
+#: templates/tenants/tenant_permit_create.html:157
+msgid "تصريح بضائع"
+msgstr "تصريح بضائع"
+
+#: templates/tenants/tenant_permit_create.html:158
+#, fuzzy
+#| msgid "تصريح جديد"
+msgid "تصريح عمال"
+msgstr "تصريح جديد"
+
+#: templates/tenants/tenant_permit_create.html:159
+#, fuzzy
+#| msgid "تصريح جديد"
+msgid "تصريح مركبة"
+msgstr "تصريح جديد"
+
+#: templates/tenants/tenant_permit_create.html:160
+#, fuzzy
+#| msgid "تصريح جديد"
+msgid "تصريح فعالية"
+msgstr "تصريح جديد"
+
+#: templates/tenants/tenant_permit_create.html:161
+#, fuzzy
+#| msgid "تصريح جديد"
+msgid "تصريح صيانة"
+msgstr "تصريح جديد"
+
+#: templates/tenants/tenant_permit_create.html:168
+#, fuzzy
+#| msgid "تم إنشاء التصريح بنجاح"
+msgid "سيتم مراجعة التصريح من قبل الإدارة"
+msgstr "تم إنشاء التصريح بنجاح"
+
+#: templates/tenants/tenant_permit_create.html:169
+#, fuzzy
+#| msgid "لا يمكن تعديل طلب تمت الموافقة عليه أو رفضه"
+msgid "ستتلقى إشعاراً عند الموافقة أو الرفض"
+msgstr "لا يمكن تعديل طلب تمت الموافقة عليه أو رفضه"
+
+#: templates/tenants/tenant_permit_create.html:170
+#, fuzzy
+#| msgid "يمكنك إضافة المرفقات بعد حفظ الطلب"
+msgid "يمكنك إرفاق ملفات داعمة"
+msgstr "يمكنك إضافة المرفقات بعد حفظ الطلب"
+
 #: templates/tenants/tenant_profile.html:41
 msgid "الاسم الكامل"
 msgstr "الاسم الكامل"
@@ -3424,9 +3501,6 @@ msgstr "روابط سريعة"
 #: templates/tenants/tenant_profile.html:219
 msgid "معلومات الحساب"
 msgstr "معلومات الحساب"
-
-#~ msgid "تصريح بضائع"
-#~ msgstr "تصريح بضائع"
 
 #~ msgid "اليوم"
 #~ msgstr "اليوم"

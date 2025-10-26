@@ -736,6 +736,12 @@ translations = {
     "طباعة الفواتير المحددة": "Print selected invoices",
     "يرجى اختيار فاتورة واحدة فقط للطباعة": "Please select only one invoice to print",
     "لا توجد أنشطة حديثة": "No recent activities",
+    "معلومات التصريح": "Permit Information",
+    "أنواع التصاريح": "Permit Types",
+    "سيتم مراجعة التصريح من قبل الإدارة": "The permit will be reviewed by management",
+    "ستتلقى إشعاراً عند الموافقة أو الرفض": "You will receive a notification upon approval or rejection",
+    "يمكنك إرفاق ملفات داعمة": "You can attach supporting files",
+    "إنشاء التصريح": "Create Permit",
 
     # Invoice Details - تفاصيل الفاتورة
     "تفاصيل الفاتورة": "Invoice Details",
