@@ -91,10 +91,10 @@ def case_detail(request, pk):
 
 
 @login_required
-@staff_required
 def case_create(request):
     """
     إنشاء شكوى جديدة - Create Case
+    (Available for both staff and tenants)
     """
     if request.method == 'POST':
         form = CaseForm(request.POST)
@@ -103,7 +103,12 @@ def case_create(request):
             case.created_by = request.user
             case.save()
             messages.success(request, _('تم إنشاء القضية بنجاح'))
-            return redirect('complaints:case_detail', pk=case.pk)
+
+            # Redirect based on user type
+            if hasattr(request.user, 'tenant_profile'):
+                return redirect('accounts:tenant_dashboard')
+            else:
+                return redirect('complaints:case_detail', pk=case.pk)
     else:
         form = CaseForm()
 

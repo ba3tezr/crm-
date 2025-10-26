@@ -166,6 +166,14 @@
                             </a>
                         </div>
                         <div class="col-md-3 mb-3">
+                            <a href="{% url 'marketing:tenant_events_list' %}" class="btn btn-purple btn-block">
+                                <i class="fas fa-calendar-alt"></i>
+                                {% trans "الفعاليات" %}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
                             <a href="{% url 'accounts:tenant_invoices' %}" class="btn btn-success btn-block">
                                 <i class="fas fa-file-invoice-dollar"></i>
                                 {% trans "الفواتير" %}

@@ -24,5 +24,8 @@ urlpatterns = [
     
     # Export
     path('export/', views.event_export, name='event_export'),
+
+    # Tenant Events
+    path('tenant/events/', views.tenant_events_list, name='tenant_events_list'),
 ]
 

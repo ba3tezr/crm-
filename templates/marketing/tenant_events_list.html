@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "الفعاليات" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+            <i class="fas fa-calendar-alt text-primary"></i>
+            {% trans "الفعاليات والأنشطة" %}
+        </h1>
+    </div>
+
+    <!-- Events Grid -->
+    <div class="row">
+        {% for event in events %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-calendar-check"></i>
+                        {{ event.title }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <!-- Event Type -->
+                    <div class="mb-2">
+                        <span class="badge badge-info">
+                            {{ event.get_event_type_display }}
+                        </span>
+                        <span class="badge badge-{{ event.status }}">
+                            {{ event.get_status_display }}
+                        </span>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-muted small">
+                        {{ event.description|truncatewords:20 }}
+                    </p>
+
+                    <!-- Details -->
+                    <div class="small">
+                        <div class="mb-2">
+                            <i class="fas fa-calendar text-primary"></i>
+                            <strong>{% trans "التاريخ" %}:</strong>
+                            {{ event.start_date|date:"Y-m-d" }}
+                            {% if event.end_date %}
+                            - {{ event.end_date|date:"Y-m-d" }}
+                            {% endif %}
+                        </div>
+
+                        {% if event.location %}
+                        <div class="mb-2">
+                            <i class="fas fa-map-marker-alt text-danger"></i>
+                            <strong>{% trans "الموقع" %}:</strong>
+                            {{ event.location }}
+                        </div>
+                        {% endif %}
+
+                        {% if event.target_audience %}
+                        <div class="mb-2">
+                            <i class="fas fa-users text-success"></i>
+                            <strong>{% trans "الجمهور المستهدف" %}:</strong>
+                            {{ event.target_audience }}
+                        </div>
+                        {% endif %}
+
+                        {% if event.budget %}
+                        <div class="mb-2">
+                            <i class="fas fa-dollar-sign text-warning"></i>
+                            <strong>{% trans "الميزانية" %}:</strong>
+                            {{ event.budget }} {% trans "ريال" %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                <i class="fas fa-info-circle fa-2x mb-3"></i>
+                <h5>{% trans "لا توجد فعاليات حالياً" %}</h5>
+                <p class="mb-0">{% trans "سيتم الإعلان عن الفعاليات القادمة قريباً" %}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1">{% trans "الأولى" %}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans "السابقة" %}</a>
+                    </li>
+                    {% endif %}
+
+                    <li class="page-item active">
+                        <span class="page-link">
+                            {% trans "صفحة" %} {{ page_obj.number }} {% trans "من" %} {{ page_obj.paginator.num_pages }}
+                        </span>
+                    </li>
+
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans "التالية" %}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{% trans "الأخيرة" %}</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+

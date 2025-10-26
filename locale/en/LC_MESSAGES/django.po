@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-26 13:04+0300\n"
+"POT-Creation-Date: 2025-10-26 13:32+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,8 +41,8 @@ msgstr "معلومات القسم"
 #: templates/marketing/event_list.html:152
 #: templates/permits/permit_confirm_delete.html:39
 #: templates/permits/permit_list.html:55 templates/permits/permit_list.html:97
-#: templates/tenants/tenant_dashboard.html:199
-#: templates/tenants/tenant_dashboard.html:250
+#: templates/tenants/tenant_dashboard.html:207
+#: templates/tenants/tenant_dashboard.html:258
 #: templates/tenants/tenant_invoices.html:85
 #: templates/tenants/tenant_invoices.html:133
 #: templates/tenants/tenant_profile.html:63
@@ -688,27 +688,27 @@ msgstr "Case Comments"
 msgid "تم إنشاء القضية بنجاح"
 msgstr "تم إنشاء القضية بنجاح"
 
-#: apps/complaints/views.py:112
+#: apps/complaints/views.py:117
 msgid "إنشاء قضية جديدة"
 msgstr "إنشاء قضية جديدة"
 
-#: apps/complaints/views.py:128
+#: apps/complaints/views.py:133
 msgid "ليس لديك صلاحية لتعديل هذه القضية"
 msgstr "ليس لديك صلاحية لتعديل هذه القضية"
 
-#: apps/complaints/views.py:135
+#: apps/complaints/views.py:140
 msgid "تم تحديث القضية بنجاح"
 msgstr "تم تحديث القضية بنجاح"
 
-#: apps/complaints/views.py:143
+#: apps/complaints/views.py:148
 msgid "تعديل القضية"
 msgstr "تعديل القضية"
 
-#: apps/complaints/views.py:159
+#: apps/complaints/views.py:164
 msgid "ليس لديك صلاحية لحذف هذه القضية"
 msgstr "ليس لديك صلاحية لحذف هذه الفعالية"
 
-#: apps/complaints/views.py:164
+#: apps/complaints/views.py:169
 msgid "تم حذف القضية بنجاح"
 msgstr "تم حذف الفعالية بنجاح"
 
@@ -1074,7 +1074,7 @@ msgstr "Cancelled"
 #: templates/finance/invoice_detail.html:43
 #: templates/finance/invoice_list.html:116
 #: templates/finance/payment_list.html:106
-#: templates/tenants/tenant_dashboard.html:248
+#: templates/tenants/tenant_dashboard.html:256
 #: templates/tenants/tenant_invoice_detail.html:83
 #: templates/tenants/tenant_invoices.html:127
 msgid "رقم الفاتورة"
@@ -1147,7 +1147,7 @@ msgstr "Paid Amount"
 #: templates/finance/invoice_list.html:11
 #: templates/finance/invoice_list.html:16
 #: templates/tenants/tenant_dashboard.html:103
-#: templates/tenants/tenant_dashboard.html:171
+#: templates/tenants/tenant_dashboard.html:179
 #: templates/tenants/tenant_invoice_detail.html:54
 #: templates/tenants/tenant_invoices.html:21
 #: templates/tenants/tenant_profile.html:200
@@ -1207,7 +1207,7 @@ msgstr "Payment Number"
 
 #: apps/finance/models.py:273 templates/finance/invoice_detail.html:135
 #: templates/finance/payment_list.html:109
-#: templates/tenants/tenant_dashboard.html:249
+#: templates/tenants/tenant_dashboard.html:257
 #: templates/tenants/tenant_invoice_detail.html:219
 msgid "المبلغ"
 msgstr "المبلغ"
@@ -1388,7 +1388,8 @@ msgid "طلبات الإجازات"
 msgstr "Leave Requests"
 
 #: apps/hr/models.py:66 templates/dashboard/dashboard.html:154
-#: templates/tenants/tenant_dashboard.html:200
+#: templates/marketing/tenant_events_list.html:48
+#: templates/tenants/tenant_dashboard.html:208
 #: templates/tenants/tenant_invoice_detail.html:216
 #: templates/tenants/tenant_invoices.html:128
 msgid "التاريخ"
@@ -1428,7 +1429,7 @@ msgstr "Leave request created successfully"
 msgid "إنشاء طلب إجازة جديد"
 msgstr "Create New Leave Request"
 
-#: apps/hr/views.py:127 apps/maintenance/views.py:132
+#: apps/hr/views.py:127 apps/maintenance/views.py:137
 msgid "ليس لديك صلاحية لتعديل هذا الطلب"
 msgstr "You don't have permission to edit this request"
 
@@ -1444,7 +1445,7 @@ msgstr "تم تحديث طلب الصيانة بنجاح"
 msgid "تعديل طلب الإجازة"
 msgstr "Leave Request Details"
 
-#: apps/hr/views.py:163 apps/maintenance/views.py:163
+#: apps/hr/views.py:163 apps/maintenance/views.py:168
 msgid "ليس لديك صلاحية لحذف هذا الطلب"
 msgstr "ليس لديك صلاحية لحذف هذا التصريح"
 
@@ -1537,19 +1538,19 @@ msgstr "Category"
 msgid "تم إنشاء طلب الصيانة بنجاح"
 msgstr "تم إنشاء طلب الصيانة بنجاح"
 
-#: apps/maintenance/views.py:116
+#: apps/maintenance/views.py:121
 msgid "إنشاء طلب صيانة جديد"
 msgstr "Create New Maintenance Ticket"
 
-#: apps/maintenance/views.py:139
+#: apps/maintenance/views.py:144
 msgid "تم تحديث طلب الصيانة بنجاح"
 msgstr "تم تحديث طلب الصيانة بنجاح"
 
-#: apps/maintenance/views.py:147
+#: apps/maintenance/views.py:152
 msgid "تعديل طلب الصيانة"
 msgstr "تعديل طلب الصيانة"
 
-#: apps/maintenance/views.py:168
+#: apps/maintenance/views.py:173
 msgid "تم حذف طلب الصيانة بنجاح"
 msgstr "تم تحديث طلب الصيانة بنجاح"
 
@@ -1609,10 +1610,12 @@ msgstr "Event Type"
 
 #: apps/marketing/models.py:38 templates/marketing/event_detail.html:87
 #: templates/marketing/event_list.html:150
+#: templates/marketing/tenant_events_list.html:58
 msgid "الموقع"
 msgstr "Location"
 
 #: apps/marketing/models.py:39 templates/marketing/event_detail.html:93
+#: templates/marketing/tenant_events_list.html:74
 msgid "الميزانية"
 msgstr "Budget"
 
@@ -1714,7 +1717,7 @@ msgstr "Receive"
 #: templates/permits/permit_confirm_delete.html:27
 #: templates/permits/permit_detail.html:65
 #: templates/permits/permit_list.html:90
-#: templates/tenants/tenant_dashboard.html:197
+#: templates/tenants/tenant_dashboard.html:205
 msgid "رقم التصريح"
 msgstr "Permit Number"
 
@@ -2202,6 +2205,7 @@ msgstr "Are you sure you want to delete this case? This action cannot be undone!
 "delete this case? This action cannot be undone!Are you sure you want to "
 "delete this case? This action cannot be undone!Are you sure you want to "
 "delete this case? This action cannot be undone!Are you sure you want to "
+"delete this case? This action cannot be undone!Are you sure you want to "
 "delete this case? This action cannot be undone!"
 
 #: templates/complaints/case_confirm_delete.html:30
@@ -2212,7 +2216,7 @@ msgstr "Are you sure you want to delete this case? This action cannot be undone!
 #: templates/marketing/event_detail.html:70
 #: templates/marketing/event_list.html:147
 #: templates/permits/my_pending_approvals.html:46
-#: templates/tenants/tenant_dashboard.html:198
+#: templates/tenants/tenant_dashboard.html:206
 msgid "النوع"
 msgstr "Type"
 
@@ -2405,14 +2409,16 @@ msgstr "Welcome"
 #: templates/dashboard/dashboard.html:44 templates/dashboard/dashboard.html:72
 #: templates/dashboard/dashboard.html:100
 #: templates/dashboard/dashboard.html:128
-#: templates/tenants/tenant_dashboard.html:224
-#: templates/tenants/tenant_dashboard.html:271
+#: templates/tenants/tenant_dashboard.html:232
+#: templates/tenants/tenant_dashboard.html:279
 msgid "عرض الكل"
 msgstr "View All"
 
 #: templates/dashboard/dashboard.html:117
 #: templates/marketing/event_detail.html:19
 #: templates/marketing/event_form.html:20
+#: templates/marketing/tenant_events_list.html:5
+#: templates/tenants/tenant_dashboard.html:171
 msgid "الفعاليات"
 msgstr "Events"
 
@@ -2609,7 +2615,7 @@ msgid "إجراءات"
 msgstr "Actions"
 
 #: templates/finance/invoice_list.html:178
-#: templates/tenants/tenant_dashboard.html:274
+#: templates/tenants/tenant_dashboard.html:282
 #: templates/tenants/tenant_invoices.html:178
 msgid "لا توجد فواتير"
 msgstr "No invoices found"
@@ -2779,6 +2785,7 @@ msgstr "Are you sure you want to delete this ticket? This action cannot be undon
 "Are you sure you want to delete this ticket? This action cannot be undone!"
 "Are you sure you want to delete this ticket? This action cannot be undone!"
 "Are you sure you want to delete this ticket? This action cannot be undone!"
+"Are you sure you want to delete this ticket? This action cannot be undone!"
 
 #: templates/maintenance/ticket_confirm_delete.html:24
 msgid "تفاصيل الطلب"
@@ -2881,6 +2888,7 @@ msgstr "Are you sure you want to delete this event? This action cannot be undone
 "sure you want to delete this event? This action cannot be undone!Are you "
 "sure you want to delete this event? This action cannot be undone!Are you "
 "sure you want to delete this event? This action cannot be undone!Are you "
+"sure you want to delete this event? This action cannot be undone!Are you "
 "sure you want to delete this event? This action cannot be undone!"
 
 #: templates/marketing/event_detail.html:4
@@ -2889,6 +2897,7 @@ msgid "تفاصيل الفعالية"
 msgstr "Event Details"
 
 #: templates/marketing/event_detail.html:94
+#: templates/marketing/tenant_events_list.html:75
 msgid "ريال"
 msgstr "SAR"
 
@@ -2901,8 +2910,9 @@ msgid "بيانات الفعالية"
 msgstr "Event Information"
 
 #: templates/marketing/event_list.html:4
+#: templates/marketing/tenant_events_list.html:13
 msgid "الفعاليات والأنشطة"
-msgstr "الفعاليات والأنشطة"
+msgstr "Events and Activities"
 
 #: templates/marketing/event_list.html:13
 msgid "إدارة الفعاليات والأنشطة"
@@ -2924,6 +2934,54 @@ msgstr "هل أنت متأكد من الحذف؟"
 #: templates/marketing/event_list.html:239
 msgid "لا توجد فعاليات"
 msgstr "لا توجد فعاليات"
+
+#: templates/marketing/tenant_events_list.html:66
+#, fuzzy
+#| msgid "المبلغ المستحق"
+msgid "الجمهور المستهدف"
+msgstr "Balance Due"
+
+#: templates/marketing/tenant_events_list.html:86
+#, fuzzy
+#| msgid "لا توجد فعاليات"
+msgid "لا توجد فعاليات حالياً"
+msgstr "لا توجد فعاليات"
+
+#: templates/marketing/tenant_events_list.html:87
+#, fuzzy
+#| msgid "سيتم تحديث حالة الفاتورة تلقائياً"
+msgid "سيتم الإعلان عن الفعاليات القادمة قريباً"
+msgstr "سيتم تحديث حالة الفاتورة تلقائياً"
+
+#: templates/marketing/tenant_events_list.html:101
+#: templates/permits/permit_list.html:175
+msgid "الأولى"
+msgstr "الأولى"
+
+#: templates/marketing/tenant_events_list.html:104
+#: templates/permits/permit_list.html:178
+msgid "السابقة"
+msgstr "السابقة"
+
+#: templates/marketing/tenant_events_list.html:110
+#: templates/permits/permit_list.html:184
+msgid "صفحة"
+msgstr "صفحة"
+
+#: templates/marketing/tenant_events_list.html:110
+#: templates/permits/permit_list.html:184
+msgid "من"
+msgstr "من"
+
+#: templates/marketing/tenant_events_list.html:116
+#: templates/permits/permit_list.html:190
+msgid "التالية"
+msgstr "التالية"
+
+#: templates/marketing/tenant_events_list.html:119
+#: templates/permits/permit_list.html:193
+msgid "الأخيرة"
+msgstr "الأخيرة"
 
 #: templates/permits/my_pending_approvals.html:18
 msgid "الطلبات التي تحتاج موافقتك"
@@ -3104,33 +3162,9 @@ msgid "صادر"
 msgstr "Outgoing"
 
 #: templates/permits/permit_list.html:161
-#: templates/tenants/tenant_dashboard.html:227
+#: templates/tenants/tenant_dashboard.html:235
 msgid "لا توجد تصاريح"
 msgstr "No permits found"
-
-#: templates/permits/permit_list.html:175
-msgid "الأولى"
-msgstr "الأولى"
-
-#: templates/permits/permit_list.html:178
-msgid "السابقة"
-msgstr "السابقة"
-
-#: templates/permits/permit_list.html:184
-msgid "صفحة"
-msgstr "صفحة"
-
-#: templates/permits/permit_list.html:184
-msgid "من"
-msgstr "من"
-
-#: templates/permits/permit_list.html:190
-msgid "التالية"
-msgstr "التالية"
-
-#: templates/permits/permit_list.html:193
-msgid "الأخيرة"
-msgstr "الأخيرة"
 
 #: templates/tenants/tenant_dashboard.html:5
 #: templates/tenants/tenant_dashboard.html:14
@@ -3149,15 +3183,15 @@ msgstr "تذاكر الصيانة"
 msgid "غير مدفوعة"
 msgstr "Unpaid"
 
-#: templates/tenants/tenant_dashboard.html:188
+#: templates/tenants/tenant_dashboard.html:196
 msgid "آخر التصاريح"
 msgstr "Recent Permits"
 
-#: templates/tenants/tenant_dashboard.html:239
+#: templates/tenants/tenant_dashboard.html:247
 msgid "آخر الفواتير"
 msgstr "Recent Invoices"
 
-#: templates/tenants/tenant_dashboard.html:251
+#: templates/tenants/tenant_dashboard.html:259
 msgid "الاستحقاق"
 msgstr "Due"
 

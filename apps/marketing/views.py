@@ -205,3 +205,44 @@ def event_export(request):
     response['Content-Disposition'] = 'attachment; filename="events_export.xlsx"'
 
     return response
+
+
+@login_required
+def tenant_events_list(request):
+    """
+    عرض الفعاليات للمستأجرين - Tenant Events List
+    (Read-only view for tenants)
+    """
+    # Show only active and upcoming events
+    events = Event.objects.filter(
+        status__in=['active', 'draft']
+    ).select_related(
+        'created_by', 'responsible_person'
+    ).order_by('-start_date')
+
+    # Filters
+    event_type = request.GET.get('event_type')
+    search = request.GET.get('search')
+
+    if event_type:
+        events = events.filter(event_type=event_type)
+    if search:
+        events = events.filter(
+            Q(title__icontains=search) |
+            Q(description__icontains=search) |
+            Q(location__icontains=search)
+        )
+
+    # Pagination
+    paginator = Paginator(events, 12)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'events': page_obj,
+        'page_obj': page_obj,
+        'is_paginated': page_obj.has_other_pages(),
+        'is_tenant_view': True,
+    }
+
+    return render(request, 'marketing/tenant_events_list.html', context)

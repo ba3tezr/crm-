@@ -19,6 +19,8 @@ translations = {
     "لوحة المستأجر": "Tenant Dashboard",
     "ملفي الشخصي": "My Profile",
     "فواتيري": "My Invoices",
+    "الفعاليات": "Events",
+    "الفعاليات والأنشطة": "Events and Activities",
     
     # Common Actions
     "إنشاء": "Create",
@@ -37,6 +39,14 @@ translations = {
     "إجراءات": "Actions",
     "إضافة": "Add",
     "موافقة": "Approve",
+    "إجراءات سريعة": "Quick Actions",
+    "لا توجد فعاليات حالياً": "No events currently available",
+    "سيتم الإعلان عن الفعاليات القادمة قريباً": "Upcoming events will be announced soon",
+    "الجمهور المستهدف": "Target Audience",
+    "الميزانية": "Budget",
+    "ريال": "SAR",
+    "التاريخ": "Date",
+    "الموقع": "Location",
     
     # Status
     "الحالة": "Status",

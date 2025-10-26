@@ -95,10 +95,10 @@ def ticket_detail(request, pk):
 
 
 @login_required
-@staff_required
 def ticket_create(request):
     """
     إنشاء طلب صيانة جديد - Create Ticket
+    (Available for both staff and tenants)
     """
     if request.method == 'POST':
         form = TicketForm(request.POST)
@@ -107,7 +107,12 @@ def ticket_create(request):
             ticket.created_by = request.user
             ticket.save()
             messages.success(request, _('تم إنشاء طلب الصيانة بنجاح'))
-            return redirect('maintenance:ticket_detail', pk=ticket.pk)
+
+            # Redirect based on user type
+            if hasattr(request.user, 'tenant_profile'):
+                return redirect('accounts:tenant_dashboard')
+            else:
+                return redirect('maintenance:ticket_detail', pk=ticket.pk)
     else:
         form = TicketForm()
 
