@@ -217,7 +217,7 @@ def tenant_permit_create(request):
         return redirect('core:dashboard')
 
     if request.method == 'POST':
-        form = PermitForm(request.POST, request.FILES)
+        form = PermitForm(request.POST, request.FILES, is_tenant=True)
         if form.is_valid():
             permit = form.save(commit=False)
             permit.tenant = request.user
@@ -226,7 +226,7 @@ def tenant_permit_create(request):
             messages.success(request, _('تم إنشاء التصريح بنجاح'))
             return redirect('accounts:tenant_permits')
     else:
-        form = PermitForm()
+        form = PermitForm(is_tenant=True)
 
     context = {
         'form': form,
@@ -234,3 +234,60 @@ def tenant_permit_create(request):
     }
 
     return render(request, 'tenants/tenant_permit_create.html', context)
+
+
+@login_required
+def tenant_permit_detail(request, pk):
+    """
+    تفاصيل التصريح للمستأجر - Tenant Permit Detail
+    """
+    # Check if user is a tenant
+    try:
+        tenant_profile = request.user.tenant_profile
+    except:
+        messages.error(request, _('ليس لديك صلاحية الوصول لهذه الصفحة'))
+        return redirect('core:dashboard')
+
+    # Get permit and ensure it belongs to this tenant
+    permit = get_object_or_404(Permit, pk=pk, tenant=request.user)
+
+    context = {
+        'permit': permit,
+        'tenant_profile': tenant_profile,
+    }
+
+    return render(request, 'tenants/tenant_permit_detail.html', context)
+
+
+@login_required
+def tenant_permit_delete(request, pk):
+    """
+    حذف التصريح للمستأجر - Tenant Permit Delete
+    يمكن للمستأجر حذف التصاريح التي في حالة pending فقط
+    """
+    # Check if user is a tenant
+    try:
+        tenant_profile = request.user.tenant_profile
+    except:
+        messages.error(request, _('ليس لديك صلاحية الوصول لهذه الصفحة'))
+        return redirect('core:dashboard')
+
+    # Get permit and ensure it belongs to this tenant
+    permit = get_object_or_404(Permit, pk=pk, tenant=request.user)
+
+    # Only allow deletion of pending permits
+    if permit.status != 'pending':
+        messages.error(request, _('لا يمكن حذف التصريح بعد بدء المراجعة'))
+        return redirect('accounts:tenant_permit_detail', pk=pk)
+
+    if request.method == 'POST':
+        permit.delete()
+        messages.success(request, _('تم حذف التصريح بنجاح'))
+        return redirect('accounts:tenant_permits')
+
+    context = {
+        'permit': permit,
+        'tenant_profile': tenant_profile,
+    }
+
+    return render(request, 'tenants/tenant_permit_delete.html', context)

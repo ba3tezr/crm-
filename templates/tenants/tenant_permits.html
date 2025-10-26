@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "تصاريحي" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+            <i class="fas fa-file-alt text-primary"></i>
+            {% trans "تصاريحي" %}
+        </h1>
+        <a href="{% url 'accounts:tenant_permit_create' %}" class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+            {% trans "تصريح جديد" %}
+        </a>
+    </div>
+
+    <!-- Permits List -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                {% trans "قائمة التصاريح" %}
+            </h6>
+        </div>
+        <div class="card-body">
+            {% if permits %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>{% trans "رقم التصريح" %}</th>
+                            <th>{% trans "النوع" %}</th>
+                            <th>{% trans "العنوان" %}</th>
+                            <th>{% trans "الحالة" %}</th>
+                            <th>{% trans "تاريخ البدء" %}</th>
+                            <th>{% trans "تاريخ الانتهاء" %}</th>
+                            <th>{% trans "الإجراءات" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for permit in permits %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'accounts:tenant_permit_detail' permit.pk %}">
+                                    {{ permit.permit_number }}
+                                </a>
+                            </td>
+                            <td>{{ permit.get_permit_type_display }}</td>
+                            <td>{{ permit.title|truncatewords:5 }}</td>
+                            <td>
+                                <span class="badge 
+                                    {% if permit.status == 'approved' %}badge-success
+                                    {% elif permit.status == 'rejected' %}badge-danger
+                                    {% elif permit.status == 'pending' %}badge-warning
+                                    {% else %}badge-secondary
+                                    {% endif %}">
+                                    {{ permit.get_status_display }}
+                                </span>
+                            </td>
+                            <td>{{ permit.start_date|date:"Y-m-d" }}</td>
+                            <td>{{ permit.end_date|date:"Y-m-d" }}</td>
+                            <td>
+                                <a href="{% url 'accounts:tenant_permit_detail' permit.pk %}" 
+                                   class="btn btn-sm btn-info" title="{% trans 'عرض' %}">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                {% if permit.status == 'pending' %}
+                                <a href="{% url 'accounts:tenant_permit_delete' permit.pk %}" 
+                                   class="btn btn-sm btn-danger" title="{% trans 'حذف' %}">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="text-center text-muted py-5">
+                <i class="fas fa-inbox fa-3x mb-3"></i>
+                <p>{% trans "لا توجد تصاريح" %}</p>
+                <a href="{% url 'accounts:tenant_permit_create' %}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    {% trans "إنشاء تصريح جديد" %}
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -11,8 +11,14 @@ urlpatterns = [
     # Tenant URLs
     path('dashboard/', views.tenant_dashboard, name='tenant_dashboard'),
     path('profile/', views.tenant_profile, name='tenant_profile'),
+
+    # Permits
     path('permits/', views.tenant_permits, name='tenant_permits'),
     path('permits/create/', views.tenant_permit_create, name='tenant_permit_create'),
+    path('permits/<int:pk>/', views.tenant_permit_detail, name='tenant_permit_detail'),
+    path('permits/<int:pk>/delete/', views.tenant_permit_delete, name='tenant_permit_delete'),
+
+    # Invoices
     path('invoices/', views.tenant_invoices, name='tenant_invoices'),
     path('invoices/<int:pk>/', views.tenant_invoice_detail, name='tenant_invoice_detail'),
     path('invoices/<int:pk>/print/', views.tenant_invoice_print, name='tenant_invoice_print'),

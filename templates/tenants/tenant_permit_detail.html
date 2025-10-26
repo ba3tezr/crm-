@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ permit.permit_number }} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+            <i class="fas fa-file-alt text-primary"></i>
+            {% trans "تفاصيل التصريح" %}: {{ permit.permit_number }}
+        </h1>
+        <div>
+            {% if permit.status == 'pending' %}
+            <a href="{% url 'accounts:tenant_permit_delete' permit.pk %}" class="btn btn-danger">
+                <i class="fas fa-trash"></i>
+                {% trans "حذف" %}
+            </a>
+            {% endif %}
+            <a href="{% url 'accounts:tenant_permits' %}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i>
+                {% trans "رجوع" %}
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Main Info -->
+        <div class="col-lg-8">
+            <!-- Basic Info -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        {% trans "المعلومات الأساسية" %}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong>{% trans "رقم التصريح" %}:</strong>
+                            <p>{{ permit.permit_number }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>{% trans "الحالة" %}:</strong>
+                            <p>
+                                <span class="badge 
+                                    {% if permit.status == 'approved' %}badge-success
+                                    {% elif permit.status == 'rejected' %}badge-danger
+                                    {% elif permit.status == 'pending' %}badge-warning
+                                    {% else %}badge-secondary
+                                    {% endif %}">
+                                    {{ permit.get_status_display }}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong>{% trans "نوع التصريح" %}:</strong>
+                            <p>{{ permit.get_permit_type_display }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>{% trans "الاتجاه" %}:</strong>
+                            <p>{{ permit.get_direction_display }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <strong>{% trans "العنوان" %}:</strong>
+                            <p>{{ permit.title }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <strong>{% trans "الوصف" %}:</strong>
+                            <p>{{ permit.description|linebreaks }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dates -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        {% trans "التواريخ" %}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong>{% trans "تاريخ البدء" %}:</strong>
+                            <p>{{ permit.start_date|date:"Y-m-d" }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>{% trans "تاريخ الانتهاء" %}:</strong>
+                            <p>{{ permit.end_date|date:"Y-m-d" }}</p>
+                        </div>
+                    </div>
+
+                    {% if permit.requested_date %}
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong>{% trans "تاريخ الطلب" %}:</strong>
+                            <p>{{ permit.requested_date|date:"Y-m-d" }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            {% if permit.company_name or permit.contact_person or permit.contact_phone %}
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        {% trans "معلومات الاتصال" %}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    {% if permit.company_name %}
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <strong>{% trans "اسم الشركة" %}:</strong>
+                            <p>{{ permit.company_name }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="row mb-3">
+                        {% if permit.contact_person %}
+                        <div class="col-md-6">
+                            <strong>{% trans "الشخص المسؤول" %}:</strong>
+                            <p>{{ permit.contact_person }}</p>
+                        </div>
+                        {% endif %}
+                        {% if permit.contact_phone %}
+                        <div class="col-md-6">
+                            <strong>{% trans "رقم الهاتف" %}:</strong>
+                            <p>{{ permit.contact_phone }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Notes -->
+            {% if permit.notes %}
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        {% trans "ملاحظات" %}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <p>{{ permit.notes|linebreaks }}</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <!-- Status Card -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-info">
+                        <i class="fas fa-info-circle"></i>
+                        {% trans "حالة التصريح" %}
+                    </h6>
+                </div>
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <span class="badge badge-lg 
+                            {% if permit.status == 'approved' %}badge-success
+                            {% elif permit.status == 'rejected' %}badge-danger
+                            {% elif permit.status == 'pending' %}badge-warning
+                            {% else %}badge-secondary
+                            {% endif %}" style="font-size: 1.2rem; padding: 10px 20px;">
+                            {{ permit.get_status_display }}
+                        </span>
+                    </div>
+
+                    {% if permit.status == 'pending' %}
+                    <p class="text-muted small">
+                        {% trans "التصريح قيد المراجعة من قبل الإدارة" %}
+                    </p>
+                    {% elif permit.status == 'approved' %}
+                    <p class="text-success small">
+                        {% trans "تمت الموافقة على التصريح" %}
+                    </p>
+                    {% elif permit.status == 'rejected' %}
+                    <p class="text-danger small">
+                        {% trans "تم رفض التصريح" %}
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-info">
+                        <i class="fas fa-clock"></i>
+                        {% trans "التواريخ المهمة" %}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <i class="fas fa-calendar-plus text-primary"></i>
+                            <strong>{% trans "تاريخ الإنشاء" %}:</strong><br>
+                            <small>{{ permit.created_at|date:"Y-m-d H:i" }}</small>
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-calendar-check text-success"></i>
+                            <strong>{% trans "تاريخ البدء" %}:</strong><br>
+                            <small>{{ permit.start_date|date:"Y-m-d" }}</small>
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-calendar-times text-danger"></i>
+                            <strong>{% trans "تاريخ الانتهاء" %}:</strong><br>
+                            <small>{{ permit.end_date|date:"Y-m-d" }}</small>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            {% if permit.status == 'pending' %}
+            <div class="card shadow mb-4 border-left-danger">
+                <div class="card-body">
+                    <h6 class="text-danger">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        {% trans "إجراءات" %}
+                    </h6>
+                    <p class="small text-muted">
+                        {% trans "يمكنك حذف التصريح طالما أنه في حالة الانتظار" %}
+                    </p>
+                    <a href="{% url 'accounts:tenant_permit_delete' permit.pk %}" 
+                       class="btn btn-danger btn-block">
+                        <i class="fas fa-trash"></i>
+                        {% trans "حذف التصريح" %}
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+

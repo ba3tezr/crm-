@@ -51,88 +51,96 @@
     <div class="row mb-4">
         <!-- Permits -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                {% trans "التصاريح" %}
+            <a href="{% url 'accounts:tenant_permits' %}" class="text-decoration-none">
+                <div class="card border-left-primary shadow h-100 py-2 hover-card">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    {% trans "التصاريح" %}
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ stats.total_permits }}</div>
+                                <div class="text-xs text-muted">
+                                    {% trans "قيد الانتظار" %}: {{ stats.pending_permits }}
+                                </div>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ stats.total_permits }}</div>
-                            <div class="text-xs text-muted">
-                                {% trans "قيد الانتظار" %}: {{ stats.pending_permits }}
+                            <div class="col-auto">
+                                <i class="fas fa-file-alt fa-2x text-gray-300"></i>
                             </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-file-alt fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <!-- Tickets -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                {% trans "تذاكر الصيانة" %}
+            <a href="#" class="text-decoration-none">
+                <div class="card border-left-warning shadow h-100 py-2 hover-card">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                    {% trans "تذاكر الصيانة" %}
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ stats.total_tickets }}</div>
+                                <div class="text-xs text-muted">
+                                    {% trans "مفتوحة" %}: {{ stats.open_tickets }}
+                                </div>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ stats.total_tickets }}</div>
-                            <div class="text-xs text-muted">
-                                {% trans "مفتوحة" %}: {{ stats.open_tickets }}
+                            <div class="col-auto">
+                                <i class="fas fa-tools fa-2x text-gray-300"></i>
                             </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-tools fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <!-- Invoices -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                {% trans "الفواتير" %}
+            <a href="{% url 'accounts:tenant_invoices' %}" class="text-decoration-none">
+                <div class="card border-left-success shadow h-100 py-2 hover-card">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    {% trans "الفواتير" %}
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ stats.total_invoices }}</div>
+                                <div class="text-xs">
+                                    <span class="text-success">{% trans "مدفوعة" %}: {{ stats.paid_invoices }}</span> |
+                                    <span class="text-danger">{% trans "غير مدفوعة" %}: {{ stats.unpaid_invoices }}</span>
+                                </div>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ stats.total_invoices }}</div>
-                            <div class="text-xs">
-                                <span class="text-success">{% trans "مدفوعة" %}: {{ stats.paid_invoices }}</span> |
-                                <span class="text-danger">{% trans "غير مدفوعة" %}: {{ stats.unpaid_invoices }}</span>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                             </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <!-- Cases -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                {% trans "الشكاوى والقضايا" %}
+            <a href="#" class="text-decoration-none">
+                <div class="card border-left-info shadow h-100 py-2 hover-card">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                    {% trans "الشكاوى والقضايا" %}
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ stats.total_cases }}</div>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ stats.total_cases }}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                            <div class="col-auto">
+                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 
