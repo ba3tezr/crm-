@@ -227,7 +227,12 @@
                                         </td>
                                         <td>{{ permit.get_permit_type_display }}</td>
                                         <td>
-                                            <span class="badge badge-{{ permit.status }}">
+                                            <span class="badge
+                                                {% if permit.status == 'approved' %}bg-success text-white
+                                                {% elif permit.status == 'rejected' %}bg-danger text-white
+                                                {% elif permit.status == 'pending' %}bg-warning text-dark
+                                                {% else %}bg-secondary text-white
+                                                {% endif %}">
                                                 {{ permit.get_status_display }}
                                             </span>
                                         </td>
@@ -278,7 +283,12 @@
                                         </td>
                                         <td>{{ invoice.total_amount|currency }}</td>
                                         <td>
-                                            <span class="badge badge-{{ invoice.status }}">
+                                            <span class="badge
+                                                {% if invoice.status == 'paid' %}bg-success text-white
+                                                {% elif invoice.status == 'cancelled' %}bg-danger text-white
+                                                {% elif invoice.status == 'pending' or invoice.status == 'overdue' %}bg-warning text-dark
+                                                {% else %}bg-secondary text-white
+                                                {% endif %}">
                                                 {{ invoice.get_status_display }}
                                             </span>
                                         </td>

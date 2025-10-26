@@ -48,10 +48,10 @@
                             <strong>{% trans "الحالة" %}:</strong>
                             <p>
                                 <span class="badge
-                                    {% if task.status == 'completed' %}badge-success
+                                    {% if task.status == 'completed' %}bg-success text-white
                                     {% elif task.status == 'in_progress' %}bg-info text-dark
                                     {% elif task.status == 'pending' %}bg-warning text-dark
-                                    {% else %}badge-secondary
+                                    {% else %}bg-secondary text-white
                                     {% endif %}" style="font-size: 0.95rem; padding: 6px 12px;">
                                     {% if task.status == 'completed' %}
                                         <i class="fas fa-check-circle"></i>
@@ -70,10 +70,10 @@
                             <strong>{% trans "الأولوية" %}:</strong>
                             <p>
                                 <span class="badge
-                                    {% if task.priority == 'urgent' %}badge-danger
+                                    {% if task.priority == 'urgent' %}bg-danger text-white
                                     {% elif task.priority == 'high' %}bg-warning text-dark
                                     {% elif task.priority == 'medium' %}bg-info text-dark
-                                    {% else %}badge-secondary
+                                    {% else %}bg-secondary text-white
                                     {% endif %}" style="font-size: 0.95rem; padding: 6px 12px;">
                                     <i class="fas fa-exclamation-circle"></i>
                                     {{ task.get_priority_display }}

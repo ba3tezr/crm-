@@ -52,7 +52,12 @@
                             <tr>
                                 <th>{% trans "الحالة" %}</th>
                                 <td>
-                                    <span class="badge badge-{{ permit.status }}">
+                                    <span class="badge
+                                        {% if permit.status == 'approved' %}bg-success text-white
+                                        {% elif permit.status == 'rejected' %}bg-danger text-white
+                                        {% elif permit.status == 'pending' %}bg-warning text-dark
+                                        {% else %}bg-secondary text-white
+                                        {% endif %}">
                                         {{ permit.get_status_display }}
                                     </span>
                                 </td>

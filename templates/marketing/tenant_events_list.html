@@ -31,7 +31,13 @@
                         <span class="badge bg-info text-dark">
                             {{ event.get_event_type_display }}
                         </span>
-                        <span class="badge badge-{{ event.status }}">
+                        <span class="badge
+                            {% if event.status == 'completed' %}bg-success text-white
+                            {% elif event.status == 'cancelled' %}bg-danger text-white
+                            {% elif event.status == 'upcoming' %}bg-primary text-white
+                            {% elif event.status == 'ongoing' %}bg-warning text-dark
+                            {% else %}bg-secondary text-white
+                            {% endif %}">
                             {{ event.get_status_display }}
                         </span>
                     </div>

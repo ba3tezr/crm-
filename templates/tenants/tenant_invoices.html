@@ -152,7 +152,12 @@
                                         {% endwith %}
                                     </td>
                                     <td>
-                                        <span class="badge badge-{{ invoice.status }}">
+                                        <span class="badge
+                                            {% if invoice.status == 'paid' %}bg-success text-white
+                                            {% elif invoice.status == 'cancelled' %}bg-danger text-white
+                                            {% elif invoice.status == 'pending' or invoice.status == 'overdue' %}bg-warning text-dark
+                                            {% else %}bg-secondary text-white
+                                            {% endif %}">
                                             {{ invoice.get_status_display }}
                                         </span>
                                     </td>

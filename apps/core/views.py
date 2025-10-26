@@ -40,6 +40,50 @@ def dashboard(request):
     events_count = Event.objects.count()
     events_active = Event.objects.filter(status='active').count()
 
+    # Get recent activities
+    recent_permits = Permit.objects.select_related('tenant').order_by('-created_at')[:5]
+    recent_tickets = Ticket.objects.select_related('created_by').order_by('-created_at')[:5]
+    recent_cases = Case.objects.select_related('created_by').order_by('-created_at')[:5]
+
+    # Combine and sort all activities by date
+    activities = []
+    
+    for permit in recent_permits:
+        activities.append({
+            'type': 'permit',
+            'type_display': _('تصريح'),
+            'title': permit.permit_number,
+            'status': permit.status,
+            'status_display': permit.get_status_display(),
+            'date': permit.created_at,
+            'url': f'/permits/detail/{permit.pk}/',
+        })
+    
+    for ticket in recent_tickets:
+        activities.append({
+            'type': 'ticket',
+            'type_display': _('صيانة'),
+            'title': ticket.ticket_number,
+            'status': ticket.status,
+            'status_display': ticket.get_status_display(),
+            'date': ticket.created_at,
+            'url': f'/maintenance/ticket/{ticket.pk}/',
+        })
+    
+    for case in recent_cases:
+        activities.append({
+            'type': 'case',
+            'type_display': _('شكوى'),
+            'title': case.case_number,
+            'status': case.status,
+            'status_display': case.get_status_display(),
+            'date': case.created_at,
+            'url': f'/complaints/case/{case.pk}/',
+        })
+    
+    # Sort by date (newest first) and limit to 10
+    activities = sorted(activities, key=lambda x: x['date'], reverse=True)[:10]
+
     context = {
         'permits_count': permits_count,
         'permits_pending': permits_pending,
@@ -49,6 +93,7 @@ def dashboard(request):
         'cases_review': cases_review,
         'events_count': events_count,
         'events_active': events_active,
+        'recent_activities': activities,
     }
 
     return render(request, 'dashboard/dashboard.html', context)
