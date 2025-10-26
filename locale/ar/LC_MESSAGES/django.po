@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-26 15:37+0300\n"
+"POT-Creation-Date: 2025-10-26 15:40+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-
 #: apps/accounts/admin.py:19
 msgid "معلومات القسم"
 msgstr "معلومات القسم"
@@ -116,16 +116,12 @@ msgid "الحالة والملاحظات"
 msgstr "الحالة والملاحظات"
 
 #: apps/accounts/admin.py:135
-#, fuzzy
-#| msgid "المستخدمون"
 msgid "المستخدم والمديول"
-msgstr "المستخدمون"
+msgstr "المستخدم والمديول"
 
 #: apps/accounts/admin.py:140
-#, fuzzy
-#| msgid "الموافقات المعلقة"
 msgid "اختر الصلاحيات المطلوبة"
-msgstr "معلومات الموافقة"
+msgstr "اختر الصلاحيات المطلوبة"
 
 #: apps/accounts/admin.py:156 apps/accounts/forms.py:27
 #: templates/complaints/case_list.html:202
@@ -142,10 +138,8 @@ msgid "عرض"
 msgstr "عرض"
 
 #: apps/accounts/admin.py:157 apps/accounts/forms.py:28
-#, fuzzy
-#| msgid "إضافة تعليق"
 msgid "إضافة"
-msgstr "إضافة تعليق"
+msgstr "إضافة"
 
 #: apps/accounts/admin.py:158 apps/accounts/forms.py:29
 #: templates/complaints/case_detail.html:27
@@ -179,10 +173,8 @@ msgid "حذف"
 msgstr "حذف"
 
 #: apps/accounts/admin.py:160 apps/accounts/forms.py:31
-#, fuzzy
-#| msgid "تصدير Excel"
 msgid "تصدير"
-msgstr "تصدير Excel"
+msgstr "تصدير"
 
 #: apps/accounts/admin.py:161 apps/accounts/forms.py:32
 #: templates/hr/leave_request_detail.html:28
@@ -233,10 +225,8 @@ msgid "المالية"
 msgstr "المالية"
 
 #: apps/accounts/forms.py:37 apps/accounts/models.py:324
-#, fuzzy
-#| msgid "المدفوع"
 msgid "المديول"
-msgstr "مدفوعة"
+msgstr "المديول"
 
 #: apps/accounts/models.py:12
 msgid "العمليات - Operations"
@@ -531,16 +521,12 @@ msgid "ملفات المستأجرين"
 msgstr "ملفات المستأجرين"
 
 #: apps/accounts/models.py:297
-#, fuzzy
-#| msgid "التصاريح"
 msgid "التصاريح - Permits"
-msgstr "التصاريح"
+msgstr "التصاريح - Permits"
 
 #: apps/accounts/models.py:299
-#, fuzzy
-#| msgid "الشكاوى"
 msgid "الشكاوى - Complaints"
-msgstr "الشكاوى"
+msgstr "الشكاوى - Complaints"
 
 #: apps/accounts/models.py:306
 msgid "عرض - View"
@@ -551,42 +537,32 @@ msgid "إضافة - Add"
 msgstr "إضافة - Add"
 
 #: apps/accounts/models.py:308
-#, fuzzy
-#| msgid "تعديل"
 msgid "تعديل - Change"
-msgstr "تعديل"
+msgstr "تعديل - Change"
 
 #: apps/accounts/models.py:309
 msgid "حذف - Delete"
 msgstr "حذف - Delete"
 
 #: apps/accounts/models.py:310
-#, fuzzy
-#| msgid "تصدير Excel"
 msgid "تصدير - Export"
-msgstr "تصدير Excel"
+msgstr "تصدير - Export"
 
 #: apps/accounts/models.py:311
-#, fuzzy
-#| msgid "موافق - Approved"
 msgid "موافقة - Approve"
-msgstr "موافق - Approved"
+msgstr "موافقة - Approve"
 
 #: apps/accounts/models.py:330
 msgid "قائمة الصلاحيات: view, add, change, delete, export, approve"
 msgstr "قائمة الصلاحيات: view, add, change, delete, export, approve"
 
 #: apps/accounts/models.py:348
-#, fuzzy
-#| msgid "اسم القسم"
 msgid "صلاحية القسم"
-msgstr "اسم القسم"
+msgstr "صلاحية القسم"
 
 #: apps/accounts/models.py:349
-#, fuzzy
-#| msgid "مدراء الأقسام"
 msgid "صلاحيات الأقسام"
-msgstr "الأقسام"
+msgstr "صلاحيات الأقسام"
 
 #: apps/accounts/views.py:33 apps/accounts/views.py:83
 #: apps/accounts/views.py:101 apps/accounts/views.py:131
@@ -600,10 +576,8 @@ msgid "ليس لديك صلاحية الوصول لهذه الصفحة"
 msgstr "ليس لديك صلاحية الوصول لهذه الصفحة"
 
 #: apps/accounts/views.py:259
-#, fuzzy
-#| msgid "تم إنشاء التصريح بنجاح"
 msgid "تم إنشاء التصريح بنجاح وإرساله للموافقة"
-msgstr "تم إنشاء التصريح بنجاح"
+msgstr "تم إنشاء التصريح بنجاح وإرساله للموافقة"
 
 #: apps/accounts/views.py:262
 msgid ""
@@ -612,32 +586,24 @@ msgid ""
 msgstr ""
 
 #: apps/accounts/views.py:317
-#, fuzzy
-#| msgid "تم حذف التصريح بنجاح"
 msgid "لا يمكن حذف التصريح بعد بدء المراجعة"
-msgstr "تم حذف التصريح بنجاح"
+msgstr "لا يمكن حذف التصريح بعد بدء المراجعة"
 
 #: apps/accounts/views.py:322 apps/permits/views.py:172
 msgid "تم حذف التصريح بنجاح"
 msgstr "تم حذف التصريح بنجاح"
 
 #: apps/accounts/views.py:383
-#, fuzzy
-#| msgid "تم إنشاء طلب الصيانة بنجاح"
 msgid "تم إنشاء تذكرة الصيانة بنجاح"
-msgstr "تم إنشاء طلب الصيانة بنجاح"
+msgstr "تم إنشاء تذكرة الصيانة بنجاح"
 
 #: apps/accounts/views.py:469
-#, fuzzy
-#| msgid "تم إنشاء القضية بنجاح"
 msgid "تم إنشاء الشكوى بنجاح"
-msgstr "تم إنشاء القضية بنجاح"
+msgstr "تم إنشاء الشكوى بنجاح"
 
 #: apps/complaints/forms.py:70
-#, fuzzy
-#| msgid "إدارة الشكاوى"
 msgid "إرسال الشكوى"
-msgstr "إدارة الشكاوى"
+msgstr "إرسال الشكوى"
 
 #: apps/complaints/forms.py:121 apps/finance/forms.py:47
 #: apps/finance/forms.py:108 apps/hr/forms.py:82 apps/hr/forms.py:201
@@ -857,11 +823,11 @@ msgstr "تعديل القضية"
 
 #: apps/complaints/views.py:164
 msgid "ليس لديك صلاحية لحذف هذه القضية"
-msgstr "ليس لديك صلاحية لحذف هذه الفعالية"
+msgstr "ليس لديك صلاحية لحذف هذه القضية"
 
 #: apps/complaints/views.py:169
 msgid "تم حذف القضية بنجاح"
-msgstr "تم حذف الفعالية بنجاح"
+msgstr "تم حذف القضية بنجاح"
 
 #: apps/core/admin.py:14 templates/complaints/case_detail.html:115
 #: templates/hr/leave_request_detail.html:130
@@ -998,7 +964,7 @@ msgstr "رمز العملة"
 
 #: apps/core/models.py:122
 msgid "Currency symbol (e.g., $, €, £, E£) - Always in English"
-msgstr "Currency symbol (e.g., $, €, £) - Always in English"
+msgstr "Currency symbol (e.g., $, €, £, E£) - Always in English"
 
 #: apps/core/models.py:136
 msgid "تنسيق التاريخ"
@@ -1016,7 +982,7 @@ msgstr "إعدادات النظام"
 #: templates/tenants/tenant_permit_create.html:63
 #: templates/tenants/tenant_ticket_create.html:63
 msgid "معلومات"
-msgstr "معلومات القسم"
+msgstr "معلومات"
 
 #: apps/core/models.py:181
 msgid "نجاح"
@@ -1028,7 +994,7 @@ msgstr "تحذير"
 
 #: apps/core/models.py:183
 msgid "خطأ"
-msgstr "مخطط"
+msgstr "خطأ"
 
 #: apps/core/models.py:184
 msgid "تصريح"
@@ -1051,19 +1017,19 @@ msgstr "صيانة"
 
 #: apps/core/models.py:189
 msgid "فعالية"
-msgstr "عالية"
+msgstr "فعالية"
 
 #: apps/core/models.py:190
 msgid "إجازة"
-msgstr "طلب إجازة"
+msgstr "إجازة"
 
 #: apps/core/models.py:206
 msgid "الرسالة"
-msgstr "إرسال"
+msgstr "الرسالة"
 
 #: apps/core/models.py:213
 msgid "نوع الإشعار"
-msgstr "نوع الإجازة"
+msgstr "نوع الإشعار"
 
 #: apps/core/models.py:218 templates/core/notification_list.html:81
 msgid "مقروء"
@@ -1075,11 +1041,11 @@ msgstr "الرابط"
 
 #: apps/core/models.py:226
 msgid "رابط للصفحة المتعلقة بالإشعار"
-msgstr "الطلب ليس في حالة الانتظار"
+msgstr "رابط للصفحة المتعلقة بالإشعار"
 
 #: apps/core/models.py:235
 msgid "الإشعار"
-msgstr "الإشعارات"
+msgstr "الإشعار"
 
 #: apps/core/models.py:236 templates/base.html:281
 #: templates/core/notification_list.html:5
@@ -1094,7 +1060,7 @@ msgstr "تم تعليم جميع الإشعارات كمقروءة"
 
 #: apps/core/views.py:140
 msgid "غير مصرح لك بهذا الإجراء"
-msgstr "إدارة طلبات الإجازات"
+msgstr "غير مصرح لك بهذا الإجراء"
 
 #: apps/core/views.py:156
 #, python-format
@@ -1137,10 +1103,8 @@ msgid "يرجى اختيار فاتورة واحدة فقط للطباعة"
 msgstr "يرجى اختيار فاتورة واحدة فقط للطباعة"
 
 #: apps/finance/admin.py:88
-#, fuzzy
-#| msgid "طباعة الفاتورة"
 msgid "طباعة الفواتير المحددة"
-msgstr "بند الفاتورة"
+msgstr "طباعة الفواتير المحددة"
 
 #: apps/finance/admin.py:106
 msgid "تفاصيل الدفع"
@@ -1151,28 +1115,20 @@ msgid "معلومات الشركة"
 msgstr "معلومات الشركة"
 
 #: apps/finance/admin.py:130 templates/tenants/tenant_permit_detail.html:139
-#, fuzzy
-#| msgid "معلومات الفاتورة"
 msgid "معلومات الاتصال"
-msgstr "معلومات الفاتورة"
+msgstr "معلومات الاتصال"
 
 #: apps/finance/admin.py:133
-#, fuzzy
-#| msgid "معلومات إضافية"
 msgid "معلومات ضريبية"
-msgstr "معلومات إضافية"
+msgstr "معلومات ضريبية"
 
 #: apps/finance/admin.py:136
-#, fuzzy
-#| msgid "معلومات القسم"
 msgid "ألوان القالب"
-msgstr "معلومات القسم"
+msgstr "ألوان القالب"
 
 #: apps/finance/admin.py:139
-#, fuzzy
-#| msgid "نوع الفاتورة"
 msgid "نصوص الفاتورة"
-msgstr "نوع الفاتورة"
+msgstr "نصوص الفاتورة"
 
 #: apps/finance/forms.py:48 apps/finance/forms.py:109
 #: templates/complaints/case_confirm_delete.html:45
@@ -1200,43 +1156,33 @@ msgid "السعر"
 msgstr "السعر"
 
 #: apps/finance/models.py:23
-#, fuzzy
-#| msgid "اسم الموقع (عربي)"
 msgid "اسم الشركة (عربي)"
-msgstr "اسم الموقع (عربي)"
+msgstr "اسم الشركة (عربي)"
 
 #: apps/finance/models.py:28
-#, fuzzy
-#| msgid "اسم الموقع (إنجليزي)"
 msgid "اسم الشركة (إنجليزي)"
-msgstr "اسم الموقع (إنجليزي)"
+msgstr "اسم الشركة (إنجليزي)"
 
 #: apps/finance/models.py:35
-#, fuzzy
-#| msgid "اسم الشركة"
 msgid "شعار الشركة"
-msgstr "اسم الشركة"
+msgstr "شعار الشركة"
 
 #: apps/finance/models.py:38
 msgid "يفضل أن يكون بحجم 200x80 بكسل"
 msgstr "يفضل أن يكون بحجم 200x80 بكسل"
 
 #: apps/finance/models.py:43
-#, fuzzy
-#| msgid "عنوان فرعي (عربي)"
 msgid "العنوان (عربي)"
-msgstr "عنوان فرعي (عربي)"
+msgstr "العنوان (عربي)"
 
 #: apps/finance/models.py:48
-#, fuzzy
-#| msgid "عنوان فرعي (إنجليزي)"
 msgid "العنوان (إنجليزي)"
-msgstr "عنوان فرعي (إنجليزي)"
+msgstr "العنوان (إنجليزي)"
 
 #: apps/finance/models.py:54 templates/finance/invoice_print.html:352
 #: templates/tenants/tenant_invoice_detail.html:90
 msgid "الهاتف"
-msgstr "رقم الهاتف"
+msgstr "الهاتف"
 
 #: apps/finance/models.py:59 templates/finance/invoice_print.html:353
 #: templates/finance/invoice_print.html:379
@@ -1247,28 +1193,20 @@ msgid "البريد الإلكتروني"
 msgstr "البريد الإلكتروني"
 
 #: apps/finance/models.py:64
-#, fuzzy
-#| msgid "البريد الإلكتروني"
 msgid "الموقع الإلكتروني"
-msgstr "البريد الإلكتروني"
+msgstr "الموقع الإلكتروني"
 
 #: apps/finance/models.py:72 templates/finance/invoice_print.html:354
-#, fuzzy
-#| msgid "رقم التصريح"
 msgid "الرقم الضريبي"
-msgstr "رقم التصريح"
+msgstr "الرقم الضريبي"
 
 #: apps/finance/models.py:78 templates/finance/invoice_print.html:355
-#, fuzzy
-#| msgid "تنسيق التاريخ"
 msgid "السجل التجاري"
-msgstr "تنسيق التاريخ"
+msgstr "السجل التجاري"
 
 #: apps/finance/models.py:86
-#, fuzzy
-#| msgid "المعلومات الأساسية"
 msgid "اللون الأساسي"
-msgstr "المعلومات الأساسية"
+msgstr "اللون الأساسي"
 
 #: apps/finance/models.py:88
 msgid "مثال: #667eea"
@@ -1283,28 +1221,20 @@ msgid "مثال: #764ba2"
 msgstr "مثال: #764ba2"
 
 #: apps/finance/models.py:99
-#, fuzzy
-#| msgid "نص الفوتر (عربي)"
 msgid "نص التذييل (عربي)"
-msgstr "نص الفوتر (عربي)"
+msgstr "نص التذييل (عربي)"
 
 #: apps/finance/models.py:104
-#, fuzzy
-#| msgid "نص الفوتر (إنجليزي)"
 msgid "نص التذييل (إنجليزي)"
-msgstr "نص الفوتر (إنجليزي)"
+msgstr "نص التذييل (إنجليزي)"
 
 #: apps/finance/models.py:111
-#, fuzzy
-#| msgid "شعار النظام (عربي)"
 msgid "الشروط والأحكام (عربي)"
-msgstr "شعار النظام (عربي)"
+msgstr "الشروط والأحكام (عربي)"
 
 #: apps/finance/models.py:116
-#, fuzzy
-#| msgid "شعار النظام (إنجليزي)"
 msgid "الشروط والأحكام (إنجليزي)"
-msgstr "شعار النظام (إنجليزي)"
+msgstr "الشروط والأحكام (إنجليزي)"
 
 #: apps/finance/models.py:123 templates/complaints/case_detail.html:128
 #: templates/finance/invoice_detail.html:212
@@ -1319,10 +1249,8 @@ msgstr "آخر تحديث"
 
 #: apps/finance/models.py:126 apps/finance/models.py:127
 #: apps/finance/models.py:130
-#, fuzzy
-#| msgid "إعدادات النظام"
 msgid "إعدادات الفاتورة"
-msgstr "إعدادات النظام"
+msgstr "إعدادات الفاتورة"
 
 #: apps/finance/models.py:153 templates/finance/invoice_list.html:87
 msgid "مبيعات"
@@ -1777,15 +1705,15 @@ msgstr "لا يمكن تعديل طلب تمت الموافقة عليه أو ر
 
 #: apps/hr/views.py:139
 msgid "تم تحديث طلب الإجازة بنجاح"
-msgstr "تم تحديث طلب الصيانة بنجاح"
+msgstr "تم تحديث طلب الإجازة بنجاح"
 
 #: apps/hr/views.py:147
 msgid "تعديل طلب الإجازة"
-msgstr "تفاصيل طلب الإجازة"
+msgstr "تعديل طلب الإجازة"
 
 #: apps/hr/views.py:163 apps/maintenance/views.py:168
 msgid "ليس لديك صلاحية لحذف هذا الطلب"
-msgstr "ليس لديك صلاحية لحذف هذا التصريح"
+msgstr "ليس لديك صلاحية لحذف هذا الطلب"
 
 #: apps/hr/views.py:168
 msgid "لا يمكن حذف طلب تمت الموافقة عليه أو رفضه"
@@ -1793,7 +1721,7 @@ msgstr "لا يمكن حذف طلب تمت الموافقة عليه أو رفض
 
 #: apps/hr/views.py:173
 msgid "تم حذف طلب الإجازة بنجاح"
-msgstr "تم إنشاء طلب الإجازة بنجاح"
+msgstr "تم حذف طلب الإجازة بنجاح"
 
 #: apps/hr/views.py:193
 msgid "ليس لديك صلاحية للموافقة على طلبات الإجازات"
@@ -1820,10 +1748,8 @@ msgid "سيتم تنفيذ هذه الميزة قريباً"
 msgstr "سيتم تنفيذ هذه الميزة قريباً"
 
 #: apps/maintenance/forms.py:84
-#, fuzzy
-#| msgid "حالة الفاتورة"
 msgid "إرسال التذكرة"
-msgstr "بند الفاتورة"
+msgstr "إرسال التذكرة"
 
 #: apps/maintenance/models.py:16 apps/permits/models.py:514
 #: templates/dashboard/dashboard.html:65 templates/permits/my_tasks.html:41
@@ -1909,7 +1835,7 @@ msgstr "تعديل طلب الصيانة"
 
 #: apps/maintenance/views.py:173
 msgid "تم حذف طلب الصيانة بنجاح"
-msgstr "تم تحديث طلب الصيانة بنجاح"
+msgstr "تم حذف طلب الصيانة بنجاح"
 
 #: apps/marketing/models.py:13
 msgid "تفعيل"
@@ -2048,10 +1974,8 @@ msgid "تم حذف الفعالية بنجاح"
 msgstr "تم حذف الفعالية بنجاح"
 
 #: apps/permits/forms.py:124
-#, fuzzy
-#| msgid "بيانات التصريح"
 msgid "إنشاء التصريح"
-msgstr "بيانات التصريح"
+msgstr "إنشاء التصريح"
 
 #: apps/permits/models.py:13
 msgid "بضائع"
@@ -2125,10 +2049,8 @@ msgid "حجم الملف (بايت)"
 msgstr "حجم الملف (بايت)"
 
 #: apps/permits/models.py:216
-#, fuzzy
-#| msgid "مرفق التصريح"
 msgid "مرفق تصريح"
-msgstr "مرفق التصريح"
+msgstr "مرفق تصريح"
 
 #: apps/permits/models.py:217
 msgid "مرفقات التصاريح"
@@ -2172,19 +2094,19 @@ msgstr "موافقات التصاريح"
 
 #: apps/permits/models.py:293
 msgid "اسم سير العمل"
-msgstr "اسم الملف"
+msgstr "اسم سير العمل"
 
 #: apps/permits/models.py:308
 msgid "المسؤول عن الموافقة"
-msgstr "معلومات الموافقة"
+msgstr "المسؤول عن الموافقة"
 
 #: apps/permits/models.py:317
 msgid "المسؤول البديل"
-msgstr "المسمى الوظيفي"
+msgstr "المسؤول البديل"
 
 #: apps/permits/models.py:323
 msgid "المهلة الزمنية (ساعات)"
-msgstr "قائمة المدفوعات"
+msgstr "المهلة الزمنية (ساعات)"
 
 #: apps/permits/models.py:329
 msgid "تحويل تلقائي عند تجاوز المهلة"
@@ -2192,53 +2114,53 @@ msgstr "تحويل تلقائي عند تجاوز المهلة"
 
 #: apps/permits/models.py:335
 msgid "إشعار المدير عند التحويل"
-msgstr "شعار النظام (إنجليزي)"
+msgstr "إشعار المدير عند التحويل"
 
 #: apps/permits/models.py:349
 msgid "سير عمل الموافقة"
-msgstr "تاريخ الموافقة"
+msgstr "سير عمل الموافقة"
 
 #: apps/permits/models.py:350
 msgid "سير عمل الموافقات"
-msgstr "تاريخ الموافقة"
+msgstr "سير عمل الموافقات"
 
 #: apps/permits/models.py:374
 msgid "سير العمل"
-msgstr "رمز العملة"
+msgstr "سير العمل"
 
 #: apps/permits/models.py:385 templates/permits/my_pending_approvals.html:88
 #: templates/permits/permit_approve.html:67
 msgid "الموعد النهائي"
-msgstr "الموارد البشرية"
+msgstr "الموعد النهائي"
 
 #: apps/permits/models.py:395
 msgid "تم التحويل"
-msgstr "تم الحل"
+msgstr "تم التحويل"
 
 #: apps/permits/models.py:401
 msgid "تاريخ التحويل"
-msgstr "تاريخ التعيين"
+msgstr "تاريخ التحويل"
 
 #: apps/permits/models.py:415
 msgid "تم إشعار المدير"
-msgstr "الشعار العربي"
+msgstr "تم إشعار المدير"
 
 #: apps/permits/models.py:426 apps/permits/models.py:572
 #: templates/permits/task_detail.html:126
 msgid "تاريخ الإكمال"
-msgstr "تاريخ الإغلاق"
+msgstr "تاريخ الإكمال"
 
 #: apps/permits/models.py:435
 msgid "موافقة معلقة"
-msgstr "موافق عليها"
+msgstr "موافقة معلقة"
 
 #: apps/permits/models.py:436
 msgid "موافقات معلقة"
-msgstr "موافق عليها"
+msgstr "موافقات معلقة"
 
 #: apps/permits/models.py:466
 msgid "طلب محول إليك"
-msgstr "محول إلى"
+msgstr "طلب محول إليك"
 
 #: apps/permits/models.py:467
 #, python-format
@@ -2257,24 +2179,18 @@ msgid ""
 msgstr ""
 
 #: apps/permits/models.py:506 templates/permits/my_tasks.html:33
-#, fuzzy
-#| msgid "مكتمل"
 msgid "مكتملة"
-msgstr "مكتمل"
+msgstr "مكتملة"
 
 #: apps/permits/models.py:526 templates/permits/permit_approve.html:141
 #: templates/permits/task_detail.html:41
-#, fuzzy
-#| msgid "تاريخ النهاية"
 msgid "عنوان المهمة"
-msgstr "تاريخ النهاية"
+msgstr "عنوان المهمة"
 
 #: apps/permits/models.py:546 templates/permits/my_tasks.html:114
 #: templates/permits/task_detail.html:105
-#, fuzzy
-#| msgid "أنشئ بواسطة"
 msgid "أسند بواسطة"
-msgstr "أنشئ بواسطة"
+msgstr "أسند بواسطة"
 
 #: apps/permits/models.py:591
 msgid "مهمة"
@@ -2286,7 +2202,7 @@ msgstr "المهام"
 
 #: apps/permits/views.py:81
 msgid "ليس لديك صلاحية الوصول لهذا التصريح"
-msgstr "ليس لديك صلاحية الوصول لهذه الصفحة"
+msgstr "ليس لديك صلاحية الوصول لهذا التصريح"
 
 #: apps/permits/views.py:111
 msgid "تم إنشاء التصريح بنجاح"
@@ -2314,7 +2230,7 @@ msgstr "ليس لديك صلاحية لحذف هذا التصريح"
 
 #: apps/permits/views.py:244
 msgid "تم رفع الملف بنجاح"
-msgstr "تم حذف الفعالية بنجاح"
+msgstr "تم رفع الملف بنجاح"
 
 #: apps/permits/views.py:246
 msgid "الرجاء اختيار ملف"
@@ -2322,33 +2238,27 @@ msgstr "الرجاء اختيار ملف"
 
 #: apps/permits/views.py:264
 msgid "تم حذف الملف بنجاح"
-msgstr "تم حذف الفعالية بنجاح"
+msgstr "تم حذف الملف بنجاح"
 
 #: apps/permits/views.py:282
 msgid "ليس لديك صلاحية الموافقة على هذا التصريح"
-msgstr "ليس لديك صلاحية لتعديل هذا التصريح"
+msgstr "ليس لديك صلاحية الموافقة على هذا التصريح"
 
 #: apps/permits/views.py:292 apps/permits/views.py:294
-#, fuzzy
-#| msgid "معلومات الموافقة"
 msgid "ملاحظات الموافقة"
-msgstr "معلومات الموافقة"
+msgstr "ملاحظات الموافقة"
 
 #: apps/permits/views.py:308
 msgid "تمت الموافقة على التصريح بنجاح"
-msgstr "تمت الموافقة على طلب الإجازة بنجاح"
+msgstr "تمت الموافقة على التصريح بنجاح"
 
 #: apps/permits/views.py:317
-#, fuzzy
-#| msgid "حذف التصريح"
 msgid "متابعة التصريح"
-msgstr "حذف التصريح"
+msgstr "متابعة التصريح"
 
 #: apps/permits/views.py:343
-#, fuzzy
-#| msgid "إنشاء قضية جديدة"
 msgid "تم إسناد مهمة جديدة لك"
-msgstr "إنشاء قضية جديدة"
+msgstr "تم إسناد مهمة جديدة لك"
 
 #: apps/permits/views.py:344
 #, python-format
@@ -2356,28 +2266,25 @@ msgid "تم إسناد مهمة: %(title)s"
 msgstr "تم إسناد مهمة: %(title)s"
 
 #: apps/permits/views.py:349
-#, fuzzy
-#| msgid "تم إنشاء القضية بنجاح"
 msgid "تم إسناد المهمة بنجاح"
-msgstr "تم إنشاء القضية بنجاح"
+msgstr "تم إسناد المهمة بنجاح"
 
 #: apps/permits/views.py:356
 msgid "تمت الموافقة على تصريحك"
-msgstr "موافقة التصريح"
+msgstr "تمت الموافقة على تصريحك"
 
 #: apps/permits/views.py:357
-#, fuzzy, python-format
-#| msgid "تمت الموافقة على التصريح %(number)s"
+#, python-format
 msgid "تمت الموافقة على التصريح %(number)s"
-msgstr "تمت الموافقة على طلب الإجازة بنجاح"
+msgstr "تمت الموافقة على التصريح %(number)s"
 
 #: apps/permits/views.py:364 templates/tenants/tenant_permit_detail.html:217
 msgid "تم رفض التصريح"
-msgstr "مرفق التصريح"
+msgstr "تم رفض التصريح"
 
 #: apps/permits/views.py:369
 msgid "تم رفض تصريحك"
-msgstr "مرفق التصريح"
+msgstr "تم رفض تصريحك"
 
 #: apps/permits/views.py:370
 #, python-format
@@ -2393,22 +2300,16 @@ msgid "غير محدد"
 msgstr "غير محدد"
 
 #: apps/permits/views.py:465
-#, fuzzy
-#| msgid "مقدم الشكوى"
 msgid "تم بدء العمل على المهمة"
-msgstr "مقدم الشكوى"
+msgstr "تم بدء العمل على المهمة"
 
 #: apps/permits/views.py:471
-#, fuzzy
-#| msgid "تم رفع الملف بنجاح"
 msgid "تم إكمال المهمة بنجاح"
-msgstr "تم حذف الفعالية بنجاح"
+msgstr "تم إكمال المهمة بنجاح"
 
 #: apps/permits/views.py:477 templates/permits/task_detail.html:185
-#, fuzzy
-#| msgid "تجاوز المهلة"
 msgid "تم إكمال المهمة"
-msgstr "رمز العملة"
+msgstr "تم إكمال المهمة"
 
 #: apps/permits/views.py:478
 #, python-format
@@ -2416,10 +2317,8 @@ msgid "تم إكمال المهمة: %(title)s"
 msgstr "تم إكمال المهمة: %(title)s"
 
 #: apps/permits/views.py:486 templates/permits/task_detail.html:191
-#, fuzzy
-#| msgid "تم إشعار المدير"
 msgid "تم إلغاء المهمة"
-msgstr "الشعار العربي"
+msgstr "تم إلغاء المهمة"
 
 #: templates/account/login.html:8 templates/account/login.html:335
 #: templates/auth/login.html:8 templates/auth/login.html:313
@@ -2462,7 +2361,7 @@ msgstr "تسجيل الخروج"
 
 #: templates/account/logout.html:199
 msgid "تم تسجيل الخروج بنجاح"
-msgstr "تم تسجيل الدفعة بنجاح"
+msgstr "تم تسجيل الخروج بنجاح"
 
 #: templates/account/logout.html:203
 msgid "شكراً لاستخدامك النظام. نتمنى رؤيتك قريباً!"
@@ -2470,23 +2369,23 @@ msgstr "شكراً لاستخدامك النظام. نتمنى رؤيتك قري
 
 #: templates/account/logout.html:209
 msgid "تسجيل الدخول مرة أخرى"
-msgstr "تسجيل الدخول"
+msgstr "تسجيل الدخول مرة أخرى"
 
 #: templates/base.html:284 templates/core/notification_list.html:23
 msgid "تعليم الكل كمقروء"
-msgstr "تعليق الحالة"
+msgstr "تعليم الكل كمقروء"
 
 #: templates/base.html:310 templates/core/notification_list.html:73
 msgid "مضت"
-msgstr "مؤقت"
+msgstr "مضت"
 
 #: templates/base.html:319
 msgid "عرض جميع الإشعارات"
-msgstr "معاينة الشعارات"
+msgstr "عرض جميع الإشعارات"
 
 #: templates/base.html:326 templates/core/notification_list.html:93
 msgid "لا توجد إشعارات"
-msgstr "لا توجد دفعات"
+msgstr "لا توجد إشعارات"
 
 #: templates/base.html:336 templates/base.html:367 templates/base.html:613
 msgid "العودة إلى حسابك الأصلي"
@@ -2494,47 +2393,47 @@ msgstr "العودة إلى حسابك الأصلي"
 
 #: templates/base.html:338
 msgid "العودة للحساب الأصلي"
-msgstr "العودة إلى حسابك الأصلي"
+msgstr "العودة للحساب الأصلي"
 
 #: templates/base.html:346
 msgid "تبديل المستخدم (للتطوير)"
-msgstr "تعديل الفعالية"
+msgstr "تبديل المستخدم (للتطوير)"
 
 #: templates/base.html:348
 msgid "تبديل المستخدم"
-msgstr "اسم المستخدم"
+msgstr "تبديل المستخدم"
 
 #: templates/base.html:352
 msgid "التبديل إلى مستخدم"
-msgstr "اسم المستخدم"
+msgstr "التبديل إلى مستخدم"
 
 #: templates/base.html:361
 msgid "أنت الآن"
-msgstr "دفعات الشهر"
+msgstr "أنت الآن"
 
 #: templates/base.html:375
 msgid "المستأجرين"
-msgstr "المستأجر"
+msgstr "المستأجرين"
 
 #: templates/base.html:387
 msgid "لا يوجد مستأجرين"
-msgstr "ملفات المستأجرين"
+msgstr "لا يوجد مستأجرين"
 
 #: templates/base.html:394
 msgid "مدراء الأقسام"
-msgstr "الأقسام"
+msgstr "مدراء الأقسام"
 
 #: templates/base.html:406
 msgid "لا يوجد مدراء"
-msgstr "لا توجد دفعات"
+msgstr "لا يوجد مدراء"
 
 #: templates/base.html:413
 msgid "الموظفين"
-msgstr "الموظف"
+msgstr "الموظفين"
 
 #: templates/base.html:425
 msgid "لا يوجد موظفين"
-msgstr "لا توجد دفعات"
+msgstr "لا يوجد موظفين"
 
 #: templates/base.html:464 templates/base.html:486
 #: templates/dashboard/dashboard.html:5 templates/dashboard/dashboard.html:14
@@ -2588,7 +2487,7 @@ msgstr "فواتيري"
 #: templates/permits/my_pending_approvals.html:16
 #: templates/permits/permit_approve.html:20
 msgid "الموافقات المعلقة"
-msgstr "معلومات الموافقة"
+msgstr "الموافقات المعلقة"
 
 #: templates/base.html:530 templates/permits/my_tasks.html:4
 #: templates/permits/my_tasks.html:15 templates/permits/task_detail.html:19
@@ -2597,7 +2496,7 @@ msgstr "مهامي"
 
 #: templates/base.html:604
 msgid "وضع التطوير - تبديل المستخدم نشط"
-msgstr "اسم المستخدم"
+msgstr "وضع التطوير - تبديل المستخدم نشط"
 
 #: templates/base.html:607
 msgid "أنت الآن تستخدم النظام كـ"
@@ -2827,11 +2726,11 @@ msgstr "جديد"
 
 #: templates/core/notification_list.html:83
 msgid "غير مقروء"
-msgstr "مقروء"
+msgstr "غير مقروء"
 
 #: templates/core/notification_list.html:94
 msgid "سيتم عرض الإشعارات هنا عند توفرها"
-msgstr "تم تعليم جميع الإشعارات كمقروءة"
+msgstr "سيتم عرض الإشعارات هنا عند توفرها"
 
 #: templates/dashboard/dashboard.html:16
 msgid "مرحباً بك"
@@ -2862,10 +2761,8 @@ msgid "النشاط الأخير"
 msgstr "النشاط الأخير"
 
 #: templates/dashboard/dashboard.html:162
-#, fuzzy
-#| msgid "لا توجد طلبات صيانة"
 msgid "لا توجد أنشطة حديثة"
-msgstr "لا توجد طلبات صيانة"
+msgstr "لا توجد أنشطة حديثة"
 
 #: templates/dashboard/dashboard.html:178
 #: templates/maintenance/ticket_detail.html:200
@@ -2984,19 +2881,19 @@ msgstr "فاتورة جديدة"
 
 #: templates/finance/invoice_form.html:64
 msgid "عناصر الفاتورة"
-msgstr "بند الفاتورة"
+msgstr "عناصر الفاتورة"
 
 #: templates/finance/invoice_form.html:99
 msgid "أضف على الأقل عنصر واحد للفاتورة"
-msgstr "رقم الدفعة، الفاتورة..."
+msgstr "أضف على الأقل عنصر واحد للفاتورة"
 
 #: templates/finance/invoice_form.html:119
 msgid "سيتم حساب المبلغ الإجمالي تلقائياً من عناصر الفاتورة"
-msgstr "سيتم احتساب عدد الأيام تلقائياً بناءً على التواريخ"
+msgstr "سيتم حساب المبلغ الإجمالي تلقائياً من عناصر الفاتورة"
 
 #: templates/finance/invoice_form.html:120
 msgid "يمكنك إضافة حتى 3 عناصر في المرة الواحدة"
-msgstr "يمكنك إضافة بنود الفاتورة بعد الحفظ"
+msgstr "يمكنك إضافة حتى 3 عناصر في المرة الواحدة"
 
 #: templates/finance/invoice_form.html:121
 msgid "الحد الأدنى: عنصر واحد على الأقل"
@@ -3054,7 +2951,7 @@ msgstr "المبالغ المتبقية"
 #: templates/finance/invoice_print.html:377
 #: templates/tenants/tenant_invoice_detail.html:99
 msgid "معلومات العميل"
-msgstr "معلومات العمل"
+msgstr "معلومات العميل"
 
 #: templates/finance/invoice_print.html:378
 #: templates/tenants/tenant_invoice_detail.html:100
@@ -3065,51 +2962,45 @@ msgstr "الاسم"
 #: templates/finance/invoice_print.html:382
 #: templates/tenants/tenant_invoice_detail.html:104
 msgid "الشركة"
-msgstr "اسم الشركة"
+msgstr "الشركة"
 
 #: templates/finance/invoice_print.html:437
 #: templates/tenants/tenant_invoice_detail.html:180
 msgid "الضريبة"
-msgstr "نسبة الضريبة"
+msgstr "الضريبة"
 
 #: templates/finance/invoice_print.html:442
 #: templates/tenants/tenant_invoice_detail.html:185
 msgid "الخصم"
-msgstr "مبلغ الخصم"
+msgstr "الخصم"
 
 #: templates/finance/invoice_print.html:451
 #: templates/tenants/tenant_invoice_detail.html:195
 msgid "المدفوع"
-msgstr "مدفوعة"
+msgstr "المدفوع"
 
 #: templates/finance/invoice_print.html:455
 #: templates/tenants/tenant_invoice_detail.html:199
 #: templates/tenants/tenant_invoices.html:132
 msgid "المتبقي"
-msgstr "المبلغ المتبقي"
+msgstr "المتبقي"
 
 #: templates/finance/invoice_print.html:464
 #: templates/tenants/tenant_invoice_detail.html:210
 msgid "سجل الدفعات"
-msgstr "إجمالي الدفعات"
+msgstr "سجل الدفعات"
 
 #: templates/finance/invoice_print.html:512
-#, fuzzy
-#| msgid "الشكاوى والقضايا"
 msgid "الشروط والأحكام"
-msgstr "الشكاوى والقضايا"
+msgstr "الشروط والأحكام"
 
 #: templates/finance/invoice_print.html:523
-#, fuzzy
-#| msgid "سير العمل"
 msgid "توقيع العميل"
-msgstr "رمز العملة"
+msgstr "توقيع العميل"
 
 #: templates/finance/invoice_print.html:526
-#, fuzzy
-#| msgid "معلومات الشركة"
 msgid "توقيع الشركة"
-msgstr "معلومات الشركة"
+msgstr "توقيع الشركة"
 
 #: templates/finance/payment_form.html:26
 msgid "دفعة جديدة"
@@ -3336,10 +3227,8 @@ msgid "مقدم الطلب"
 msgstr "مقدم الطلب"
 
 #: templates/maintenance/ticket_list.html:202
-#, fuzzy
-#| msgid "غير محدد"
 msgid "غير مسند"
-msgstr "غير محدد"
+msgstr "غير مسند"
 
 #: templates/maintenance/ticket_list.html:238
 msgid "لا توجد طلبات صيانة"
@@ -3398,22 +3287,16 @@ msgid "لا توجد فعاليات"
 msgstr "لا توجد فعاليات"
 
 #: templates/marketing/tenant_events_list.html:66
-#, fuzzy
-#| msgid "المبلغ المستحق"
 msgid "الجمهور المستهدف"
-msgstr "المبلغ المتبقي"
+msgstr "الجمهور المستهدف"
 
 #: templates/marketing/tenant_events_list.html:86
-#, fuzzy
-#| msgid "لا توجد فعاليات"
 msgid "لا توجد فعاليات حالياً"
-msgstr "لا توجد فعاليات"
+msgstr "لا توجد فعاليات حالياً"
 
 #: templates/marketing/tenant_events_list.html:87
-#, fuzzy
-#| msgid "سيتم تحديث حالة الفاتورة تلقائياً"
 msgid "سيتم الإعلان عن الفعاليات القادمة قريباً"
-msgstr "سيتم تحديث حالة الفاتورة تلقائياً"
+msgstr "سيتم الإعلان عن الفعاليات القادمة قريباً"
 
 #: templates/marketing/tenant_events_list.html:101
 #: templates/permits/permit_list.html:181
@@ -3447,33 +3330,31 @@ msgstr "الأخيرة"
 
 #: templates/permits/my_pending_approvals.html:18
 msgid "الطلبات التي تحتاج موافقتك"
-msgstr "طلبات الإجازات"
+msgstr "الطلبات التي تحتاج موافقتك"
 
 #: templates/permits/my_pending_approvals.html:42
 msgid "محول"
-msgstr "محول إلى"
+msgstr "محول"
 
 #: templates/permits/my_pending_approvals.html:94
 msgid "تجاوز المهلة"
-msgstr "رمز العملة"
+msgstr "تجاوز المهلة"
 
 #: templates/permits/my_pending_approvals.html:102
 msgid "مراجعة والموافقة"
-msgstr "تاريخ الموافقة"
+msgstr "مراجعة والموافقة"
 
 #: templates/permits/my_pending_approvals.html:113
 msgid "لا توجد موافقات معلقة"
-msgstr "لا توجد دفعات"
+msgstr "لا توجد موافقات معلقة"
 
 #: templates/permits/my_pending_approvals.html:114
 msgid "جميع الطلبات تمت معالجتها"
 msgstr "جميع الطلبات تمت معالجتها"
 
 #: templates/permits/my_tasks.html:17
-#, fuzzy
-#| msgid "القسم المعني"
 msgid "المهام المسندة إليك"
-msgstr "القسم المعني"
+msgstr "المهام المسندة إليك"
 
 #: templates/permits/my_tasks.html:122
 msgid "الاستحقاق"
@@ -3482,25 +3363,21 @@ msgstr "الاستحقاق"
 #: templates/permits/my_tasks.html:130
 #: templates/tenants/tenant_invoices.html:160
 msgid "عرض التفاصيل"
-msgstr "تاريخ التفعيل"
+msgstr "عرض التفاصيل"
 
 #: templates/permits/my_tasks.html:141
-#, fuzzy
-#| msgid "لا توجد مرفقات"
 msgid "لا توجد مهام"
-msgstr "لا توجد دفعات"
+msgstr "لا توجد مهام"
 
 #: templates/permits/my_tasks.html:142
-#, fuzzy
-#| msgid "لم يتم إصدار أي فواتير لك حتى الآن"
 msgid "لم يتم إسناد أي مهام لك بعد"
-msgstr "لم يتم إصدار أي فواتير لك حتى الآن"
+msgstr "لم يتم إسناد أي مهام لك بعد"
 
 #: templates/permits/permit_approve.html:5
 #: templates/permits/permit_approve.html:16
 #: templates/permits/permit_approve.html:172
 msgid "الموافقة على التصريح"
-msgstr "موافقة التصريح"
+msgstr "الموافقة على التصريح"
 
 #: templates/permits/permit_approve.html:36
 #: templates/permits/permit_confirm_delete.html:24
@@ -3514,59 +3391,47 @@ msgstr "تفاصيل التصريح"
 #: templates/permits/permit_approve.html:85
 #: templates/permits/permit_detail.html:170
 msgid "المرفقات"
-msgstr "مرفق التصريح"
+msgstr "المرفقات"
 
 #: templates/permits/permit_approve.html:108
 msgid "قرار الموافقة"
-msgstr "تاريخ الموافقة"
+msgstr "قرار الموافقة"
 
 #: templates/permits/permit_approve.html:117
 msgid "أضف تعليقاتك هنا (اختياري)"
-msgstr "أضف تعليقك هنا..."
+msgstr "أضف تعليقاتك هنا (اختياري)"
 
 #: templates/permits/permit_approve.html:118
 msgid "سيتم إرسال التعليقات إلى المستأجر"
-msgstr "رقم الفاتورة، المستأجر..."
+msgstr "سيتم إرسال التعليقات إلى المستأجر"
 
 #: templates/permits/permit_approve.html:126
-#, fuzzy
-#| msgid "أضف تعليقاتك هنا (اختياري)"
 msgid "إسناد مهمة (اختياري)"
-msgstr "أضف تعليقك هنا..."
+msgstr "إسناد مهمة (اختياري)"
 
 #: templates/permits/permit_approve.html:130
-#, fuzzy
-#| msgid "مسند إلى"
 msgid "إسناد إلى"
-msgstr "مسند إلى"
+msgstr "إسناد إلى"
 
 #: templates/permits/permit_approve.html:132
-#, fuzzy
-#| msgid "لا توجد موافقات معلقة"
 msgid "لا يوجد - عدم إسناد مهمة"
-msgstr "لا توجد دفعات"
+msgstr "لا يوجد - عدم إسناد مهمة"
 
 #: templates/permits/permit_approve.html:142
-#, fuzzy
-#| msgid "تمت الموافقة على تصريحك"
 msgid "مثال: متابعة تنفيذ التصريح"
-msgstr "موافقة التصريح"
+msgstr "مثال: متابعة تنفيذ التصريح"
 
 #: templates/permits/permit_approve.html:146
-#, fuzzy
-#| msgid "تجاوز المهلة"
 msgid "وصف المهمة"
-msgstr "رمز العملة"
+msgstr "وصف المهمة"
 
 #: templates/permits/permit_approve.html:147
-#, fuzzy
-#| msgid "تفاصيل الفاتورة"
 msgid "تفاصيل المهمة المطلوبة"
-msgstr "تفاصيل الفاتورة"
+msgstr "تفاصيل المهمة المطلوبة"
 
 #: templates/permits/permit_approve.html:176
 msgid "رفض التصريح"
-msgstr "مرفق التصريح"
+msgstr "رفض التصريح"
 
 #: templates/permits/permit_approve.html:203
 msgid "هذا الطلب تجاوز المهلة الزمنية المحددة"
@@ -3582,7 +3447,7 @@ msgstr "هل أنت متأكد من حذف هذا التصريح؟ هذا الإ
 
 #: templates/permits/permit_detail.html:176
 msgid "رفع ملف"
-msgstr "رفع الملف"
+msgstr "رفع ملف"
 
 #: templates/permits/permit_detail.html:199
 msgid "تحميل"
@@ -3590,11 +3455,11 @@ msgstr "تحميل"
 
 #: templates/permits/permit_detail.html:202
 msgid "هل أنت متأكد من حذف هذا الملف؟"
-msgstr "هل أنت متأكد من حذف هذه الفاتورة؟"
+msgstr "هل أنت متأكد من حذف هذا الملف؟"
 
 #: templates/permits/permit_detail.html:212
 msgid "لا توجد مرفقات"
-msgstr "لا توجد دفعات"
+msgstr "لا توجد مرفقات"
 
 #: templates/permits/permit_detail.html:213
 msgid "اضغط على زر رفع ملف لإضافة مرفقات"
@@ -3614,7 +3479,7 @@ msgstr "قائمة التصاريح"
 
 #: templates/permits/permit_detail.html:288
 msgid "رفع ملف جديد"
-msgstr "فعالية جديدة"
+msgstr "رفع ملف جديد"
 
 #: templates/permits/permit_detail.html:296
 msgid "الحد الأقصى: 10 ميجابايت"
@@ -3622,7 +3487,7 @@ msgstr "الحد الأقصى: 10 ميجابايت"
 
 #: templates/permits/permit_detail.html:301
 msgid "اترك فارغاً لاستخدام اسم الملف الأصلي"
-msgstr "شكراً لاستخدامك النظام. نتمنى رؤيتك قريباً!"
+msgstr "اترك فارغاً لاستخدام اسم الملف الأصلي"
 
 #: templates/permits/permit_detail.html:306
 msgid "وصف اختياري للملف"
@@ -3695,64 +3560,44 @@ msgid "لا توجد تصاريح"
 msgstr "لا توجد تصاريح"
 
 #: templates/permits/task_detail.html:4 templates/permits/task_detail.html:15
-#, fuzzy
-#| msgid "تفاصيل القضية"
 msgid "تفاصيل المهمة"
-msgstr "تفاصيل القضية"
+msgstr "تفاصيل المهمة"
 
 #: templates/permits/task_detail.html:35
-#, fuzzy
-#| msgid "معلومات الموقع"
 msgid "معلومات المهمة"
-msgstr "معلومات الموقع"
+msgstr "معلومات المهمة"
 
 #: templates/permits/task_detail.html:96
-#, fuzzy
-#| msgid "تصريح جديد"
 msgid "التصريح المرتبط"
-msgstr "تصريح جديد"
+msgstr "التصريح المرتبط"
 
 #: templates/permits/task_detail.html:160
-#, fuzzy
-#| msgid "سير العمل"
 msgid "بدء العمل"
-msgstr "رمز العملة"
+msgstr "بدء العمل"
 
 #: templates/permits/task_detail.html:168
-#, fuzzy
-#| msgid "ملاحظات الحل"
 msgid "ملاحظات الإكمال"
-msgstr "ملاحظات الحل"
+msgstr "ملاحظات الإكمال"
 
 #: templates/permits/task_detail.html:169
-#, fuzzy
-#| msgid "أضف تعليقاتك هنا (اختياري)"
 msgid "أضف ملاحظاتك (اختياري)"
-msgstr "أضف تعليقك هنا..."
+msgstr "أضف ملاحظاتك (اختياري)"
 
 #: templates/permits/task_detail.html:174
-#, fuzzy
-#| msgid "تاريخ النهاية"
 msgid "إكمال المهمة"
-msgstr "تاريخ النهاية"
+msgstr "إكمال المهمة"
 
 #: templates/permits/task_detail.html:178
-#, fuzzy
-#| msgid "تاريخ النهاية"
 msgid "إلغاء المهمة"
-msgstr "تاريخ النهاية"
+msgstr "إلغاء المهمة"
 
 #: templates/permits/task_detail.html:198
-#, fuzzy
-#| msgid "إجمالي المبالغ"
 msgid "رجوع إلى المهام"
-msgstr "إجمالي المبالغ"
+msgstr "رجوع إلى المهام"
 
 #: templates/tenants/tenant_case_create.html:28
-#, fuzzy
-#| msgid "معلومات الشركة"
 msgid "معلومات الشكوى"
-msgstr "معلومات الشركة"
+msgstr "معلومات الشكوى"
 
 #: templates/tenants/tenant_case_create.html:34
 #: templates/tenants/tenant_permit_create.html:34
@@ -3767,75 +3612,53 @@ msgid "يرجى تصحيح الأخطاء التالية:"
 msgstr "يرجى تصحيح الأخطاء التالية:"
 
 #: templates/tenants/tenant_case_create.html:67
-#, fuzzy
-#| msgid "نوع الحالة"
 msgid "أنواع الحالات"
-msgstr "نوع الحالة"
+msgstr "أنواع الحالات"
 
 #: templates/tenants/tenant_case_create.html:78
-#, fuzzy
-#| msgid "تم إنشاء التصريح بنجاح"
 msgid "سيتم مراجعة الحالة من قبل الإدارة"
-msgstr "تم إنشاء التصريح بنجاح"
+msgstr "سيتم مراجعة الحالة من قبل الإدارة"
 
 #: templates/tenants/tenant_case_create.html:79
 msgid "ستتلقى رداً في أقرب وقت"
 msgstr "ستتلقى رداً في أقرب وقت"
 
 #: templates/tenants/tenant_case_create.html:80
-#, fuzzy
-#| msgid "يمكنك إضافة المرفقات بعد حفظ التصريح"
 msgid "يمكنك متابعة حالة الطلب"
-msgstr "يمكنك إضافة المرفقات بعد حفظ التصريح"
+msgstr "يمكنك متابعة حالة الطلب"
 
 #: templates/tenants/tenant_case_detail.html:13
-#, fuzzy
-#| msgid "تفاصيل الدفع"
 msgid "تفاصيل الشكوى"
-msgstr "تفاصيل الدفع"
+msgstr "تفاصيل الشكوى"
 
 #: templates/tenants/tenant_case_detail.html:33
 #: templates/tenants/tenant_cases.html:34
-#, fuzzy
-#| msgid "مقدم الشكوى"
 msgid "رقم الشكوى"
-msgstr "مقدم الشكوى"
+msgstr "رقم الشكوى"
 
 #: templates/tenants/tenant_case_detail.html:116
-#, fuzzy
-#| msgid "إدارة الشكاوى"
 msgid "حالة الشكوى"
-msgstr "إدارة الشكاوى"
+msgstr "حالة الشكوى"
 
 #: templates/tenants/tenant_case_detail.html:133
-#, fuzzy
-#| msgid "قيد المراجعة"
 msgid "الشكوى قيد المراجعة"
-msgstr "قيد المراجعة"
+msgstr "الشكوى قيد المراجعة"
 
 #: templates/tenants/tenant_case_detail.html:137
-#, fuzzy
-#| msgid "مقدم الشكوى"
 msgid "جاري العمل على الشكوى"
-msgstr "مقدم الشكوى"
+msgstr "جاري العمل على الشكوى"
 
 #: templates/tenants/tenant_case_detail.html:141
-#, fuzzy
-#| msgid "مقدم الشكوى"
 msgid "تم حل الشكوى"
-msgstr "مقدم الشكوى"
+msgstr "تم حل الشكوى"
 
 #: templates/tenants/tenant_cases.html:25
-#, fuzzy
-#| msgid "إدارة الشكاوى"
 msgid "قائمة الشكاوى"
-msgstr "إدارة الشكاوى"
+msgstr "قائمة الشكاوى"
 
 #: templates/tenants/tenant_cases.html:91
-#, fuzzy
-#| msgid "إنشاء قضية جديدة"
 msgid "إنشاء شكوى جديدة"
-msgstr "إنشاء قضية جديدة"
+msgstr "إنشاء شكوى جديدة"
 
 #: templates/tenants/tenant_dashboard.html:5
 #: templates/tenants/tenant_dashboard.html:14
@@ -3866,11 +3689,11 @@ msgstr "آخر الفواتير"
 
 #: templates/tenants/tenant_invoice_detail.html:62
 msgid "طباعة الفاتورة"
-msgstr "بند الفاتورة"
+msgstr "طباعة الفاتورة"
 
 #: templates/tenants/tenant_invoice_detail.html:108
 msgid "حالة الفاتورة"
-msgstr "بند الفاتورة"
+msgstr "حالة الفاتورة"
 
 #: templates/tenants/tenant_invoice_detail.html:240
 msgid "شكراً لتعاملكم معنا"
@@ -3882,7 +3705,7 @@ msgstr "هذه فاتورة إلكترونية ولا تحتاج إلى توقي
 
 #: templates/tenants/tenant_invoices.html:66
 msgid "المبلغ المستحق"
-msgstr "المبلغ المتبقي"
+msgstr "المبلغ المستحق"
 
 #: templates/tenants/tenant_invoices.html:89
 msgid "مرسلة"
@@ -3897,105 +3720,73 @@ msgid "لم يتم إصدار أي فواتير لك حتى الآن"
 msgstr "لم يتم إصدار أي فواتير لك حتى الآن"
 
 #: templates/tenants/tenant_permit_create.html:28
-#, fuzzy
-#| msgid "معلومات التحديث"
 msgid "معلومات التصريح"
-msgstr "معلومات التحديث"
+msgstr "معلومات التصريح"
 
 #: templates/tenants/tenant_permit_create.html:67
-#, fuzzy
-#| msgid "نوع التصريح"
 msgid "أنواع التصاريح"
-msgstr "نوع التصريح"
+msgstr "أنواع التصاريح"
 
 #: templates/tenants/tenant_permit_create.html:69
 msgid "تصريح بضائع"
 msgstr "تصريح بضائع"
 
 #: templates/tenants/tenant_permit_create.html:70
-#, fuzzy
-#| msgid "تصريح جديد"
 msgid "تصريح عمال"
-msgstr "تصريح جديد"
+msgstr "تصريح عمال"
 
 #: templates/tenants/tenant_permit_create.html:71
-#, fuzzy
-#| msgid "تصريح جديد"
 msgid "تصريح مركبة"
-msgstr "تصريح جديد"
+msgstr "تصريح مركبة"
 
 #: templates/tenants/tenant_permit_create.html:72
-#, fuzzy
-#| msgid "تصريح جديد"
 msgid "تصريح فعالية"
-msgstr "تصريح جديد"
+msgstr "تصريح فعالية"
 
 #: templates/tenants/tenant_permit_create.html:73
-#, fuzzy
-#| msgid "تصريح جديد"
 msgid "تصريح صيانة"
-msgstr "تصريح جديد"
+msgstr "تصريح صيانة"
 
 #: templates/tenants/tenant_permit_create.html:80
-#, fuzzy
-#| msgid "تم إنشاء التصريح بنجاح"
 msgid "سيتم مراجعة التصريح من قبل الإدارة"
-msgstr "تم إنشاء التصريح بنجاح"
+msgstr "سيتم مراجعة التصريح من قبل الإدارة"
 
 #: templates/tenants/tenant_permit_create.html:81
-#, fuzzy
-#| msgid "لا يمكن تعديل طلب تمت الموافقة عليه أو رفضه"
 msgid "ستتلقى إشعاراً عند الموافقة أو الرفض"
-msgstr "لا يمكن تعديل طلب تمت الموافقة عليه أو رفضه"
+msgstr "ستتلقى إشعاراً عند الموافقة أو الرفض"
 
 #: templates/tenants/tenant_permit_create.html:82
-#, fuzzy
-#| msgid "يمكنك إضافة المرفقات بعد حفظ الطلب"
 msgid "يمكنك إرفاق ملفات داعمة"
-msgstr "يمكنك إضافة المرفقات بعد حفظ الطلب"
+msgstr "يمكنك إرفاق ملفات داعمة"
 
 #: templates/tenants/tenant_permit_delete.html:34
-#, fuzzy
-#| msgid "هل أنت متأكد من حذف هذا التصريح؟ هذا الإجراء لا يمكن التراجع عنه!"
 msgid "هل أنت متأكد من حذف هذا التصريح؟ لا يمكن التراجع عن هذا الإجراء."
-msgstr "هل أنت متأكد من حذف هذا التصريح؟ هذا الإجراء لا يمكن التراجع عنه!"
+msgstr "هل أنت متأكد من حذف هذا التصريح؟ لا يمكن التراجع عن هذا الإجراء."
 
 #: templates/tenants/tenant_permit_detail.html:192
-#, fuzzy
-#| msgid "حذف التصريح"
 msgid "حالة التصريح"
-msgstr "حذف التصريح"
+msgstr "حالة التصريح"
 
 #: templates/tenants/tenant_permit_detail.html:209
-#, fuzzy
-#| msgid "تم إنشاء التصريح بنجاح"
 msgid "التصريح قيد المراجعة من قبل الإدارة"
-msgstr "تم إنشاء التصريح بنجاح"
+msgstr "التصريح قيد المراجعة من قبل الإدارة"
 
 #: templates/tenants/tenant_permit_detail.html:213
-#, fuzzy
-#| msgid "تمت الموافقة على تصريحك"
 msgid "تمت الموافقة على التصريح"
-msgstr "موافقة التصريح"
+msgstr "تمت الموافقة على التصريح"
 
 #: templates/tenants/tenant_permit_detail.html:228
-#, fuzzy
-#| msgid "تاريخ النهاية"
 msgid "التواريخ المهمة"
-msgstr "تاريخ النهاية"
+msgstr "التواريخ المهمة"
 
 #: templates/tenants/tenant_permit_detail.html:261
-#, fuzzy
-#| msgid "الطلب ليس في حالة الانتظار"
 msgid "يمكنك حذف التصريح طالما أنه في حالة الانتظار"
-msgstr "الطلب ليس في حالة الانتظار"
+msgstr "يمكنك حذف التصريح طالما أنه في حالة الانتظار"
 
 #: templates/tenants/tenant_permits.html:5
 #: templates/tenants/tenant_permits.html:13
-#, fuzzy
-#| msgid "التصاريح"
 msgid "تصاريحي"
-msgstr "التصاريح"
+msgstr "تصاريحي"
 
 #: templates/tenants/tenant_profile.html:41
 msgid "الاسم الكامل"
@@ -4023,144 +3814,61 @@ msgstr "معلومات الحساب"
 
 #: templates/tenants/tenant_ticket_create.html:6
 #: templates/tenants/tenant_ticket_create.html:14
-#, fuzzy
-#| msgid "طلب صيانة جديد"
 msgid "تذكرة صيانة جديدة"
-msgstr "طلب صيانة جديد"
+msgstr "تذكرة صيانة جديدة"
 
 #: templates/tenants/tenant_ticket_create.html:28
-#, fuzzy
-#| msgid "معلومات الشركة"
 msgid "معلومات التذكرة"
-msgstr "معلومات الشركة"
+msgstr "معلومات التذكرة"
 
 #: templates/tenants/tenant_ticket_create.html:67
-#, fuzzy
-#| msgid "طلبات الصيانة"
 msgid "فئات الصيانة"
-msgstr "طلبات الصيانة"
+msgstr "فئات الصيانة"
 
 #: templates/tenants/tenant_ticket_create.html:81
-#, fuzzy
-#| msgid "تم إنشاء التصريح بنجاح"
 msgid "سيتم مراجعة التذكرة من قبل فريق الصيانة"
-msgstr "تم إنشاء التصريح بنجاح"
+msgstr "سيتم مراجعة التذكرة من قبل فريق الصيانة"
 
 #: templates/tenants/tenant_ticket_create.html:82
-#, fuzzy
-#| msgid "لا يمكن تعديل طلب تمت الموافقة عليه أو رفضه"
 msgid "ستتلقى إشعاراً عند تعيين فني"
-msgstr "لا يمكن تعديل طلب تمت الموافقة عليه أو رفضه"
+msgstr "ستتلقى إشعاراً عند تعيين فني"
 
 #: templates/tenants/tenant_ticket_create.html:83
-#, fuzzy
-#| msgid "يمكنك إضافة المرفقات بعد حفظ التصريح"
 msgid "يمكنك متابعة حالة التذكرة"
-msgstr "يمكنك إضافة المرفقات بعد حفظ التصريح"
+msgstr "يمكنك متابعة حالة التذكرة"
 
 #: templates/tenants/tenant_ticket_detail.html:13
-#, fuzzy
-#| msgid "تفاصيل الفاتورة"
 msgid "تفاصيل التذكرة"
-msgstr "تفاصيل الفاتورة"
+msgstr "تفاصيل التذكرة"
 
 #: templates/tenants/tenant_ticket_detail.html:116
-#, fuzzy
-#| msgid "حالة الفاتورة"
 msgid "حالة التذكرة"
-msgstr "بند الفاتورة"
+msgstr "حالة التذكرة"
 
 #: templates/tenants/tenant_ticket_detail.html:133
-#, fuzzy
-#| msgid "قيد الانتظار"
 msgid "التذكرة قيد الانتظار"
-msgstr "قيد الانتظار"
+msgstr "التذكرة قيد الانتظار"
 
 #: templates/tenants/tenant_ticket_detail.html:137
-#, fuzzy
-#| msgid "تمت الموافقة على تصريحك"
 msgid "جاري العمل على التذكرة"
-msgstr "موافقة التصريح"
+msgstr "جاري العمل على التذكرة"
 
 #: templates/tenants/tenant_ticket_detail.html:141
-#, fuzzy
-#| msgid "رقم التذكرة"
 msgid "تم إغلاق التذكرة"
-msgstr "رقم التذكرة"
+msgstr "تم إغلاق التذكرة"
 
 #: templates/tenants/tenant_tickets.html:17
-#, fuzzy
-#| msgid "فاتورة جديدة"
 msgid "تذكرة جديدة"
-msgstr "فاتورة جديدة"
+msgstr "تذكرة جديدة"
 
 #: templates/tenants/tenant_tickets.html:25
-#, fuzzy
-#| msgid "تذاكر الصيانة"
 msgid "قائمة تذاكر الصيانة"
-msgstr "تذاكر الصيانة"
+msgstr "قائمة تذاكر الصيانة"
 
 #: templates/tenants/tenant_tickets.html:88
-#, fuzzy
-#| msgid "لا توجد طلبات صيانة"
 msgid "لا توجد تذاكر صيانة"
-msgstr "لا توجد طلبات صيانة"
+msgstr "لا توجد تذاكر صيانة"
 
 #: templates/tenants/tenant_tickets.html:91
-#, fuzzy
-#| msgid "إنشاء قضية جديدة"
 msgid "إنشاء تذكرة جديدة"
-msgstr "إنشاء قضية جديدة"
-
-#, fuzzy
-#~| msgid "إدارة الشكاوى"
-#~ msgid "أنواع الشكاوى"
-#~ msgstr "إدارة الشكاوى"
-
-#, fuzzy
-#~| msgid "شكوى جديدة"
-#~ msgid "شكوى خدمة"
-#~ msgstr "شكوى جديدة"
-
-#, fuzzy
-#~| msgid "شكوى جديدة"
-#~ msgid "شكوى صيانة"
-#~ msgstr "شكوى جديدة"
-
-#, fuzzy
-#~| msgid "شكوى نظافة"
-#~ msgid "شكوى مالية"
-#~ msgstr "شكوى نظافة"
-
-#, fuzzy
-#~| msgid "شكوى جديدة"
-#~ msgid "شكوى إدارية"
-#~ msgstr "شكوى جديدة"
-
-#, fuzzy
-#~| msgid "تم إنشاء التصريح بنجاح"
-#~ msgid "سيتم مراجعة الشكوى من قبل الإدارة"
-#~ msgstr "تم إنشاء التصريح بنجاح"
-
-#, fuzzy
-#~| msgid "يمكنك إضافة المرفقات بعد حفظ الطلب"
-#~ msgid "يمكنك متابعة حالة الشكوى"
-#~ msgstr "يمكنك إضافة المرفقات بعد حفظ الطلب"
-
-#~ msgid "اليوم"
-#~ msgstr "اليوم"
-
-#~ msgid "إصلاح كهرباء"
-#~ msgstr "إصلاح كهرباء"
-
-#~ msgid "أمس"
-#~ msgstr "أمس"
-
-#~ msgid "منذ يومين"
-#~ msgstr "منذ يومين"
-
-#~ msgid "لوحة المستأجر"
-#~ msgstr "لوحة المستأجر"
-
-#~ msgid "سيتم حساب الضريبة والمبلغ الإجمالي تلقائياً"
-#~ msgstr "سيتم حساب الضريبة والمبلغ الإجمالي تلقائياً"
+msgstr "إنشاء تذكرة جديدة"
