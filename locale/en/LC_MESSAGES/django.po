@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-26 13:52+0300\n"
+"POT-Creation-Date: 2025-10-26 14:00+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/accounts/admin.py:18
+#: apps/accounts/admin.py:19
 msgid "معلومات القسم"
 msgstr "معلومات القسم"
 
-#: apps/accounts/admin.py:21 apps/complaints/models.py:36
+#: apps/accounts/admin.py:22 apps/complaints/models.py:36
 #: apps/complaints/models.py:56 apps/complaints/models.py:66
 #: apps/complaints/models.py:83 apps/finance/models.py:257 apps/hr/models.py:37
 #: apps/maintenance/models.py:70 apps/marketing/models.py:34
@@ -50,73 +50,70 @@ msgstr "معلومات القسم"
 msgid "الحالة"
 msgstr "Status"
 
-#: apps/accounts/admin.py:24 apps/accounts/admin.py:76
-#: apps/accounts/admin.py:118 apps/accounts/admin.py:145
-#: apps/finance/admin.py:41 templates/permits/permit_detail.html:125
+#: apps/accounts/admin.py:25 apps/accounts/admin.py:72
+#: apps/accounts/admin.py:114 apps/accounts/admin.py:142
+#: apps/finance/admin.py:44 templates/permits/permit_detail.html:125
 msgid "التواريخ"
 msgstr "التواريخ"
 
-#: apps/accounts/admin.py:44
-msgid ""
-"أدخل الصلاحيات كقائمة JSON: [\"view\", \"add\", \"change\", \"delete\", "
-"\"export\", \"approve\"]"
-msgstr ""
-
-#: apps/accounts/admin.py:60
+#: apps/accounts/admin.py:56
 msgid "معلومات تسجيل الدخول"
 msgstr "معلومات تسجيل الدخول"
 
-#: apps/accounts/admin.py:63
+#: apps/accounts/admin.py:59
 msgid "المعلومات الشخصية"
 msgstr "المعلومات الشخصية"
 
-#: apps/accounts/admin.py:66
+#: apps/accounts/admin.py:62
 msgid "معلومات العمل"
 msgstr "معلومات العمل"
 
-#: apps/accounts/admin.py:69 templates/finance/invoice_detail.html:205
+#: apps/accounts/admin.py:65 templates/finance/invoice_detail.html:205
 msgid "معلومات إضافية"
 msgstr "معلومات إضافية"
 
-#: apps/accounts/admin.py:72 apps/accounts/admin.py:141
-#: apps/accounts/admin.py:170 apps/accounts/models.py:329
+#: apps/accounts/admin.py:68 apps/accounts/admin.py:138
+#: apps/accounts/admin.py:167 apps/accounts/forms.py:43
+#: apps/accounts/models.py:329
 msgid "الصلاحيات"
 msgstr "Permissions"
 
-#: apps/accounts/admin.py:103 apps/accounts/models.py:170
+#: apps/accounts/admin.py:99 apps/accounts/models.py:170
 #: apps/accounts/models.py:192 apps/accounts/models.py:318
 #: apps/core/models.py:197
 msgid "المستخدم"
 msgstr "User"
 
-#: apps/accounts/admin.py:106 templates/tenants/tenant_profile.html:31
+#: apps/accounts/admin.py:102 templates/tenants/tenant_profile.html:31
 msgid "معلومات المستأجر"
 msgstr "Tenant Information"
 
-#: apps/accounts/admin.py:109 templates/tenants/tenant_profile.html:107
+#: apps/accounts/admin.py:105 templates/tenants/tenant_profile.html:107
 msgid "معلومات العقد"
 msgstr "Contract Information"
 
-#: apps/accounts/admin.py:112
+#: apps/accounts/admin.py:108
 msgid "معلومات الاتصال للطوارئ"
 msgstr "معلومات الاتصال للطوارئ"
 
-#: apps/accounts/admin.py:115
+#: apps/accounts/admin.py:111
 msgid "الحالة والملاحظات"
 msgstr "الحالة والملاحظات"
 
-#: apps/accounts/admin.py:138
+#: apps/accounts/admin.py:135
 #, fuzzy
 #| msgid "المستخدمون"
 msgid "المستخدم والمديول"
 msgstr "المستخدمون"
 
-#: apps/accounts/admin.py:143
-msgid ""
-"حدد الصلاحيات كقائمة JSON. مثال: [\"view\", \"add\", \"change\", \"delete\"]"
-msgstr ""
+#: apps/accounts/admin.py:140
+#, fuzzy
+#| msgid "الموافقات المعلقة"
+msgid "اختر الصلاحيات المطلوبة"
+msgstr "Pending Approvals"
 
-#: apps/accounts/admin.py:159 templates/complaints/case_list.html:202
+#: apps/accounts/admin.py:156 apps/accounts/forms.py:27
+#: templates/complaints/case_list.html:202
 #: templates/finance/invoice_list.html:162
 #: templates/hr/leave_request_list.html:222
 #: templates/maintenance/ticket_list.html:217
@@ -126,13 +123,14 @@ msgstr ""
 msgid "عرض"
 msgstr "View"
 
-#: apps/accounts/admin.py:160
+#: apps/accounts/admin.py:157 apps/accounts/forms.py:28
 #, fuzzy
 #| msgid "إضافة تعليق"
 msgid "إضافة"
 msgstr "إضافة تعليق"
 
-#: apps/accounts/admin.py:161 templates/complaints/case_detail.html:27
+#: apps/accounts/admin.py:158 apps/accounts/forms.py:29
+#: templates/complaints/case_detail.html:27
 #: templates/complaints/case_list.html:207
 #: templates/finance/invoice_detail.html:22
 #: templates/finance/invoice_form.html:31
@@ -146,7 +144,8 @@ msgstr "إضافة تعليق"
 msgid "تعديل"
 msgstr "Edit"
 
-#: apps/accounts/admin.py:162 templates/complaints/case_detail.html:31
+#: apps/accounts/admin.py:159 apps/accounts/forms.py:30
+#: templates/complaints/case_detail.html:31
 #: templates/finance/invoice_detail.html:25
 #: templates/finance/invoice_form.html:74
 #: templates/finance/invoice_form.html:89
@@ -159,16 +158,64 @@ msgstr "Edit"
 msgid "حذف"
 msgstr "Delete"
 
-#: apps/accounts/admin.py:163
+#: apps/accounts/admin.py:160 apps/accounts/forms.py:31
 #, fuzzy
 #| msgid "تصدير Excel"
 msgid "تصدير"
 msgstr "Export Excel"
 
-#: apps/accounts/admin.py:164 templates/hr/leave_request_detail.html:28
+#: apps/accounts/admin.py:161 apps/accounts/forms.py:32
+#: templates/hr/leave_request_detail.html:28
 #: templates/hr/leave_request_list.html:228
 msgid "موافقة"
 msgstr "Approve"
+
+#: apps/accounts/forms.py:17 apps/permits/models.py:158 templates/base.html:479
+#: templates/dashboard/dashboard.html:33
+#: templates/permits/permit_detail.html:20
+#: templates/permits/permit_form.html:21 templates/permits/permit_list.html:4
+#: templates/permits/permit_list.html:18
+#: templates/tenants/tenant_dashboard.html:59
+#: templates/tenants/tenant_profile.html:196
+msgid "التصاريح"
+msgstr "Permits"
+
+#: apps/accounts/forms.py:18 templates/base.html:488
+#: templates/dashboard/dashboard.html:61
+#: templates/maintenance/ticket_detail.html:20
+#: templates/maintenance/ticket_form.html:21
+#: templates/maintenance/ticket_list.html:18
+msgid "الصيانة"
+msgstr "Maintenance"
+
+#: apps/accounts/forms.py:19 templates/base.html:497
+#: templates/complaints/case_detail.html:19
+#: templates/complaints/case_form.html:20
+#: templates/complaints/case_list.html:18 templates/dashboard/dashboard.html:89
+msgid "الشكاوى"
+msgstr "Complaints"
+
+#: apps/accounts/forms.py:20 templates/base.html:506
+#: templates/marketing/event_list.html:18
+msgid "التسويق"
+msgstr "Marketing"
+
+#: apps/accounts/forms.py:21 templates/base.html:515
+#: templates/hr/leave_request_list.html:18
+msgid "الموارد البشرية"
+msgstr "HR"
+
+#: apps/accounts/forms.py:22 apps/finance/apps.py:8 templates/base.html:525
+#: templates/finance/invoice_list.html:4 templates/finance/invoice_list.html:15
+#: templates/finance/payment_list.html:4 templates/finance/payment_list.html:15
+msgid "المالية"
+msgstr "Finance"
+
+#: apps/accounts/forms.py:37 apps/accounts/models.py:324
+#, fuzzy
+#| msgid "المدفوع"
+msgid "المديول"
+msgstr "Paid"
 
 #: apps/accounts/models.py:12
 msgid "العمليات - Operations"
@@ -408,8 +455,8 @@ msgstr "اسم جهة الاتصال للطوارئ"
 msgid "هاتف جهة الاتصال للطوارئ"
 msgstr "هاتف جهة الاتصال للطوارئ"
 
-#: apps/accounts/models.py:268 apps/finance/admin.py:47
-#: apps/finance/admin.py:82 apps/finance/models.py:264
+#: apps/accounts/models.py:268 apps/finance/admin.py:50
+#: apps/finance/admin.py:109 apps/finance/models.py:264
 #: apps/finance/models.py:456 apps/hr/models.py:72 apps/marketing/models.py:44
 #: apps/marketing/models.py:78 apps/permits/models.py:131
 #: templates/finance/invoice_detail.html:74
@@ -476,12 +523,6 @@ msgstr "Export Excel"
 #| msgid "موافق - Approved"
 msgid "موافقة - Approve"
 msgstr "موافق - Approved"
-
-#: apps/accounts/models.py:324
-#, fuzzy
-#| msgid "المدفوع"
-msgid "المديول"
-msgstr "Paid"
 
 #: apps/accounts/models.py:330
 msgid "قائمة الصلاحيات: view, add, change, delete, export, approve"
@@ -962,60 +1003,70 @@ msgstr "No original user to return to"
 msgid "تم العودة إلى حسابك الأصلي"
 msgstr "Returned to your original account"
 
-#: apps/finance/admin.py:38 apps/finance/admin.py:76
+#: apps/finance/admin.py:41 apps/finance/admin.py:103
 msgid "معلومات أساسية"
 msgstr "معلومات أساسية"
 
-#: apps/finance/admin.py:44
+#: apps/finance/admin.py:47
 msgid "المبالغ (USD)"
 msgstr "المبالغ (USD)"
 
-#: apps/finance/admin.py:50 apps/finance/admin.py:85
+#: apps/finance/admin.py:53 apps/finance/admin.py:112
 msgid "التتبع"
 msgstr "التتبع"
 
-#: apps/finance/admin.py:61 templates/finance/invoice_detail.html:196
+#: apps/finance/admin.py:64 templates/finance/invoice_detail.html:196
 #: templates/finance/invoice_list.html:123
 msgid "المبلغ المتبقي"
 msgstr "Balance Due"
 
-#: apps/finance/admin.py:79
+#: apps/finance/admin.py:73 apps/finance/admin.py:75
+#: templates/finance/invoice_print.html:329
+#: templates/tenants/tenant_invoices.html:165
+msgid "طباعة"
+msgstr "Print"
+
+#: apps/finance/admin.py:87
+msgid "يرجى اختيار فاتورة واحدة فقط للطباعة"
+msgstr "Please select only one invoice to print"
+
+#: apps/finance/admin.py:88
+#, fuzzy
+#| msgid "طباعة الفاتورة"
+msgid "طباعة الفواتير المحددة"
+msgstr "Invoice Item"
+
+#: apps/finance/admin.py:106
 msgid "تفاصيل الدفع"
 msgstr "تفاصيل الدفع"
 
-#: apps/finance/admin.py:100 templates/permits/permit_detail.html:94
+#: apps/finance/admin.py:127 templates/permits/permit_detail.html:94
 msgid "معلومات الشركة"
 msgstr "معلومات الشركة"
 
-#: apps/finance/admin.py:103
+#: apps/finance/admin.py:130
 #, fuzzy
 #| msgid "معلومات الفاتورة"
 msgid "معلومات الاتصال"
 msgstr "Invoice Information"
 
-#: apps/finance/admin.py:106
+#: apps/finance/admin.py:133
 #, fuzzy
 #| msgid "معلومات إضافية"
 msgid "معلومات ضريبية"
 msgstr "معلومات إضافية"
 
-#: apps/finance/admin.py:109
+#: apps/finance/admin.py:136
 #, fuzzy
 #| msgid "معلومات القسم"
 msgid "ألوان القالب"
 msgstr "معلومات القسم"
 
-#: apps/finance/admin.py:112
+#: apps/finance/admin.py:139
 #, fuzzy
 #| msgid "نوع الفاتورة"
 msgid "نصوص الفاتورة"
 msgstr "Invoice Type"
-
-#: apps/finance/apps.py:8 templates/base.html:525
-#: templates/finance/invoice_list.html:4 templates/finance/invoice_list.html:15
-#: templates/finance/payment_list.html:4 templates/finance/payment_list.html:15
-msgid "المالية"
-msgstr "Finance"
 
 #: apps/finance/forms.py:48 apps/finance/forms.py:109
 #: templates/complaints/case_confirm_delete.html:45
@@ -1920,16 +1971,6 @@ msgstr "Request Date"
 msgid "التصريح"
 msgstr "Permit"
 
-#: apps/permits/models.py:158 templates/base.html:479
-#: templates/dashboard/dashboard.html:33
-#: templates/permits/permit_detail.html:20
-#: templates/permits/permit_form.html:21 templates/permits/permit_list.html:4
-#: templates/permits/permit_list.html:18
-#: templates/tenants/tenant_dashboard.html:59
-#: templates/tenants/tenant_profile.html:196
-msgid "التصاريح"
-msgstr "Permits"
-
 #: apps/permits/models.py:194
 msgid "حجم الملف (بايت)"
 msgstr "File Size (Bytes)"
@@ -2312,27 +2353,6 @@ msgstr "My Invoices"
 msgid "الموافقات المعلقة"
 msgstr "Pending Approvals"
 
-#: templates/base.html:488 templates/dashboard/dashboard.html:61
-#: templates/maintenance/ticket_detail.html:20
-#: templates/maintenance/ticket_form.html:21
-#: templates/maintenance/ticket_list.html:18
-msgid "الصيانة"
-msgstr "Maintenance"
-
-#: templates/base.html:497 templates/complaints/case_detail.html:19
-#: templates/complaints/case_form.html:20
-#: templates/complaints/case_list.html:18 templates/dashboard/dashboard.html:89
-msgid "الشكاوى"
-msgstr "Complaints"
-
-#: templates/base.html:506 templates/marketing/event_list.html:18
-msgid "التسويق"
-msgstr "Marketing"
-
-#: templates/base.html:515 templates/hr/leave_request_list.html:18
-msgid "الموارد البشرية"
-msgstr "HR"
-
 #: templates/base.html:544
 msgid "وضع التطوير - تبديل المستخدم نشط"
 msgstr "Username"
@@ -2366,6 +2386,7 @@ msgstr "Are you sure you want to delete this case? This action cannot be undone!
 "you want to delete this case? This action cannot be undone!Are you sure you "
 "want to delete this case? This action cannot be undone!Are you sure you want "
 "to delete this case? This action cannot be undone!Are you sure you want to "
+"delete this case? This action cannot be undone!Are you sure you want to "
 "delete this case? This action cannot be undone!Are you sure you want to "
 "delete this case? This action cannot be undone!Are you sure you want to "
 "delete this case? This action cannot be undone!Are you sure you want to "
@@ -2797,11 +2818,6 @@ msgstr "Paid Amounts"
 msgid "المبالغ المتبقية"
 msgstr "Remaining Amounts"
 
-#: templates/finance/invoice_print.html:329
-#: templates/tenants/tenant_invoices.html:165
-msgid "طباعة"
-msgstr "Print"
-
 #: templates/finance/invoice_print.html:377
 #: templates/tenants/tenant_invoice_detail.html:99
 msgid "معلومات العميل"
@@ -3018,6 +3034,7 @@ msgstr "Are you sure you want to delete this ticket? This action cannot be undon
 "Are you sure you want to delete this ticket? This action cannot be undone!"
 "Are you sure you want to delete this ticket? This action cannot be undone!"
 "Are you sure you want to delete this ticket? This action cannot be undone!"
+"Are you sure you want to delete this ticket? This action cannot be undone!"
 
 #: templates/maintenance/ticket_confirm_delete.html:24
 msgid "تفاصيل الطلب"
@@ -3109,6 +3126,7 @@ msgid "هل أنت متأكد من حذف هذه الفعالية؟ هذا ال�
 msgstr "Are you sure you want to delete this event? This action cannot be undone!"
 "Are you sure you want to delete this event? This action cannot be undone!Are "
 "you sure you want to delete this event? This action cannot be undone!Are you "
+"sure you want to delete this event? This action cannot be undone!Are you "
 "sure you want to delete this event? This action cannot be undone!Are you "
 "sure you want to delete this event? This action cannot be undone!Are you "
 "sure you want to delete this event? This action cannot be undone!Are you "

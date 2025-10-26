@@ -732,6 +732,9 @@ translations = {
     "نصوص الفاتورة": "Invoice Texts",
     "توقيع العميل": "Customer Signature",
     "توقيع الشركة": "Company Signature",
+    "اختر الصلاحيات المطلوبة": "Select required permissions",
+    "طباعة الفواتير المحددة": "Print selected invoices",
+    "يرجى اختيار فاتورة واحدة فقط للطباعة": "Please select only one invoice to print",
 
     # Invoice Details - تفاصيل الفاتورة
     "تفاصيل الفاتورة": "Invoice Details",

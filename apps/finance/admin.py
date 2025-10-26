@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
+from django.utils.html import format_html
+from django.urls import reverse
 from .models import Invoice, InvoiceItem, Payment, InvoiceSettings
 
 
@@ -28,11 +30,12 @@ class InvoiceAdmin(admin.ModelAdmin):
     """
     لوحة تحكم الفواتير
     """
-    list_display = ('invoice_number', 'tenant', 'invoice_type', 'total_amount', 'paid_amount', 'balance_due', 'status', 'due_date')
+    list_display = ('invoice_number', 'tenant', 'invoice_type', 'total_amount', 'paid_amount', 'balance_due', 'status', 'due_date', 'print_button')
     list_filter = ('invoice_type', 'status', 'issue_date', 'due_date')
     search_fields = ('invoice_number', 'tenant__username', 'tenant__first_name', 'tenant__last_name', 'notes')
     ordering = ('-created_at',)
     date_hierarchy = 'issue_date'
+    actions = ['print_selected_invoices']
 
     fieldsets = (
         (_('معلومات أساسية'), {
@@ -59,6 +62,30 @@ class InvoiceAdmin(admin.ModelAdmin):
     def balance_due(self, obj):
         return f"${obj.balance_due:,.2f}"
     balance_due.short_description = _('المبلغ المتبقي')
+
+    def print_button(self, obj):
+        """زر طباعة الفاتورة"""
+        url = reverse('accounts:tenant_invoice_print', args=[obj.pk])
+        return format_html(
+            '<a href="{}" target="_blank" class="button" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 5px 10px; border-radius: 4px; text-decoration: none;">'
+            '<i class="fas fa-print"></i> {}</a>',
+            url,
+            _('طباعة')
+        )
+    print_button.short_description = _('طباعة')
+
+    def print_selected_invoices(self, request, queryset):
+        """طباعة الفواتير المحددة"""
+        if queryset.count() == 1:
+            invoice = queryset.first()
+            url = reverse('accounts:tenant_invoice_print', args=[invoice.pk])
+            return format_html(
+                '<script>window.open("{}", "_blank");</script>',
+                url
+            )
+        else:
+            self.message_user(request, _('يرجى اختيار فاتورة واحدة فقط للطباعة'))
+    print_selected_invoices.short_description = _('طباعة الفواتير المحددة')
 
 
 @admin.register(Payment)

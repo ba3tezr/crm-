@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
 from .models import Department, CustomUser, TenantProfile, DepartmentPermission
+from .forms import DepartmentPermissionForm
 
 
 @admin.register(Department)
@@ -35,14 +36,9 @@ class DepartmentPermissionInline(admin.TabularInline):
     صلاحيات الأقسام كـ Inline في صفحة المستخدم
     """
     model = DepartmentPermission
+    form = DepartmentPermissionForm
     extra = 1
     fields = ('module', 'permissions', 'is_active')
-
-    def formfield_for_dbfield(self, db_field, **kwargs):
-        """تخصيص حقل الصلاحيات"""
-        if db_field.name == 'permissions':
-            kwargs['help_text'] = _('أدخل الصلاحيات كقائمة JSON: ["view", "add", "change", "delete", "export", "approve"]')
-        return super().formfield_for_dbfield(db_field, **kwargs)
 
 
 @admin.register(CustomUser)
@@ -129,6 +125,7 @@ class DepartmentPermissionAdmin(admin.ModelAdmin):
     """
     لوحة تحكم صلاحيات الأقسام
     """
+    form = DepartmentPermissionForm
     list_display = ('user', 'module', 'get_permissions_display', 'is_active', 'created_at')
     list_filter = ('module', 'is_active', 'created_at')
     search_fields = ('user__username', 'user__first_name', 'user__last_name')
@@ -140,7 +137,7 @@ class DepartmentPermissionAdmin(admin.ModelAdmin):
         }),
         (_('الصلاحيات'), {
             'fields': ('permissions', 'is_active'),
-            'description': _('حدد الصلاحيات كقائمة JSON. مثال: ["view", "add", "change", "delete"]')
+            'description': _('اختر الصلاحيات المطلوبة')
         }),
         (_('التواريخ'), {
             'fields': ('created_at', 'updated_at'),
@@ -164,7 +161,7 @@ class DepartmentPermissionAdmin(admin.ModelAdmin):
             'approve': _('موافقة'),
         }
 
-        perms = [permission_map.get(p, p) for p in obj.permissions]
+        perms = [str(permission_map.get(p, p)) for p in obj.permissions]
         return ', '.join(perms)
 
     get_permissions_display.short_description = _('الصلاحيات')
