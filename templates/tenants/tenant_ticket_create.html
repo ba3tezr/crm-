@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% trans "تذكرة صيانة جديدة" %} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+            <i class="fas fa-tools text-warning"></i>
+            {% trans "تذكرة صيانة جديدة" %}
+        </h1>
+        <a href="{% url 'accounts:tenant_tickets' %}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i>
+            {% trans "رجوع" %}
+        </a>
+    </div>
+
+    <!-- Create Form -->
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        {% trans "معلومات التذكرة" %}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    {% if form.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>{% trans "خطأ!" %}</strong>
+                        {% trans "يرجى تصحيح الأخطاء التالية:" %}
+                        <ul class="mb-0 mt-2">
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <li>{{ field.label }}: {{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endif %}
+
+                    {% crispy form %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Card -->
+        <div class="col-lg-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-info">
+                        <i class="fas fa-info-circle"></i>
+                        {% trans "معلومات" %}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <h6 class="font-weight-bold">{% trans "فئات الصيانة" %}:</h6>
+                    <ul class="small">
+                        <li>{% trans "كهرباء" %}</li>
+                        <li>{% trans "سباكة" %}</li>
+                        <li>{% trans "تكييف" %}</li>
+                        <li>{% trans "نجارة" %}</li>
+                        <li>{% trans "دهان" %}</li>
+                        <li>{% trans "أخرى" %}</li>
+                    </ul>
+
+                    <hr>
+
+                    <h6 class="font-weight-bold">{% trans "ملاحظات" %}:</h6>
+                    <ul class="small text-muted">
+                        <li>{% trans "سيتم مراجعة التذكرة من قبل فريق الصيانة" %}</li>
+                        <li>{% trans "ستتلقى إشعاراً عند تعيين فني" %}</li>
+                        <li>{% trans "يمكنك متابعة حالة التذكرة" %}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

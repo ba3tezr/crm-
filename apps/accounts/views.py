@@ -13,7 +13,9 @@ from .models import TenantProfile
 from apps.permits.models import Permit
 from apps.permits.forms import PermitForm
 from apps.maintenance.models import Ticket
+from apps.maintenance.forms import TicketForm
 from apps.complaints.models import Case
+from apps.complaints.forms import CaseForm
 from apps.finance.models import Invoice
 
 
@@ -222,6 +224,10 @@ def tenant_permit_create(request):
             permit = form.save(commit=False)
             permit.tenant = request.user
             permit.status = 'pending'  # Always pending for tenant-created permits
+            # Set requested_date to today if not provided
+            if not permit.requested_date:
+                from datetime import date
+                permit.requested_date = date.today()
             permit.save()
             messages.success(request, _('تم إنشاء التصريح بنجاح'))
             return redirect('accounts:tenant_permits')
@@ -291,3 +297,175 @@ def tenant_permit_delete(request, pk):
     }
 
     return render(request, 'tenants/tenant_permit_delete.html', context)
+
+
+@login_required
+def tenant_tickets(request):
+    """
+    تذاكر الصيانة للمستأجر - Tenant Maintenance Tickets
+    """
+    # Check if user is a tenant
+    try:
+        tenant_profile = request.user.tenant_profile
+    except:
+        messages.error(request, _('ليس لديك صلاحية الوصول لهذه الصفحة'))
+        return redirect('core:dashboard')
+
+    tickets = Ticket.objects.filter(created_by=request.user).order_by('-created_at')
+
+    # Filters
+    status = request.GET.get('status')
+    priority = request.GET.get('priority')
+
+    if status:
+        tickets = tickets.filter(status=status)
+    if priority:
+        tickets = tickets.filter(priority=priority)
+
+    context = {
+        'tenant_profile': tenant_profile,
+        'tickets': tickets,
+    }
+
+    return render(request, 'tenants/tenant_tickets.html', context)
+
+
+@login_required
+def tenant_ticket_create(request):
+    """
+    إنشاء تذكرة صيانة جديدة للمستأجر - Create Maintenance Ticket for Tenant
+    """
+    # Check if user is a tenant
+    try:
+        tenant_profile = request.user.tenant_profile
+    except:
+        messages.error(request, _('ليس لديك صلاحية الوصول لهذه الصفحة'))
+        return redirect('core:dashboard')
+
+    if request.method == 'POST':
+        form = TicketForm(request.POST, request.FILES, is_tenant=True)
+        if form.is_valid():
+            ticket = form.save(commit=False)
+            ticket.created_by = request.user
+            ticket.status = 'open'
+            ticket.save()
+            messages.success(request, _('تم إنشاء تذكرة الصيانة بنجاح'))
+            return redirect('accounts:tenant_tickets')
+    else:
+        form = TicketForm(is_tenant=True)
+
+    context = {
+        'form': form,
+        'tenant_profile': tenant_profile,
+    }
+
+    return render(request, 'tenants/tenant_ticket_create.html', context)
+
+
+@login_required
+def tenant_ticket_detail(request, pk):
+    """
+    تفاصيل تذكرة الصيانة للمستأجر - Tenant Ticket Detail
+    """
+    # Check if user is a tenant
+    try:
+        tenant_profile = request.user.tenant_profile
+    except:
+        messages.error(request, _('ليس لديك صلاحية الوصول لهذه الصفحة'))
+        return redirect('core:dashboard')
+
+    # Get ticket and ensure it belongs to this tenant
+    ticket = get_object_or_404(Ticket, pk=pk, created_by=request.user)
+
+    context = {
+        'ticket': ticket,
+        'tenant_profile': tenant_profile,
+    }
+
+    return render(request, 'tenants/tenant_ticket_detail.html', context)
+
+
+@login_required
+def tenant_cases(request):
+    """
+    الشكاوى للمستأجر - Tenant Cases/Complaints
+    """
+    # Check if user is a tenant
+    try:
+        tenant_profile = request.user.tenant_profile
+    except:
+        messages.error(request, _('ليس لديك صلاحية الوصول لهذه الصفحة'))
+        return redirect('core:dashboard')
+
+    cases = Case.objects.filter(created_by=request.user).order_by('-created_at')
+
+    # Filters
+    status = request.GET.get('status')
+    priority = request.GET.get('priority')
+
+    if status:
+        cases = cases.filter(status=status)
+    if priority:
+        cases = cases.filter(priority=priority)
+
+    context = {
+        'tenant_profile': tenant_profile,
+        'cases': cases,
+    }
+
+    return render(request, 'tenants/tenant_cases.html', context)
+
+
+@login_required
+def tenant_case_create(request):
+    """
+    إنشاء شكوى جديدة للمستأجر - Create Case for Tenant
+    """
+    # Check if user is a tenant
+    try:
+        tenant_profile = request.user.tenant_profile
+    except:
+        messages.error(request, _('ليس لديك صلاحية الوصول لهذه الصفحة'))
+        return redirect('core:dashboard')
+
+    if request.method == 'POST':
+        form = CaseForm(request.POST, request.FILES, is_tenant=True)
+        if form.is_valid():
+            case = form.save(commit=False)
+            case.created_by = request.user
+            case.status = 'open'
+            case.save()
+            messages.success(request, _('تم إنشاء الشكوى بنجاح'))
+            return redirect('accounts:tenant_cases')
+    else:
+        form = CaseForm(is_tenant=True)
+
+    context = {
+        'form': form,
+        'tenant_profile': tenant_profile,
+    }
+
+    return render(request, 'tenants/tenant_case_create.html', context)
+
+
+@login_required
+def tenant_case_detail(request, pk):
+    """
+    تفاصيل الشكوى للمستأجر - Tenant Case Detail
+    """
+    # Check if user is a tenant
+    try:
+        tenant_profile = request.user.tenant_profile
+    except:
+        messages.error(request, _('ليس لديك صلاحية الوصول لهذه الصفحة'))
+        return redirect('core:dashboard')
+
+    # Get case and ensure it belongs to this tenant
+    case = get_object_or_404(Case, pk=pk, created_by=request.user)
+
+    context = {
+        'case': case,
+        'tenant_profile': tenant_profile,
+    }
+
+    return render(request, 'tenants/tenant_case_detail.html', context)

@@ -31,13 +31,25 @@ class CaseForm(forms.ModelForm):
         }
     
     def __init__(self, *args, **kwargs):
+        # استخراج معامل is_tenant لتحديد نوع النموذج
+        is_tenant = kwargs.pop('is_tenant', False)
         super().__init__(*args, **kwargs)
+
+        # إذا كان المستخدم مستأجر، نخفي ونثبت بعض الحقول
+        if is_tenant:
+            # إخفاء الحقول غير المطلوبة للمستأجر
+            self.fields.pop('case_number', None)
+            self.fields.pop('status', None)
+            self.fields.pop('assigned_to', None)
+            self.fields.pop('department', None)
+            self.fields.pop('resolution_notes', None)
+
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.form_class = 'form-horizontal'
-        
-        # Make case_number readonly if editing
-        if self.instance.pk:
+
+        # Make case_number readonly if editing (for staff only)
+        if not is_tenant and self.instance.pk:
             self.fields['case_number'].widget.attrs['readonly'] = True
         
         self.helper.layout = Layout(

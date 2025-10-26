@@ -35,13 +35,30 @@ class TicketForm(forms.ModelForm):
         }
     
     def __init__(self, *args, **kwargs):
+        # استخراج معامل is_tenant لتحديد نوع النموذج
+        is_tenant = kwargs.pop('is_tenant', False)
         super().__init__(*args, **kwargs)
+
+        # إذا كان المستخدم مستأجر، نخفي ونثبت بعض الحقول
+        if is_tenant:
+            # إخفاء الحقول غير المطلوبة للمستأجر
+            self.fields.pop('ticket_number', None)
+            self.fields.pop('status', None)
+            self.fields.pop('assigned_to', None)
+            self.fields.pop('resolution_notes', None)
+            self.fields.pop('due_date', None)
+
+            # جعل بعض الحقول اختيارية للمستأجر
+            self.fields['unit_number'].required = False
+            self.fields['floor_number'].required = False
+            self.fields['building_name'].required = False
+
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.form_class = 'form-horizontal'
-        
-        # Make ticket_number readonly if editing
-        if self.instance.pk:
+
+        # Make ticket_number readonly if editing (for staff only)
+        if not is_tenant and self.instance.pk:
             self.fields['ticket_number'].widget.attrs['readonly'] = True
         
         self.helper.layout = Layout(
