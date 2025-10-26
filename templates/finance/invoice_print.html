@@ -1,0 +1,538 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "فاتورة" %} {{ invoice.invoice_number }}</title>
+    
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 10pt;
+            line-height: 1.4;
+            color: #333;
+            background: white;
+        }
+        
+        /* A4 Container - Exact A4 size */
+        .invoice-container {
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            padding: 15mm 12mm;
+            background: white;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid {{ settings.primary_color|default:'#667eea' }};
+        }
+        
+        .company-info {
+            flex: 1;
+        }
+        
+        .company-logo {
+            max-width: 150px;
+            max-height: 60px;
+            margin-bottom: 8px;
+        }
+        
+        .company-name {
+            font-size: 18pt;
+            font-weight: bold;
+            color: {{ settings.primary_color|default:'#667eea' }};
+            margin-bottom: 4px;
+        }
+        
+        .company-details {
+            font-size: 8pt;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .invoice-title {
+            text-align: {% if LANGUAGE_CODE == 'ar' %}left{% else %}right{% endif %};
+        }
+        
+        .invoice-title h1 {
+            font-size: 24pt;
+            color: {{ settings.primary_color|default:'#667eea' }};
+            margin-bottom: 6px;
+        }
+        
+        .invoice-meta {
+            font-size: 9pt;
+            color: #666;
+        }
+        
+        .invoice-meta div {
+            margin-bottom: 3px;
+        }
+        
+        .invoice-meta strong {
+            color: #333;
+        }
+        
+        /* Customer & Invoice Info */
+        .info-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            gap: 15px;
+        }
+        
+        .info-box {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+            border-{% if LANGUAGE_CODE == 'ar' %}right{% else %}left{% endif %}: 3px solid {{ settings.secondary_color|default:'#764ba2' }};
+        }
+        
+        .info-box h3 {
+            font-size: 10pt;
+            color: {{ settings.secondary_color|default:'#764ba2' }};
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        
+        .info-box p {
+            font-size: 9pt;
+            margin-bottom: 3px;
+            color: #555;
+        }
+        
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 9pt;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .status-paid { background: #d4edda; color: #155724; }
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-overdue { background: #f8d7da; color: #721c24; }
+        .status-cancelled { background: #e2e3e5; color: #383d41; }
+        .status-partially_paid { background: #d1ecf1; color: #0c5460; }
+        
+        /* Items Table */
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+            font-size: 9pt;
+            flex-grow: 1;
+        }
+        
+        .items-table thead {
+            background: linear-gradient(135deg, {{ settings.primary_color|default:'#667eea' }} 0%, {{ settings.secondary_color|default:'#764ba2' }} 100%);
+            color: white;
+        }
+        
+        .items-table th {
+            padding: 8px 6px;
+            text-align: {% if LANGUAGE_CODE == 'ar' %}right{% else %}left{% endif %};
+            font-weight: 600;
+            font-size: 9pt;
+        }
+        
+        .items-table td {
+            padding: 7px 6px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .items-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .text-end {
+            text-align: {% if LANGUAGE_CODE == 'ar' %}left{% else %}right{% endif %};
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Totals Section */
+        .totals-section {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 12px;
+        }
+        
+        .totals-table {
+            width: 45%;
+            font-size: 9pt;
+        }
+        
+        .totals-table tr {
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .totals-table td {
+            padding: 6px 8px;
+        }
+        
+        .totals-table .total-row {
+            background: linear-gradient(135deg, {{ settings.primary_color|default:'#667eea' }} 0%, {{ settings.secondary_color|default:'#764ba2' }} 100%);
+            color: white;
+            font-weight: bold;
+            font-size: 11pt;
+        }
+        
+        .totals-table .balance-row {
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #dc3545;
+        }
+        
+        /* Payments Section */
+        .payments-section {
+            margin-bottom: 12px;
+        }
+        
+        .payments-section h3 {
+            font-size: 10pt;
+            color: {{ settings.primary_color|default:'#667eea' }};
+            margin-bottom: 6px;
+            padding-bottom: 4px;
+            border-bottom: 2px solid {{ settings.primary_color|default:'#667eea' }};
+        }
+        
+        .payments-table {
+            width: 100%;
+            font-size: 8pt;
+            border-collapse: collapse;
+        }
+        
+        .payments-table th {
+            background: #f8f9fa;
+            padding: 5px;
+            text-align: {% if LANGUAGE_CODE == 'ar' %}right{% else %}left{% endif %};
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        .payments-table td {
+            padding: 5px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        /* Footer */
+        .invoice-footer {
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 2px solid #e9ecef;
+            font-size: 8pt;
+            color: #666;
+        }
+        
+        .footer-text {
+            text-align: center;
+            margin-bottom: 6px;
+        }
+        
+        .terms {
+            background: #f8f9fa;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 6px;
+            font-size: 7pt;
+        }
+        
+        .signature-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        
+        .signature-box {
+            width: 45%;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            
+            .invoice-container {
+                margin: 0;
+                padding: 15mm 12mm;
+                page-break-after: avoid;
+            }
+            
+            .no-print {
+                display: none !important;
+            }
+            
+            .items-table {
+                page-break-inside: avoid;
+            }
+        }
+        
+        /* Print Button */
+        .print-button {
+            position: fixed;
+            top: 20px;
+            {% if LANGUAGE_CODE == 'ar' %}left{% else %}right{% endif %}: 20px;
+            background: linear-gradient(135deg, {{ settings.primary_color|default:'#667eea' }} 0%, {{ settings.secondary_color|default:'#764ba2' }} 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .print-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body>
+    <!-- Print Button -->
+    <button class="print-button no-print" onclick="window.print()">
+        <i class="fas fa-print"></i> {% trans "طباعة" %}
+    </button>
+
+    <div class="invoice-container">
+        <!-- Header -->
+        <div class="invoice-header">
+            <div class="company-info">
+                {% if settings.logo %}
+                <img src="{{ settings.logo.url }}" alt="{{ settings.company_name_ar }}" class="company-logo">
+                {% endif %}
+                <div class="company-name">
+                    {% if LANGUAGE_CODE == 'ar' %}
+                        {{ settings.company_name_ar }}
+                    {% else %}
+                        {{ settings.company_name_en }}
+                    {% endif %}
+                </div>
+                <div class="company-details">
+                    {% if LANGUAGE_CODE == 'ar' %}
+                        {{ settings.address_ar|linebreaks }}
+                    {% else %}
+                        {{ settings.address_en|linebreaks }}
+                    {% endif %}
+                    {% if settings.phone %}<div>{% trans "الهاتف" %}: {{ settings.phone }}</div>{% endif %}
+                    {% if settings.email %}<div>{% trans "البريد الإلكتروني" %}: {{ settings.email }}</div>{% endif %}
+                    {% if settings.tax_number %}<div>{% trans "الرقم الضريبي" %}: {{ settings.tax_number }}</div>{% endif %}
+                    {% if settings.commercial_register %}<div>{% trans "السجل التجاري" %}: {{ settings.commercial_register }}</div>{% endif %}
+                </div>
+            </div>
+
+            <div class="invoice-title">
+                <h1>{% trans "فاتورة" %}</h1>
+                <div class="invoice-meta">
+                    <div><strong>{% trans "رقم الفاتورة" %}:</strong> {{ invoice.invoice_number }}</div>
+                    <div><strong>{% trans "تاريخ الإصدار" %}:</strong> {{ invoice.issue_date|date:"Y-m-d" }}</div>
+                    <div><strong>{% trans "تاريخ الاستحقاق" %}:</strong> {{ invoice.due_date|date:"Y-m-d" }}</div>
+                    <div>
+                        <span class="status-badge status-{{ invoice.status }}">
+                            {{ invoice.get_status_display }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer & Invoice Info -->
+        <div class="info-section">
+            <div class="info-box">
+                <h3>{% trans "معلومات العميل" %}</h3>
+                <p><strong>{% trans "الاسم" %}:</strong> {{ invoice.tenant.get_full_name }}</p>
+                <p><strong>{% trans "البريد الإلكتروني" %}:</strong> {{ invoice.tenant.email }}</p>
+                {% if invoice.tenant.tenant_profile %}
+                    {% if invoice.tenant.tenant_profile.company_name %}
+                    <p><strong>{% trans "الشركة" %}:</strong> {{ invoice.tenant.tenant_profile.company_name }}</p>
+                    {% endif %}
+                    {% if invoice.tenant.tenant_profile.unit_number %}
+                    <p><strong>{% trans "رقم الوحدة" %}:</strong> {{ invoice.tenant.tenant_profile.unit_number }}</p>
+                    {% endif %}
+                {% endif %}
+            </div>
+
+            <div class="info-box">
+                <h3>{% trans "تفاصيل الفاتورة" %}</h3>
+                <p><strong>{% trans "النوع" %}:</strong> {{ invoice.get_invoice_type_display }}</p>
+                <p><strong>{% trans "تاريخ الإصدار" %}:</strong> {{ invoice.issue_date|date:"Y-m-d" }}</p>
+                <p><strong>{% trans "تاريخ الاستحقاق" %}:</strong> {{ invoice.due_date|date:"Y-m-d" }}</p>
+                <p><strong>{% trans "الحالة" %}:</strong> {{ invoice.get_status_display }}</p>
+            </div>
+        </div>
+
+        <!-- Items Table -->
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th style="width: 5%;">#</th>
+                    <th style="width: 50%;">{% trans "الوصف" %}</th>
+                    <th style="width: 10%;" class="text-center">{% trans "الكمية" %}</th>
+                    <th style="width: 15%;" class="text-end">{% trans "سعر الوحدة" %}</th>
+                    <th style="width: 20%;" class="text-end">{% trans "الإجمالي" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in invoice.items.all %}
+                <tr>
+                    <td class="text-center">{{ forloop.counter }}</td>
+                    <td>{{ item.description }}</td>
+                    <td class="text-center">{{ item.quantity }}</td>
+                    <td class="text-end">{{ CURRENCY_SYMBOL }}{{ item.unit_price|floatformat:2 }}</td>
+                    <td class="text-end">{{ CURRENCY_SYMBOL }}{{ item.total|floatformat:2 }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center" style="padding: 20px; color: #999;">
+                        {% trans "لا توجد بنود" %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Totals -->
+        <div class="totals-section">
+            <table class="totals-table">
+                <tr>
+                    <td><strong>{% trans "المجموع الفرعي" %}:</strong></td>
+                    <td class="text-end">{{ CURRENCY_SYMBOL }}{{ invoice.subtotal|floatformat:2 }}</td>
+                </tr>
+                <tr>
+                    <td><strong>{% trans "الضريبة" %} ({{ invoice.tax_rate }}%):</strong></td>
+                    <td class="text-end">{{ CURRENCY_SYMBOL }}{{ invoice.tax_amount|floatformat:2 }}</td>
+                </tr>
+                {% if invoice.discount_amount > 0 %}
+                <tr>
+                    <td><strong>{% trans "الخصم" %}:</strong></td>
+                    <td class="text-end">-{{ CURRENCY_SYMBOL }}{{ invoice.discount_amount|floatformat:2 }}</td>
+                </tr>
+                {% endif %}
+                <tr class="total-row">
+                    <td><strong>{% trans "الإجمالي" %}:</strong></td>
+                    <td class="text-end"><strong>{{ CURRENCY_SYMBOL }}{{ invoice.total_amount|floatformat:2 }}</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>{% trans "المدفوع" %}:</strong></td>
+                    <td class="text-end">{{ CURRENCY_SYMBOL }}{{ invoice.paid_amount|floatformat:2 }}</td>
+                </tr>
+                <tr class="balance-row">
+                    <td><strong>{% trans "المتبقي" %}:</strong></td>
+                    <td class="text-end"><strong>{{ CURRENCY_SYMBOL }}{{ invoice.balance_due|floatformat:2 }}</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Payments History -->
+        {% if invoice.payments.exists %}
+        <div class="payments-section">
+            <h3>{% trans "سجل الدفعات" %}</h3>
+            <table class="payments-table">
+                <thead>
+                    <tr>
+                        <th>{% trans "رقم الدفعة" %}</th>
+                        <th>{% trans "التاريخ" %}</th>
+                        <th>{% trans "طريقة الدفع" %}</th>
+                        <th>{% trans "رقم المرجع" %}</th>
+                        <th class="text-end">{% trans "المبلغ" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for payment in invoice.payments.all %}
+                    <tr>
+                        <td>{{ payment.payment_number }}</td>
+                        <td>{{ payment.payment_date|date:"Y-m-d" }}</td>
+                        <td>{{ payment.get_payment_method_display }}</td>
+                        <td>{{ payment.reference_number|default:"-" }}</td>
+                        <td class="text-end">{{ CURRENCY_SYMBOL }}{{ payment.amount|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- Notes -->
+        {% if invoice.notes %}
+        <div class="terms">
+            <strong>{% trans "ملاحظات" %}:</strong><br>
+            {{ invoice.notes|linebreaks }}
+        </div>
+        {% endif %}
+
+        <!-- Footer -->
+        <div class="invoice-footer">
+            <div class="footer-text">
+                <strong>
+                    {% if LANGUAGE_CODE == 'ar' %}
+                        {{ settings.footer_text_ar }}
+                    {% else %}
+                        {{ settings.footer_text_en }}
+                    {% endif %}
+                </strong>
+            </div>
+
+            {% if settings.terms_ar or settings.terms_en %}
+            <div class="terms">
+                <strong>{% trans "الشروط والأحكام" %}:</strong><br>
+                {% if LANGUAGE_CODE == 'ar' %}
+                    {{ settings.terms_ar|linebreaks }}
+                {% else %}
+                    {{ settings.terms_en|linebreaks }}
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <div class="signature-section">
+                <div class="signature-box">
+                    <strong>{% trans "توقيع العميل" %}</strong>
+                </div>
+                <div class="signature-box">
+                    <strong>{% trans "توقيع الشركة" %}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Auto-print on load (optional)
+        // window.onload = function() { window.print(); }
+    </script>
+</body>
+</html>
+

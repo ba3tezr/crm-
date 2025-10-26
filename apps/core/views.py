@@ -21,8 +21,13 @@ User = get_user_model()
 def dashboard(request):
     """
     لوحة التحكم الرئيسية - Main Dashboard
+    Redirects tenants to their dashboard
     """
-    # Get statistics
+    # Redirect tenants to their own dashboard
+    if hasattr(request.user, 'tenant_profile'):
+        return redirect('accounts:tenant_dashboard')
+
+    # Get statistics for staff/admin
     permits_count = Permit.objects.count()
     permits_pending = Permit.objects.filter(status='pending').count()
 

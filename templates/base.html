@@ -426,21 +426,25 @@
     <!-- Sidebar -->
     <aside class="main-sidebar" id="mainSidebar">
         <ul class="sidebar-menu">
+            {% if user.tenant_profile %}
+            <!-- Tenant Menu -->
+            <li>
+                <a href="{% url 'accounts:tenant_dashboard' %}" class="{% if 'tenant' in request.path or request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+                    <i class="fas fa-home"></i>
+                    <span class="menu-text">{% trans "لوحة التحكم" %}</span>
+                </a>
+            </li>
+            {% else %}
+            <!-- Staff/Admin Menu -->
             <li>
                 <a href="{% url 'core:dashboard' %}" class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
                     <i class="fas fa-home"></i>
                     <span class="menu-text">{% trans "الرئيسية" %}</span>
                 </a>
             </li>
+            {% endif %}
 
             {% if user.tenant_profile %}
-            <!-- Tenant Menu -->
-            <li>
-                <a href="{% url 'accounts:tenant_dashboard' %}" class="{% if 'tenant' in request.path %}active{% endif %}">
-                    <i class="fas fa-building"></i>
-                    <span class="menu-text">{% trans "لوحة المستأجر" %}</span>
-                </a>
-            </li>
             <li>
                 <a href="{% url 'accounts:tenant_profile' %}" class="{% if 'tenant/profile' in request.path %}active{% endif %}">
                     <i class="fas fa-user-circle"></i>

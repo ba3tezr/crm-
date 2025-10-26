@@ -42,7 +42,11 @@ def tenant_dashboard(request):
         'total_tickets': Ticket.objects.filter(created_by=request.user).count(),
         'open_tickets': Ticket.objects.filter(created_by=request.user, status='open').count(),
         'total_invoices': Invoice.objects.filter(tenant=request.user).count(),
-        'unpaid_invoices': Invoice.objects.filter(tenant=request.user).exclude(status='paid').count(),
+        'unpaid_invoices': Invoice.objects.filter(
+            tenant=request.user
+        ).exclude(
+            status__in=['paid', 'cancelled']
+        ).count(),
         'total_cases': Case.objects.filter(created_by=request.user).count(),
     }
 
@@ -167,3 +171,29 @@ def tenant_invoice_detail(request, pk):
     }
 
     return render(request, 'tenants/tenant_invoice_detail.html', context)
+
+
+@login_required
+def tenant_invoice_print(request, pk):
+    """
+    طباعة الفاتورة للمستأجر - Tenant Invoice Print
+    """
+    try:
+        tenant_profile = request.user.tenant_profile
+    except:
+        messages.error(request, _('ليس لديك صلاحية الوصول لهذه الصفحة'))
+        return redirect('core:dashboard')
+
+    # Get invoice and check ownership
+    invoice = get_object_or_404(Invoice, pk=pk, tenant=request.user)
+
+    # Load invoice settings
+    from apps.finance.models import InvoiceSettings
+    settings = InvoiceSettings.load()
+
+    context = {
+        'invoice': invoice,
+        'settings': settings,
+    }
+
+    return render(request, 'finance/invoice_print.html', context)

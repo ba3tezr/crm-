@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
-from .models import Invoice, InvoiceItem, Payment
+from .models import Invoice, InvoiceItem, Payment, InvoiceSettings
 
 
 class InvoiceItemInline(admin.TabularInline):
@@ -89,3 +89,35 @@ class PaymentAdmin(admin.ModelAdmin):
     )
 
     readonly_fields = ('created_at',)
+
+
+@admin.register(InvoiceSettings)
+class InvoiceSettingsAdmin(admin.ModelAdmin):
+    """
+    إعدادات الفاتورة - Invoice Settings Admin
+    """
+    fieldsets = (
+        (_('معلومات الشركة'), {
+            'fields': ('company_name_ar', 'company_name_en', 'logo')
+        }),
+        (_('معلومات الاتصال'), {
+            'fields': ('address_ar', 'address_en', 'phone', 'email', 'website')
+        }),
+        (_('معلومات ضريبية'), {
+            'fields': ('tax_number', 'commercial_register')
+        }),
+        (_('ألوان القالب'), {
+            'fields': ('primary_color', 'secondary_color')
+        }),
+        (_('نصوص الفاتورة'), {
+            'fields': ('footer_text_ar', 'footer_text_en', 'terms_ar', 'terms_en')
+        }),
+    )
+
+    def has_add_permission(self, request):
+        """Prevent adding more than one instance"""
+        return not InvoiceSettings.objects.exists()
+
+    def has_delete_permission(self, request, obj=None):
+        """Prevent deletion"""
+        return False

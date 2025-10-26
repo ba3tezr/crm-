@@ -716,6 +716,23 @@ translations = {
     "لا توجد تصاريح": "No permits available",
     "لا توجد فواتير": "No invoices available",
 
+    # Invoice Settings - إعدادات الفاتورة
+    "إعدادات الفاتورة": "Invoice Settings",
+    "شعار الشركة": "Company Logo",
+    "يفضل أن يكون بحجم 200x80 بكسل": "Recommended size: 200x80 pixels",
+    "الرقم الضريبي": "Tax Number",
+    "السجل التجاري": "Commercial Register",
+    "اللون الأساسي": "Primary Color",
+    "اللون الثانوي": "Secondary Color",
+    "مثال": "Example",
+    "نص التذييل": "Footer Text",
+    "الشروط والأحكام": "Terms and Conditions",
+    "معلومات ضريبية": "Tax Information",
+    "ألوان القالب": "Template Colors",
+    "نصوص الفاتورة": "Invoice Texts",
+    "توقيع العميل": "Customer Signature",
+    "توقيع الشركة": "Company Signature",
+
     # Invoice Details - تفاصيل الفاتورة
     "تفاصيل الفاتورة": "Invoice Details",
     "طباعة الفاتورة": "Print Invoice",

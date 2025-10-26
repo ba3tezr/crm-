@@ -12,6 +12,139 @@ from apps.core.utils import generate_code
 User = get_user_model()
 
 
+class InvoiceSettings(models.Model):
+    """
+    إعدادات الفاتورة - Invoice Settings
+    Singleton model for invoice template customization
+    """
+    # معلومات الشركة - Company Information
+    company_name_ar = models.CharField(
+        max_length=200,
+        verbose_name=_('اسم الشركة (عربي)'),
+        default='اسم الشركة'
+    )
+    company_name_en = models.CharField(
+        max_length=200,
+        verbose_name=_('اسم الشركة (إنجليزي)'),
+        default='Company Name'
+    )
+
+    # الشعار - Logo
+    logo = models.ImageField(
+        upload_to='invoice_settings/',
+        verbose_name=_('شعار الشركة'),
+        blank=True,
+        null=True,
+        help_text=_('يفضل أن يكون بحجم 200x80 بكسل')
+    )
+
+    # معلومات الاتصال - Contact Information
+    address_ar = models.TextField(
+        verbose_name=_('العنوان (عربي)'),
+        blank=True,
+        default=''
+    )
+    address_en = models.TextField(
+        verbose_name=_('العنوان (إنجليزي)'),
+        blank=True,
+        default=''
+    )
+    phone = models.CharField(
+        max_length=50,
+        verbose_name=_('الهاتف'),
+        blank=True,
+        default=''
+    )
+    email = models.EmailField(
+        verbose_name=_('البريد الإلكتروني'),
+        blank=True,
+        default=''
+    )
+    website = models.URLField(
+        verbose_name=_('الموقع الإلكتروني'),
+        blank=True,
+        default=''
+    )
+
+    # معلومات ضريبية - Tax Information
+    tax_number = models.CharField(
+        max_length=100,
+        verbose_name=_('الرقم الضريبي'),
+        blank=True,
+        default=''
+    )
+    commercial_register = models.CharField(
+        max_length=100,
+        verbose_name=_('السجل التجاري'),
+        blank=True,
+        default=''
+    )
+
+    # ألوان القالب - Template Colors
+    primary_color = models.CharField(
+        max_length=7,
+        verbose_name=_('اللون الأساسي'),
+        default='#667eea',
+        help_text=_('مثال: #667eea')
+    )
+    secondary_color = models.CharField(
+        max_length=7,
+        verbose_name=_('اللون الثانوي'),
+        default='#764ba2',
+        help_text=_('مثال: #764ba2')
+    )
+
+    # نص تذييل الفاتورة - Footer Text
+    footer_text_ar = models.TextField(
+        verbose_name=_('نص التذييل (عربي)'),
+        blank=True,
+        default='شكراً لتعاملكم معنا'
+    )
+    footer_text_en = models.TextField(
+        verbose_name=_('نص التذييل (إنجليزي)'),
+        blank=True,
+        default='Thank you for your business'
+    )
+
+    # الشروط والأحكام - Terms and Conditions
+    terms_ar = models.TextField(
+        verbose_name=_('الشروط والأحكام (عربي)'),
+        blank=True,
+        default=''
+    )
+    terms_en = models.TextField(
+        verbose_name=_('الشروط والأحكام (إنجليزي)'),
+        blank=True,
+        default=''
+    )
+
+    # تواريخ - Timestamps
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('تاريخ الإنشاء'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('آخر تحديث'))
+
+    class Meta:
+        verbose_name = _('إعدادات الفاتورة')
+        verbose_name_plural = _('إعدادات الفاتورة')
+
+    def __str__(self):
+        return _('إعدادات الفاتورة')
+
+    def save(self, *args, **kwargs):
+        """Ensure only one instance exists (Singleton pattern)"""
+        self.pk = 1
+        super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        """Prevent deletion"""
+        pass
+
+    @classmethod
+    def load(cls):
+        """Load the singleton instance"""
+        obj, created = cls.objects.get_or_create(pk=1)
+        return obj
+
+
 class Invoice(models.Model):
     """
     فاتورة - Invoice
