@@ -172,6 +172,28 @@ class Invoice(models.Model):
         self.total_amount = self.subtotal + self.tax_amount - self.discount_amount
         self.save()
 
+    def get_total_paid(self):
+        """حساب إجمالي المبالغ المدفوعة - Calculate total paid amount"""
+        from django.db.models import Sum
+        total = self.payments.aggregate(total=Sum('amount'))['total']
+        return total or Decimal('0.00')
+
+    def update_payment_status(self):
+        """تحديث حالة الدفع بناءً على المبالغ المدفوعة - Update payment status based on paid amounts"""
+        total_paid = self.get_total_paid()
+
+        if total_paid >= self.total_amount:
+            self.status = 'paid'
+            self.paid_amount = self.total_amount
+        elif total_paid > 0:
+            self.status = 'partially_paid'
+            self.paid_amount = total_paid
+        elif self.status not in ['draft', 'cancelled']:
+            self.status = 'pending'
+            self.paid_amount = Decimal('0.00')
+
+        self.save()
+
     def save(self, *args, **kwargs):
         # توليد رقم الفاتورة تلقائياً
         if not self.invoice_number:
@@ -316,10 +338,25 @@ class Payment(models.Model):
     )
 
     def save(self, *args, **kwargs):
-        """Override save to auto-generate payment_number"""
+        """Override save to auto-generate payment_number and update invoice status"""
         if not self.payment_number:
             self.payment_number = generate_code(Payment, 'payment_number', 'PAY', 3)
         super().save(*args, **kwargs)
+
+        # تحديث حالة الفاتورة بعد حفظ الدفعة
+        # Update invoice status after saving payment
+        if self.invoice:
+            self.invoice.update_payment_status()
+
+    def delete(self, *args, **kwargs):
+        """Override delete to update invoice status after deletion"""
+        invoice = self.invoice
+        super().delete(*args, **kwargs)
+
+        # تحديث حالة الفاتورة بعد حذف الدفعة
+        # Update invoice status after deleting payment
+        if invoice:
+            invoice.update_payment_status()
 
     class Meta:
         verbose_name = _('دفعة')
