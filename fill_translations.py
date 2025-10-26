@@ -773,6 +773,7 @@ translations = {
     "سيتم مراجعة التصريح من قبل الإدارة": "Permit will be reviewed by management",
     "ستتلقى إشعاراً عند الموافقة أو الرفض": "You will receive a notification upon approval or rejection",
     "يمكنك إرفاق ملفات داعمة": "You can attach supporting files",
+    "غير محدد": "Not specified",
 
     # Maintenance Tickets - تذاكر الصيانة
     "تذاكر الصيانة": "Maintenance Tickets",

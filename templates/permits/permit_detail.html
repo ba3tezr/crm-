@@ -228,7 +228,11 @@
                 <div class="card-body">
                     <p class="mb-2">
                         <strong>{% trans "أنشئ بواسطة" %}:</strong><br>
-                        {{ permit.created_by.get_full_name|default:permit.created_by.username }}
+                        {% if permit.created_by %}
+                            {{ permit.created_by.get_full_name|default:permit.created_by.username }}
+                        {% else %}
+                            <span class="text-muted">{% trans "غير محدد" %}</span>
+                        {% endif %}
                     </p>
                     <p class="mb-2">
                         <strong>{% trans "تاريخ الإنشاء" %}:</strong><br>

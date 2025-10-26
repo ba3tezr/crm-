@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-26 14:53+0300\n"
+"POT-Creation-Date: 2025-10-26 14:56+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -294,7 +294,7 @@ msgstr "الاسم بالإنجليزية"
 #: templates/permits/my_pending_approvals.html:51
 #: templates/permits/permit_approve.html:58
 #: templates/permits/permit_detail.html:81
-#: templates/permits/permit_detail.html:298
+#: templates/permits/permit_detail.html:302
 #: templates/tenants/tenant_case_detail.html:80
 #: templates/tenants/tenant_invoice_detail.html:139
 #: templates/tenants/tenant_permit_detail.html:80
@@ -329,7 +329,7 @@ msgstr "Active"
 #: templates/marketing/event_detail.html:136
 #: templates/permits/permit_approve.html:62
 #: templates/permits/permit_confirm_delete.html:47
-#: templates/permits/permit_detail.html:234
+#: templates/permits/permit_detail.html:238
 #: templates/tenants/tenant_case_detail.html:145
 #: templates/tenants/tenant_cases.html:39
 #: templates/tenants/tenant_permit_detail.html:218
@@ -630,7 +630,7 @@ msgid "حفظ"
 msgstr "Save"
 
 #: apps/complaints/forms.py:149 apps/maintenance/forms.py:163
-#: apps/permits/forms.py:230 templates/permits/permit_detail.html:310
+#: apps/permits/forms.py:230 templates/permits/permit_detail.html:314
 msgid "رفع الملف"
 msgstr "رفع الملف"
 
@@ -765,12 +765,12 @@ msgid "الحالات"
 msgstr "الحالات"
 
 #: apps/complaints/models.py:67 apps/permits/models.py:185
-#: templates/permits/permit_detail.html:288
+#: templates/permits/permit_detail.html:292
 msgid "الملف"
 msgstr "File"
 
 #: apps/complaints/models.py:68 apps/permits/models.py:190
-#: templates/permits/permit_detail.html:293
+#: templates/permits/permit_detail.html:297
 msgid "اسم الملف"
 msgstr "File Name"
 
@@ -1154,7 +1154,7 @@ msgstr "Invoice Type"
 #: templates/maintenance/ticket_confirm_delete.html:54
 #: templates/marketing/event_confirm_delete.html:45
 #: templates/permits/permit_confirm_delete.html:58
-#: templates/permits/permit_detail.html:306
+#: templates/permits/permit_detail.html:310
 #: templates/tenants/tenant_permit_delete.html:76
 msgid "إلغاء"
 msgstr "Cancel"
@@ -1283,7 +1283,7 @@ msgstr "شعار النظام (إنجليزي)"
 #: templates/hr/leave_request_detail.html:139
 #: templates/maintenance/ticket_detail.html:189
 #: templates/marketing/event_detail.html:140
-#: templates/permits/permit_detail.html:238
+#: templates/permits/permit_detail.html:242
 #: templates/tenants/tenant_case_detail.html:151
 #: templates/tenants/tenant_profile.html:232
 msgid "آخر تحديث"
@@ -2231,7 +2231,7 @@ msgstr "You don't have permission to edit this permit"
 msgid "تم تحديث التصريح بنجاح"
 msgstr "Permit updated successfully"
 
-#: apps/permits/views.py:150 templates/permits/permit_detail.html:256
+#: apps/permits/views.py:150 templates/permits/permit_detail.html:260
 msgid "تعديل التصريح"
 msgstr "Edit Permit"
 
@@ -2284,6 +2284,7 @@ msgstr "Permit %(number)s has been rejected. Reason: %(reason)s"
 
 #: apps/permits/views.py:322 templates/complaints/case_list.html:183
 #: templates/maintenance/ticket_list.html:196
+#: templates/permits/permit_detail.html:234
 msgid "غير محدد"
 msgstr "Not Assigned"
 
@@ -2491,6 +2492,7 @@ msgstr "Are you sure you want to delete this case? This action cannot be undone!
 "you want to delete this case? This action cannot be undone!Are you sure you "
 "want to delete this case? This action cannot be undone!Are you sure you want "
 "to delete this case? This action cannot be undone!Are you sure you want to "
+"delete this case? This action cannot be undone!Are you sure you want to "
 "delete this case? This action cannot be undone!Are you sure you want to "
 "delete this case? This action cannot be undone!Are you sure you want to "
 "delete this case? This action cannot be undone!Are you sure you want to "
@@ -2754,7 +2756,7 @@ msgstr "لا توجد طلبات صيانة"
 
 #: templates/dashboard/dashboard.html:178
 #: templates/maintenance/ticket_detail.html:200
-#: templates/permits/permit_detail.html:249
+#: templates/permits/permit_detail.html:253
 #: templates/tenants/tenant_dashboard.html:154
 msgid "إجراءات سريعة"
 msgstr "Quick Actions"
@@ -3168,6 +3170,7 @@ msgstr "Are you sure you want to delete this ticket? This action cannot be undon
 "Are you sure you want to delete this ticket? This action cannot be undone!"
 "Are you sure you want to delete this ticket? This action cannot be undone!"
 "Are you sure you want to delete this ticket? This action cannot be undone!"
+"Are you sure you want to delete this ticket? This action cannot be undone!"
 
 #: templates/maintenance/ticket_confirm_delete.html:24
 msgid "تفاصيل الطلب"
@@ -3259,6 +3262,7 @@ msgid "هل أنت متأكد من حذف هذه الفعالية؟ هذا ال�
 msgstr "Are you sure you want to delete this event? This action cannot be undone!"
 "Are you sure you want to delete this event? This action cannot be undone!Are "
 "you sure you want to delete this event? This action cannot be undone!Are you "
+"sure you want to delete this event? This action cannot be undone!Are you "
 "sure you want to delete this event? This action cannot be undone!Are you "
 "sure you want to delete this event? This action cannot be undone!Are you "
 "sure you want to delete this event? This action cannot be undone!Are you "
@@ -3467,31 +3471,31 @@ msgstr "لا توجد دفعات"
 msgid "اضغط على زر رفع ملف لإضافة مرفقات"
 msgstr "Click upload button to add attachments"
 
-#: templates/permits/permit_detail.html:260
+#: templates/permits/permit_detail.html:264
 #: templates/tenants/tenant_permit_delete.html:5
 #: templates/tenants/tenant_permit_delete.html:13
 #: templates/tenants/tenant_permit_detail.html:249
 msgid "حذف التصريح"
 msgstr "Delete Permit"
 
-#: templates/permits/permit_detail.html:264
+#: templates/permits/permit_detail.html:268
 #: templates/tenants/tenant_permits.html:25
 msgid "قائمة التصاريح"
 msgstr "Permits List"
 
-#: templates/permits/permit_detail.html:282
+#: templates/permits/permit_detail.html:286
 msgid "رفع ملف جديد"
 msgstr "New Event"
 
-#: templates/permits/permit_detail.html:290
+#: templates/permits/permit_detail.html:294
 msgid "الحد الأقصى: 10 ميجابايت"
 msgstr "Maximum: 10 MB"
 
-#: templates/permits/permit_detail.html:295
+#: templates/permits/permit_detail.html:299
 msgid "اترك فارغاً لاستخدام اسم الملف الأصلي"
 msgstr "Thank you for using the system. See you soon!"
 
-#: templates/permits/permit_detail.html:300
+#: templates/permits/permit_detail.html:304
 msgid "وصف اختياري للملف"
 msgstr "Optional file description"
 
