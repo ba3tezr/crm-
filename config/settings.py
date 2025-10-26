@@ -25,6 +25,16 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,0.0.0.0,testserver', cast=Csv())
 
+# Allow Cloudflare Tunnel domains
+ALLOWED_HOSTS += ['.trycloudflare.com']
+
+# CSRF Trusted Origins for Cloudflare Tunnel
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+    'https://*.trycloudflare.com',
+]
+
 
 # ==============================================================================
 # APPLICATION DEFINITION
