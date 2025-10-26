@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-26 13:32+0300\n"
+"POT-Creation-Date: 2025-10-26 13:41+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -218,7 +218,7 @@ msgid "الاسم بالإنجليزية"
 msgstr "الاسم بالإنجليزية"
 
 #: apps/accounts/models.py:40 apps/complaints/models.py:34
-#: apps/finance/forms.py:60 apps/finance/models.py:201
+#: apps/finance/forms.py:60 apps/finance/models.py:223
 #: apps/maintenance/models.py:50 apps/marketing/models.py:32
 #: apps/marketing/models.py:71 apps/permits/models.py:77
 #: apps/permits/models.py:207 templates/complaints/case_detail.html:76
@@ -248,7 +248,7 @@ msgstr "Active"
 #: apps/accounts/models.py:274 apps/accounts/models.py:340
 #: apps/complaints/models.py:46 apps/complaints/models.py:87
 #: apps/core/models.py:143 apps/core/models.py:231 apps/finance/models.py:145
-#: apps/finance/models.py:315 apps/hr/models.py:42 apps/hr/models.py:74
+#: apps/finance/models.py:337 apps/hr/models.py:42 apps/hr/models.py:74
 #: apps/maintenance/models.py:142 apps/marketing/models.py:45
 #: apps/marketing/models.py:79 apps/permits/models.py:143
 #: apps/permits/models.py:345 apps/permits/models.py:431
@@ -295,7 +295,7 @@ msgstr "Phone Number"
 
 #: apps/accounts/models.py:87 templates/tenants/tenant_profile.html:59
 msgid "رقم الجوال"
-msgstr "رقم الجوال"
+msgstr "Mobile Number"
 
 #: apps/accounts/models.py:103
 msgid "المسمى الوظيفي"
@@ -407,7 +407,7 @@ msgstr "هاتف جهة الاتصال للطوارئ"
 
 #: apps/accounts/models.py:268 apps/finance/admin.py:47
 #: apps/finance/admin.py:82 apps/finance/models.py:131
-#: apps/finance/models.py:301 apps/hr/models.py:72 apps/marketing/models.py:44
+#: apps/finance/models.py:323 apps/hr/models.py:72 apps/marketing/models.py:44
 #: apps/marketing/models.py:78 apps/permits/models.py:131
 #: templates/finance/invoice_detail.html:74
 #: templates/finance/invoice_form.html:117
@@ -602,7 +602,7 @@ msgid "الأولوية"
 msgstr "Priority"
 
 #: apps/complaints/models.py:38 apps/complaints/models.py:85
-#: apps/finance/models.py:140 apps/finance/models.py:310
+#: apps/finance/models.py:140 apps/finance/models.py:332
 #: apps/maintenance/models.py:79 apps/marketing/models.py:41
 #: apps/marketing/models.py:77 apps/permits/models.py:58
 #: templates/complaints/case_detail.html:120
@@ -857,7 +857,7 @@ msgstr "Date Format"
 msgid "Date format - Always Gregorian calendar in English"
 msgstr "Date format - Always Gregorian calendar in English"
 
-#: apps/core/models.py:151 apps/core/models.py:152 templates/base.html:401
+#: apps/core/models.py:151 apps/core/models.py:152 templates/base.html:413
 msgid "إعدادات النظام"
 msgstr "إعدادات النظام"
 
@@ -886,7 +886,7 @@ msgstr "Permit"
 msgid "فاتورة"
 msgstr "Invoice"
 
-#: apps/core/models.py:186 apps/finance/models.py:325
+#: apps/core/models.py:186 apps/finance/models.py:362
 msgid "دفعة"
 msgstr "Payment"
 
@@ -927,7 +927,7 @@ msgstr "الطلب ليس في حالة الانتظار"
 msgid "الإشعار"
 msgstr "Notifications"
 
-#: apps/core/models.py:236 templates/base.html:217
+#: apps/core/models.py:236 templates/base.html:229
 #: templates/core/notification_list.html:5
 #: templates/core/notification_list.html:15
 #: templates/dashboard/dashboard.html:227
@@ -976,7 +976,7 @@ msgstr "Balance Due"
 msgid "تفاصيل الدفع"
 msgstr "تفاصيل الدفع"
 
-#: apps/finance/apps.py:8 templates/base.html:509
+#: apps/finance/apps.py:8 templates/base.html:521
 #: templates/finance/invoice_list.html:4 templates/finance/invoice_list.html:15
 #: templates/finance/payment_list.html:4 templates/finance/payment_list.html:15
 msgid "المالية"
@@ -994,7 +994,7 @@ msgstr "Finance"
 msgid "إلغاء"
 msgstr "Cancel"
 
-#: apps/finance/forms.py:61 apps/finance/models.py:209
+#: apps/finance/forms.py:61 apps/finance/models.py:231
 #: templates/finance/invoice_detail.html:93
 #: templates/finance/invoice_form.html:72
 #: templates/tenants/tenant_invoice_detail.html:140
@@ -1154,83 +1154,83 @@ msgstr "Paid Amount"
 msgid "الفواتير"
 msgstr "Invoices"
 
-#: apps/finance/models.py:196 apps/finance/models.py:265
+#: apps/finance/models.py:218 apps/finance/models.py:287
 msgid "الفاتورة"
 msgstr "الفاتورة"
 
-#: apps/finance/models.py:216 templates/finance/invoice_detail.html:94
+#: apps/finance/models.py:238 templates/finance/invoice_detail.html:94
 #: templates/tenants/tenant_invoice_detail.html:141
 msgid "سعر الوحدة"
 msgstr "Unit Price"
 
-#: apps/finance/models.py:224 templates/finance/invoice_detail.html:95
+#: apps/finance/models.py:246 templates/finance/invoice_detail.html:95
 msgid "المجموع"
 msgstr "Total"
 
-#: apps/finance/models.py:229
+#: apps/finance/models.py:251
 msgid "بند الفاتورة"
 msgstr "Invoice Item"
 
-#: apps/finance/models.py:230 templates/finance/invoice_detail.html:84
+#: apps/finance/models.py:252 templates/finance/invoice_detail.html:84
 msgid "بنود الفاتورة"
 msgstr "Invoice Items"
 
-#: apps/finance/models.py:246 templates/finance/payment_list.html:75
+#: apps/finance/models.py:268 templates/finance/payment_list.html:75
 msgid "نقداً"
 msgstr "Cash"
 
-#: apps/finance/models.py:247 templates/finance/payment_list.html:76
+#: apps/finance/models.py:269 templates/finance/payment_list.html:76
 msgid "بطاقة ائتمان"
 msgstr "Credit Card"
 
-#: apps/finance/models.py:248 templates/finance/payment_list.html:77
+#: apps/finance/models.py:270 templates/finance/payment_list.html:77
 msgid "بطاقة خصم"
 msgstr "Debit Card"
 
-#: apps/finance/models.py:249 templates/finance/payment_list.html:78
+#: apps/finance/models.py:271 templates/finance/payment_list.html:78
 msgid "تحويل بنكي"
 msgstr "Bank Transfer"
 
-#: apps/finance/models.py:250 templates/finance/payment_list.html:79
+#: apps/finance/models.py:272 templates/finance/payment_list.html:79
 msgid "شيك"
 msgstr "Cheque"
 
-#: apps/finance/models.py:251 templates/finance/payment_list.html:80
+#: apps/finance/models.py:273 templates/finance/payment_list.html:80
 msgid "دفع إلكتروني"
 msgstr "Online Payment"
 
-#: apps/finance/models.py:258 templates/finance/invoice_detail.html:133
+#: apps/finance/models.py:280 templates/finance/invoice_detail.html:133
 #: templates/finance/payment_list.html:105
 #: templates/tenants/tenant_invoice_detail.html:215
 msgid "رقم الدفعة"
 msgstr "Payment Number"
 
-#: apps/finance/models.py:273 templates/finance/invoice_detail.html:135
+#: apps/finance/models.py:295 templates/finance/invoice_detail.html:135
 #: templates/finance/payment_list.html:109
 #: templates/tenants/tenant_dashboard.html:257
 #: templates/tenants/tenant_invoice_detail.html:219
 msgid "المبلغ"
 msgstr "المبلغ"
 
-#: apps/finance/models.py:281 templates/finance/invoice_detail.html:136
+#: apps/finance/models.py:303 templates/finance/invoice_detail.html:136
 #: templates/finance/payment_list.html:72
 #: templates/finance/payment_list.html:110
 #: templates/tenants/tenant_invoice_detail.html:217
 msgid "طريقة الدفع"
 msgstr "Payment Method"
 
-#: apps/finance/models.py:286 templates/finance/invoice_detail.html:134
+#: apps/finance/models.py:308 templates/finance/invoice_detail.html:134
 #: templates/finance/payment_list.html:108
 msgid "تاريخ الدفع"
 msgstr "Payment Date"
 
-#: apps/finance/models.py:294 templates/finance/invoice_detail.html:137
+#: apps/finance/models.py:316 templates/finance/invoice_detail.html:137
 #: templates/finance/payment_list.html:111
 #: templates/tenants/tenant_invoice_detail.html:218
 msgid "رقم المرجع"
 msgstr "Reference Number"
 
-#: apps/finance/models.py:326 templates/finance/invoice_detail.html:123
+#: apps/finance/models.py:363 templates/finance/invoice_detail.html:123
 #: templates/finance/payment_form.html:15 templates/finance/payment_list.html:4
 #: templates/finance/payment_list.html:11
 #: templates/finance/payment_list.html:16
@@ -1748,7 +1748,7 @@ msgstr "Request Date"
 msgid "التصريح"
 msgstr "Permit"
 
-#: apps/permits/models.py:158 templates/base.html:463
+#: apps/permits/models.py:158 templates/base.html:475
 #: templates/dashboard/dashboard.html:33
 #: templates/permits/permit_detail.html:20
 #: templates/permits/permit_form.html:21 templates/permits/permit_list.html:4
@@ -2006,7 +2006,7 @@ msgstr "Remember me"
 msgid "نسيت كلمة المرور؟"
 msgstr "Forgot password?"
 
-#: templates/account/logout.html:8 templates/base.html:406
+#: templates/account/logout.html:8 templates/base.html:418
 msgid "تسجيل الخروج"
 msgstr "Logout"
 
@@ -2022,71 +2022,71 @@ msgstr "Thank you for using the system. See you soon!"
 msgid "تسجيل الدخول مرة أخرى"
 msgstr "Login"
 
-#: templates/base.html:220 templates/core/notification_list.html:23
+#: templates/base.html:232 templates/core/notification_list.html:23
 msgid "تعليم الكل كمقروء"
 msgstr "Case Comment"
 
-#: templates/base.html:246 templates/core/notification_list.html:73
+#: templates/base.html:258 templates/core/notification_list.html:73
 msgid "مضت"
 msgstr "Temporary"
 
-#: templates/base.html:255
+#: templates/base.html:267
 msgid "عرض جميع الإشعارات"
 msgstr "معاينة الشعارات"
 
-#: templates/base.html:262 templates/core/notification_list.html:93
+#: templates/base.html:274 templates/core/notification_list.html:93
 msgid "لا توجد إشعارات"
 msgstr "لا توجد دفعات"
 
-#: templates/base.html:272 templates/base.html:303 templates/base.html:537
+#: templates/base.html:284 templates/base.html:315 templates/base.html:549
 msgid "العودة إلى حسابك الأصلي"
 msgstr "Return to your original account"
 
-#: templates/base.html:274
+#: templates/base.html:286
 msgid "العودة للحساب الأصلي"
 msgstr "Return to your original account"
 
-#: templates/base.html:282
+#: templates/base.html:294
 msgid "تبديل المستخدم (للتطوير)"
 msgstr "تعديل الفعالية"
 
-#: templates/base.html:284
+#: templates/base.html:296
 msgid "تبديل المستخدم"
 msgstr "Username"
 
-#: templates/base.html:288
+#: templates/base.html:300
 msgid "التبديل إلى مستخدم"
 msgstr "Username"
 
-#: templates/base.html:297
+#: templates/base.html:309
 msgid "أنت الآن"
 msgstr "دفعات الشهر"
 
-#: templates/base.html:311
+#: templates/base.html:323
 msgid "المستأجرين"
 msgstr "Tenant"
 
-#: templates/base.html:323
+#: templates/base.html:335
 msgid "لا يوجد مستأجرين"
 msgstr "ملفات المستأجرين"
 
-#: templates/base.html:330
+#: templates/base.html:342
 msgid "مدراء الأقسام"
 msgstr "الأقسام"
 
-#: templates/base.html:342
+#: templates/base.html:354
 msgid "لا يوجد مدراء"
 msgstr "لا توجد دفعات"
 
-#: templates/base.html:349
+#: templates/base.html:361
 msgid "الموظفين"
 msgstr "Employee"
 
-#: templates/base.html:361
+#: templates/base.html:373
 msgid "لا يوجد موظفين"
 msgstr "لا توجد دفعات"
 
-#: templates/base.html:400 templates/dashboard/dashboard.html:5
+#: templates/base.html:412 templates/dashboard/dashboard.html:5
 #: templates/dashboard/dashboard.html:14
 #: templates/tenants/tenant_invoice_detail.html:53
 #: templates/tenants/tenant_invoices.html:20
@@ -2095,15 +2095,15 @@ msgstr "لا توجد دفعات"
 msgid "لوحة التحكم"
 msgstr "Dashboard"
 
-#: templates/base.html:403 templates/tenants/tenant_profile.html:18
+#: templates/base.html:415 templates/tenants/tenant_profile.html:18
 msgid "الملف الشخصي"
 msgstr "Profile"
 
-#: templates/base.html:404
+#: templates/base.html:416
 msgid "تغيير كلمة المرور"
 msgstr "تغيير كلمة المرور"
 
-#: templates/base.html:420 templates/complaints/case_detail.html:18
+#: templates/base.html:432 templates/complaints/case_detail.html:18
 #: templates/complaints/case_form.html:19
 #: templates/complaints/case_list.html:17
 #: templates/finance/invoice_detail.html:14
@@ -2125,51 +2125,51 @@ msgstr "تغيير كلمة المرور"
 msgid "الرئيسية"
 msgstr "Home"
 
-#: templates/base.html:429
+#: templates/base.html:441
 msgid "لوحة المستأجر"
 msgstr "Tenant Dashboard"
 
-#: templates/base.html:435
+#: templates/base.html:447
 msgid "ملفي الشخصي"
 msgstr "My Profile"
 
-#: templates/base.html:441 templates/tenants/tenant_invoices.html:5
+#: templates/base.html:453 templates/tenants/tenant_invoices.html:5
 #: templates/tenants/tenant_invoices.html:16
 msgid "فواتيري"
 msgstr "My Invoices"
 
-#: templates/base.html:452 templates/permits/my_pending_approvals.html:5
+#: templates/base.html:464 templates/permits/my_pending_approvals.html:5
 #: templates/permits/my_pending_approvals.html:16
 #: templates/permits/permit_approve.html:20
 msgid "الموافقات المعلقة"
 msgstr "Pending Approvals"
 
-#: templates/base.html:472 templates/dashboard/dashboard.html:61
+#: templates/base.html:484 templates/dashboard/dashboard.html:61
 #: templates/maintenance/ticket_detail.html:20
 #: templates/maintenance/ticket_form.html:21
 #: templates/maintenance/ticket_list.html:18
 msgid "الصيانة"
 msgstr "Maintenance"
 
-#: templates/base.html:481 templates/complaints/case_detail.html:19
+#: templates/base.html:493 templates/complaints/case_detail.html:19
 #: templates/complaints/case_form.html:20
 #: templates/complaints/case_list.html:18 templates/dashboard/dashboard.html:89
 msgid "الشكاوى"
 msgstr "Complaints"
 
-#: templates/base.html:490 templates/marketing/event_list.html:18
+#: templates/base.html:502 templates/marketing/event_list.html:18
 msgid "التسويق"
 msgstr "Marketing"
 
-#: templates/base.html:499 templates/hr/leave_request_list.html:18
+#: templates/base.html:511 templates/hr/leave_request_list.html:18
 msgid "الموارد البشرية"
 msgstr "HR"
 
-#: templates/base.html:528
+#: templates/base.html:540
 msgid "وضع التطوير - تبديل المستخدم نشط"
 msgstr "Username"
 
-#: templates/base.html:531
+#: templates/base.html:543
 msgid "أنت الآن تستخدم النظام كـ"
 msgstr "You are now using the system as"
 
@@ -2198,6 +2198,7 @@ msgstr "Are you sure you want to delete this case? This action cannot be undone!
 "you want to delete this case? This action cannot be undone!Are you sure you "
 "want to delete this case? This action cannot be undone!Are you sure you want "
 "to delete this case? This action cannot be undone!Are you sure you want to "
+"delete this case? This action cannot be undone!Are you sure you want to "
 "delete this case? This action cannot be undone!Are you sure you want to "
 "delete this case? This action cannot be undone!Are you sure you want to "
 "delete this case? This action cannot be undone!Are you sure you want to "
@@ -2786,6 +2787,7 @@ msgstr "Are you sure you want to delete this ticket? This action cannot be undon
 "Are you sure you want to delete this ticket? This action cannot be undone!"
 "Are you sure you want to delete this ticket? This action cannot be undone!"
 "Are you sure you want to delete this ticket? This action cannot be undone!"
+"Are you sure you want to delete this ticket? This action cannot be undone!"
 
 #: templates/maintenance/ticket_confirm_delete.html:24
 msgid "تفاصيل الطلب"
@@ -2877,6 +2879,7 @@ msgid "هل أنت متأكد من حذف هذه الفعالية؟ هذا ال�
 msgstr "Are you sure you want to delete this event? This action cannot be undone!"
 "Are you sure you want to delete this event? This action cannot be undone!Are "
 "you sure you want to delete this event? This action cannot be undone!Are you "
+"sure you want to delete this event? This action cannot be undone!Are you "
 "sure you want to delete this event? This action cannot be undone!Are you "
 "sure you want to delete this event? This action cannot be undone!Are you "
 "sure you want to delete this event? This action cannot be undone!Are you "
@@ -3177,7 +3180,7 @@ msgstr "Welcome"
 
 #: templates/tenants/tenant_dashboard.html:81
 msgid "تذاكر الصيانة"
-msgstr "تذاكر الصيانة"
+msgstr "Maintenance Tickets"
 
 #: templates/tenants/tenant_dashboard.html:107
 msgid "غير مدفوعة"
@@ -3261,7 +3264,7 @@ msgstr "Balance Due"
 
 #: templates/tenants/tenant_invoices.html:89
 msgid "مرسلة"
-msgstr "مرسلة"
+msgstr "Sent"
 
 #: templates/tenants/tenant_invoices.html:97
 msgid "تصفية"
@@ -3281,7 +3284,7 @@ msgstr "No invoices have been issued to you yet"
 
 #: templates/tenants/tenant_profile.html:41
 msgid "الاسم الكامل"
-msgstr "الاسم الكامل"
+msgstr "Full Name"
 
 #: templates/tenants/tenant_profile.html:68
 msgid "غير نشط"
