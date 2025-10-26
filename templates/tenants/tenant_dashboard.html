@@ -257,13 +257,17 @@
                                         <th>{% trans "رقم الفاتورة" %}</th>
                                         <th>{% trans "المبلغ" %}</th>
                                         <th>{% trans "الحالة" %}</th>
-                                        <th>{% trans "الاستحقاق" %}</th>
+                                        <th>{% trans "تاريخ الاستحقاق" %}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% for invoice in invoices %}
                                     <tr>
-                                        <td>{{ invoice.invoice_number }}</td>
+                                        <td>
+                                            <a href="{% url 'accounts:tenant_invoice_detail' invoice.pk %}">
+                                                {{ invoice.invoice_number }}
+                                            </a>
+                                        </td>
                                         <td>{{ invoice.total_amount|currency }}</td>
                                         <td>
                                             <span class="badge badge-{{ invoice.status }}">

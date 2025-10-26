@@ -152,7 +152,7 @@
                                         {% endwith %}
                                     </td>
                                     <td>
-                                        <span class="badge bg-{% if invoice.status == 'paid' %}success{% elif invoice.status == 'overdue' %}danger{% elif invoice.status == 'sent' %}warning{% else %}secondary{% endif %}">
+                                        <span class="badge badge-{{ invoice.status }}">
                                             {{ invoice.get_status_display }}
                                         </span>
                                     </td>

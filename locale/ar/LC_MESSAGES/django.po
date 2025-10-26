@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-26 14:02+0300\n"
+"POT-Creation-Date: 2025-10-26 14:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -171,7 +171,7 @@ msgstr "تصدير Excel"
 msgid "موافقة"
 msgstr "موافقة"
 
-#: apps/accounts/forms.py:17 apps/permits/models.py:158 templates/base.html:479
+#: apps/accounts/forms.py:17 apps/permits/models.py:158 templates/base.html:521
 #: templates/dashboard/dashboard.html:33
 #: templates/permits/permit_detail.html:20
 #: templates/permits/permit_form.html:21 templates/permits/permit_list.html:4
@@ -181,7 +181,7 @@ msgstr "موافقة"
 msgid "التصاريح"
 msgstr "التصاريح"
 
-#: apps/accounts/forms.py:18 templates/base.html:488
+#: apps/accounts/forms.py:18 templates/base.html:530
 #: templates/dashboard/dashboard.html:61
 #: templates/maintenance/ticket_detail.html:20
 #: templates/maintenance/ticket_form.html:21
@@ -189,24 +189,24 @@ msgstr "التصاريح"
 msgid "الصيانة"
 msgstr "الصيانة"
 
-#: apps/accounts/forms.py:19 templates/base.html:497
+#: apps/accounts/forms.py:19 templates/base.html:539
 #: templates/complaints/case_detail.html:19
 #: templates/complaints/case_form.html:20
 #: templates/complaints/case_list.html:18 templates/dashboard/dashboard.html:89
 msgid "الشكاوى"
 msgstr "الشكاوى"
 
-#: apps/accounts/forms.py:20 templates/base.html:506
+#: apps/accounts/forms.py:20 templates/base.html:548
 #: templates/marketing/event_list.html:18
 msgid "التسويق"
 msgstr "التسويق"
 
-#: apps/accounts/forms.py:21 templates/base.html:515
+#: apps/accounts/forms.py:21 templates/base.html:557
 #: templates/hr/leave_request_list.html:18
 msgid "الموارد البشرية"
 msgstr "الموارد البشرية"
 
-#: apps/accounts/forms.py:22 apps/finance/apps.py:8 templates/base.html:525
+#: apps/accounts/forms.py:22 apps/finance/apps.py:8 templates/base.html:567
 #: templates/finance/invoice_list.html:4 templates/finance/invoice_list.html:15
 #: templates/finance/payment_list.html:4 templates/finance/payment_list.html:15
 msgid "المالية"
@@ -904,7 +904,7 @@ msgstr "تنسيق التاريخ"
 msgid "Date format - Always Gregorian calendar in English"
 msgstr "Date format - Always Gregorian calendar in English"
 
-#: apps/core/models.py:151 apps/core/models.py:152 templates/base.html:413
+#: apps/core/models.py:151 apps/core/models.py:152 templates/base.html:455
 msgid "إعدادات النظام"
 msgstr "إعدادات النظام"
 
@@ -976,7 +976,7 @@ msgstr "الطلب ليس في حالة الانتظار"
 msgid "الإشعار"
 msgstr "الإشعارات"
 
-#: apps/core/models.py:236 templates/base.html:229
+#: apps/core/models.py:236 templates/base.html:271
 #: templates/core/notification_list.html:5
 #: templates/core/notification_list.html:15
 #: templates/dashboard/dashboard.html:227
@@ -1323,6 +1323,7 @@ msgstr "تاريخ الإصدار"
 #: templates/finance/invoice_print.html:364
 #: templates/finance/invoice_print.html:394
 #: templates/maintenance/ticket_detail.html:139
+#: templates/tenants/tenant_dashboard.html:260
 #: templates/tenants/tenant_invoice_detail.html:85
 #: templates/tenants/tenant_invoices.html:129
 msgid "تاريخ الاستحقاق"
@@ -2221,7 +2222,7 @@ msgstr "تذكرني"
 msgid "نسيت كلمة المرور؟"
 msgstr "نسيت كلمة المرور؟"
 
-#: templates/account/logout.html:8 templates/base.html:418
+#: templates/account/logout.html:8 templates/base.html:460
 msgid "تسجيل الخروج"
 msgstr "تسجيل الخروج"
 
@@ -2237,71 +2238,71 @@ msgstr "شكراً لاستخدامك النظام. نتمنى رؤيتك قري
 msgid "تسجيل الدخول مرة أخرى"
 msgstr "تسجيل الدخول"
 
-#: templates/base.html:232 templates/core/notification_list.html:23
+#: templates/base.html:274 templates/core/notification_list.html:23
 msgid "تعليم الكل كمقروء"
 msgstr "تعليق الحالة"
 
-#: templates/base.html:258 templates/core/notification_list.html:73
+#: templates/base.html:300 templates/core/notification_list.html:73
 msgid "مضت"
 msgstr "مؤقت"
 
-#: templates/base.html:267
+#: templates/base.html:309
 msgid "عرض جميع الإشعارات"
 msgstr "معاينة الشعارات"
 
-#: templates/base.html:274 templates/core/notification_list.html:93
+#: templates/base.html:316 templates/core/notification_list.html:93
 msgid "لا توجد إشعارات"
 msgstr "لا توجد دفعات"
 
-#: templates/base.html:284 templates/base.html:315 templates/base.html:553
+#: templates/base.html:326 templates/base.html:357 templates/base.html:595
 msgid "العودة إلى حسابك الأصلي"
 msgstr "العودة إلى حسابك الأصلي"
 
-#: templates/base.html:286
+#: templates/base.html:328
 msgid "العودة للحساب الأصلي"
 msgstr "العودة إلى حسابك الأصلي"
 
-#: templates/base.html:294
+#: templates/base.html:336
 msgid "تبديل المستخدم (للتطوير)"
 msgstr "تعديل الفعالية"
 
-#: templates/base.html:296
+#: templates/base.html:338
 msgid "تبديل المستخدم"
 msgstr "اسم المستخدم"
 
-#: templates/base.html:300
+#: templates/base.html:342
 msgid "التبديل إلى مستخدم"
 msgstr "اسم المستخدم"
 
-#: templates/base.html:309
+#: templates/base.html:351
 msgid "أنت الآن"
 msgstr "دفعات الشهر"
 
-#: templates/base.html:323
+#: templates/base.html:365
 msgid "المستأجرين"
 msgstr "المستأجر"
 
-#: templates/base.html:335
+#: templates/base.html:377
 msgid "لا يوجد مستأجرين"
 msgstr "ملفات المستأجرين"
 
-#: templates/base.html:342
+#: templates/base.html:384
 msgid "مدراء الأقسام"
 msgstr "الأقسام"
 
-#: templates/base.html:354
+#: templates/base.html:396
 msgid "لا يوجد مدراء"
 msgstr "لا توجد دفعات"
 
-#: templates/base.html:361
+#: templates/base.html:403
 msgid "الموظفين"
 msgstr "الموظف"
 
-#: templates/base.html:373
+#: templates/base.html:415
 msgid "لا يوجد موظفين"
 msgstr "لا توجد دفعات"
 
-#: templates/base.html:412 templates/base.html:434
+#: templates/base.html:454 templates/base.html:476
 #: templates/dashboard/dashboard.html:5 templates/dashboard/dashboard.html:14
 #: templates/tenants/tenant_invoice_detail.html:53
 #: templates/tenants/tenant_invoices.html:20
@@ -2310,15 +2311,15 @@ msgstr "لا توجد دفعات"
 msgid "لوحة التحكم"
 msgstr "لوحة التحكم"
 
-#: templates/base.html:415 templates/tenants/tenant_profile.html:18
+#: templates/base.html:457 templates/tenants/tenant_profile.html:18
 msgid "الملف الشخصي"
 msgstr "الملف الشخصي"
 
-#: templates/base.html:416
+#: templates/base.html:458
 msgid "تغيير كلمة المرور"
 msgstr "تغيير كلمة المرور"
 
-#: templates/base.html:442 templates/complaints/case_detail.html:18
+#: templates/base.html:484 templates/complaints/case_detail.html:18
 #: templates/complaints/case_form.html:19
 #: templates/complaints/case_list.html:17
 #: templates/finance/invoice_detail.html:14
@@ -2340,26 +2341,26 @@ msgstr "تغيير كلمة المرور"
 msgid "الرئيسية"
 msgstr "الرئيسية"
 
-#: templates/base.html:451
+#: templates/base.html:493
 msgid "ملفي الشخصي"
 msgstr "ملفي الشخصي"
 
-#: templates/base.html:457 templates/tenants/tenant_invoices.html:5
+#: templates/base.html:499 templates/tenants/tenant_invoices.html:5
 #: templates/tenants/tenant_invoices.html:16
 msgid "فواتيري"
 msgstr "فواتيري"
 
-#: templates/base.html:468 templates/permits/my_pending_approvals.html:5
+#: templates/base.html:510 templates/permits/my_pending_approvals.html:5
 #: templates/permits/my_pending_approvals.html:16
 #: templates/permits/permit_approve.html:20
 msgid "الموافقات المعلقة"
 msgstr "معلومات الموافقة"
 
-#: templates/base.html:544
+#: templates/base.html:586
 msgid "وضع التطوير - تبديل المستخدم نشط"
 msgstr "اسم المستخدم"
 
-#: templates/base.html:547
+#: templates/base.html:589
 msgid "أنت الآن تستخدم النظام كـ"
 msgstr "أنت الآن تستخدم النظام كـ"
 
@@ -2578,7 +2579,7 @@ msgstr "مرحباً بك"
 #: templates/dashboard/dashboard.html:100
 #: templates/dashboard/dashboard.html:128
 #: templates/tenants/tenant_dashboard.html:233
-#: templates/tenants/tenant_dashboard.html:280
+#: templates/tenants/tenant_dashboard.html:284
 msgid "عرض الكل"
 msgstr "عرض الكل"
 
@@ -2785,7 +2786,7 @@ msgid "إجراءات"
 msgstr "إجراءات"
 
 #: templates/finance/invoice_list.html:178
-#: templates/tenants/tenant_dashboard.html:283
+#: templates/tenants/tenant_dashboard.html:287
 #: templates/tenants/tenant_invoices.html:178
 msgid "لا توجد فواتير"
 msgstr "لا توجد فواتير"
@@ -3387,10 +3388,6 @@ msgstr "آخر التصاريح"
 msgid "آخر الفواتير"
 msgstr "آخر الفواتير"
 
-#: templates/tenants/tenant_dashboard.html:260
-msgid "الاستحقاق"
-msgstr "الاستحقاق"
-
 #: templates/tenants/tenant_invoice_detail.html:62
 msgid "طباعة الفاتورة"
 msgstr "بند الفاتورة"
@@ -3450,6 +3447,9 @@ msgstr "روابط سريعة"
 #: templates/tenants/tenant_profile.html:219
 msgid "معلومات الحساب"
 msgstr "معلومات الحساب"
+
+#~ msgid "الاستحقاق"
+#~ msgstr "الاستحقاق"
 
 #~ msgid "لوحة المستأجر"
 #~ msgstr "لوحة المستأجر"
