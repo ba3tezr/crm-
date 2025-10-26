@@ -40,17 +40,24 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <strong>{% trans "رقم التصريح" %}:</strong>
-                            <p>{{ permit.permit_number }}</p>
+                            <p class="text-primary font-weight-bold" style="font-size: 1.1rem;">{{ permit.permit_number }}</p>
                         </div>
                         <div class="col-md-6">
                             <strong>{% trans "الحالة" %}:</strong>
                             <p>
-                                <span class="badge 
+                                <span class="badge
                                     {% if permit.status == 'approved' %}badge-success
                                     {% elif permit.status == 'rejected' %}badge-danger
                                     {% elif permit.status == 'pending' %}badge-warning
                                     {% else %}badge-secondary
-                                    {% endif %}">
+                                    {% endif %}" style="font-size: 0.95rem; padding: 6px 12px;">
+                                    {% if permit.status == 'approved' %}
+                                        <i class="fas fa-check-circle"></i>
+                                    {% elif permit.status == 'rejected' %}
+                                        <i class="fas fa-times-circle"></i>
+                                    {% elif permit.status == 'pending' %}
+                                        <i class="fas fa-clock"></i>
+                                    {% endif %}
                                     {{ permit.get_status_display }}
                                 </span>
                             </p>
@@ -60,11 +67,21 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <strong>{% trans "نوع التصريح" %}:</strong>
-                            <p>{{ permit.get_permit_type_display }}</p>
+                            <p>
+                                <span class="badge badge-primary" style="font-size: 0.95rem; padding: 6px 12px;">
+                                    <i class="fas fa-tag"></i>
+                                    {{ permit.get_permit_type_display }}
+                                </span>
+                            </p>
                         </div>
                         <div class="col-md-6">
                             <strong>{% trans "الاتجاه" %}:</strong>
-                            <p>{{ permit.get_direction_display }}</p>
+                            <p>
+                                <span class="badge badge-info" style="font-size: 0.95rem; padding: 6px 12px;">
+                                    <i class="fas fa-arrow-right"></i>
+                                    {{ permit.get_direction_display }}
+                                </span>
+                            </p>
                         </div>
                     </div>
 

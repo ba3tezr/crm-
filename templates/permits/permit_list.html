@@ -90,8 +90,8 @@
                             <th>{% trans "رقم التصريح" %}</th>
                             <th>{% trans "نوع التصريح" %}</th>
                             <th>{% trans "الاتجاه" %}</th>
-                            <th>{% trans "مقدم الطلب" %}</th>
-                            <th>{% trans "القسم" %}</th>
+                            <th>{% trans "المستأجر" %}</th>
+                            <th>{% trans "العنوان" %}</th>
                             <th>{% trans "تاريخ البدء" %}</th>
                             <th>{% trans "تاريخ الانتهاء" %}</th>
                             <th>{% trans "الحالة" %}</th>
@@ -118,8 +118,14 @@
                                     {% trans "صادر" %}
                                 {% endif %}
                             </td>
-                            <td>{{ permit.applicant.get_full_name }}</td>
-                            <td>{{ permit.department.name_ar }}</td>
+                            <td>
+                                {% if permit.tenant %}
+                                    {{ permit.tenant.get_full_name|default:permit.tenant.username }}
+                                {% else %}
+                                    <span class="text-muted">{% trans "غير محدد" %}</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ permit.title|truncatewords:5 }}</td>
                             <td>{{ permit.start_date|date:"Y-m-d" }}</td>
                             <td>{{ permit.end_date|date:"Y-m-d" }}</td>
                             <td>

@@ -31,17 +31,24 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <strong>{% trans "رقم الشكوى" %}:</strong>
-                            <p>{{ case.case_number }}</p>
+                            <p class="text-primary font-weight-bold" style="font-size: 1.1rem;">{{ case.case_number }}</p>
                         </div>
                         <div class="col-md-6">
                             <strong>{% trans "الحالة" %}:</strong>
                             <p>
-                                <span class="badge 
+                                <span class="badge
                                     {% if case.status == 'resolved' %}badge-success
                                     {% elif case.status == 'in_progress' %}badge-info
                                     {% elif case.status == 'open' %}badge-warning
                                     {% else %}badge-secondary
-                                    {% endif %}">
+                                    {% endif %}" style="font-size: 0.95rem; padding: 6px 12px;">
+                                    {% if case.status == 'resolved' %}
+                                        <i class="fas fa-check-circle"></i>
+                                    {% elif case.status == 'in_progress' %}
+                                        <i class="fas fa-spinner"></i>
+                                    {% elif case.status == 'open' %}
+                                        <i class="fas fa-clock"></i>
+                                    {% endif %}
                                     {{ case.get_status_display }}
                                 </span>
                             </p>
@@ -51,17 +58,23 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <strong>{% trans "النوع" %}:</strong>
-                            <p>{{ case.get_case_type_display }}</p>
+                            <p>
+                                <span class="badge badge-primary" style="font-size: 0.95rem; padding: 6px 12px;">
+                                    <i class="fas fa-tag"></i>
+                                    {{ case.get_case_type_display }}
+                                </span>
+                            </p>
                         </div>
                         <div class="col-md-6">
                             <strong>{% trans "الأولوية" %}:</strong>
                             <p>
-                                <span class="badge 
+                                <span class="badge
                                     {% if case.priority == 'urgent' %}badge-danger
                                     {% elif case.priority == 'high' %}badge-warning
                                     {% elif case.priority == 'medium' %}badge-info
                                     {% else %}badge-secondary
-                                    {% endif %}">
+                                    {% endif %}" style="font-size: 0.95rem; padding: 6px 12px;">
+                                    <i class="fas fa-exclamation-circle"></i>
                                     {{ case.get_priority_display }}
                                 </span>
                             </p>

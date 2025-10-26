@@ -64,22 +64,20 @@
                     </h6>
                 </div>
                 <div class="card-body">
-                    <h6 class="font-weight-bold">{% trans "أنواع الشكاوى" %}:</h6>
+                    <h6 class="font-weight-bold">{% trans "أنواع الحالات" %}:</h6>
                     <ul class="small">
-                        <li>{% trans "شكوى خدمة" %}</li>
-                        <li>{% trans "شكوى صيانة" %}</li>
-                        <li>{% trans "شكوى مالية" %}</li>
-                        <li>{% trans "شكوى إدارية" %}</li>
-                        <li>{% trans "أخرى" %}</li>
+                        <li><i class="fas fa-exclamation-triangle text-warning"></i> {% trans "شكوى" %}</li>
+                        <li><i class="fas fa-thumbs-up text-success"></i> {% trans "مجاملة" %}</li>
+                        <li><i class="fas fa-lightbulb text-info"></i> {% trans "اقتراح" %}</li>
                     </ul>
 
                     <hr>
 
                     <h6 class="font-weight-bold">{% trans "ملاحظات" %}:</h6>
                     <ul class="small text-muted">
-                        <li>{% trans "سيتم مراجعة الشكوى من قبل الإدارة" %}</li>
+                        <li>{% trans "سيتم مراجعة الحالة من قبل الإدارة" %}</li>
                         <li>{% trans "ستتلقى رداً في أقرب وقت" %}</li>
-                        <li>{% trans "يمكنك متابعة حالة الشكوى" %}</li>
+                        <li>{% trans "يمكنك متابعة حالة الطلب" %}</li>
                     </ul>
                 </div>
             </div>

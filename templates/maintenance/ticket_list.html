@@ -188,12 +188,18 @@
                                     <span class="badge bg-secondary">{% trans "منخفضة" %}</span>
                                 {% endif %}
                             </td>
-                            <td>{{ ticket.requester.get_full_name }}</td>
                             <td>
-                                {% if ticket.assigned_to %}
-                                    {{ ticket.assigned_to.get_full_name }}
+                                {% if ticket.created_by %}
+                                    {{ ticket.created_by.get_full_name|default:ticket.created_by.username }}
                                 {% else %}
                                     <span class="text-muted">{% trans "غير محدد" %}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if ticket.assigned_to %}
+                                    {{ ticket.assigned_to.get_full_name|default:ticket.assigned_to.username }}
+                                {% else %}
+                                    <span class="text-muted">{% trans "غير مسند" %}</span>
                                 {% endif %}
                             </td>
                             <td>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-26 14:56+0300\n"
+"POT-Creation-Date: 2025-10-26 15:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,9 +60,9 @@ msgstr "Status"
 #: apps/accounts/admin.py:25 apps/accounts/admin.py:72
 #: apps/accounts/admin.py:114 apps/accounts/admin.py:142
 #: apps/finance/admin.py:44 templates/permits/permit_detail.html:125
-#: templates/tenants/tenant_case_detail.html:138
-#: templates/tenants/tenant_permit_detail.html:91
-#: templates/tenants/tenant_ticket_detail.html:138
+#: templates/tenants/tenant_case_detail.html:151
+#: templates/tenants/tenant_permit_detail.html:108
+#: templates/tenants/tenant_ticket_detail.html:151
 msgid "التواريخ"
 msgstr "Dates"
 
@@ -126,12 +126,12 @@ msgstr "Pending Approvals"
 #: templates/complaints/case_list.html:202
 #: templates/finance/invoice_list.html:162
 #: templates/hr/leave_request_list.html:222
-#: templates/maintenance/ticket_list.html:217
+#: templates/maintenance/ticket_list.html:223
 #: templates/marketing/event_list.html:218
-#: templates/permits/permit_list.html:140
+#: templates/permits/permit_list.html:146
 #: templates/tenants/tenant_cases.html:76
 #: templates/tenants/tenant_invoices.html:162
-#: templates/tenants/tenant_permits.html:67
+#: templates/tenants/tenant_permits.html:74
 #: templates/tenants/tenant_tickets.html:76
 msgid "عرض"
 msgstr "View"
@@ -149,11 +149,11 @@ msgstr "إضافة تعليق"
 #: templates/finance/invoice_form.html:31
 #: templates/finance/invoice_list.html:165
 #: templates/maintenance/ticket_detail.html:28
-#: templates/maintenance/ticket_list.html:222
+#: templates/maintenance/ticket_list.html:228
 #: templates/marketing/event_detail.html:27
 #: templates/marketing/event_list.html:223
 #: templates/permits/permit_detail.html:28
-#: templates/permits/permit_list.html:145
+#: templates/permits/permit_list.html:151
 msgid "تعديل"
 msgstr "Edit"
 
@@ -167,9 +167,9 @@ msgstr "Edit"
 #: templates/marketing/event_detail.html:31
 #: templates/marketing/event_list.html:228
 #: templates/permits/permit_detail.html:32
-#: templates/permits/permit_list.html:150
+#: templates/permits/permit_list.html:156
 #: templates/tenants/tenant_permit_detail.html:19
-#: templates/tenants/tenant_permits.html:72
+#: templates/tenants/tenant_permits.html:79
 msgid "حذف"
 msgstr "Delete"
 
@@ -295,10 +295,10 @@ msgstr "الاسم بالإنجليزية"
 #: templates/permits/permit_approve.html:58
 #: templates/permits/permit_detail.html:81
 #: templates/permits/permit_detail.html:302
-#: templates/tenants/tenant_case_detail.html:80
+#: templates/tenants/tenant_case_detail.html:93
 #: templates/tenants/tenant_invoice_detail.html:139
-#: templates/tenants/tenant_permit_detail.html:80
-#: templates/tenants/tenant_ticket_detail.html:80
+#: templates/tenants/tenant_permit_detail.html:97
+#: templates/tenants/tenant_ticket_detail.html:93
 msgid "الوصف"
 msgstr "Description"
 
@@ -330,11 +330,11 @@ msgstr "Active"
 #: templates/permits/permit_approve.html:62
 #: templates/permits/permit_confirm_delete.html:47
 #: templates/permits/permit_detail.html:238
-#: templates/tenants/tenant_case_detail.html:145
+#: templates/tenants/tenant_case_detail.html:158
 #: templates/tenants/tenant_cases.html:39
-#: templates/tenants/tenant_permit_detail.html:218
+#: templates/tenants/tenant_permit_detail.html:235
 #: templates/tenants/tenant_profile.html:228
-#: templates/tenants/tenant_ticket_detail.html:145
+#: templates/tenants/tenant_ticket_detail.html:158
 #: templates/tenants/tenant_tickets.html:39
 msgid "تاريخ الإنشاء"
 msgstr "Created At"
@@ -350,7 +350,6 @@ msgstr "Updated At"
 
 #: apps/accounts/models.py:56 apps/accounts/models.py:96
 #: templates/hr/leave_request_list.html:147
-#: templates/permits/permit_list.html:94
 msgid "القسم"
 msgstr "Department"
 
@@ -362,7 +361,7 @@ msgstr "الأقسام"
 msgid "رقم الهاتف يجب أن يكون بالصيغة: '+999999999'. حتى 15 رقم مسموح."
 msgstr "رقم الهاتف يجب أن يكون بالصيغة: '+999999999'. حتى 15 رقم مسموح."
 
-#: apps/accounts/models.py:80 templates/tenants/tenant_permit_detail.html:144
+#: apps/accounts/models.py:80 templates/tenants/tenant_permit_detail.html:161
 #: templates/tenants/tenant_profile.html:155
 msgid "رقم الهاتف"
 msgstr "Phone Number"
@@ -398,13 +397,14 @@ msgstr "صورة الملف الشخصي"
 #: templates/marketing/event_list.html:146
 #: templates/permits/permit_confirm_delete.html:35
 #: templates/permits/permit_detail.html:77
-#: templates/tenants/tenant_case_detail.html:73
+#: templates/permits/permit_list.html:94
+#: templates/tenants/tenant_case_detail.html:86
 #: templates/tenants/tenant_cases.html:36
 #: templates/tenants/tenant_invoice_detail.html:89
 #: templates/tenants/tenant_permit_delete.html:49
-#: templates/tenants/tenant_permit_detail.html:73
+#: templates/tenants/tenant_permit_detail.html:90
 #: templates/tenants/tenant_permits.html:36
-#: templates/tenants/tenant_ticket_detail.html:73
+#: templates/tenants/tenant_ticket_detail.html:86
 #: templates/tenants/tenant_tickets.html:35
 msgid "العنوان"
 msgstr "Address"
@@ -442,7 +442,7 @@ msgstr "Tenant ID"
 #: templates/permits/permit_detail.html:100
 #: templates/tenants/tenant_dashboard.html:33
 #: templates/tenants/tenant_invoice_detail.html:88
-#: templates/tenants/tenant_permit_detail.html:129
+#: templates/tenants/tenant_permit_detail.html:146
 #: templates/tenants/tenant_profile.html:48
 msgid "اسم الشركة"
 msgstr "Company Name"
@@ -501,10 +501,10 @@ msgstr "هاتف جهة الاتصال للطوارئ"
 #: templates/marketing/event_detail.html:112
 #: templates/permits/permit_detail.html:156
 #: templates/permits/permit_form.html:56
-#: templates/tenants/tenant_case_create.html:78
+#: templates/tenants/tenant_case_create.html:76
 #: templates/tenants/tenant_invoice_detail.html:168
 #: templates/tenants/tenant_permit_create.html:78
-#: templates/tenants/tenant_permit_detail.html:158
+#: templates/tenants/tenant_permit_detail.html:175
 #: templates/tenants/tenant_profile.html:168
 #: templates/tenants/tenant_ticket_create.html:79
 msgid "ملاحظات"
@@ -577,38 +577,40 @@ msgstr "اسم القسم"
 msgid "صلاحيات الأقسام"
 msgstr "الأقسام"
 
-#: apps/accounts/views.py:31 apps/accounts/views.py:81
-#: apps/accounts/views.py:99 apps/accounts/views.py:129
-#: apps/accounts/views.py:165 apps/accounts/views.py:191
-#: apps/accounts/views.py:218 apps/accounts/views.py:254
-#: apps/accounts/views.py:278 apps/accounts/views.py:311
-#: apps/accounts/views.py:342 apps/accounts/views.py:374
-#: apps/accounts/views.py:397 apps/accounts/views.py:428
-#: apps/accounts/views.py:460 apps/core/decorators.py:23
+#: apps/accounts/views.py:33 apps/accounts/views.py:83
+#: apps/accounts/views.py:101 apps/accounts/views.py:131
+#: apps/accounts/views.py:167 apps/accounts/views.py:193
+#: apps/accounts/views.py:220 apps/accounts/views.py:282
+#: apps/accounts/views.py:306 apps/accounts/views.py:339
+#: apps/accounts/views.py:370 apps/accounts/views.py:402
+#: apps/accounts/views.py:425 apps/accounts/views.py:456
+#: apps/accounts/views.py:488 apps/core/decorators.py:23
 msgid "ليس لديك صلاحية الوصول لهذه الصفحة"
 msgstr "You don't have permission to access this page"
 
-#: apps/accounts/views.py:232 apps/permits/views.py:111
-msgid "تم إنشاء التصريح بنجاح"
+#: apps/accounts/views.py:260
+#, fuzzy
+#| msgid "تم إنشاء التصريح بنجاح"
+msgid "تم إنشاء التصريح بنجاح وإرساله للموافقة"
 msgstr "Permit created successfully"
 
-#: apps/accounts/views.py:286
+#: apps/accounts/views.py:314
 #, fuzzy
 #| msgid "تم حذف التصريح بنجاح"
 msgid "لا يمكن حذف التصريح بعد بدء المراجعة"
 msgstr "تم حذف التصريح بنجاح"
 
-#: apps/accounts/views.py:291 apps/permits/views.py:172
+#: apps/accounts/views.py:319 apps/permits/views.py:172
 msgid "تم حذف التصريح بنجاح"
 msgstr "Permit deleted successfully"
 
-#: apps/accounts/views.py:352
+#: apps/accounts/views.py:380
 #, fuzzy
 #| msgid "تم إنشاء طلب الصيانة بنجاح"
 msgid "تم إنشاء تذكرة الصيانة بنجاح"
 msgstr "تم إنشاء طلب الصيانة بنجاح"
 
-#: apps/accounts/views.py:438
+#: apps/accounts/views.py:466
 #, fuzzy
 #| msgid "تم إنشاء القضية بنجاح"
 msgid "تم إنشاء الشكوى بنجاح"
@@ -645,14 +647,15 @@ msgstr "إضافة تعليق"
 #: apps/complaints/models.py:13 apps/core/models.py:188
 #: templates/complaints/case_list.html:91
 #: templates/complaints/case_list.html:155
+#: templates/tenants/tenant_case_create.html:69
 msgid "شكوى"
 msgstr "Complaint"
 
-#: apps/complaints/models.py:14
+#: apps/complaints/models.py:14 templates/tenants/tenant_case_create.html:70
 msgid "مجاملة"
 msgstr "Compliment"
 
-#: apps/complaints/models.py:15
+#: apps/complaints/models.py:15 templates/tenants/tenant_case_create.html:71
 msgid "اقتراح"
 msgstr "Suggestion"
 
@@ -715,9 +718,9 @@ msgstr "Case Type"
 #: templates/complaints/case_list.html:136
 #: templates/maintenance/ticket_list.html:116
 #: templates/maintenance/ticket_list.html:157
-#: templates/tenants/tenant_case_detail.html:57
+#: templates/tenants/tenant_case_detail.html:69
 #: templates/tenants/tenant_cases.html:37
-#: templates/tenants/tenant_ticket_detail.html:57
+#: templates/tenants/tenant_ticket_detail.html:69
 #: templates/tenants/tenant_tickets.html:37
 msgid "الأولوية"
 msgstr "Priority"
@@ -755,8 +758,8 @@ msgstr "Closing Date"
 #: apps/complaints/models.py:44 apps/maintenance/models.py:136
 #: templates/complaints/case_detail.html:100
 #: templates/maintenance/ticket_detail.html:159
-#: templates/tenants/tenant_case_detail.html:88
-#: templates/tenants/tenant_ticket_detail.html:88
+#: templates/tenants/tenant_case_detail.html:101
+#: templates/tenants/tenant_ticket_detail.html:101
 msgid "ملاحظات الحل"
 msgstr "Resolution Notes"
 
@@ -1122,7 +1125,7 @@ msgstr "تفاصيل الدفع"
 msgid "معلومات الشركة"
 msgstr "معلومات الشركة"
 
-#: apps/finance/admin.py:130 templates/tenants/tenant_permit_detail.html:122
+#: apps/finance/admin.py:130 templates/tenants/tenant_permit_detail.html:139
 #, fuzzy
 #| msgid "معلومات الفاتورة"
 msgid "معلومات الاتصال"
@@ -1284,7 +1287,7 @@ msgstr "شعار النظام (إنجليزي)"
 #: templates/maintenance/ticket_detail.html:189
 #: templates/marketing/event_detail.html:140
 #: templates/permits/permit_detail.html:242
-#: templates/tenants/tenant_case_detail.html:151
+#: templates/tenants/tenant_case_detail.html:164
 #: templates/tenants/tenant_profile.html:232
 msgid "آخر تحديث"
 msgstr "Last Update"
@@ -1329,7 +1332,7 @@ msgstr "Draft"
 #: templates/hr/leave_request_list.html:44
 #: templates/hr/leave_request_list.html:117
 #: templates/hr/leave_request_list.html:209
-#: templates/permits/permit_list.html:58 templates/permits/permit_list.html:127
+#: templates/permits/permit_list.html:58 templates/permits/permit_list.html:133
 #: templates/tenants/tenant_dashboard.html:64
 #: templates/tenants/tenant_invoice_detail.html:117
 msgid "قيد الانتظار"
@@ -1384,6 +1387,7 @@ msgstr "Invoice Type"
 #: templates/finance/payment_list.html:107
 #: templates/permits/my_pending_approvals.html:48
 #: templates/permits/permit_approve.html:54
+#: templates/permits/permit_list.html:93
 msgid "المستأجر"
 msgstr "Tenant"
 
@@ -1404,7 +1408,7 @@ msgstr "Issue Date"
 #: templates/tenants/tenant_dashboard.html:268
 #: templates/tenants/tenant_invoice_detail.html:85
 #: templates/tenants/tenant_invoices.html:129
-#: templates/tenants/tenant_ticket_detail.html:151
+#: templates/tenants/tenant_ticket_detail.html:164
 msgid "تاريخ الاستحقاق"
 msgstr "Due Date"
 
@@ -1608,18 +1612,17 @@ msgstr "Paternity"
 #: templates/maintenance/ticket_list.html:112
 #: templates/marketing/event_list.html:110
 #: templates/marketing/event_list.html:193
-#: templates/tenants/tenant_case_create.html:73
 #: templates/tenants/tenant_ticket_create.html:74
 msgid "أخرى"
 msgstr "Other"
 
 #: apps/hr/models.py:23 apps/permits/models.py:28
-#: templates/permits/permit_list.html:59 templates/permits/permit_list.html:129
+#: templates/permits/permit_list.html:59 templates/permits/permit_list.html:135
 msgid "موافق عليه"
 msgstr "Approved"
 
 #: apps/hr/models.py:24 apps/permits/models.py:29
-#: templates/permits/permit_list.html:60 templates/permits/permit_list.html:131
+#: templates/permits/permit_list.html:60 templates/permits/permit_list.html:137
 msgid "مرفوض"
 msgstr "Rejected"
 
@@ -1784,7 +1787,7 @@ msgstr "ليس لديك صلاحية لرفض طلبات الإجازات"
 msgid "تم رفض طلب الإجازة"
 msgstr "تم رفض طلب الإجازة"
 
-#: apps/hr/views.py:240 templates/permits/permit_list.html:210
+#: apps/hr/views.py:240 templates/permits/permit_list.html:216
 msgid "سيتم تنفيذ هذه الميزة قريباً"
 msgstr "سيتم تنفيذ هذه الميزة قريباً"
 
@@ -1800,7 +1803,7 @@ msgstr "Urgent"
 
 #: apps/maintenance/models.py:21 templates/maintenance/ticket_list.html:59
 #: templates/maintenance/ticket_list.html:130
-#: templates/maintenance/ticket_list.html:203
+#: templates/maintenance/ticket_list.html:209
 msgid "قيد التنفيذ"
 msgstr "In Progress"
 
@@ -1850,7 +1853,7 @@ msgstr "Ticket Number"
 #: templates/maintenance/ticket_detail.html:76
 #: templates/maintenance/ticket_list.html:103
 #: templates/maintenance/ticket_list.html:156
-#: templates/tenants/tenant_ticket_detail.html:53
+#: templates/tenants/tenant_ticket_detail.html:60
 #: templates/tenants/tenant_tickets.html:36
 msgid "الفئة"
 msgstr "Category"
@@ -1943,7 +1946,7 @@ msgstr "Budget"
 #: apps/marketing/models.py:42 apps/permits/models.py:92
 #: templates/marketing/event_detail.html:99
 #: templates/permits/permit_detail.html:105
-#: templates/tenants/tenant_permit_detail.html:138
+#: templates/tenants/tenant_permit_detail.html:155
 msgid "الشخص المسؤول"
 msgstr "Responsible Person"
 
@@ -2057,14 +2060,14 @@ msgstr "Permit Number"
 #: templates/permits/permit_confirm_delete.html:31
 #: templates/permits/permit_detail.html:69
 #: templates/permits/permit_list.html:43 templates/permits/permit_list.html:91
-#: templates/tenants/tenant_permit_detail.html:62
+#: templates/tenants/tenant_permit_detail.html:69
 msgid "نوع التصريح"
 msgstr "Permit Type"
 
 #: apps/permits/models.py:49 templates/permits/permit_approve.html:50
 #: templates/permits/permit_detail.html:73
 #: templates/permits/permit_list.html:65 templates/permits/permit_list.html:92
-#: templates/tenants/tenant_permit_detail.html:66
+#: templates/tenants/tenant_permit_detail.html:78
 msgid "الاتجاه"
 msgstr "Direction"
 
@@ -2073,7 +2076,7 @@ msgid "هاتف الاتصال"
 msgstr "Contact Phone"
 
 #: apps/permits/models.py:104 templates/permits/permit_detail.html:131
-#: templates/tenants/tenant_permit_detail.html:109
+#: templates/tenants/tenant_permit_detail.html:126
 msgid "تاريخ الطلب"
 msgstr "Request Date"
 
@@ -2219,7 +2222,11 @@ msgstr ""
 msgid "ليس لديك صلاحية الوصول لهذا التصريح"
 msgstr "You don't have permission to access this page"
 
-#: apps/permits/views.py:118 templates/tenants/tenant_permits.html:88
+#: apps/permits/views.py:111
+msgid "تم إنشاء التصريح بنجاح"
+msgstr "Permit created successfully"
+
+#: apps/permits/views.py:118 templates/tenants/tenant_permits.html:95
 msgid "إنشاء تصريح جديد"
 msgstr "Create New Permit"
 
@@ -2269,7 +2276,7 @@ msgstr "Permit Approval"
 msgid "تمت الموافقة على التصريح %(number)s"
 msgstr "تمت الموافقة على طلب الإجازة بنجاح"
 
-#: apps/permits/views.py:314 templates/tenants/tenant_permit_detail.html:200
+#: apps/permits/views.py:314 templates/tenants/tenant_permit_detail.html:217
 msgid "تم رفض التصريح"
 msgstr "Permit Attachment"
 
@@ -2283,8 +2290,9 @@ msgid "تم رفض التصريح %(number)s. السبب: %(reason)s"
 msgstr "Permit %(number)s has been rejected. Reason: %(reason)s"
 
 #: apps/permits/views.py:322 templates/complaints/case_list.html:183
-#: templates/maintenance/ticket_list.html:196
+#: templates/maintenance/ticket_list.html:195
 #: templates/permits/permit_detail.html:234
+#: templates/permits/permit_list.html:125
 msgid "غير محدد"
 msgstr "Not Assigned"
 
@@ -2511,6 +2519,8 @@ msgstr "Are you sure you want to delete this case? This action cannot be undone!
 "delete this case? This action cannot be undone!Are you sure you want to "
 "delete this case? This action cannot be undone!Are you sure you want to "
 "delete this case? This action cannot be undone!Are you sure you want to "
+"delete this case? This action cannot be undone!Are you sure you want to "
+"delete this case? This action cannot be undone!Are you sure you want to "
 "delete this case? This action cannot be undone!"
 
 #: templates/complaints/case_confirm_delete.html:30
@@ -2522,7 +2532,7 @@ msgstr "Are you sure you want to delete this case? This action cannot be undone!
 #: templates/marketing/event_detail.html:70
 #: templates/marketing/event_list.html:147
 #: templates/permits/my_pending_approvals.html:46
-#: templates/tenants/tenant_case_detail.html:53
+#: templates/tenants/tenant_case_detail.html:60
 #: templates/tenants/tenant_cases.html:35
 #: templates/tenants/tenant_dashboard.html:215
 #: templates/tenants/tenant_permit_delete.html:45
@@ -2605,7 +2615,7 @@ msgstr "Export Excel"
 #: templates/complaints/case_list.html:111
 #: templates/complaints/case_list.html:192
 #: templates/maintenance/ticket_list.html:132
-#: templates/maintenance/ticket_list.html:207
+#: templates/maintenance/ticket_list.html:213
 msgid "تم الحل"
 msgstr "Resolved"
 
@@ -2656,14 +2666,14 @@ msgstr "Inquiry"
 #: templates/complaints/case_list.html:109
 #: templates/complaints/case_list.html:188
 #: templates/maintenance/ticket_list.html:129
-#: templates/maintenance/ticket_list.html:201
+#: templates/maintenance/ticket_list.html:207
 msgid "مفتوح"
 msgstr "Open"
 
 #: templates/complaints/case_list.html:112
 #: templates/complaints/case_list.html:194
 #: templates/maintenance/ticket_list.html:133
-#: templates/maintenance/ticket_list.html:209
+#: templates/maintenance/ticket_list.html:215
 msgid "مغلق"
 msgstr "Closed"
 
@@ -2916,7 +2926,7 @@ msgstr "Invoice List"
 
 #: templates/finance/invoice_list.html:125
 #: templates/finance/payment_list.html:112
-#: templates/tenants/tenant_permit_detail.html:241
+#: templates/tenants/tenant_permit_detail.html:258
 msgid "إجراءات"
 msgstr "Actions"
 
@@ -3106,8 +3116,8 @@ msgstr "From Date"
 #: templates/marketing/event_list.html:148
 #: templates/permits/permit_list.html:95
 #: templates/tenants/tenant_permit_delete.html:61
-#: templates/tenants/tenant_permit_detail.html:97
-#: templates/tenants/tenant_permit_detail.html:223
+#: templates/tenants/tenant_permit_detail.html:114
+#: templates/tenants/tenant_permit_detail.html:240
 #: templates/tenants/tenant_permits.html:38
 msgid "تاريخ البدء"
 msgstr "Start Date"
@@ -3116,8 +3126,8 @@ msgstr "Start Date"
 #: templates/marketing/event_list.html:149
 #: templates/permits/permit_list.html:96
 #: templates/tenants/tenant_permit_delete.html:65
-#: templates/tenants/tenant_permit_detail.html:101
-#: templates/tenants/tenant_permit_detail.html:228
+#: templates/tenants/tenant_permit_detail.html:118
+#: templates/tenants/tenant_permit_detail.html:245
 #: templates/tenants/tenant_permits.html:39
 msgid "تاريخ الانتهاء"
 msgstr "End Date"
@@ -3145,6 +3155,8 @@ msgstr "Confirm Delete Maintenance Ticket"
 #: templates/maintenance/ticket_confirm_delete.html:20
 msgid "هل أنت متأكد من حذف هذا الطلب؟ هذا الإجراء لا يمكن التراجع عنه!"
 msgstr "Are you sure you want to delete this ticket? This action cannot be undone!"
+"Are you sure you want to delete this ticket? This action cannot be undone!"
+"Are you sure you want to delete this ticket? This action cannot be undone!"
 "Are you sure you want to delete this ticket? This action cannot be undone!"
 "Are you sure you want to delete this ticket? This action cannot be undone!"
 "Are you sure you want to delete this ticket? This action cannot be undone!"
@@ -3240,16 +3252,21 @@ msgid "عاجل"
 msgstr "Urgent"
 
 #: templates/maintenance/ticket_list.html:131
-#: templates/maintenance/ticket_list.html:205
+#: templates/maintenance/ticket_list.html:211
 msgid "معلق"
 msgstr "Suspended"
 
 #: templates/maintenance/ticket_list.html:158
-#: templates/permits/permit_list.html:93
 msgid "مقدم الطلب"
 msgstr "Requester"
 
-#: templates/maintenance/ticket_list.html:232
+#: templates/maintenance/ticket_list.html:202
+#, fuzzy
+#| msgid "غير محدد"
+msgid "غير مسند"
+msgstr "Not Assigned"
+
+#: templates/maintenance/ticket_list.html:238
 msgid "لا توجد طلبات صيانة"
 msgstr "لا توجد طلبات صيانة"
 
@@ -3262,6 +3279,8 @@ msgid "هل أنت متأكد من حذف هذه الفعالية؟ هذا ال�
 msgstr "Are you sure you want to delete this event? This action cannot be undone!"
 "Are you sure you want to delete this event? This action cannot be undone!Are "
 "you sure you want to delete this event? This action cannot be undone!Are you "
+"sure you want to delete this event? This action cannot be undone!Are you "
+"sure you want to delete this event? This action cannot be undone!Are you "
 "sure you want to delete this event? This action cannot be undone!Are you "
 "sure you want to delete this event? This action cannot be undone!Are you "
 "sure you want to delete this event? This action cannot be undone!Are you "
@@ -3323,7 +3342,7 @@ msgid "المنظم"
 msgstr "Organizer"
 
 #: templates/marketing/event_list.html:229
-#: templates/permits/permit_list.html:151
+#: templates/permits/permit_list.html:157
 msgid "هل أنت متأكد من الحذف؟"
 msgstr "هل أنت متأكد من الحذف؟"
 
@@ -3350,32 +3369,32 @@ msgid "سيتم الإعلان عن الفعاليات القادمة قريبا
 msgstr "سيتم تحديث حالة الفاتورة تلقائياً"
 
 #: templates/marketing/tenant_events_list.html:101
-#: templates/permits/permit_list.html:175
+#: templates/permits/permit_list.html:181
 msgid "الأولى"
 msgstr "الأولى"
 
 #: templates/marketing/tenant_events_list.html:104
-#: templates/permits/permit_list.html:178
+#: templates/permits/permit_list.html:184
 msgid "السابقة"
 msgstr "السابقة"
 
 #: templates/marketing/tenant_events_list.html:110
-#: templates/permits/permit_list.html:184
+#: templates/permits/permit_list.html:190
 msgid "صفحة"
 msgstr "صفحة"
 
 #: templates/marketing/tenant_events_list.html:110
-#: templates/permits/permit_list.html:184
+#: templates/permits/permit_list.html:190
 msgid "من"
 msgstr "من"
 
 #: templates/marketing/tenant_events_list.html:116
-#: templates/permits/permit_list.html:190
+#: templates/permits/permit_list.html:196
 msgid "التالية"
 msgstr "التالية"
 
 #: templates/marketing/tenant_events_list.html:119
-#: templates/permits/permit_list.html:193
+#: templates/permits/permit_list.html:199
 msgid "الأخيرة"
 msgstr "الأخيرة"
 
@@ -3474,7 +3493,7 @@ msgstr "Click upload button to add attachments"
 #: templates/permits/permit_detail.html:264
 #: templates/tenants/tenant_permit_delete.html:5
 #: templates/tenants/tenant_permit_delete.html:13
-#: templates/tenants/tenant_permit_detail.html:249
+#: templates/tenants/tenant_permit_detail.html:266
 msgid "حذف التصريح"
 msgstr "Delete Permit"
 
@@ -3547,7 +3566,7 @@ msgstr "Temporary"
 msgid "دائم"
 msgstr "Permanent"
 
-#: templates/permits/permit_list.html:61 templates/permits/permit_list.html:133
+#: templates/permits/permit_list.html:61 templates/permits/permit_list.html:139
 msgid "منتهي الصلاحية"
 msgstr "Expired"
 
@@ -3559,9 +3578,9 @@ msgstr "Incoming"
 msgid "صادر"
 msgstr "Outgoing"
 
-#: templates/permits/permit_list.html:161
+#: templates/permits/permit_list.html:167
 #: templates/tenants/tenant_dashboard.html:244
-#: templates/tenants/tenant_permits.html:85
+#: templates/tenants/tenant_permits.html:92
 msgid "لا توجد تصاريح"
 msgstr "No permits found"
 
@@ -3585,49 +3604,25 @@ msgstr "يرجى تصحيح الأخطاء التالية:"
 
 #: templates/tenants/tenant_case_create.html:67
 #, fuzzy
-#| msgid "إدارة الشكاوى"
-msgid "أنواع الشكاوى"
-msgstr "Complaints Management"
+#| msgid "نوع الحالة"
+msgid "أنواع الحالات"
+msgstr "Case Type"
 
-#: templates/tenants/tenant_case_create.html:69
-#, fuzzy
-#| msgid "شكوى جديدة"
-msgid "شكوى خدمة"
-msgstr "New Complaint"
-
-#: templates/tenants/tenant_case_create.html:70
-#, fuzzy
-#| msgid "شكوى جديدة"
-msgid "شكوى صيانة"
-msgstr "New Complaint"
-
-#: templates/tenants/tenant_case_create.html:71
-#, fuzzy
-#| msgid "شكوى نظافة"
-msgid "شكوى مالية"
-msgstr "Cleaning Complaint"
-
-#: templates/tenants/tenant_case_create.html:72
-#, fuzzy
-#| msgid "شكوى جديدة"
-msgid "شكوى إدارية"
-msgstr "New Complaint"
-
-#: templates/tenants/tenant_case_create.html:80
+#: templates/tenants/tenant_case_create.html:78
 #, fuzzy
 #| msgid "تم إنشاء التصريح بنجاح"
-msgid "سيتم مراجعة الشكوى من قبل الإدارة"
+msgid "سيتم مراجعة الحالة من قبل الإدارة"
 msgstr "Permit created successfully"
 
-#: templates/tenants/tenant_case_create.html:81
+#: templates/tenants/tenant_case_create.html:79
 msgid "ستتلقى رداً في أقرب وقت"
 msgstr "You will receive a response soon"
 
-#: templates/tenants/tenant_case_create.html:82
+#: templates/tenants/tenant_case_create.html:80
 #, fuzzy
-#| msgid "يمكنك إضافة المرفقات بعد حفظ الطلب"
-msgid "يمكنك متابعة حالة الشكوى"
-msgstr "You can add attachments after saving the request"
+#| msgid "يمكنك إضافة المرفقات بعد حفظ التصريح"
+msgid "يمكنك متابعة حالة الطلب"
+msgstr "You can add attachments after saving the permit"
 
 #: templates/tenants/tenant_case_detail.html:13
 #, fuzzy
@@ -3642,25 +3637,25 @@ msgstr "تفاصيل الدفع"
 msgid "رقم الشكوى"
 msgstr "Complainant"
 
-#: templates/tenants/tenant_case_detail.html:103
+#: templates/tenants/tenant_case_detail.html:116
 #, fuzzy
 #| msgid "إدارة الشكاوى"
 msgid "حالة الشكوى"
 msgstr "Complaints Management"
 
-#: templates/tenants/tenant_case_detail.html:120
+#: templates/tenants/tenant_case_detail.html:133
 #, fuzzy
 #| msgid "قيد المراجعة"
 msgid "الشكوى قيد المراجعة"
 msgstr "In Review"
 
-#: templates/tenants/tenant_case_detail.html:124
+#: templates/tenants/tenant_case_detail.html:137
 #, fuzzy
 #| msgid "مقدم الشكوى"
 msgid "جاري العمل على الشكوى"
 msgstr "Complainant"
 
-#: templates/tenants/tenant_case_detail.html:128
+#: templates/tenants/tenant_case_detail.html:141
 #, fuzzy
 #| msgid "مقدم الشكوى"
 msgid "تم حل الشكوى"
@@ -3805,31 +3800,31 @@ msgstr "You can add attachments after saving the request"
 msgid "هل أنت متأكد من حذف هذا التصريح؟ لا يمكن التراجع عن هذا الإجراء."
 msgstr "هل أنت متأكد من حذف هذا التصريح؟ هذا الإجراء لا يمكن التراجع عنه!"
 
-#: templates/tenants/tenant_permit_detail.html:175
+#: templates/tenants/tenant_permit_detail.html:192
 #, fuzzy
 #| msgid "حذف التصريح"
 msgid "حالة التصريح"
 msgstr "Delete Permit"
 
-#: templates/tenants/tenant_permit_detail.html:192
+#: templates/tenants/tenant_permit_detail.html:209
 #, fuzzy
 #| msgid "تم إنشاء التصريح بنجاح"
 msgid "التصريح قيد المراجعة من قبل الإدارة"
 msgstr "Permit created successfully"
 
-#: templates/tenants/tenant_permit_detail.html:196
+#: templates/tenants/tenant_permit_detail.html:213
 #, fuzzy
 #| msgid "تمت الموافقة على تصريحك"
 msgid "تمت الموافقة على التصريح"
 msgstr "Permit Approval"
 
-#: templates/tenants/tenant_permit_detail.html:211
+#: templates/tenants/tenant_permit_detail.html:228
 #, fuzzy
 #| msgid "تاريخ النهاية"
 msgid "التواريخ المهمة"
 msgstr "End Date"
 
-#: templates/tenants/tenant_permit_detail.html:244
+#: templates/tenants/tenant_permit_detail.html:261
 #, fuzzy
 #| msgid "الطلب ليس في حالة الانتظار"
 msgid "يمكنك حذف التصريح طالما أنه في حالة الانتظار"
@@ -3909,25 +3904,25 @@ msgstr "You can add attachments after saving the permit"
 msgid "تفاصيل التذكرة"
 msgstr "Invoice Details"
 
-#: templates/tenants/tenant_ticket_detail.html:103
+#: templates/tenants/tenant_ticket_detail.html:116
 #, fuzzy
 #| msgid "حالة الفاتورة"
 msgid "حالة التذكرة"
 msgstr "Invoice Item"
 
-#: templates/tenants/tenant_ticket_detail.html:120
+#: templates/tenants/tenant_ticket_detail.html:133
 #, fuzzy
 #| msgid "قيد الانتظار"
 msgid "التذكرة قيد الانتظار"
 msgstr "Pending"
 
-#: templates/tenants/tenant_ticket_detail.html:124
+#: templates/tenants/tenant_ticket_detail.html:137
 #, fuzzy
 #| msgid "تمت الموافقة على تصريحك"
 msgid "جاري العمل على التذكرة"
 msgstr "Permit Approval"
 
-#: templates/tenants/tenant_ticket_detail.html:128
+#: templates/tenants/tenant_ticket_detail.html:141
 #, fuzzy
 #| msgid "رقم التذكرة"
 msgid "تم إغلاق التذكرة"
@@ -3956,6 +3951,41 @@ msgstr "لا توجد طلبات صيانة"
 #| msgid "إنشاء قضية جديدة"
 msgid "إنشاء تذكرة جديدة"
 msgstr "إنشاء قضية جديدة"
+
+#, fuzzy
+#~| msgid "إدارة الشكاوى"
+#~ msgid "أنواع الشكاوى"
+#~ msgstr "Complaints Management"
+
+#, fuzzy
+#~| msgid "شكوى جديدة"
+#~ msgid "شكوى خدمة"
+#~ msgstr "New Complaint"
+
+#, fuzzy
+#~| msgid "شكوى جديدة"
+#~ msgid "شكوى صيانة"
+#~ msgstr "New Complaint"
+
+#, fuzzy
+#~| msgid "شكوى نظافة"
+#~ msgid "شكوى مالية"
+#~ msgstr "Cleaning Complaint"
+
+#, fuzzy
+#~| msgid "شكوى جديدة"
+#~ msgid "شكوى إدارية"
+#~ msgstr "New Complaint"
+
+#, fuzzy
+#~| msgid "تم إنشاء التصريح بنجاح"
+#~ msgid "سيتم مراجعة الشكوى من قبل الإدارة"
+#~ msgstr "Permit created successfully"
+
+#, fuzzy
+#~| msgid "يمكنك إضافة المرفقات بعد حفظ الطلب"
+#~ msgid "يمكنك متابعة حالة الشكوى"
+#~ msgstr "You can add attachments after saving the request"
 
 #~ msgid "اليوم"
 #~ msgstr "Today"

@@ -10,13 +10,15 @@ from django.db.models import Count, Q
 from datetime import datetime, timedelta
 
 from .models import TenantProfile
-from apps.permits.models import Permit
+from apps.permits.models import Permit, ApprovalWorkflow, PendingApproval
 from apps.permits.forms import PermitForm
 from apps.maintenance.models import Ticket
 from apps.maintenance.forms import TicketForm
 from apps.complaints.models import Case
 from apps.complaints.forms import CaseForm
 from apps.finance.models import Invoice
+from datetime import timedelta
+from django.utils import timezone
 
 
 @login_required
@@ -229,7 +231,33 @@ def tenant_permit_create(request):
                 from datetime import date
                 permit.requested_date = date.today()
             permit.save()
-            messages.success(request, _('تم إنشاء التصريح بنجاح'))
+
+            # Create PendingApproval automatically
+            # Find the appropriate workflow for this permit type
+            workflow = ApprovalWorkflow.objects.filter(
+                permit_type=permit.permit_type,
+                is_active=True
+            ).first()
+
+            if not workflow:
+                # If no specific workflow, get a default one
+                workflow = ApprovalWorkflow.objects.filter(
+                    permit_type__isnull=True,
+                    is_active=True
+                ).first()
+
+            if workflow:
+                # Create pending approval
+                deadline = timezone.now() + timedelta(hours=workflow.deadline_hours)
+                PendingApproval.objects.create(
+                    permit=permit,
+                    workflow=workflow,
+                    assigned_to=workflow.approver,
+                    deadline=deadline,
+                    completed=False
+                )
+
+            messages.success(request, _('تم إنشاء التصريح بنجاح وإرساله للموافقة'))
             return redirect('accounts:tenant_permits')
     else:
         form = PermitForm(is_tenant=True)

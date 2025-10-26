@@ -51,12 +51,19 @@
                             <td>{{ permit.get_permit_type_display }}</td>
                             <td>{{ permit.title|truncatewords:5 }}</td>
                             <td>
-                                <span class="badge 
+                                <span class="badge
                                     {% if permit.status == 'approved' %}badge-success
                                     {% elif permit.status == 'rejected' %}badge-danger
                                     {% elif permit.status == 'pending' %}badge-warning
                                     {% else %}badge-secondary
                                     {% endif %}">
+                                    {% if permit.status == 'approved' %}
+                                        <i class="fas fa-check-circle"></i>
+                                    {% elif permit.status == 'rejected' %}
+                                        <i class="fas fa-times-circle"></i>
+                                    {% elif permit.status == 'pending' %}
+                                        <i class="fas fa-clock"></i>
+                                    {% endif %}
                                     {{ permit.get_status_display }}
                                 </span>
                             </td>
