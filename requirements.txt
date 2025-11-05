@@ -57,6 +57,10 @@ django-cors-headers>=4.3.1
 # Timezone
 pytz>=2023.3
 
+
 # Utilities
 python-dateutil>=2.8.2
+
+# ASGI Support
+asgiref>=3.7.2
 
