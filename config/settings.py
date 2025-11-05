@@ -18,21 +18,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ==============================================================================
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-dev-key-change-in-production')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-dev-key-change-in-production')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+# DEBUG: False في الإنتاج، True فقط في التطوير المحلي
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,0.0.0.0,testserver', cast=Csv())
+# السماح لجميع النطاقات مؤقتًا للنشر الخارجي
+ALLOWED_HOSTS = ['*']
 
-# Allow Cloudflare Tunnel domains
-ALLOWED_HOSTS += ['.trycloudflare.com']
-
-# CSRF Trusted Origins for Cloudflare Tunnel
+# CSRF Trusted Origins (يمكنك إضافة نطاق Vercel لاحقًا)
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
     'http://127.0.0.1:8000',
-    'https://*.trycloudflare.com',
 ]
 
 
