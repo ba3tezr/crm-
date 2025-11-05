@@ -1,3 +1,5 @@
+# WSGI Server
+gunicorn>=21.2.0
 # Django Core
 Django>=5.0,<5.1
 djangorestframework>=3.14.0
