@@ -335,6 +335,11 @@ INTERNAL_IPS = [
 # LOGGING
 # ==============================================================================
 
+# إنشاء مجلد logs تلقائيًا إذا لم يكن موجودًا
+LOGS_DIR = BASE_DIR / 'logs'
+if not LOGS_DIR.exists():
+    LOGS_DIR.mkdir(parents=True, exist_ok=True)
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
