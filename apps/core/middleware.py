@@ -35,14 +35,14 @@ class LanguageMiddleware:
             for lang_code, lang_name in settings.LANGUAGES:
                 if path.startswith(f'/{lang_code}/'):
                     language = lang_code
-                    # Save to session for consistency
-                    request.session['django_language'] = language
                     break
 
         # 4. LOWEST PRIORITY: Use default language from settings
         if not language:
             language = settings.LANGUAGE_CODE
-            # Save default to session
+
+        # Save to session if not already saved
+        if 'django_language' not in request.session:
             request.session['django_language'] = language
 
         # Activate the language
